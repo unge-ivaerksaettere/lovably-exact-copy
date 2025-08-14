@@ -24,9 +24,9 @@ const Header = () => {
           <Link to="/find-co-founder" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
             Find Co-founder
           </Link>
-          <a href="#" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
+          <Link to="/med-teamet" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
             Med Teamet
-          </a>
+          </Link>
           <a href="#" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
             Vores Historie
           </a>
