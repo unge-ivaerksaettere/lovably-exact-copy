@@ -48,27 +48,51 @@ const Events = () => {
   const pastEvents = [
     {
       id: 4,
-      title: "SaaS Scaling Workshop",
-      description: "Deep dive into scaling strategies for SaaS startups.",
-      date: "18.1.2024",
-      location: "Copenhagen Business School",
-      attendees: "120 deltagere"
+      title: "Soundboks Success Story med Jesper Theil Thomsen",
+      description: "CEO & Founder af Soundboks delte sin rejse fra startup til global succes.",
+      date: "15.11.2023",
+      location: "København",
+      attendees: "150 deltagere"
     },
     {
       id: 5,
-      title: "Women in Tech Networking",
-      description: "Netværksevent for kvindelige tech entreprenører.",
-      date: "10.1.2024",
-      location: "TechBBQ HQ",
-      attendees: "95 deltagere"
+      title: "MXNEY.IO Innovation Talk med Mads Andreas Olesen",
+      description: "Founder af MXNEY.IO fortalte om innovation inden for fintech.",
+      date: "22.10.2023",
+      location: "Aarhus",
+      attendees: "85 deltagere"
     },
     {
       id: 6,
-      title: "Fundraising Masterclass",
-      description: "Learn from successful founders about raising capital.",
-      date: "5.1.2024",
-      location: "Startup Village",
-      attendees: "85 deltagere"
+      title: "BOLD Leadership Workshop med Lasse Søkilde",
+      description: "Founder af BOLD delte sine erfaringer om lederskab og teambuilding.",
+      date: "8.10.2023",
+      location: "København",
+      attendees: "95 deltagere"
+    },
+    {
+      id: 7,
+      title: "Tech Entrepreneurship med Kasper Knudsen",
+      description: "Founder og CEO af Sedia ApS om at bygge teknologiske startups.",
+      date: "25.9.2023",
+      location: "Odense",
+      attendees: "70 deltagere"
+    },
+    {
+      id: 8,
+      title: "Personal Finance for Entrepreneurs med Daniel Pedersen",
+      description: "Daniels Pengetips om økonomisk planlægning for iværksættere.",
+      date: "12.9.2023",
+      location: "København",
+      attendees: "120 deltagere"
+    },
+    {
+      id: 9,
+      title: "Serial Entrepreneurship med Anthon Louis",
+      description: "Serieiværksætter bag Arch, Museo & Bareen delte sine erfaringer.",
+      date: "30.8.2023",
+      location: "København",
+      attendees: "180 deltagere"
     }
   ];
 
@@ -111,7 +135,7 @@ const Events = () => {
               Startup Events
             </h1>
             <p className="text-lg font-inter text-muted-foreground max-w-2xl mx-auto mb-12">
-              Deltag i Danmarks mest inspirerende startup events. Netværk, lær og voks sammen med andre ambitiøse iværksættere.
+              Læs om Unge Iværksætteres mange successer, hvor anerkendte iværksættere har delt deres viden og erfaring med vores visionære deltagere.
             </p>
           </div>
         </div>
@@ -187,7 +211,7 @@ const Events = () => {
                 Kommende Events (3)
               </TabsTrigger>
               <TabsTrigger value="past" className="font-dm-sans font-bold">
-                Tidligere Events (3)
+                Tidligere Events (6)
               </TabsTrigger>
             </TabsList>
 
