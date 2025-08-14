@@ -22,7 +22,7 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md p-0 bg-gradient-to-br from-blue-500 to-blue-600 border-0 text-white overflow-hidden">
+      <DialogContent className="max-w-md p-0 bg-gradient-to-br from-primary to-secondary border-0 text-white overflow-hidden">
         <div className="relative p-8">
           <button
             onClick={onClose}
@@ -35,11 +35,11 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
             <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <Mail className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold mb-2">
+            <h2 className="text-2xl font-anton mb-2 text-white">
               Bliv en del af startup-fællesskabet!
             </h2>
             <div className="text-2xl mb-4">🚀</div>
-            <p className="text-white/90 text-sm leading-relaxed">
+            <p className="text-white/90 text-sm leading-relaxed font-inter">
               Få de seneste startup nyheder, eksklusive podcast episodes<br />
               og event invitationer direkte i din indbakke.
             </p>
@@ -52,17 +52,17 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="bg-white border-0 text-gray-900 placeholder:text-gray-500"
+              className="bg-white border-0 text-foreground placeholder:text-muted-foreground font-inter"
             />
             <Button 
               type="submit" 
-              className="w-full bg-orange hover:bg-orange/90 text-white font-semibold py-3"
+              className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold py-3"
             >
               Tilmeld mig gratis!
             </Button>
           </form>
 
-          <p className="text-xs text-white/70 text-center mt-4">
+          <p className="text-xs text-white/70 text-center mt-4 font-inter">
             Vi sender kun kvalitetsindhold. Ingen spam. Afmeld når som helst.
           </p>
         </div>
