@@ -16,7 +16,7 @@ const Footer = () => {
               <span className="font-dm-sans font-bold text-lg">Unge Iværksættere</span>
             </div>
             <p className="text-background/80 font-inter text-sm">
-              Vores events er stedet, hvor unge iværksættere mødes. Kom og få nye ideer, mød andre iværksættere og få inspiration fra erfarne iværksættere.
+              For ofte bliver unges idéer ikke til virkelighed, derfor samler vi unge iværksættere.
             </p>
             
             {/* Newsletter Signup */}
@@ -35,11 +35,9 @@ const Footer = () => {
             
             {/* Social Media */}
             <div className="flex gap-4">
-              <a href="https://www.instagram.com/ivaerksaettere/" target="_blank" rel="noopener noreferrer">
-                <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10">
-                  <Instagram className="w-5 h-5" />
-                </Button>
-              </a>
+              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10">
+                <Instagram className="w-5 h-5" />
+              </Button>
               <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10">
                 <Linkedin className="w-5 h-5" />
               </Button>
@@ -62,15 +60,9 @@ const Footer = () => {
               <Link to="/podcast" className="block text-background/80 hover:text-background transition-colors">
                 Podcast
               </Link>
-              <Link to="/find-co-founder" className="block text-background/80 hover:text-background transition-colors">
+              <a href="#" className="block text-background/80 hover:text-background transition-colors">
                 Find Co-founder
-              </Link>
-              <Link to="/med-teamet" className="block text-background/80 hover:text-background transition-colors">
-                Med Teamet
-              </Link>
-              <Link to="/vores-historie" className="block text-background/80 hover:text-background transition-colors">
-                Vores Historie
-              </Link>
+              </a>
             </nav>
           </div>
 
@@ -78,14 +70,14 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-dm-sans font-bold text-background">LINKS</h4>
             <nav className="space-y-3 font-inter text-sm">
-              <a href="https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk?si=feba03d657fa48d3" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
-                Podcast på Spotify
+              <a href="#" className="block text-background/80 hover:text-background transition-colors">
+                Podcast
               </a>
-              <a href="https://www.instagram.com/ivaerksaettere/" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
+              <a href="#" className="block text-background/80 hover:text-background transition-colors">
+                Facebook
+              </a>
+              <a href="#" className="block text-background/80 hover:text-background transition-colors">
                 Instagram
-              </a>
-              <a href="https://lu.ma/h3mxyxhi" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
-                Kommende Events
               </a>
             </nav>
           </div>
@@ -94,14 +86,14 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-dm-sans font-bold text-background">Ressourcer</h4>
             <nav className="space-y-3 font-inter text-sm">
-              <a href="https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk?si=feba03d657fa48d3" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
-                Iværksætteri Podcasten
+              <a href="#" className="block text-background/80 hover:text-background transition-colors">
+                Podcast
               </a>
-              <a href="/events" className="block text-background/80 hover:text-background transition-colors">
-                Se alle speakers
+              <a href="#" className="block text-background/80 hover:text-background transition-colors">
+                Facebook
               </a>
-              <a href="https://www.instagram.com/ivaerksaettere/" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
-                Følg os på Instagram
+              <a href="#" className="block text-background/80 hover:text-background transition-colors">
+                Instagram
               </a>
             </nav>
           </div>
@@ -119,12 +111,20 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center gap-3">
+              <Phone className="w-5 h-5 text-background/60" />
+              <div className="font-inter text-sm">
+                <div className="text-background/60">Telefon</div>
+                <div className="text-background">+45 31372916</div>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
               <MapPin className="w-5 h-5 text-background/60" />
               <div className="font-inter text-sm">
                 <div className="text-background/60">Adresse</div>
                 <div className="text-background">
-                  Københavns Startup Hub<br />
-                  1001 København K
+                  Unge Iværksættere<br />
+                  Geislersgade 2, København S
                 </div>
               </div>
             </div>
