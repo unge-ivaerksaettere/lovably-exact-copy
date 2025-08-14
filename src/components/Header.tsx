@@ -12,9 +12,6 @@ const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center gap-8">
-          <Link to="/" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
-            Forside
-          </Link>
           <Link to="/events" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
             Events
           </Link>
@@ -32,9 +29,6 @@ const Header = () => {
           </Link>
           <Link to="/vores-sponsore" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
             Vores Sponsorer
-          </Link>
-          <Link to="/bliv-sponsor" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
-            Bliv Sponsor
           </Link>
         </nav>
 

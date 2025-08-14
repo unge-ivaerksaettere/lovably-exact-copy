@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Users, Mic, Calendar } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const WhyChooseSection = () => {
   const features = [
@@ -42,6 +44,15 @@ const WhyChooseSection = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+          <Button asChild variant="default" size="lg">
+            <Link to="/events">Se Kommende Events</Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link to="/podcast">Lyt til Podcast</Link>
+          </Button>
         </div>
       </div>
     </section>
