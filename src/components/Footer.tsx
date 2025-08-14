@@ -119,14 +119,6 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center gap-3">
-              <Phone className="w-5 h-5 text-background/60" />
-              <div className="font-inter text-sm">
-                <div className="text-background/60">Telefon</div>
-                <div className="text-background">+45 12 34 56 78</div>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-3">
               <MapPin className="w-5 h-5 text-background/60" />
               <div className="font-inter text-sm">
                 <div className="text-background/60">Adresse</div>
