@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import uiLogo from "@/assets/ui-logo.png";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Header = () => {
   const [isSubscribing, setIsSubscribing] = useState(false);
@@ -17,33 +18,23 @@ const Header = () => {
     setIsSubscribing(true);
 
     try {
-    const response = await fetch('https://kwaflmugyjdlcmnpgqhi.supabase.co/functions/v1/mailerlite-subscribe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    });
+      const { data, error } = await supabase.functions.invoke('mailerlite-subscribe', {
+        body: { email }
+      });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        toast({
-          title: "Tak!",
-          description: "Du er nu tilmeldt vores newsletter!",
-        });
-      } else {
-        toast({
-          title: "Fejl",
-          description: data.error || "Der skete en fejl. Prøv igen senere.",
-          variant: "destructive",
-        });
+      if (error) {
+        throw error;
       }
-    } catch (error) {
+
+      toast({
+        title: "Tak!",
+        description: "Du er nu tilmeldt vores newsletter!",
+      });
+    } catch (error: any) {
       console.error('Newsletter signup error:', error);
       toast({
         title: "Fejl",
-        description: "Der skete en fejl. Prøv igen senere.",
+        description: error.message || "Der skete en fejl. Prøv igen senere.",
         variant: "destructive",
       });
     } finally {
