@@ -8,6 +8,8 @@ import Events from "./pages/Events";
 import Podcast from "./pages/Podcast";
 import FindCoFounder from "./pages/FindCoFounder";
 import MedTeamet from "./pages/MedTeamet";
+import VoresHistorie from "./pages/VoresHistorie";
+import VoresSponsoreBlivSponsor from "./pages/VoresSponsoreBlivSponsor";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,9 @@ const App = () => (
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/find-co-founder" element={<FindCoFounder />} />
           <Route path="/med-teamet" element={<MedTeamet />} />
+          <Route path="/vores-historie" element={<VoresHistorie />} />
+          <Route path="/vores-sponsore" element={<VoresSponsoreBlivSponsor />} />
+          <Route path="/bliv-sponsor" element={<VoresSponsoreBlivSponsor />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

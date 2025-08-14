@@ -27,15 +27,15 @@ const Header = () => {
           <Link to="/med-teamet" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
             Med Teamet
           </Link>
-          <a href="#" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
+          <Link to="/vores-historie" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
             Vores Historie
-          </a>
-          <a href="#" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
+          </Link>
+          <Link to="/vores-sponsore" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
             Vores Sponsorer
-          </a>
-          <a href="#" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
+          </Link>
+          <Link to="/bliv-sponsor" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
             Bliv Sponsor
-          </a>
+          </Link>
         </nav>
 
         <Button variant="secondary" size="sm" className="font-dm-sans font-bold">
