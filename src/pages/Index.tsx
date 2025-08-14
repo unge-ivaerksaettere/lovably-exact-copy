@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import PodcastSection from "@/components/PodcastSection";
 import WhyChooseSection from "@/components/WhyChooseSection";
@@ -33,6 +34,7 @@ const Index = () => {
         isOpen={showNewsletterPopup} 
         onClose={() => setShowNewsletterPopup(false)} 
       />
+      <Footer />
     </div>
   );
 };

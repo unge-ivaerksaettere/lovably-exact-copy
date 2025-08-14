@@ -1,269 +1,357 @@
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Play, Calendar, Clock, Download, Headphones } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Play, Calendar, Clock, Download, Headphones, Search, Filter } from "lucide-react";
 import podcastStudio from "@/assets/podcast-studio.jpg";
 
 const Podcast = () => {
   const featuredEpisode = {
     id: 1,
-    title: "Fra idé til 10 millioner i omsætning - Christian Stadil's rejse",
-    description: "I denne episode dykker vi ned i Christian Stadils utrolige entrepreneurrejse fra Hummel til Thornico. Lær om de vigtigste lektioner og hvordan man skalerer et brand globalt.",
-    duration: "52:30",
-    releaseDate: "2024-02-10",
-    plays: 15420,
-    category: "Success Story"
+    title: "En ærlig snak om bæredygtigt iværksætteri med Gittemarie",
+    description: "Dybdegående samtale om at bygge bæredygtige forretninger og navigere i grønne trends.",
+    duration: "1:02:57",
+    plays: "18.5k",
+    likes: "342",
+    category: "Bæredygtighed"
   };
 
-  const recentEpisodes = [
+  const episodes = [
     {
       id: 2,
-      title: "Fundraising i 2024 - Hvad investorer virkelig leder efter",
-      description: "Ekspert insights om hvordan startup landskabet har ændret sig og hvad der skal til for at tiltrække kapital.",
-      duration: "38:15",
-      releaseDate: "2024-02-03",
-      plays: 8930,
-      category: "Fundraising"
+      title: "Du Bliver ALDRIG Til Noget Fazel",
+      description: "Inspirerende historie om at overvinde udfordringer og bygge succes mod alle odds.",
+      duration: "53 min",
+      plays: "24.1k",
+      likes: "456",
+      category: "Motivation"
     },
     {
       id: 3,
-      title: "Tech for Good - Hvordan din startup kan skabe positiv impact",
-      description: "Mød grundlæggerne bag nogle af Danmarks mest impact-drevne startups.",
-      duration: "45:22",
-      releaseDate: "2024-01-27",
-      plays: 12150,
-      category: "Impact"
+      title: "Manden bag Doubles",
+      description: "Fra idé til millionforretning - historien om at skabe Danmarks nye modebrand.",
+      duration: "47 min", 
+      plays: "16.7k",
+      likes: "298",
+      category: "Fashion"
     },
     {
       id: 4,
-      title: "AI Revolution - Hvordan unge iværksættere kan udnytte kunstig intelligens",
-      description: "Praktiske tips til at implementere AI i din startup uden at sprænge budgettet.",
-      duration: "41:08",
-      releaseDate: "2024-01-20",
-      plays: 19840,
-      category: "Technology"
+      title: "Fundraising secrets med Martin fra Pleo",
+      description: "Insider tips til at sikre funding fra en der har været med til at rejse over 1 milliard.",
+      duration: "38 min",
+      plays: "21.2k", 
+      likes: "387",
+      category: "Funding"
     },
     {
       id: 5,
-      title: "Kvindelige iværksættere bryder barriererne",
-      description: "Inspirerende historier fra kvindelige grundlæggere der har skabt succesfulde virksomheder.",
-      duration: "47:33",
-      releaseDate: "2024-01-13",
-      plays: 11290,
-      category: "Diversity"
+      title: "Tech trends 2024: AI og startup-økosystemet",
+      description: "Hvordan kan AI revolutionere startup landskabet? Eksperter deler deres forudsigelser.",
+      duration: "45 min",
+      plays: "19.3k",
+      likes: "334",
+      category: "Tech"
     },
     {
       id: 6,
-      title: "Exit strategier - Hvornår og hvordan sælger man sin startup",
-      description: "Dybdegående diskussion om exit muligheder og hvordan man forbereder sin virksomhed til salg.",
-      duration: "39:47",
-      releaseDate: "2024-01-06",
-      plays: 9680,
-      category: "Exit"
+      title: "LouLiving: Sådan blev jeg iværksætter",
+      description: "Personlig historie om iværksætterrejsen og de lektioner læret undervejs.",
+      duration: "41 min",
+      plays: "14.2k",
+      likes: "267",
+      category: "Interviews"
     }
   ];
 
-  const stats = [
-    { label: "Total Downloads", value: "250K+" },
-    { label: "Månedlige Lyttere", value: "15K+" },
-    { label: "Episodes", value: "85+" },
-    { label: "Lande", value: "12+" }
+  const categories = ["All", "Bæredygtighed", "Motivation", "Fashion", "Funding", "Tech", "Interviews"];
+
+  const faqData = [
+    {
+      question: "Hvad er Unge Iværksættere?",
+      answer: "Unge Iværksættere er Danmarks største community for startup-entreprenører under 35 år."
+    },
+    {
+      question: "Hvem kan deltage i jeres events?",
+      answer: "Alle interesserede i startup og entrepreneurship er velkommen - fra idéstadiet til etablerede iværksættere."
+    },
+    {
+      question: "Koster det noget at deltage?",
+      answer: "De fleste af vores events er gratis. Enkelte workshops kan have en lille deltagerbetaling."
+    },
+    {
+      question: "Hvor afholdes jeres events?",
+      answer: "Vi afholder events i hele Danmark - primært i København, Aarhus og online."
+    },
+    {
+      question: "Kan jeg blive speaker på jeres events?",
+      answer: "Ja! Vi er altid på udkig efter inspirerende speakers. Kontakt os for mere information."
+    },
+    {
+      question: "Hvordan kan min virksomhed blive sponsor?",
+      answer: "Vi tilbyder forskellige sponsormuligheder. Send os en mail for at høre mere om mulighederne."
+    }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${podcastStudio})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary-dark/90"></div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-anton text-foreground mb-6">
               Unge Iværksættere Podcast
             </h1>
-            <p className="text-xl md:text-2xl mb-8 opacity-90">
-              Autentiske historier fra Danmarks unge iværksættere
+            <p className="text-lg font-inter text-muted-foreground max-w-3xl mx-auto mb-12">
+              Dybdegående samtaler med Danmarks mest succesrige iværksættere, investorer og eksperter. Få insights der kan accelerere din startup rejse.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="hero">
-                <Play className="w-5 h-5 mr-2" />
-                Lyt til seneste episode
+          </div>
+        </div>
+      </section>
+
+      {/* Sponsor Banner */}
+      <section className="py-4">
+        <div className="container mx-auto px-4">
+          <div className="bg-muted/50 rounded-lg p-4 text-center">
+            <p className="text-sm font-inter text-muted-foreground">
+              👑 Vi er pt sponsoreret af <span className="font-dm-sans font-bold">TechSavvy & StartupDK</span> - tak for jeres støtte!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Episode */}
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <div className="mb-8">
+            <Badge className="bg-secondary text-secondary-foreground font-dm-sans font-bold">
+              🔥 Featured Episode
+            </Badge>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="relative rounded-lg overflow-hidden bg-muted">
+              {/* Podcast Player Mockup */}
+              <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+                <div className="text-center space-y-4">
+                  <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto">
+                    <Play className="w-8 h-8 text-primary-foreground" />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="font-dm-sans font-bold">Lyt til tidligere speakers 🎧</div>
+                    <div className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-inter inline-block">
+                      Podcast afspilleren
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="space-y-6">
+              <Badge className="bg-primary/10 text-primary font-dm-sans">Bæredygtighed</Badge>
+              <h2 className="text-3xl font-anton text-foreground">
+                {featuredEpisode.title}
+              </h2>
+              <p className="text-muted-foreground font-inter">
+                {featuredEpisode.description}
+              </p>
+              
+              <div className="flex items-center gap-6 text-sm font-inter text-muted-foreground">
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  {featuredEpisode.duration}
+                </div>
+                <div className="flex items-center gap-1">
+                  <Play className="w-4 h-4" />
+                  {featuredEpisode.plays} plays
+                </div>
+                <div className="flex items-center gap-1">
+                  ❤️ {featuredEpisode.likes}
+                </div>
+              </div>
+              
+              <div className="flex gap-4">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold px-8">
+                  ▶ Lyt Nu
+                </Button>
+                <Button variant="outline" className="font-dm-sans font-bold">
+                  🎧 Spotify
+                </Button>
+                <span className="flex items-center text-sm font-inter text-muted-foreground">
+                  Save on Spotify
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Search and Filter */}
+      <section className="py-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
+            <div className="relative flex-1 max-w-md">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input 
+                placeholder="Søg efter episodes..." 
+                className="pl-10 font-inter"
+              />
+            </div>
+            <Button variant="outline" className="font-dm-sans font-bold">
+              <Filter className="w-4 h-4 mr-2" />
+              Filter
+            </Button>
+          </div>
+          
+          <div className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={category === "All" ? "default" : "outline"}
+                size="sm"
+                className="font-dm-sans font-bold"
+              >
+                {category}
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
-                <Download className="w-5 h-5 mr-2" />
-                Abonnér på podcast
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Spotify Section */}
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-8">
+            <h3 className="text-2xl font-anton text-foreground">Lyt på Spotify</h3>
+            <p className="text-muted-foreground font-inter">
+              Følg vores podcast på Spotify for automatiske opdateringer af nye episodes.
+            </p>
+          </div>
+          
+          <div className="max-w-2xl mx-auto bg-muted/50 rounded-lg p-8 text-center">
+            <div className="text-muted-foreground font-inter">
+              [Spotify Embed Placeholder - Integration kommer snart]
+            </div>
+            <div className="mt-6 flex gap-4 justify-center">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold">
+                📱 Følg på Spotify
+              </Button>
+              <Button variant="outline" className="font-dm-sans font-bold">
+                🍎 Apple Podcasts
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* All Episodes */}
+      <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-muted-foreground">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Episode */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Fremhævet Episode</h2>
-            <p className="text-lg text-muted-foreground">
-              Denne uge's must-listen episode
-            </p>
-          </div>
-
-          <Card className="max-w-4xl mx-auto bg-white shadow-lg">
-            <CardHeader>
-              <div className="flex justify-between items-start mb-4">
-                <Badge variant="secondary">{featuredEpisode.category}</Badge>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Headphones className="w-4 h-4" />
-                    {featuredEpisode.plays.toLocaleString()}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {featuredEpisode.duration}
-                  </div>
-                </div>
-              </div>
-              <CardTitle className="text-2xl md:text-3xl">{featuredEpisode.title}</CardTitle>
-              <CardDescription className="text-lg">{featuredEpisode.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="flex-1" variant="orange">
-                  <Play className="w-5 h-5 mr-2" />
-                  Afspil Episode
-                </Button>
-                <Button variant="outline" className="flex-1">
-                  <Download className="w-5 h-5 mr-2" />
-                  Download
-                </Button>
-              </div>
-              <div className="flex items-center gap-2 mt-4 text-sm text-muted-foreground">
-                <Calendar className="w-4 h-4" />
-                Udgivet {new Date(featuredEpisode.releaseDate).toLocaleDateString('da-DK', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Recent Episodes */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Seneste Episodes</h2>
-            <p className="text-lg text-muted-foreground">
-              Gå ikke glip af vores nyeste indhold
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {recentEpisodes.map((episode) => (
-              <Card key={episode.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-2">
-                    <Badge variant="outline">{episode.category}</Badge>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <Clock className="w-4 h-4" />
-                      {episode.duration}
-                    </div>
-                  </div>
-                  <CardTitle className="text-lg line-clamp-2">{episode.title}</CardTitle>
-                  <CardDescription className="line-clamp-3">{episode.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
+          <h3 className="text-2xl font-anton text-foreground mb-8">Alle Episodes (6)</h3>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            {episodes.map((episode) => (
+              <Card key={episode.id} className="border-border">
+                <CardContent className="p-6">
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {new Date(episode.releaseDate).toLocaleDateString('da-DK')}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Headphones className="w-4 h-4" />
-                        {episode.plays.toLocaleString()}
+                    {/* Podcast Player Mockup */}
+                    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                      <div className="text-center space-y-2">
+                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                          <Play className="w-5 h-5 text-primary-foreground" />
+                        </div>
+                        <Badge className="bg-primary/10 text-primary text-xs">{episode.category}</Badge>
                       </div>
                     </div>
-                    <Button className="w-full" variant="orange">
-                      <Play className="w-4 h-4 mr-2" />
-                      Afspil
+                    
+                    <div className="space-y-2">
+                      <h4 className="text-lg font-dm-sans font-bold text-foreground line-clamp-2">
+                        {episode.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground font-inter line-clamp-2">
+                        {episode.description}
+                      </p>
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-xs text-muted-foreground font-inter">
+                      <span>⏱️ {episode.duration}</span>
+                      <span>▶ {episode.plays}</span>
+                      <span>❤️ {episode.likes}</span>
+                    </div>
+                    
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold">
+                      ▶ Lyt
                     </Button>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline">
-              Se alle episodes
-            </Button>
-          </div>
         </div>
       </section>
 
-      {/* Platforms Section */}
-      <section className="py-20 bg-secondary/30">
+      {/* Newsletter CTA */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Lyt overalt</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Find vores podcast på alle dine foretrukne platforme
+          <div className="bg-primary rounded-lg p-8 text-center text-primary-foreground">
+            <h3 className="text-2xl font-anton mb-4">
+              Få besked om nye episodes
+            </h3>
+            <p className="font-inter mb-6 opacity-90">
+              Tilmeld dig vores newsletter og vær den første til at høre nye podcast episodes.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              {['Spotify', 'Apple Podcasts', 'Google Podcasts', 'YouTube', 'SoundCloud'].map((platform) => (
-                <Button key={platform} variant="outline" size="lg">
-                  {platform}
-                </Button>
-              ))}
+            <div className="flex gap-2 max-w-md mx-auto">
+              <Input 
+                placeholder="Din email adresse" 
+                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60 font-inter"
+              />
+              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold">
+                Tilmeld
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Newsletter CTA */}
-      <section className="py-20 bg-gradient-to-br from-orange to-orange-dark">
+      {/* FAQ Section */}
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Få besked om nye episodes
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-anton text-foreground mb-4">
+              Ofte Stillede Spørgsmål
             </h2>
-            <p className="text-xl mb-8 opacity-90">
-              Tilmeld dig vores nyhedsbrev og vær den første til at høre nye episodes
+            <p className="text-muted-foreground font-inter">
+              Find svar på de mest almindelige spørgsmål om Unge Iværksættere
             </p>
-            <Button size="lg" variant="hero">
-              Tilmeld dig nyhedsbrev
-            </Button>
+          </div>
+          
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqData.map((faq, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`}
+                  className="bg-background border border-border rounded-lg px-6"
+                >
+                  <AccordionTrigger className="font-dm-sans font-bold text-foreground hover:no-underline">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="font-inter text-muted-foreground pb-6">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };
