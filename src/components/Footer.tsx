@@ -3,8 +3,54 @@ import { Button } from "@/components/ui/button";
 import { Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import uiLogo from "@/assets/ui-logo.png";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) {
+      toast({
+        title: "Fejl",
+        description: "Indtast venligst din email adresse",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('mailerlite-subscribe', {
+        body: { email }
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Tak!",
+        description: "Du er nu tilmeldt vores newsletter!",
+      });
+      setEmail("");
+    } catch (error: any) {
+      console.error('Newsletter signup error:', error);
+      toast({
+        title: "Fejl",
+        description: error.message || "Der skete en fejl. Prøv igen senere.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 py-16">
@@ -22,15 +68,20 @@ const Footer = () => {
             {/* Newsletter Signup */}
             <div className="space-y-3">
               <h4 className="font-dm-sans font-bold text-background">Tilmeld Newsletter</h4>
-              <div className="flex gap-2">
+              <form onSubmit={handleSubmit} className="flex gap-2">
                 <Input 
+                  type="email"
                   placeholder="Din email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={isLoading}
                   className="bg-background/10 border-background/20 text-background placeholder:text-background/60 font-inter"
                 />
-                <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+                <Button type="submit" disabled={isLoading} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
                   <Mail className="w-4 h-4" />
                 </Button>
-              </div>
+              </form>
             </div>
             
             {/* Social Media */}
