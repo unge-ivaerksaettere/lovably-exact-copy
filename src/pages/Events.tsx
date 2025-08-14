@@ -10,79 +10,65 @@ import { Calendar, MapPin, Users, Clock } from "lucide-react";
 const Events = () => {
   const featuredEvent = {
     id: 1,
-    title: "Jesper Theil Thomsen - Soundboks Success Story",
-    description: "Hør CEO & Founder af Soundboks dele sin rejse fra startup til international succes og få indsigt i at bygge et hardware startup.",
-    date: "28.2.2024",
-    time: "18:00 - 20:30",
-    location: "Innovation Lab, København",
-    attendees: "95/120 tilmeldte",
+    title: "Startup Pitch Night Copenhagen",
+    description: "Kom og se de hotteste startups pitche til investorer og netværk med entreprenører.",
+    date: "15.2.2024",
+    time: "18:00 - 21:00",
+    location: "TechHub Copenhagen, Frederiksberg",
+    attendees: "120/150 tilmeldte",
     isFree: true,
-    image: "/lovable-uploads/5fbda5c2-d6ad-4437-ac2c-5e5b1182b6c3.png"
+    image: "/lovable-uploads/f4f684e4-898c-4465-9790-a6b52378a1bd.png"
   };
 
   const upcomingEvents = [
     {
       id: 2,
-      title: "Mads Andreas Olesen - MXNEY.IO Insights",
-      description: "Få indsigt i fintech-verdenen med grundlæggeren af MXNEY.IO og lær om digitale finansielle løsninger.",
-      date: "8.3.2024",
-      time: "17:00 - 19:30",
-      location: "Fintech Hub, København",
-      attendees: "67 tilmeldte",
-      spots: "23 pladser tilbage",
+      title: "AI & Startup Workshop",
+      description: "Lær hvordan du kan bruge AI til at accelerere dit startup med ekspert vejledning.",
+      date: "22.2.2024",
+      time: "14:00 - 17:00",
+      location: "Rainmaking Loft, København",
+      attendees: "45 deltagere",
+      spots: "15 pladser tilbage",
       isFree: true
     },
     {
       id: 3,
-      title: "Lasse Søkilde - BOLD Brand Building",
-      description: "Lær hvordan du bygger stærke brands fra grundlæggeren af BOLD og få praktiske tips til branding.",
-      date: "15.3.2024", 
-      time: "18:00 - 20:00",
-      location: "Creative Space, Aarhus",
-      attendees: "52 tilmeldte",
-      spots: "18 pladser tilbage",
-      isFree: true
-    },
-    {
-      id: 4,
-      title: "Daniel Pedersen - Finansiel Rådgivning for Startups",
-      description: "Få praktiske tips om økonomistyring og investering fra Daniels Pengetips til din startup-rejse.",
-      date: "22.3.2024",
-      time: "16:00 - 18:30",
-      location: "Business Center, Odense",
-      attendees: "38 tilmeldte",
-      spots: "12 pladser tilbage",
+      title: "Green Startup Meetup",
+      description: "Mød andre entreprenører der arbejder med bæredygtige business modeller.",
+      date: "1.3.2024", 
+      time: "17:30 - 20:00",
+      location: "Greenhouse Ventures, Aarhus",
+      attendees: "78 deltagere",
+      spots: "22 pladser tilbage",
       isFree: true
     }
   ];
 
   const pastEvents = [
     {
+      id: 4,
+      title: "SaaS Scaling Workshop",
+      description: "Deep dive into scaling strategies for SaaS startups.",
+      date: "18.1.2024",
+      location: "Copenhagen Business School",
+      attendees: "120 deltagere"
+    },
+    {
       id: 5,
-      title: "Kasper Knudsen - Sedia Success Story",
-      description: "En inspirerende session med Founder og CEO af Sedia ApS om at skalere tech-virksomheder.",
-      date: "25.1.2024",
-      location: "Tech Hub, København",
-      attendees: "108 deltagere",
-      image: "/lovable-uploads/1b549c9d-7beb-410e-90af-e99334c162a1.png"
+      title: "Women in Tech Networking",
+      description: "Netværksevent for kvindelige tech entreprenører.",
+      date: "10.1.2024",
+      location: "TechBBQ HQ",
+      attendees: "95 deltagere"
     },
     {
       id: 6,
-      title: "Anthon Louis - Serieiværksætter Panel",
-      description: "Lær fra en erfaren serieiværksætter bag Arch, Museo & Bareen om at bygge flere virksomheder.",
-      date: "18.1.2024",
-      location: "Innovation House, Aarhus",
-      attendees: "87 deltagere",
-      image: "/lovable-uploads/8ab590b9-7053-41cb-bd8d-926692366d99.png"
-    },
-    {
-      id: 7,
-      title: "Networking & Startup Showcase",
-      description: "En aften med networking, pitches og inspirerende samtaler mellem unge iværksættere.",
-      date: "11.1.2024",
-      location: "Startup Community, København",
-      attendees: "142 deltagere",
-      image: "/lovable-uploads/1b549c9d-7beb-410e-90af-e99334c162a1.png"
+      title: "Fundraising Masterclass",
+      description: "Learn from successful founders about raising capital.",
+      date: "5.1.2024",
+      location: "Startup Village",
+      attendees: "85 deltagere"
     }
   ];
 
@@ -206,7 +192,7 @@ const Events = () => {
             </TabsList>
 
             <TabsContent value="upcoming">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              <div className="grid md:grid-cols-2 gap-8 mb-16">
                 {upcomingEvents.map((event) => (
                   <Card key={event.id} className="p-6 border-border">
                     <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-lg mb-6 mx-auto">
@@ -214,7 +200,7 @@ const Events = () => {
                     </div>
                     
                     <div className="text-center space-y-4">
-                      <h3 className="text-lg font-dm-sans font-bold text-foreground">
+                      <h3 className="text-xl font-dm-sans font-bold text-foreground">
                         {event.title}
                       </h3>
                       <p className="text-muted-foreground font-inter text-sm">
@@ -255,22 +241,11 @@ const Events = () => {
             <TabsContent value="past">
               <div className="grid md:grid-cols-3 gap-6 mb-16">
                 {pastEvents.map((event) => (
-                  <Card key={event.id} className="p-4 border-border overflow-hidden">
-                    {event.image && (
-                      <div className="mb-4 -mx-4 -mt-4">
-                        <img 
-                          src={event.image} 
-                          alt={event.title}
-                          className="w-full h-32 object-cover"
-                        />
-                      </div>
-                    )}
+                  <Card key={event.id} className="p-4 border-border">
                     <div className="text-center space-y-3">
-                      {!event.image && (
-                        <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mx-auto">
-                          <Calendar className="w-6 h-6 text-primary" />
-                        </div>
-                      )}
+                      <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mx-auto">
+                        <Calendar className="w-6 h-6 text-primary" />
+                      </div>
                       <h3 className="text-lg font-dm-sans font-bold text-foreground">
                         {event.title}
                       </h3>
