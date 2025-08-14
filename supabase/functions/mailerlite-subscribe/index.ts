@@ -6,12 +6,15 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
+  console.log('MailerLite function called with method:', req.method)
+  
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
     const { email } = await req.json()
+    console.log('Processing email subscription for:', email)
     
     if (!email) {
       return new Response(
@@ -24,6 +27,7 @@ serve(async (req) => {
     }
 
     const apiKey = Deno.env.get('MAILERLITE_API_KEY')
+    console.log('MailerLite API key configured:', !!apiKey)
     if (!apiKey) {
       return new Response(
         JSON.stringify({ error: 'MailerLite API key not configured' }),
@@ -35,6 +39,7 @@ serve(async (req) => {
     }
 
     // Subscribe to MailerLite
+    console.log('Calling MailerLite API...')
     const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
       headers: {
@@ -50,7 +55,7 @@ serve(async (req) => {
 
     if (!response.ok) {
       const errorData = await response.text()
-      console.error('MailerLite API error:', errorData)
+      console.error('MailerLite API error response:', response.status, errorData)
       return new Response(
         JSON.stringify({ error: 'Failed to subscribe to newsletter' }),
         { 
@@ -61,6 +66,7 @@ serve(async (req) => {
     }
 
     const data = await response.json()
+    console.log('MailerLite success response:', data)
     
     return new Response(
       JSON.stringify({ success: true, message: 'Successfully subscribed to newsletter!' }),
@@ -71,7 +77,7 @@ serve(async (req) => {
     )
 
   } catch (error) {
-    console.error('Error:', error)
+    console.error('Unexpected error in MailerLite function:', error)
     return new Response(
       JSON.stringify({ error: 'Internal server error' }),
       { 
