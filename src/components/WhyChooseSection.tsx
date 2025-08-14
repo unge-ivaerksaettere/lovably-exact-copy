@@ -13,7 +13,7 @@ const WhyChooseSection = () => {
     {
       icon: Mic,
       title: "Ekspert Podcast",
-      description: "Lyt til dybdegående interviews med succesrige grundlægge og investorer.",
+      description: "Lyt til vores tidligere speakers eller når Mik tager nye iværksættere med i studiet for at snakke om deres rejse.",
     },
     {
       icon: Calendar,
@@ -28,7 +28,7 @@ const WhyChooseSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Hvorfor vælge Unge Iværksættere?</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Bliv en del af Danmarks mest dynamiske startup community og accelerer din iværksætter rejse.
+            Gratis deltagelse, mulighed for networking og vidensdeling fra erfarne iværksættere. Kom med til vores næste event og bliv en del af fællesskabet.
           </p>
         </div>
 

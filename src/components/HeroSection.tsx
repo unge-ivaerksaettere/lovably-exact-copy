@@ -27,18 +27,22 @@ const HeroSection = () => {
         </h1>
         
         <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-white/90">
-          Bliv en del af Danmarks største startup community. Lyt til vores podcast, kom til inspirerende events og få netværk til dit næste startup.
+          Vores events er stedet, hvor unge iværksættere mødes. Kom og få nye ideer, mød andre iværksættere og få inspiration fra erfarne iværksættere. Gratis deltagelse!
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <Button variant="default" size="lg" className="gap-2">
-            <Mic className="w-4 h-4" />
-            Lyt til Podcast
-          </Button>
-          <Button variant="hero" size="lg" className="gap-2">
-            <Calendar className="w-4 h-4" />
-            Se Kommende Events
-          </Button>
+          <a href="https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk?si=feba03d657fa48d3" target="_blank" rel="noopener noreferrer">
+            <Button variant="default" size="lg" className="gap-2">
+              <Mic className="w-4 h-4" />
+              Lyt til Podcast
+            </Button>
+          </a>
+          <a href="https://lu.ma/h3mxyxhi" target="_blank" rel="noopener noreferrer">
+            <Button variant="hero" size="lg" className="gap-2">
+              <Calendar className="w-4 h-4" />
+              Se Kommende Events
+            </Button>
+          </a>
         </div>
         
         {/* Stats */}
@@ -65,7 +69,7 @@ const HeroSection = () => {
         <div className="flex items-center justify-center gap-6">
           <span className="text-sm text-white/80">Følg os:</span>
           <div className="flex gap-4">
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
+            <a href="https://www.instagram.com/ivaerksaettere/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
               <Instagram className="w-5 h-5" />
             </a>
             <a href="#" className="text-white/60 hover:text-white transition-colors">
