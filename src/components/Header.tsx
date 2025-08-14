@@ -4,7 +4,7 @@ import uiLogo from "@/assets/ui-logo.png";
 
 const Header = () => {
   return (
-    <header className="w-full bg-white/90 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+    <header className="w-full bg-background/80 backdrop-blur-md border-b border-border/50 sticky top-0 z-50 shadow-soft">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img src={uiLogo} alt="Unge Iværksættere" className="w-8 h-8" />
@@ -38,7 +38,7 @@ const Header = () => {
           </Link>
         </nav>
 
-        <Button variant="secondary" size="sm" className="font-dm-sans font-bold">
+        <Button variant="secondary" size="sm" className="font-dm-sans font-bold rounded-3xl">
           Tilmeld Newsletter
         </Button>
       </div>
