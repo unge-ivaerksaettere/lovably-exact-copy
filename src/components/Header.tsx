@@ -53,10 +53,10 @@ const Header = () => {
   return (
     <header className="w-full bg-background/80 backdrop-blur-md border-b border-border/50 sticky top-0 z-50 shadow-soft">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <img src={uiLogo} alt="Unge Iværksættere" className="w-8 h-8" />
           <span className="font-dm-sans font-bold text-lg text-foreground">Unge Iværksættere</span>
-        </div>
+        </Link>
         
         <nav className="hidden md:flex items-center gap-8">
           <Link to="/events" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
