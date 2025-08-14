@@ -1,15 +1,61 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle newsletter signup
-    console.log("Newsletter signup:", email);
-    setEmail("");
+    
+    if (!email) {
+      toast({
+        title: "Fejl",
+        description: "Indtast venligst din email adresse",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/mailerlite-subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Tak!",
+          description: "Du er nu tilmeldt vores newsletter!",
+        });
+        setEmail("");
+      } else {
+        toast({
+          title: "Fejl",
+          description: data.error || "Der skete en fejl. Prøv igen senere.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      toast({
+        title: "Fejl",
+        description: "Der skete en fejl. Prøv igen senere.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -28,10 +74,11 @@ const NewsletterSection = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={isLoading}
               className="flex-1 rounded-2xl border-2 border-primary/20 bg-background/50 backdrop-blur-sm h-12 px-6"
             />
-            <Button type="submit" variant="orange">
-              Tilmeld
+            <Button type="submit" variant="orange" disabled={isLoading}>
+              {isLoading ? "Tilmelder..." : "Tilmeld"}
             </Button>
           </form>
           

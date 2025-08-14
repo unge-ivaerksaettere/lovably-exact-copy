@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X, Mail } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface NewsletterPopupProps {
   isOpen: boolean;
@@ -11,13 +12,58 @@ interface NewsletterPopupProps {
 
 const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle newsletter signup
-    console.log("Newsletter signup:", email);
-    setEmail("");
-    onClose();
+    
+    if (!email) {
+      toast({
+        title: "Fejl",
+        description: "Indtast venligst din email adresse",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/mailerlite-subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Tak!",
+          description: "Du er nu tilmeldt vores newsletter!",
+        });
+        setEmail("");
+        onClose();
+      } else {
+        toast({
+          title: "Fejl",
+          description: data.error || "Der skete en fejl. Prøv igen senere.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      toast({
+        title: "Fejl",
+        description: "Der skete en fejl. Prøv igen senere.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -52,13 +98,15 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={isLoading}
               className="bg-white border-0 text-foreground placeholder:text-muted-foreground font-inter"
             />
             <Button 
               type="submit" 
+              disabled={isLoading}
               className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold py-3"
             >
-              Tilmeld mig gratis!
+              {isLoading ? "Tilmelder..." : "Tilmeld mig gratis!"}
             </Button>
           </form>
 
