@@ -7,6 +7,8 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import FAQSection from "@/components/FAQSection";
 import NewsletterPopup from "@/components/NewsletterPopup";
+import SpeakersSection from "@/components/SpeakersSection";
+import PodcastSection from "@/components/PodcastSection";
 
 const Index = () => {
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
@@ -23,6 +25,8 @@ const Index = () => {
       <Header />
       <HeroSection />
       <WhyChooseSection />
+      <SpeakersSection />
+      <PodcastSection />
       <TestimonialsSection />
       <NewsletterSection />
       <FAQSection />

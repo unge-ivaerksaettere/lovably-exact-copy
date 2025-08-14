@@ -213,31 +213,31 @@ const VoresSponsoreBlivSponsor = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
             <Card className="text-center p-8 border-2 border-primary/20">
               <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                P
+                B
               </div>
-              <h3 className="text-xl font-dm-sans font-bold mb-2">Pleo</h3>
+              <h3 className="text-xl font-dm-sans font-bold mb-2">BOLD</h3>
               <Badge className="mb-3">🏢 Partner Sponsor</Badge>
               <p className="font-inter text-sm text-muted-foreground">
-                Støtter vores community med events og networking muligheder
+                Støtter vores community med brand building og kreative løsninger
               </p>
             </Card>
 
             <Card className="text-center p-8 border-2 border-secondary/20">
               <div className="w-16 h-16 bg-secondary text-secondary-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                T
+                H
               </div>
-              <h3 className="text-xl font-dm-sans font-bold mb-2">TechStart</h3>
-              <Badge variant="secondary" className="mb-3">🎙️ Podcast Sponsor</Badge>
+              <h3 className="text-xl font-dm-sans font-bold mb-2">Heaply</h3>
+              <Badge variant="secondary" className="mb-3">🎙️ Event Sponsor</Badge>
               <p className="font-inter text-sm text-muted-foreground">
-                Hørbar partner i vores podcast med 60.000+ downloads
+                Partnere i vores events og netværksmuligheder
               </p>
             </Card>
 
             <Card className="text-center p-8 border-2 border-accent/20">
               <div className="w-16 h-16 bg-accent text-accent-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                I
+                A
               </div>
-              <h3 className="text-xl font-dm-sans font-bold mb-2">InnovateDK</h3>
+              <h3 className="text-xl font-dm-sans font-bold mb-2">Aquador</h3>
               <Badge variant="outline" className="mb-3">🤝 Støtte Sponsor</Badge>
               <p className="font-inter text-sm text-muted-foreground">
                 Støtter startup-økosystemet og unge entrepreneurs
