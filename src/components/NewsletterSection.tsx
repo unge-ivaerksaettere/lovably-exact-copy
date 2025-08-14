@@ -23,7 +23,7 @@ const NewsletterSection = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/mailerlite-subscribe', {
+      const response = await fetch('https://kwaflmugyjdlcmnpgqhi.supabase.co/functions/v1/mailerlite-subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
