@@ -23,7 +23,7 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { email, inviteCode, inviterName }: InvitationEmailRequest = await req.json();
 
-    const signupUrl = `${Deno.env.get("SUPABASE_URL")?.replace('/rest/v1', '') || 'https://qnjtgjakakilxiglwztm.supabase.co'}/?invite=${inviteCode}&email=${encodeURIComponent(email)}`;
+    const signupUrl = `https://lovably-exact-copy.lovable.app/?invite=${inviteCode}&email=${encodeURIComponent(email)}`;
 
     const emailResponse = await resend.emails.send({
       from: "Unge Iværksættere <no-reply@ungeivaerksaettere.dk>",
