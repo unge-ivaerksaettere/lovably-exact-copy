@@ -150,12 +150,6 @@ const PodcastSection = () => {
                 <Music className="w-5 h-5" />
                 Åbn Show på Spotify
               </Button>
-              <Button 
-                className="gap-2"
-                onClick={() => window.open('https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true', '_blank')}
-              >
-                🔗 LinkedIn
-              </Button>
             </div>
             
             <p className="text-sm text-muted-foreground mt-4">

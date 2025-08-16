@@ -192,9 +192,9 @@ const Podcast = () => {
             <div className="mt-6 flex gap-4 justify-center">
               <Button 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold"
-                onClick={() => window.open('https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true', '_blank')}
+                onClick={() => window.open('https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk', '_blank')}
               >
-                🔗 LinkedIn
+                🎧 Åbn Show på Spotify
               </Button>
             </div>
           </div>

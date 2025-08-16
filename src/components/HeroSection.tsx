@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Mic, Calendar, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Mic, Calendar, Instagram, Linkedin } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 
 const HeroSection = () => {
@@ -72,11 +72,8 @@ const HeroSection = () => {
             <a href="https://www.instagram.com/ivaerksaettere/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
+            <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
               <Linkedin className="w-5 h-5" />
-            </a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">
-              <Youtube className="w-5 h-5" />
             </a>
           </div>
         </div>
