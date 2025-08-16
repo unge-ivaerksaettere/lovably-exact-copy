@@ -4,19 +4,18 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { AdminEventForm } from "@/components/AdminEventForm";
 import { useUserRole } from "@/hooks/useEvents";
-import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 
 const Admin = () => {
   const navigate = useNavigate();
   const { data: userRole, isLoading } = useUserRole();
+  const { user, loading: authLoading } = useAuth();
   const { toast } = useToast();
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      if (!user) {
+      if (!authLoading && !user) {
         toast({
           title: "Adgang nægtet",
           description: "Du skal være logget ind for at tilgå admin-panelet.",
@@ -37,9 +36,9 @@ const Admin = () => {
     };
 
     checkAuth();
-  }, [userRole, isLoading, navigate, toast]);
+  }, [userRole, isLoading, user, authLoading, navigate, toast]);
 
-  if (isLoading) {
+  if (isLoading || authLoading) {
     return (
       <div className="min-h-screen bg-background">
         <Header />

@@ -1,142 +1,151 @@
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import uiLogo from "@/assets/ui-logo.png";
 import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { X, Mail } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Button } from "./ui/button";
+import { Menu, X, User, LogOut } from "lucide-react";
+import { AuthDialog } from "./AuthDialog";
+import { useAuth } from "@/hooks/useAuth";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import uiLogo from "@/assets/ui-logo.png";
 
 const Header = () => {
-  const [isSubscribing, setIsSubscribing] = useState(false);
-  const [showDialog, setShowDialog] = useState(false);
-  const [email, setEmail] = useState("");
-  const { toast } = useToast();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const { user, signOut } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!email) {
-      toast({
-        title: "Fejl",
-        description: "Indtast venligst din email adresse",
-        variant: "destructive",
-      });
-      return;
-    }
+  const navigation = [
+    { name: 'Events', href: '/events' },
+    { name: 'Podcast', href: '/podcast' },
+    { name: 'Find Co-founder', href: '/find-co-founder' },
+    { name: 'Med Teamet', href: '/med-teamet' },
+    { name: 'Vores Historie', href: '/vores-historie' },
+    { name: 'Vores Sponsorer', href: '/vores-sponsore' },
+  ];
 
-    setIsSubscribing(true);
+  const isActive = (path: string) => location.pathname === path;
 
-    try {
-      const { data, error } = await supabase.functions.invoke('mailerlite-subscribe', {
-        body: { email }
-      });
-
-      if (error) {
-        throw error;
-      }
-
-      toast({
-        title: "Tak!",
-        description: "Du er nu tilmeldt vores newsletter!",
-      });
-      setEmail("");
-      setShowDialog(false);
-    } catch (error: any) {
-      console.error('Newsletter signup error:', error);
-      toast({
-        title: "Fejl",
-        description: error.message || "Der skete en fejl. Prøv igen senere.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubscribing(false);
-    }
-  };
   return (
     <header className="w-full bg-background/80 backdrop-blur-md border-b border-border/50 sticky top-0 z-50 shadow-soft">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={uiLogo} alt="Unge Iværksættere" className="w-8 h-8" />
-          <span className="font-dm-sans font-bold text-lg text-foreground">Unge Iværksættere</span>
-        </Link>
-        
-        <nav className="hidden md:flex items-center gap-8">
-          <Link to="/events" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
-            Events
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3">
+            <img src={uiLogo} alt="Unge Iværksættere" className="w-8 h-8" />
+            <span className="font-dm-sans font-bold text-lg text-foreground">Unge Iværksættere</span>
           </Link>
-          <Link to="/podcast" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
-            Podcast
-          </Link>
-          <Link to="/find-co-founder" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
-            Find Co-founder
-          </Link>
-          <Link to="/med-teamet" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
-            Med Teamet
-          </Link>
-          <Link to="/vores-historie" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
-            Vores Historie
-          </Link>
-          <Link to="/vores-sponsore" className="text-sm font-inter text-muted-foreground hover:text-primary transition-colors">
-            Vores Sponsorer
-          </Link>
-        </nav>
 
-        <Button 
-          variant="secondary" 
-          size="sm" 
-          className="font-dm-sans font-bold rounded-3xl"
-          onClick={() => setShowDialog(true)}
-          disabled={isSubscribing}
-        >
-          Tilmeld Newsletter
-        </Button>
-      </div>
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            <nav className="flex items-center space-x-8">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`text-sm font-inter transition-colors ${
+                    isActive(item.href) 
+                      ? 'text-primary font-semibold' 
+                      : 'text-muted-foreground hover:text-primary'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
 
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent className="max-w-md p-0 bg-gradient-to-br from-primary to-secondary border-0 text-white overflow-hidden">
-          <div className="relative p-8">
-            <button
-              onClick={() => setShowDialog(false)}
-              className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+            {/* Auth Section */}
+            <div className="flex items-center space-x-4">
+              {user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="flex items-center space-x-2">
+                      <User className="w-4 h-4" />
+                      <span>{user.user_metadata?.first_name || user.email}</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem asChild>
+                      <Link to="/admin" className="flex items-center space-x-2">
+                        <span>Admin Panel</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={signOut} className="flex items-center space-x-2">
+                      <LogOut className="w-4 h-4" />
+                      <span>Log ud</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <AuthDialog>
+                  <Button variant="outline">Log ind</Button>
+                </AuthDialog>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="lg:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2"
             >
-              <X className="w-5 h-5" />
-            </button>
-            
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-8 h-8 text-white" />
-              </div>
-              <h2 className="text-2xl font-anton mb-2 text-white">
-                Tilmeld Newsletter
-              </h2>
-              <p className="text-white/90 text-sm leading-relaxed font-inter">
-                Få de seneste startup nyheder direkte i din indbakke.
-              </p>
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="lg:hidden border-t border-border mt-2 py-4">
+            <div className="space-y-1">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
+                    isActive(item.href)
+                      ? 'text-primary bg-primary/10 font-semibold'
+                      : 'text-muted-foreground hover:text-primary hover:bg-muted'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                type="email"
-                placeholder="Din email adresse"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                disabled={isSubscribing}
-                className="bg-white border-0 text-foreground placeholder:text-muted-foreground font-inter"
-              />
-              <Button 
-                type="submit" 
-                disabled={isSubscribing}
-                className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold py-3"
-              >
-                {isSubscribing ? "Tilmelder..." : "Tilmeld mig gratis!"}
-              </Button>
-            </form>
+            {/* Mobile Auth */}
+            <div className="pt-6 border-t border-border mt-4">
+              {user ? (
+                <div className="space-y-2">
+                  <Link 
+                    to="/admin" 
+                    className="block px-3 py-2 text-base font-medium text-foreground hover:bg-muted rounded-md"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Admin Panel
+                  </Link>
+                  <button
+                    onClick={() => {
+                      signOut();
+                      setIsMenuOpen(false);
+                    }}
+                    className="block w-full text-left px-3 py-2 text-base font-medium text-foreground hover:bg-muted rounded-md"
+                  >
+                    Log ud
+                  </button>
+                </div>
+              ) : (
+                <AuthDialog>
+                  <Button variant="outline" className="w-full" onClick={() => setIsMenuOpen(false)}>
+                    Log ind
+                  </Button>
+                </AuthDialog>
+              )}
+            </div>
           </div>
-        </DialogContent>
-      </Dialog>
+        )}
+      </div>
     </header>
   );
 };
