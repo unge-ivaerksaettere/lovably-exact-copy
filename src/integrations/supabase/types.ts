@@ -175,6 +175,33 @@ export type Database = {
         }
         Relationships: []
       }
+      page_settings: {
+        Row: {
+          created_at: string
+          id: string
+          is_visible: boolean
+          page_key: string
+          page_name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_visible?: boolean
+          page_key: string
+          page_name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_visible?: boolean
+          page_key?: string
+          page_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string

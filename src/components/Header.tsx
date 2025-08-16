@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Menu, X, User, LogOut } from "lucide-react";
 import { AuthDialog } from "./AuthDialog";
 import { useAuth } from "@/hooks/useAuth";
+import { useVisiblePages } from "@/hooks/usePageSettings";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import uiLogo from "@/assets/ui-logo.png";
 
@@ -11,15 +12,21 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const { user, signOut } = useAuth();
+  const { data: visiblePages } = useVisiblePages();
 
-  const navigation = [
+  // Always visible pages
+  const baseNavigation = [
     { name: 'Events', href: '/events' },
     { name: 'Podcast', href: '/podcast' },
-    { name: 'Find Co-founder', href: '/find-co-founder' },
-    { name: 'Med Teamet', href: '/med-teamet' },
-    { name: 'Vores Historie', href: '/vores-historie' },
-    { name: 'Vores Sponsorer', href: '/vores-sponsore' },
   ];
+
+  // Add dynamic pages based on visibility settings
+  const dynamicNavigation = visiblePages?.map(page => ({
+    name: page.page_name,
+    href: `/${page.page_key}`
+  })) || [];
+
+  const navigation = [...baseNavigation, ...dynamicNavigation];
 
   const isActive = (path: string) => location.pathname === path;
 

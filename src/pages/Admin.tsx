@@ -9,6 +9,7 @@ import { AdminEventsList } from "@/components/AdminEventsList";
 import { AdminUsersManagement } from "@/components/AdminUsersManagement";
 import { AdminAnalytics } from "@/components/AdminAnalytics";
 import { AdminEventRegistrations } from "@/components/AdminEventRegistrations";
+import AdminPageSettings from "@/components/AdminPageSettings";
 import { useUserRole } from "@/hooks/useEvents";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -70,13 +71,14 @@ const Admin = () => {
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-6 max-w-3xl mx-auto mb-8">
+          <TabsList className="grid w-full grid-cols-7 max-w-4xl mx-auto mb-8">
             <TabsTrigger value="overview">Oversigt</TabsTrigger>
             <TabsTrigger value="events">Events</TabsTrigger>
             <TabsTrigger value="registrations">Tilmeldinger</TabsTrigger>
             <TabsTrigger value="create">Opret Event</TabsTrigger>
             <TabsTrigger value="users">Brugere</TabsTrigger>
             <TabsTrigger value="invites">Invitationer</TabsTrigger>
+            <TabsTrigger value="pages">Sider</TabsTrigger>
           </TabsList>
           
           <TabsContent value="overview">
@@ -101,6 +103,10 @@ const Admin = () => {
           
           <TabsContent value="invites">
             <InviteManagement />
+          </TabsContent>
+          
+          <TabsContent value="pages">
+            <AdminPageSettings />
           </TabsContent>
         </Tabs>
       </main>
