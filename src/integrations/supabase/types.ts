@@ -59,6 +59,36 @@ export type Database = {
         }
         Relationships: []
       }
+      invites: {
+        Row: {
+          created_at: string
+          email: string
+          expires_at: string
+          id: string
+          invite_code: string
+          invited_by: string
+          used_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          expires_at?: string
+          id?: string
+          invite_code: string
+          invited_by: string
+          used_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          expires_at?: string
+          id?: string
+          invite_code?: string
+          invited_by?: string
+          used_at?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -112,6 +142,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      generate_invite_code: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
       get_events_by_status: {
         Args: { event_status?: string }
         Returns: {
@@ -132,6 +166,14 @@ export type Database = {
       }
       is_admin: {
         Args: { _user_id: string }
+        Returns: boolean
+      }
+      use_invite: {
+        Args: { code_input: string; email_input: string }
+        Returns: boolean
+      }
+      validate_invite: {
+        Args: { code_input: string; email_input: string }
         Returns: boolean
       }
     }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useSearchParams } from "react-router-dom";
 
 interface AuthDialogProps {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ interface AuthDialogProps {
 export const AuthDialog = ({ children }: AuthDialogProps) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [searchParams] = useSearchParams();
   const { toast } = useToast();
 
   const [loginForm, setLoginForm] = useState({
@@ -27,7 +29,23 @@ export const AuthDialog = ({ children }: AuthDialogProps) => {
     confirmPassword: "",
     firstName: "",
     lastName: "",
+    inviteCode: "",
   });
+
+  // Pre-fill form if invite params are in URL
+  useEffect(() => {
+    const inviteCode = searchParams.get('invite');
+    const inviteEmail = searchParams.get('email');
+    
+    if (inviteCode) {
+      setSignupForm(prev => ({ 
+        ...prev, 
+        inviteCode,
+        email: inviteEmail || ""
+      }));
+      setOpen(true);
+    }
+  }, [searchParams]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,7 +97,9 @@ export const AuthDialog = ({ children }: AuthDialogProps) => {
           data: {
             first_name: signupForm.firstName,
             last_name: signupForm.lastName,
-          }
+            invite_code: signupForm.inviteCode,
+          },
+          emailRedirectTo: `${window.location.origin}/`
         }
       });
 
@@ -87,7 +107,7 @@ export const AuthDialog = ({ children }: AuthDialogProps) => {
 
       toast({
         title: "Kontoen er oprettet!",
-        description: "Tjek din email for at bekræfte din konto.",
+        description: "Du er nu logget ind og kan bruge systemet.",
       });
       setOpen(false);
     } catch (error: any) {
@@ -150,6 +170,17 @@ export const AuthDialog = ({ children }: AuthDialogProps) => {
           
           <TabsContent value="signup">
             <form onSubmit={handleSignup} className="space-y-4">
+              <div>
+                <Label htmlFor="signup-invitecode">Invitationskode *</Label>
+                <Input
+                  id="signup-invitecode"
+                  value={signupForm.inviteCode}
+                  onChange={(e) => setSignupForm(prev => ({ ...prev, inviteCode: e.target.value.toUpperCase() }))}
+                  placeholder="8-tegns kode"
+                  maxLength={8}
+                  required
+                />
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="signup-firstname">Fornavn</Label>
