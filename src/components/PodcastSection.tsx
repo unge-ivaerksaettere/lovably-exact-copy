@@ -16,7 +16,7 @@ const PodcastSection = () => {
       description: "Insider tips til at sikre funding fra en der har været med til at rejse over 1 milliard.",
       duration: "38 min",
       category: "Funding",
-      spotifyId: "4rOoJ6Egrf8K2IrywzwOMk", // Example Spotify episode ID
+      spotifyId: "episode-id-1", // Replace with actual episode ID when available
       preview: true,
     },
     {
@@ -24,7 +24,7 @@ const PodcastSection = () => {
       description: "Hvordan kan AI revolutionen transformere startup landskabet? Eksperter deler deres forudsigelser.",
       duration: "45 min",
       category: "Tech",
-      spotifyId: "4rOoJ6Egrf8K2IrywzwOMk",
+      spotifyId: "episode-id-2", // Replace with actual episode ID when available
       preview: false,
     },
     {
@@ -32,7 +32,7 @@ const PodcastSection = () => {
       description: "Inspirerende historie om at overvinde udfordringer og bygge succes mod alle odds.",
       duration: "53 min", 
       category: "Motivation",
-      spotifyId: "4rOoJ6Egrf8K2IrywzwOMk",
+      spotifyId: "episode-id-3", // Replace with actual episode ID when available
       preview: false,
     },
   ];
@@ -42,8 +42,8 @@ const PodcastSection = () => {
     description: "Dybdegående samtale om at bygge bæredygtige forretninger og navigere i grønne trends.",
     duration: "1:02:49",
     category: "Bæredygtighed",
-    spotifyId: "4rOoJ6Egrf8K2IrywzwOMk",
-    showId: "4rOoJ6Egrf8K2IrywzwOMk" // Podcast show ID
+    spotifyId: "featured-episode-id", // Replace with actual episode ID when available
+    showId: "154B6QakpSESlOKiFkiDyk" // Your actual podcast show ID
   };
 
   const handlePlayEpisode = (index: number) => {
@@ -201,10 +201,10 @@ const PodcastSection = () => {
           <p className="text-sm text-muted-foreground mb-6">
             Vi er pt. sponsoreret af TechStars Copenhagen og Founder House
           </p>
-          <div className="flex gap-3 justify-center">
-            <Button variant="outline" onClick={() => window.open('https://open.spotify.com/show/your-show-id', '_blank')}>
-              Se Alle Episodes
-            </Button>
+            <div className="flex gap-3 justify-center">
+              <Button variant="outline" onClick={() => window.open('https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk', '_blank')}>
+                Se Alle Episodes
+              </Button>
             <Button 
               className="gap-2"
               onClick={() => setShowSpotifyAuth(true)}
