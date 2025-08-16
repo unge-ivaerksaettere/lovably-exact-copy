@@ -10,6 +10,7 @@ import FindCoFounder from "./pages/FindCoFounder";
 import MedTeamet from "./pages/MedTeamet";
 import VoresHistorie from "./pages/VoresHistorie";
 import VoresSponsoreBlivSponsor from "./pages/VoresSponsoreBlivSponsor";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/vores-historie" element={<VoresHistorie />} />
           <Route path="/vores-sponsore" element={<VoresSponsoreBlivSponsor />} />
           <Route path="/bliv-sponsor" element={<VoresSponsoreBlivSponsor />} />
+          <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

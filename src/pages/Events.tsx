@@ -6,95 +6,29 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, MapPin, Users, Clock } from "lucide-react";
+import { useEvents } from "@/hooks/useEvents";
+import { format } from "date-fns";
+import { da } from "date-fns/locale";
 
 const Events = () => {
-  const featuredEvent = {
-    id: 1,
-    title: "Startup Pitch Night Copenhagen",
-    description: "Kom og se de hotteste startups pitche til investorer og netværk med entreprenører.",
-    date: "15.2.2024",
-    time: "18:00 - 21:00",
-    location: "TechHub Copenhagen, Frederiksberg",
-    attendees: "120/150 tilmeldte",
-    isFree: true,
-    image: "/lovable-uploads/f4f684e4-898c-4465-9790-a6b52378a1bd.png"
+  const { data: upcomingEvents = [], isLoading: upcomingLoading } = useEvents('upcoming');
+  const { data: pastEvents = [], isLoading: pastLoading } = useEvents('past');
+  
+  const featuredEvent = upcomingEvents.find(event => event.featured) || upcomingEvents[0];
+  const regularUpcomingEvents = upcomingEvents.filter(event => event.id !== featuredEvent?.id);
+
+  const formatDate = (dateStr: string) => {
+    try {
+      return format(new Date(dateStr), 'dd.MM.yyyy', { locale: da });
+    } catch {
+      return dateStr;
+    }
   };
 
-  const upcomingEvents = [
-    {
-      id: 2,
-      title: "AI & Startup Workshop",
-      description: "Lær hvordan du kan bruge AI til at accelerere dit startup med ekspert vejledning.",
-      date: "22.2.2024",
-      time: "14:00 - 17:00",
-      location: "Rainmaking Loft, København",
-      attendees: "45 deltagere",
-      spots: "15 pladser tilbage",
-      isFree: true
-    },
-    {
-      id: 3,
-      title: "Green Startup Meetup",
-      description: "Mød andre entreprenører der arbejder med bæredygtige business modeller.",
-      date: "1.3.2024", 
-      time: "17:30 - 20:00",
-      location: "Greenhouse Ventures, Aarhus",
-      attendees: "78 deltagere",
-      spots: "22 pladser tilbage",
-      isFree: true
-    }
-  ];
-
-  const pastEvents = [
-    {
-      id: 4,
-      title: "Soundboks Success Story med Jesper Theil Thomsen",
-      description: "CEO & Founder af Soundboks delte sin rejse fra startup til global succes.",
-      date: "15.11.2023",
-      location: "København",
-      attendees: "150 deltagere"
-    },
-    {
-      id: 5,
-      title: "MXNEY.IO Innovation Talk med Mads Andreas Olesen",
-      description: "Founder af MXNEY.IO fortalte om innovation inden for fintech.",
-      date: "22.10.2023",
-      location: "Aarhus",
-      attendees: "85 deltagere"
-    },
-    {
-      id: 6,
-      title: "BOLD Leadership Workshop med Lasse Søkilde",
-      description: "Founder af BOLD delte sine erfaringer om lederskab og teambuilding.",
-      date: "8.10.2023",
-      location: "København",
-      attendees: "95 deltagere"
-    },
-    {
-      id: 7,
-      title: "Tech Entrepreneurship med Kasper Knudsen",
-      description: "Founder og CEO af Sedia ApS om at bygge teknologiske startups.",
-      date: "25.9.2023",
-      location: "Odense",
-      attendees: "70 deltagere"
-    },
-    {
-      id: 8,
-      title: "Personal Finance for Entrepreneurs med Daniel Pedersen",
-      description: "Daniels Pengetips om økonomisk planlægning for iværksættere.",
-      date: "12.9.2023",
-      location: "København",
-      attendees: "120 deltagere"
-    },
-    {
-      id: 9,
-      title: "Serial Entrepreneurship med Anthon Louis",
-      description: "Serieiværksætter bag Arch, Museo & Bareen delte sine erfaringer.",
-      date: "30.8.2023",
-      location: "København",
-      attendees: "180 deltagere"
-    }
-  ];
+  const formatTime = (timeStr: string | null) => {
+    if (!timeStr) return null;
+    return timeStr.slice(0, 5); // Format HH:MM
+  };
 
   const faqData = [
     {
@@ -142,65 +76,70 @@ const Events = () => {
       </section>
 
       {/* Featured Event */}
-      <section className="pb-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-8">
-            <Badge className="bg-secondary text-secondary-foreground font-dm-sans font-bold">
-              🔥 Featured Event
-            </Badge>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="relative rounded-lg overflow-hidden">
-              <img 
-                src={featuredEvent.image} 
-                alt={featuredEvent.title}
-                className="w-full h-80 object-cover"
-              />
-              <div className="absolute top-4 left-4 space-x-2">
-                <Badge className="bg-background/80 text-foreground">Networking</Badge>
-                <Badge className="bg-background/80 text-foreground">Pitching</Badge>
-                <Badge className="bg-background/80 text-foreground">Investorer</Badge>
-              </div>
-              <div className="absolute bottom-4 left-4 bg-foreground/80 text-background px-3 py-1 rounded text-sm font-inter">
-                📅 {featuredEvent.date} ⏰ {featuredEvent.time}
-              </div>
+      {featuredEvent && (
+        <section className="pb-20">
+          <div className="container mx-auto px-4">
+            <div className="mb-8">
+              <Badge className="bg-secondary text-secondary-foreground font-dm-sans font-bold">
+                🔥 Featured Event
+              </Badge>
             </div>
             
-            <div className="space-y-6">
-              <h2 className="text-3xl font-anton text-foreground">
-                {featuredEvent.title}
-              </h2>
-              <p className="text-muted-foreground font-inter">
-                {featuredEvent.description}
-              </p>
-              
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm font-inter text-muted-foreground">
-                  <MapPin className="w-4 h-4 text-primary" />
-                  {featuredEvent.location}
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="relative rounded-lg overflow-hidden">
+                <img 
+                  src={featuredEvent.image_url || "/lovable-uploads/f4f684e4-898c-4465-9790-a6b52378a1bd.png"} 
+                  alt={featuredEvent.title}
+                  className="w-full h-80 object-cover"
+                />
+                <div className="absolute top-4 left-4 space-x-2">
+                  <Badge className="bg-background/80 text-foreground">Networking</Badge>
+                  <Badge className="bg-background/80 text-foreground">Startup</Badge>
+                  <Badge className="bg-background/80 text-foreground">Event</Badge>
                 </div>
-                <div className="flex items-center gap-2 text-sm font-inter text-muted-foreground">
-                  <Users className="w-4 h-4 text-primary" />
-                  {featuredEvent.attendees}
-                </div>
-                <div className="flex items-center gap-2 text-sm font-inter text-primary">
-                  🎟️ Gratis deltagelse
+                <div className="absolute bottom-4 left-4 bg-foreground/80 text-background px-3 py-1 rounded text-sm font-inter">
+                  📅 {formatDate(featuredEvent.event_date)} {featuredEvent.event_time && `⏰ ${formatTime(featuredEvent.event_time)}`}
                 </div>
               </div>
               
-              <div className="flex gap-4">
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold px-8">
-                  Tilmeld dig nu →
-                </Button>
-                <span className="flex items-center text-sm font-inter text-muted-foreground">
-                  På påmeldelse
-                </span>
+              <div className="space-y-6">
+                <h2 className="text-3xl font-anton text-foreground">
+                  {featuredEvent.title}
+                </h2>
+                <p className="text-muted-foreground font-inter">
+                  {featuredEvent.description}
+                </p>
+                
+                <div className="space-y-3">
+                  {featuredEvent.location && (
+                    <div className="flex items-center gap-2 text-sm font-inter text-muted-foreground">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      {featuredEvent.location}
+                    </div>
+                  )}
+                  <div className="flex items-center gap-2 text-sm font-inter text-muted-foreground">
+                    <Users className="w-4 h-4 text-primary" />
+                    {featuredEvent.current_attendees} deltagere
+                    {featuredEvent.max_attendees && ` / ${featuredEvent.max_attendees} max`}
+                  </div>
+                  <div className="flex items-center gap-2 text-sm font-inter text-primary">
+                    🎟️ Gratis deltagelse
+                  </div>
+                </div>
+                
+                <div className="flex gap-4">
+                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold px-8">
+                    Tilmeld dig nu →
+                  </Button>
+                  <span className="flex items-center text-sm font-inter text-muted-foreground">
+                    Åbent for tilmelding
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Events Tabs */}
       <section className="py-20">
@@ -208,83 +147,100 @@ const Events = () => {
           <Tabs defaultValue="upcoming" className="w-full">
             <TabsList className="grid w-fit grid-cols-2 mb-12">
               <TabsTrigger value="upcoming" className="font-dm-sans font-bold">
-                Kommende Events (3)
+                Kommende Events ({upcomingEvents.length})
               </TabsTrigger>
               <TabsTrigger value="past" className="font-dm-sans font-bold">
-                Tidligere Events (6)
+                Tidligere Events ({pastEvents.length})
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="upcoming">
-              <div className="grid md:grid-cols-2 gap-8 mb-16">
-                {upcomingEvents.map((event) => (
-                  <Card key={event.id} className="p-6 border-border">
-                    <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-lg mb-6 mx-auto">
-                      <Calendar className="w-8 h-8 text-primary" />
-                    </div>
-                    
-                    <div className="text-center space-y-4">
-                      <h3 className="text-xl font-dm-sans font-bold text-foreground">
-                        {event.title}
-                      </h3>
-                      <p className="text-muted-foreground font-inter text-sm">
-                        {event.description}
-                      </p>
-                      
-                      <div className="space-y-2 text-sm font-inter">
-                        <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                          <Calendar className="w-4 h-4" />
-                          {event.date} ⏰ {event.time}
-                        </div>
-                        <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                          <MapPin className="w-4 h-4" />
-                          {event.location}
-                        </div>
-                        <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                          <Users className="w-4 h-4" />
-                          {event.attendees}
-                        </div>
-                        <div className="text-primary">
-                          🎟️ Gratis
-                        </div>
+              {upcomingLoading ? (
+                <div className="text-center">Loader events...</div>
+              ) : (
+                <div className="grid md:grid-cols-2 gap-8 mb-16">
+                  {regularUpcomingEvents.map((event) => (
+                    <Card key={event.id} className="p-6 border-border">
+                      <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-lg mb-6 mx-auto">
+                        <Calendar className="w-8 h-8 text-primary" />
                       </div>
                       
-                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold mt-6">
-                        Tilmeld dig
-                      </Button>
-                      
-                      <p className="text-xs text-muted-foreground font-inter">
-                        {event.spots}
-                      </p>
+                      <div className="text-center space-y-4">
+                        <h3 className="text-xl font-dm-sans font-bold text-foreground">
+                          {event.title}
+                        </h3>
+                        <p className="text-muted-foreground font-inter text-sm">
+                          {event.description}
+                        </p>
+                        
+                        <div className="space-y-2 text-sm font-inter">
+                          <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                            <Calendar className="w-4 h-4" />
+                            {formatDate(event.event_date)} {event.event_time && `⏰ ${formatTime(event.event_time)}`}
+                          </div>
+                          {event.location && (
+                            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                              <MapPin className="w-4 h-4" />
+                              {event.location}
+                            </div>
+                          )}
+                          <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                            <Users className="w-4 h-4" />
+                            {event.current_attendees} deltagere
+                            {event.max_attendees && ` (${event.max_attendees - event.current_attendees} pladser tilbage)`}
+                          </div>
+                          <div className="text-primary">
+                            🎟️ Gratis
+                          </div>
+                        </div>
+                        
+                        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold mt-6">
+                          Tilmeld dig
+                        </Button>
+                      </div>
+                    </Card>
+                  ))}
+                  {regularUpcomingEvents.length === 0 && !upcomingLoading && (
+                    <div className="col-span-2 text-center text-muted-foreground">
+                      Ingen kommende events i øjeblikket
                     </div>
-                  </Card>
-                ))}
-              </div>
+                  )}
+                </div>
+              )}
             </TabsContent>
 
             <TabsContent value="past">
-              <div className="grid md:grid-cols-3 gap-6 mb-16">
-                {pastEvents.map((event) => (
-                  <Card key={event.id} className="p-4 border-border">
-                    <div className="text-center space-y-3">
-                      <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mx-auto">
-                        <Calendar className="w-6 h-6 text-primary" />
+              {pastLoading ? (
+                <div className="text-center">Loader tidligere events...</div>
+              ) : (
+                <div className="grid md:grid-cols-3 gap-6 mb-16">
+                  {pastEvents.map((event) => (
+                    <Card key={event.id} className="p-4 border-border">
+                      <div className="text-center space-y-3">
+                        <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mx-auto">
+                          <Calendar className="w-6 h-6 text-primary" />
+                        </div>
+                        <h3 className="text-lg font-dm-sans font-bold text-foreground">
+                          {event.title}
+                        </h3>
+                        <p className="text-muted-foreground font-inter text-sm">
+                          {event.description}
+                        </p>
+                        <div className="text-xs text-muted-foreground font-inter space-y-1">
+                          <div>📅 {formatDate(event.event_date)}</div>
+                          {event.location && <div>📍 {event.location}</div>}
+                          <div>👥 {event.current_attendees} deltagere</div>
+                        </div>
                       </div>
-                      <h3 className="text-lg font-dm-sans font-bold text-foreground">
-                        {event.title}
-                      </h3>
-                      <p className="text-muted-foreground font-inter text-sm">
-                        {event.description}
-                      </p>
-                      <div className="text-xs text-muted-foreground font-inter space-y-1">
-                        <div>📅 {event.date}</div>
-                        <div>📍 {event.location}</div>
-                        <div>👥 {event.attendees}</div>
-                      </div>
+                    </Card>
+                  ))}
+                  {pastEvents.length === 0 && !pastLoading && (
+                    <div className="col-span-3 text-center text-muted-foreground">
+                      Ingen tidligere events endnu
                     </div>
-                  </Card>
-                ))}
-              </div>
+                  )}
+                </div>
+              )}
             </TabsContent>
           </Tabs>
 

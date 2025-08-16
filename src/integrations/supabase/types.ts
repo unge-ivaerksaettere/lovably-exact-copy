@@ -82,56 +82,27 @@ export type Database = {
       }
     }
     Views: {
-      events_categorized: {
-        Row: {
-          created_at: string | null
-          current_attendees: number | null
-          description: string | null
-          event_date: string | null
-          event_time: string | null
-          featured: boolean | null
-          id: string | null
-          image_url: string | null
-          location: string | null
-          max_attendees: number | null
-          status: string | null
-          title: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          current_attendees?: number | null
-          description?: string | null
-          event_date?: string | null
-          event_time?: string | null
-          featured?: boolean | null
-          id?: string | null
-          image_url?: string | null
-          location?: string | null
-          max_attendees?: number | null
-          status?: never
-          title?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          current_attendees?: number | null
-          description?: string | null
-          event_date?: string | null
-          event_time?: string | null
-          featured?: boolean | null
-          id?: string | null
-          image_url?: string | null
-          location?: string | null
-          max_attendees?: number | null
-          status?: never
-          title?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
+      get_events_by_status: {
+        Args: { event_status?: string }
+        Returns: {
+          created_at: string
+          current_attendees: number
+          description: string
+          event_date: string
+          event_time: string
+          featured: boolean
+          id: string
+          image_url: string
+          location: string
+          max_attendees: number
+          status: string
+          title: string
+          updated_at: string
+        }[]
+      }
       is_admin: {
         Args: { _user_id: string }
         Returns: boolean
