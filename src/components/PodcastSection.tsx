@@ -164,46 +164,6 @@ const PodcastSection = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {episodes.map((episode, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow group cursor-pointer">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <Badge variant="outline">{episode.category}</Badge>
-                  {!episode.preview && (
-                    <Badge variant="secondary" className="text-xs">
-                      Premium
-                    </Badge>
-                  )}
-                </div>
-                <h4 className="font-semibold mb-3 line-clamp-2">{episode.title}</h4>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                  {episode.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">{episode.duration}</span>
-                  <Button 
-                    size="sm" 
-                    variant="ghost" 
-                    onClick={() => handlePlayEpisode(index)}
-                    className="group-hover:bg-primary/10"
-                  >
-                    <Play className="w-4 h-4" />
-                  </Button>
-                </div>
-                
-                {episode.preview && (
-                  <div className="mt-4 pt-4 border-t">
-                    <div className="text-xs text-muted-foreground mb-2">Preview tilgængelig</div>
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
-                      <div className="h-full bg-primary/50 w-1/3" />
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
 
         <div className="text-center">
           <p className="text-sm text-muted-foreground mb-6">
