@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_logs: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          ip_address: unknown | null
+          new_value: string | null
+          old_value: string | null
+          target_user_email: string | null
+          target_user_id: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          new_value?: string | null
+          old_value?: string | null
+          target_user_email?: string | null
+          target_user_id?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          new_value?: string | null
+          old_value?: string | null
+          target_user_email?: string | null
+          target_user_id?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       events: {
         Row: {
           created_at: string
@@ -167,6 +206,16 @@ export type Database = {
       is_admin: {
         Args: { _user_id: string }
         Returns: boolean
+      }
+      log_admin_action: {
+        Args: {
+          action_type: string
+          new_val?: string
+          old_val?: string
+          target_user_email?: string
+          target_user_id?: string
+        }
+        Returns: undefined
       }
       use_invite: {
         Args: { code_input: string; email_input: string }
