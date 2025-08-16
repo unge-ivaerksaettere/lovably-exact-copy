@@ -5,8 +5,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Play, Calendar, Clock, Download, Headphones, Search, Filter } from "lucide-react";
+import { Play, Calendar, Clock, Download, Headphones } from "lucide-react";
 import podcastStudio from "@/assets/podcast-studio.jpg";
+import NewsletterPodcast from "@/components/NewsletterPodcast";
 
 const Podcast = () => {
   const featuredEpisode = {
@@ -46,24 +47,6 @@ const Podcast = () => {
       plays: "21.2k", 
       likes: "387",
       category: "Funding"
-    },
-    {
-      id: 5,
-      title: "Tech trends 2024: AI og startup-økosystemet",
-      description: "Hvordan kan AI revolutionere startup landskabet? Eksperter deler deres forudsigelser.",
-      duration: "45 min",
-      plays: "19.3k",
-      likes: "334",
-      category: "Tech"
-    },
-    {
-      id: 6,
-      title: "LouLiving: Sådan blev jeg iværksætter",
-      description: "Personlig historie om iværksætterrejsen og de lektioner læret undervejs.",
-      duration: "41 min",
-      plays: "14.2k",
-      likes: "267",
-      category: "Interviews"
     }
   ];
 
@@ -191,37 +174,6 @@ const Podcast = () => {
         </div>
       </section>
 
-      {/* Search and Filter */}
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input 
-                placeholder="Søg efter episodes..." 
-                className="pl-10 font-inter"
-              />
-            </div>
-            <Button variant="outline" className="font-dm-sans font-bold">
-              <Filter className="w-4 h-4 mr-2" />
-              Filter
-            </Button>
-          </div>
-          
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={category === "All" ? "default" : "outline"}
-                size="sm"
-                className="font-dm-sans font-bold"
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Spotify Section */}
       <section className="py-12">
@@ -238,11 +190,11 @@ const Podcast = () => {
               [Spotify Embed Placeholder - Integration kommer snart]
             </div>
             <div className="mt-6 flex gap-4 justify-center">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold">
-                📱 Følg på Spotify
-              </Button>
-              <Button variant="outline" className="font-dm-sans font-bold">
-                🍎 Apple Podcasts
+              <Button 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold"
+                onClick={() => window.open('https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true', '_blank')}
+              >
+                🔗 LinkedIn
               </Button>
             </div>
           </div>
@@ -252,7 +204,7 @@ const Podcast = () => {
       {/* All Episodes */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <h3 className="text-2xl font-anton text-foreground mb-8">Alle Episodes (6)</h3>
+          <h3 className="text-2xl font-anton text-foreground mb-8">Alle Episodes (4)</h3>
           
           <div className="grid md:grid-cols-3 gap-6">
             {episodes.map((episode) => (
@@ -296,27 +248,7 @@ const Podcast = () => {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="bg-primary rounded-lg p-8 text-center text-primary-foreground">
-            <h3 className="text-2xl font-anton mb-4">
-              Få besked om nye episodes
-            </h3>
-            <p className="font-inter mb-6 opacity-90">
-              Tilmeld dig vores newsletter og vær den første til at høre nye podcast episodes.
-            </p>
-            <div className="flex gap-2 max-w-md mx-auto">
-              <Input 
-                placeholder="Din email adresse" 
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60 font-inter"
-              />
-              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold">
-                Tilmeld
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <NewsletterPodcast />
 
       {/* FAQ Section */}
       <section className="py-20 bg-muted/30">

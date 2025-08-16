@@ -8,6 +8,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Calendar, MapPin, Users, Clock } from "lucide-react";
 import { useEvents } from "@/hooks/useEvents";
 import { EventRegistrationDialog } from "@/components/EventRegistrationDialog";
+import NewsletterEventButton from "@/components/NewsletterEventButton";
 import { format } from "date-fns";
 import { da } from "date-fns/locale";
 
@@ -260,9 +261,7 @@ const Events = () => {
             <p className="font-inter mb-6 opacity-90">
               Få besked om nye events og vær blandt de første til at sikre din plads til Danmarks bedste startup arrangementer.
             </p>
-            <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold px-8">
-              Tilmeld Event Newsletter
-            </Button>
+            <NewsletterEventButton />
           </div>
         </div>
       </section>
