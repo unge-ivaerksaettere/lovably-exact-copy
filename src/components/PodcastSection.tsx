@@ -39,7 +39,7 @@ const PodcastSection = () => {
 
   const featuredEpisode = {
     title: "Manden bag Doublés",
-    description: "Dybdegående samtale om at bygge bæredygtige forretninger og navigere i grønne trends.",
+    description: "I podcasten Unge Iværksættere Talks udforsker vi unge iværksætteres historier med det formål at dele deres råd og erfaringer med andre ambitiøse unge. ",
     duration: "1:02:49",
     category: "Bæredygtighed",
     spotifyId: "4P3kjxBiYGGjnS1uqjkt3V", // Real episode ID from your Spotify embed
