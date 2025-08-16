@@ -165,23 +165,6 @@ const PodcastSection = () => {
         </div>
 
 
-        <div className="text-center">
-          <p className="text-sm text-muted-foreground mb-6">
-            Vi er pt. sponsoreret af TechStars Copenhagen og Founder House
-          </p>
-            <div className="flex gap-3 justify-center">
-              <Button variant="outline" onClick={() => window.open('https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk', '_blank')}>
-                Se Alle Episodes
-              </Button>
-            <Button 
-              className="gap-2"
-              onClick={() => setShowSpotifyAuth(true)}
-            >
-              <Music className="w-4 h-4" />
-              Tilmeld dig Spotify Premium
-            </Button>
-          </div>
-        </div>
 
         {/* Episode Preview Modal */}
         <Dialog open={selectedEpisode !== null} onOpenChange={() => setSelectedEpisode(null)}>
