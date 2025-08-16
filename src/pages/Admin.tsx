@@ -5,6 +5,9 @@ import Footer from "@/components/Footer";
 import { AdminEventForm } from "@/components/AdminEventForm";
 import { InviteManagement } from "@/components/InviteManagement";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AdminEventsList } from "@/components/AdminEventsList";
+import { AdminUsersManagement } from "@/components/AdminUsersManagement";
+import { AdminAnalytics } from "@/components/AdminAnalytics";
 import { useUserRole } from "@/hooks/useEvents";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -65,14 +68,29 @@ const Admin = () => {
           <p className="text-lg text-muted-foreground">Administrer events, invitationer og indhold</p>
         </div>
         
-        <Tabs defaultValue="events" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8">
+        <Tabs defaultValue="overview" className="w-full">
+          <TabsList className="grid w-full grid-cols-5 max-w-2xl mx-auto mb-8">
+            <TabsTrigger value="overview">Oversigt</TabsTrigger>
             <TabsTrigger value="events">Events</TabsTrigger>
+            <TabsTrigger value="create">Opret Event</TabsTrigger>
+            <TabsTrigger value="users">Brugere</TabsTrigger>
             <TabsTrigger value="invites">Invitationer</TabsTrigger>
           </TabsList>
           
+          <TabsContent value="overview">
+            <AdminAnalytics />
+          </TabsContent>
+          
           <TabsContent value="events">
+            <AdminEventsList />
+          </TabsContent>
+          
+          <TabsContent value="create">
             <AdminEventForm />
+          </TabsContent>
+          
+          <TabsContent value="users">
+            <AdminUsersManagement />
           </TabsContent>
           
           <TabsContent value="invites">
