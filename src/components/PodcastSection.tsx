@@ -132,27 +132,35 @@ const PodcastSection = () => {
           </div>
         </div>
 
-        {/* Spotify Show Embed */}
+        {/* Spotify Show Section */}
         <div className="mb-16">
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8">
-            <div className="text-center mb-6">
+          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 text-center">
+            <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">Lyt til alle episoder på Spotify</h3>
               <p className="text-muted-foreground">
                 Få adgang til hele vores bibliotek af iværksætteri-samtaler
               </p>
             </div>
             
-            <div className="max-w-2xl mx-auto">
-              <iframe 
-                src={`https://open.spotify.com/embed/show/${featuredEpisode.showId}?utm_source=generator&theme=0`}
-                width="100%" 
-                height="352" 
-                frameBorder="0" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"
-                className="rounded-lg"
-              />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                className="gap-2 bg-green-500 hover:bg-green-600 text-white"
+                onClick={() => window.open(`https://open.spotify.com/show/${featuredEpisode.showId}`, '_blank')}
+              >
+                <Music className="w-5 h-5" />
+                Åbn Show på Spotify
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => window.open('https://podcasts.apple.com/dk/podcast/unge-iværksættere-talks/id1234567890', '_blank')}
+              >
+                Apple Podcasts
+              </Button>
             </div>
+            
+            <p className="text-sm text-muted-foreground mt-4">
+              Tilgængelig på alle de store podcast platforme
+            </p>
           </div>
         </div>
 
