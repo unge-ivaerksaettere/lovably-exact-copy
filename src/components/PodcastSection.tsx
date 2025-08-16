@@ -38,11 +38,11 @@ const PodcastSection = () => {
   ];
 
   const featuredEpisode = {
-    title: "En ærlig snak om bæredygtigt iværksætteri med Gittemarie",
+    title: "Manden bag Doublés",
     description: "Dybdegående samtale om at bygge bæredygtige forretninger og navigere i grønne trends.",
     duration: "1:02:49",
     category: "Bæredygtighed",
-    spotifyId: "featured-episode-id", // Replace with actual episode ID when available
+    spotifyId: "4P3kjxBiYGGjnS1uqjkt3V", // Real episode ID from your Spotify embed
     showId: "154B6QakpSESlOKiFkiDyk" // Your actual podcast show ID
   };
 
