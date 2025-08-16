@@ -54,13 +54,31 @@ export const InviteManagement = () => {
         .single();
       
       if (error) throw error;
+
+      // Send invitation email
+      const { error: emailError } = await supabase.functions.invoke(
+        'send-invitation-email',
+        {
+          body: {
+            email: data.email,
+            inviteCode: data.invite_code,
+            inviterName: userData.user?.email || 'Admin'
+          }
+        }
+      );
+
+      if (emailError) {
+        console.error('Failed to send invitation email:', emailError);
+        // Don't fail the invitation creation if email fails
+      }
+
       return data;
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['invites'] });
       toast({
-        title: "Invitation sendt!",
-        description: `Invitation til ${data.email} er oprettet med kode: ${data.invite_code}`,
+        title: "Invitation sendt! 📧",
+        description: `Invitation til ${data.email} er oprettet og sendt via email.`,
       });
       setEmail("");
     },
