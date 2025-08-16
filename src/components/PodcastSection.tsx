@@ -151,10 +151,10 @@ const PodcastSection = () => {
                 Åbn Show på Spotify
               </Button>
               <Button 
-                variant="outline"
-                onClick={() => window.open('https://podcasts.apple.com/dk/podcast/unge-iværksættere-talks/id1234567890', '_blank')}
+                className="gap-2"
+                onClick={() => window.open('https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true', '_blank')}
               >
-                Apple Podcasts
+                🔗 LinkedIn
               </Button>
             </div>
             

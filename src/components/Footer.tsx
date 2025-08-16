@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import uiLogo from "@/assets/ui-logo.png";
 import { useState } from "react";
@@ -86,14 +86,21 @@ const Footer = () => {
             
             {/* Social Media */}
             <div className="flex gap-4">
-              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10">
+              <Button 
+                size="icon" 
+                variant="ghost" 
+                className="text-background/80 hover:text-background hover:bg-background/10"
+                onClick={() => window.open('https://www.instagram.com/ungeivaerksaettere/', '_blank')}
+              >
                 <Instagram className="w-5 h-5" />
               </Button>
-              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10">
+              <Button 
+                size="icon" 
+                variant="ghost" 
+                className="text-background/80 hover:text-background hover:bg-background/10"
+                onClick={() => window.open('https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true', '_blank')}
+              >
                 <Linkedin className="w-5 h-5" />
-              </Button>
-              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10">
-                <Youtube className="w-5 h-5" />
               </Button>
             </div>
           </div>
