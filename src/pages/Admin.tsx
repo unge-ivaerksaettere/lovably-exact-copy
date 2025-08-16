@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { AdminEventForm } from "@/components/AdminEventForm";
-import { InviteManagement } from "@/components/InviteManagement";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AdminEventsList } from "@/components/AdminEventsList";
-import { AdminUsersManagement } from "@/components/AdminUsersManagement";
+import { AdminUsersAndInvites } from "@/components/AdminUsersAndInvites";
 import { AdminAnalytics } from "@/components/AdminAnalytics";
 import { AdminEventRegistrations } from "@/components/AdminEventRegistrations";
 import AdminPageSettings from "@/components/AdminPageSettings";
@@ -71,13 +70,12 @@ const Admin = () => {
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-7 max-w-4xl mx-auto mb-8">
+          <TabsList className="grid w-full grid-cols-6 max-w-4xl mx-auto mb-8">
             <TabsTrigger value="overview">Oversigt</TabsTrigger>
             <TabsTrigger value="events">Events</TabsTrigger>
             <TabsTrigger value="registrations">Tilmeldinger</TabsTrigger>
             <TabsTrigger value="create">Opret Event</TabsTrigger>
-            <TabsTrigger value="users">Brugere</TabsTrigger>
-            <TabsTrigger value="invites">Invitationer</TabsTrigger>
+            <TabsTrigger value="users">Brugere & Invitationer</TabsTrigger>
             <TabsTrigger value="pages">Sider</TabsTrigger>
           </TabsList>
           
@@ -98,11 +96,7 @@ const Admin = () => {
           </TabsContent>
           
           <TabsContent value="users">
-            <AdminUsersManagement />
-          </TabsContent>
-          
-          <TabsContent value="invites">
-            <InviteManagement />
+            <AdminUsersAndInvites />
           </TabsContent>
           
           <TabsContent value="pages">
