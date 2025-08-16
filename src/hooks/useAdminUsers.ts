@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "./use-toast";
 
 export interface AdminUser {
   id: string;
@@ -96,9 +97,35 @@ export const useAdminUsers = () => {
 
 export const useUpdateUserRole = () => {
   const queryClient = useQueryClient();
+  const { toast } = useToast();
   
   return useMutation({
-    mutationFn: async ({ userId, role }: { userId: string; role: string }) => {
+    mutationFn: async ({ userId, role, currentUserRole, targetUserEmail }: { 
+      userId: string; 
+      role: string; 
+      currentUserRole: string;
+      targetUserEmail: string;
+    }) => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('Not authenticated');
+
+      // Security check: prevent self-demotion
+      if (user.id === userId && currentUserRole === 'admin' && role !== 'admin') {
+        throw new Error('Du kan ikke fjerne din egen admin-rolle. Få en anden admin til at gøre det.');
+      }
+
+      // Check admin count before demotion
+      if (currentUserRole === 'admin' && role !== 'admin') {
+        const { data: adminCount } = await supabase
+          .from('user_roles')
+          .select('*', { count: 'exact' })
+          .eq('role', 'admin');
+        
+        if (!adminCount || adminCount.length <= 1) {
+          throw new Error('Der skal være mindst én admin i systemet');
+        }
+      }
+
       // First, remove existing role
       const { error: deleteError } = await supabase
         .from('user_roles')
@@ -115,11 +142,33 @@ export const useUpdateUserRole = () => {
         .single();
       
       if (error) throw error;
+
+      // Log the admin action
+      await supabase.rpc('log_admin_action', {
+        action_type: `role_change_${currentUserRole}_to_${role}`,
+        target_user_id: userId,
+        target_user_email: targetUserEmail,
+        old_val: currentUserRole,
+        new_val: role
+      });
+
       return data;
     },
-    onSuccess: () => {
+    onSuccess: (_, { targetUserEmail, role }) => {
       queryClient.invalidateQueries({ queryKey: ['adminUsers'] });
       queryClient.invalidateQueries({ queryKey: ['userRole'] });
+      
+      toast({
+        title: "Rolle opdateret",
+        description: `${targetUserEmail} er nu ${role === 'admin' ? 'administrator' : 'bruger'}.`,
+      });
     },
+    onError: (error: Error) => {
+      toast({
+        title: "Fejl",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
   });
 };

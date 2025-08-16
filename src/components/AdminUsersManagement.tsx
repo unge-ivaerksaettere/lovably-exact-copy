@@ -18,20 +18,13 @@ export const AdminUsersManagement = () => {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleRoleChange = async (userId: string, newRole: string, userName: string) => {
-    try {
-      await updateUserRole.mutateAsync({ userId, role: newRole });
-      toast({
-        title: "Rolle opdateret",
-        description: `${userName} er nu ${newRole === 'admin' ? 'administrator' : 'bruger'}.`,
-      });
-    } catch (error) {
-      toast({
-        title: "Fejl",
-        description: "Der opstod en fejl ved opdatering af brugerrolle.",
-        variant: "destructive",
-      });
-    }
+  const handleRoleChange = async (userId: string, newRole: string, userName: string, userEmail: string, currentRole: string) => {
+    await updateUserRole.mutateAsync({ 
+      userId, 
+      role: newRole, 
+      currentUserRole: currentRole,
+      targetUserEmail: userEmail 
+    });
   };
 
   const filteredUsers = users.filter(user => 
@@ -151,10 +144,22 @@ export const AdminUsersManagement = () => {
                           <AlertDialogTitle>
                             {user.role === 'admin' ? 'Fjern Administrator' : 'Gør til Administrator'}
                           </AlertDialogTitle>
-                          <AlertDialogDescription>
-                            Er du sikker på at du vil ændre {user.email || 'denne bruger'} til{' '}
-                            {user.role === 'admin' ? 'almindelig bruger' : 'administrator'}?
-                          </AlertDialogDescription>
+                        <AlertDialogDescription className="space-y-2">
+                            <div>
+                              Er du sikker på at du vil ændre {user.email || 'denne bruger'} til{' '}
+                              {user.role === 'admin' ? 'almindelig bruger' : 'administrator'}?
+                            </div>
+                            {user.role === 'admin' && (
+                              <div className="text-destructive font-medium">
+                                ⚠️ ADVARSEL: Dette vil fjerne administratorrettigheder fra denne bruger.
+                              </div>
+                            )}
+                            {adminCount <= 1 && user.role === 'admin' && (
+                              <div className="text-destructive font-medium">
+                                ❌ FEJL: Dette er den eneste admin. Der skal være mindst én admin i systemet.
+                              </div>
+                            )}
+                        </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                           <AlertDialogCancel>Annuller</AlertDialogCancel>
@@ -162,8 +167,11 @@ export const AdminUsersManagement = () => {
                             onClick={() => handleRoleChange(
                               user.id, 
                               user.role === 'admin' ? 'user' : 'admin',
-                              user.first_name || user.email || 'Bruger'
+                              user.first_name || user.email || 'Bruger',
+                              user.email || 'Ukendt email',
+                              user.role || 'user'
                             )}
+                            disabled={adminCount <= 1 && user.role === 'admin'}
                           >
                             Bekræft
                           </AlertDialogAction>
