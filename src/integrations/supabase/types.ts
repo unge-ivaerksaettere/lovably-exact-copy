@@ -53,6 +53,53 @@ export type Database = {
         }
         Relationships: []
       }
+      event_registrations: {
+        Row: {
+          confirmation_token: string | null
+          confirmed_at: string | null
+          created_at: string
+          email: string
+          event_id: string
+          first_name: string | null
+          id: string
+          last_name: string | null
+          subscribe_newsletter: boolean | null
+          updated_at: string
+        }
+        Insert: {
+          confirmation_token?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          email: string
+          event_id: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          subscribe_newsletter?: boolean | null
+          updated_at?: string
+        }
+        Update: {
+          confirmation_token?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          email?: string
+          event_id?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          subscribe_newsletter?: boolean | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_registrations_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       events: {
         Row: {
           created_at: string

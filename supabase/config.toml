@@ -2,3 +2,9 @@ project_id = "qnjtgjakakilxiglwztm"
 
 [functions.mailerlite-subscribe]
 verify_jwt = false
+
+[functions.send-registration-confirmation]
+verify_jwt = false
+
+[functions.confirm-registration]
+verify_jwt = false

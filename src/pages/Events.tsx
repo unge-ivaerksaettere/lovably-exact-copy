@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, MapPin, Users, Clock } from "lucide-react";
 import { useEvents } from "@/hooks/useEvents";
+import { EventRegistrationDialog } from "@/components/EventRegistrationDialog";
 import { format } from "date-fns";
 import { da } from "date-fns/locale";
 
@@ -128,9 +129,11 @@ const Events = () => {
                 </div>
                 
                 <div className="flex gap-4">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold px-8">
-                    Tilmeld dig nu →
-                  </Button>
+                  <EventRegistrationDialog event={featuredEvent}>
+                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold px-8">
+                      Tilmeld dig nu →
+                    </Button>
+                  </EventRegistrationDialog>
                   <span className="flex items-center text-sm font-inter text-muted-foreground">
                     Åbent for tilmelding
                   </span>
@@ -194,9 +197,11 @@ const Events = () => {
                           </div>
                         </div>
                         
-                        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold mt-6">
-                          Tilmeld dig
-                        </Button>
+                        <EventRegistrationDialog event={event}>
+                          <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold mt-6">
+                            Tilmeld dig
+                          </Button>
+                        </EventRegistrationDialog>
                       </div>
                     </Card>
                   ))}
