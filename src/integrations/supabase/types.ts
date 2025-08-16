@@ -160,7 +160,7 @@ export type Database = {
           email: string
           expires_at?: string
           id?: string
-          invite_code: string
+          invite_code?: string
           invited_by: string
           used_at?: string | null
         }

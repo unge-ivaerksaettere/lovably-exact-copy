@@ -41,17 +41,14 @@ export const InviteManagement = () => {
 
   const createInvite = useMutation({
     mutationFn: async (email: string) => {
-      // Generate invite code
-      const { data: codeData, error: codeError } = await supabase.rpc('generate_invite_code');
-      if (codeError) throw codeError;
-
-      // Create invite
+      const { data: userData } = await supabase.auth.getUser();
+      
+      // Create invite - let database generate the invite code automatically
       const { data, error } = await supabase
         .from('invites')
         .insert([{
           email: email.toLowerCase(),
-          invite_code: codeData,
-          invited_by: (await supabase.auth.getUser()).data.user?.id
+          invited_by: userData.user?.id
         }])
         .select()
         .single();
