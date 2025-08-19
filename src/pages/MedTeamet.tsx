@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Linkedin, Twitter, Mail, Heart, Rocket, Diamond, Zap } from "lucide-react";
-import nicolajImage from "@/assets/nicolaj-gram.png";
+import nicolajImage from "@/assets/nicolaj-gram-profile.png";
 
 const MedTeamet = () => {
   const teamMembers = [
