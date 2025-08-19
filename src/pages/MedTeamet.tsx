@@ -4,21 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Linkedin, Twitter, Mail, Heart, Rocket, Diamond, Zap } from "lucide-react";
+import nicolajImage from "@/assets/nicolaj-gram.png";
 
 const MedTeamet = () => {
   const teamMembers = [
     {
       id: 1,
-      initials: "EL",
-      name: "Emma Larsen",
-      title: "Founder & CEO",
-      description: "Tidligere consultant hos McKinsey med passion for at skabe Danmarks bedste startup community. Grundlagde Unge Iværksættere mens hun læste på CBS.",
-      location: "København",
-      company: "Airbnb",
-      quote: "Kaffe og pitch decks er mine kærlighedssprø 🔥",
-      linkedin: "#",
-      twitter: "#", 
-      email: "#"
+      name: "Nicolaj Gram",
+      title: "Online Community Lead",
+      description: "Ansvarlig for at engagere vores medlemmer i communityet og lede events i Aarhus-området. Nicolaj bygger bro mellem lokale iværksættere og skaber sammenhæng i vores community.",
+      location: "Aarhus",
+      image: nicolajImage,
+      quote: "Community bygges en relation ad gangen 🚀"
     },
     {
       id: 2,
@@ -195,11 +192,21 @@ const MedTeamet = () => {
                   <div className="space-y-4">
                     {/* Avatar and Orange Dot */}
                     <div className="relative w-fit mx-auto">
-                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                        <span className="text-xl font-dm-sans font-bold text-primary-foreground">
-                          {member.initials}
-                        </span>
-                      </div>
+                      {member.image ? (
+                        <div className="w-16 h-16 rounded-full overflow-hidden">
+                          <img 
+                            src={member.image} 
+                            alt={member.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
+                          <span className="text-xl font-dm-sans font-bold text-primary-foreground">
+                            {member.initials}
+                          </span>
+                        </div>
+                      )}
                       <div className="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full"></div>
                     </div>
                     
@@ -221,10 +228,12 @@ const MedTeamet = () => {
                         <span>📍</span>
                         <span className="text-muted-foreground">{member.location}</span>
                       </div>
-                      <div className="flex items-center justify-center gap-1">
-                        <span>💼</span>
-                        <span className="text-muted-foreground">{member.company}</span>
-                      </div>
+                      {member.company && (
+                        <div className="flex items-center justify-center gap-1">
+                          <span>💼</span>
+                          <span className="text-muted-foreground">{member.company}</span>
+                        </div>
+                      )}
                     </div>
                     
                     <p className="text-sm font-inter text-center italic text-muted-foreground">
@@ -232,17 +241,31 @@ const MedTeamet = () => {
                     </p>
                     
                     {/* Social Links */}
-                    <div className="flex justify-center gap-3">
-                      <Button variant="ghost" size="sm">
-                        <Linkedin className="w-4 h-4 text-muted-foreground" />
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <Twitter className="w-4 h-4 text-muted-foreground" />
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <Mail className="w-4 h-4 text-muted-foreground" />
-                      </Button>
-                    </div>
+                    {(member.linkedin || member.twitter || member.email) && (
+                      <div className="flex justify-center gap-3">
+                        {member.linkedin && (
+                          <Button variant="ghost" size="sm" asChild>
+                            <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                              <Linkedin className="w-4 h-4 text-muted-foreground" />
+                            </a>
+                          </Button>
+                        )}
+                        {member.twitter && (
+                          <Button variant="ghost" size="sm" asChild>
+                            <a href={member.twitter} target="_blank" rel="noopener noreferrer">
+                              <Twitter className="w-4 h-4 text-muted-foreground" />
+                            </a>
+                          </Button>
+                        )}
+                        {member.email && (
+                          <Button variant="ghost" size="sm" asChild>
+                            <a href={`mailto:${member.email}`}>
+                              <Mail className="w-4 h-4 text-muted-foreground" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
