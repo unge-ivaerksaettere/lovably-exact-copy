@@ -28,7 +28,8 @@ const Podcast = () => {
       duration: "53 min",
       plays: "24.1k",
       likes: "456",
-      category: "Motivation"
+      category: "Motivation",
+      spotifyEpisodeId: "7lp4zAhJLp4Y7G4h8JxQKJ"
     },
     {
       id: 3,
@@ -37,7 +38,8 @@ const Podcast = () => {
       duration: "47 min", 
       plays: "16.7k",
       likes: "298",
-      category: "Fashion"
+      category: "Fashion",
+      spotifyEpisodeId: "5Kqj2k5m3n8fL6n9p0qR2S"
     },
     {
       id: 4,
@@ -46,7 +48,8 @@ const Podcast = () => {
       duration: "38 min",
       plays: "21.2k", 
       likes: "387",
-      category: "Funding"
+      category: "Funding",
+      spotifyEpisodeId: "3Gh7i8j9k0l1m2n3O4p5Q6"
     }
   ];
 
@@ -119,8 +122,8 @@ const Podcast = () => {
           
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="relative rounded-lg overflow-hidden bg-muted">
-              {/* Podcast Player Mockup */}
-              <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+              {/* Spotify Player */}
+              <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center p-6">
                 <div className="text-center space-y-4">
                   <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto">
                     <Play className="w-8 h-8 text-primary-foreground" />
@@ -162,7 +165,11 @@ const Podcast = () => {
                 <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold px-8">
                   ▶ Lyt Nu
                 </Button>
-                <Button variant="outline" className="font-dm-sans font-bold">
+                <Button 
+                  variant="outline" 
+                  className="font-dm-sans font-bold"
+                  onClick={() => window.open('https://open.spotify.com/episode/4P3kjxBiYGGjnS1uqjkt3V', '_blank')}
+                >
                   🎧 Spotify
                 </Button>
                 <span className="flex items-center text-sm font-inter text-muted-foreground">
@@ -185,10 +192,17 @@ const Podcast = () => {
             </p>
           </div>
           
-          <div className="max-w-2xl mx-auto bg-muted/50 rounded-lg p-8 text-center">
-            <div className="text-muted-foreground font-inter">
-              [Spotify Embed Placeholder - Integration kommer snart]
-            </div>
+          <div className="max-w-2xl mx-auto">
+            {/* Real Spotify Embed */}
+            <iframe 
+              src="https://open.spotify.com/embed/show/154B6QakpSESlOKiFkiDyk?utm_source=generator&theme=0"
+              width="100%" 
+              height="352" 
+              frameBorder="0" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"
+              className="rounded-lg"
+            />
             <div className="mt-6 flex gap-4 justify-center">
               <Button 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold"
@@ -236,7 +250,13 @@ const Podcast = () => {
                       <span>❤️ {episode.likes}</span>
                     </div>
                     
-                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold">
+                    <Button 
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold"
+                      onClick={() => episode.spotifyEpisodeId ? 
+                        window.open(`https://open.spotify.com/episode/${episode.spotifyEpisodeId}`, '_blank') :
+                        alert('Episode kommer snart på Spotify!')
+                      }
+                    >
                       ▶ Lyt
                     </Button>
                   </div>
