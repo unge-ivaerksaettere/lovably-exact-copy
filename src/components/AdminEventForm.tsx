@@ -7,6 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCreateEvent } from "@/hooks/useEvents";
 import { useToast } from "@/hooks/use-toast";
+import { ImageUploader } from "@/components/ImageUploader";
 
 export const AdminEventForm = () => {
   const [formData, setFormData] = useState({
@@ -136,11 +137,11 @@ export const AdminEventForm = () => {
           </div>
 
           <div>
-            <Label htmlFor="image_url">Billede URL</Label>
-            <Input
-              id="image_url"
-              value={formData.image_url}
-              onChange={(e) => handleInputChange("image_url", e.target.value)}
+            <Label>Event billede</Label>
+            <ImageUploader
+              onImageUploaded={(url) => handleInputChange("image_url", url)}
+              currentImageUrl={formData.image_url}
+              onImageRemoved={() => handleInputChange("image_url", "")}
             />
           </div>
 
