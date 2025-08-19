@@ -105,7 +105,7 @@ const Podcast = () => {
         <div className="container mx-auto px-4">
           <div className="bg-muted/50 rounded-lg p-4 text-center">
             <p className="text-sm font-inter text-muted-foreground">
-              👑 Vi er pt sponsoreret af <span className="font-dm-sans font-bold">TechSavvy & StartupDK</span> - tak for jeres støtte!
+              👑 Vi er pt sponsoreret af <span className="font-dm-sans font-bold">Ageras & Jakob H.</span> - tak for jeres støtte!
             </p>
           </div>
         </div>

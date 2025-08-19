@@ -71,30 +71,24 @@ const VoresSponsoreBlivSponsor = () => {
   ];
 
   const partners = [
-    { name: "Pleo", logo: "Pleo" },
-    { name: "Tra", logo: "Tra" },
-    { name: "Nor", logo: "Nor" },
-    { name: "Rei", logo: "Rei" },
-    { name: "TDC", logo: "TDC" },
-    { name: "Dan", logo: "Dan" },
-    { name: "Vesk", logo: "Vesk" },
-    { name: "RYE", logo: "RYE" }
+    { name: "Ageras", logo: "AG", website: "https://www.ageras.com/dk" },
+    { name: "Jakob H.", logo: "JH", website: "https://www.linkedin.com/in/jakobh/?originalSubdomain=dk" }
   ];
 
   const testimonials = [
     {
-      name: "Sarah Hansen",
-      role: "Head of Talent, Pleo",
-      company: "Pleo",
-      avatar: "SH",
-      quote: "Vores partnership med Unge Iværksættere har givet os adgang til Danmarks mest talentfulde unge entrepreneurs. Vi har rekrutteret 3 fantastiske praktikanter gennem deres netværk."
+      name: "Ageras Team",
+      role: "Partnership, Ageras",
+      company: "Ageras",
+      avatar: "AG",
+      quote: "Vores samarbejde med Unge Iværksættere giver os fantastisk eksponering til Danmarks mest lovende unge iværksættere og talenter."
     },
     {
-      name: "Michael Andersen",
-      role: "Marketing Director, TDC",
-      company: "TDC",
-      avatar: "MA",
-      quote: "At sponsorere deres podcast har været en fantastisk investering. Vi når præcis den målgruppe vi søger - ambitiøse, tech-savvy unge danskere med iværksætterdrømme."
+      name: "Jakob H.",
+      role: "Støttesponsor",
+      company: "Privat",
+      avatar: "JH",
+      quote: "Jeg støtter Unge Iværksættere fordi jeg tror på at investere i Danmarks næste generation af iværksættere."
     }
   ];
 
@@ -213,31 +207,31 @@ const VoresSponsoreBlivSponsor = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
             <Card className="text-center p-8 border-2 border-primary/20">
               <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                P
+                AG
               </div>
-              <h3 className="text-xl font-dm-sans font-bold mb-2">Pleo</h3>
+              <h3 className="text-xl font-dm-sans font-bold mb-2">Ageras</h3>
               <Badge className="mb-3">🏢 Partner Sponsor</Badge>
               <p className="font-inter text-sm text-muted-foreground">
-                Støtter vores community med events og networking muligheder
+                1x Partner pakke - Støtter vores community med events og networking
               </p>
             </Card>
 
             <Card className="text-center p-8 border-2 border-secondary/20">
               <div className="w-16 h-16 bg-secondary text-secondary-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                T
+                AG
               </div>
-              <h3 className="text-xl font-dm-sans font-bold mb-2">TechStart</h3>
+              <h3 className="text-xl font-dm-sans font-bold mb-2">Ageras</h3>
               <Badge variant="secondary" className="mb-3">🎙️ Podcast Sponsor</Badge>
               <p className="font-inter text-sm text-muted-foreground">
-                Hørbar partner i vores podcast med 60.000+ downloads
+                2x Podcast sponsorater - Hørbar partner i vores podcast
               </p>
             </Card>
 
             <Card className="text-center p-8 border-2 border-accent/20">
               <div className="w-16 h-16 bg-accent text-accent-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                I
+                JH
               </div>
-              <h3 className="text-xl font-dm-sans font-bold mb-2">InnovateDK</h3>
+              <h3 className="text-xl font-dm-sans font-bold mb-2">Jakob H.</h3>
               <Badge variant="outline" className="mb-3">🤝 Støtte Sponsor</Badge>
               <p className="font-inter text-sm text-muted-foreground">
                 Støtter startup-økosystemet og unge entrepreneurs
@@ -251,11 +245,17 @@ const VoresSponsoreBlivSponsor = () => {
               Alle vores partnere
             </h3>
           </div>
-          <div className="grid grid-cols-4 md:grid-cols-8 gap-8 mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 mb-20 max-w-md mx-auto">
             {partners.map((partner, index) => (
-              <div key={index} className="bg-primary text-primary-foreground rounded-lg p-4 text-center font-dm-sans font-bold">
+              <a 
+                key={index} 
+                href={partner.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-primary-foreground rounded-lg p-4 text-center font-dm-sans font-bold hover:bg-primary/90 transition-colors cursor-pointer"
+              >
                 {partner.logo}
-              </div>
+              </a>
             ))}
           </div>
 
