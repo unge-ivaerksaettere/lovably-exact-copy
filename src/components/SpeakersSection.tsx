@@ -81,7 +81,7 @@ const SpeakersSection = () => {
             <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
-                  <Avatar className="w-12 h-12">
+                  <Avatar className="w-14 h-14 ring-1 ring-border">
                     <AvatarImage src={speaker.image} alt={speaker.name} />
                     <AvatarFallback>{speaker.initials}</AvatarFallback>
                   </Avatar>
