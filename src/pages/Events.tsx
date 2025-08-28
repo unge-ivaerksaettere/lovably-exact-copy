@@ -11,7 +11,7 @@ import { EventRegistrationDialog } from "@/components/EventRegistrationDialog";
 import NewsletterEventButton from "@/components/NewsletterEventButton";
 import { format } from "date-fns";
 import { da } from "date-fns/locale";
-import eventPlaceholder from "@/assets/placeholder-event.svg";
+import eventPlaceholder from "@/assets/event-networking.jpg";
 
 const Events = () => {
   const { data: upcomingEvents = [], isLoading: upcomingLoading } = useEvents('upcoming');
