@@ -10,6 +10,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Check, Mail, Phone, Calendar } from "lucide-react";
+import agerasLogo from "@/assets/ageras-logo.png";
+import jakobHProfile from "@/assets/jakob-h-profile.jpg";
 
 const VoresSponsoreBlivSponsor = () => {
   const [formData, setFormData] = useState({
@@ -71,8 +73,8 @@ const VoresSponsoreBlivSponsor = () => {
   ];
 
   const partners = [
-    { name: "Ageras", logo: "AG", website: "https://www.ageras.com/dk" },
-    { name: "Jakob H.", logo: "JH", website: "https://www.linkedin.com/in/jakobh/?originalSubdomain=dk" }
+    { name: "Ageras", logo: agerasLogo, website: "https://www.ageras.com/dk" },
+    { name: "Jakob H.", logo: jakobHProfile, website: "https://www.linkedin.com/in/jakobh/?originalSubdomain=dk" }
   ];
 
   const testimonials = [
@@ -80,14 +82,14 @@ const VoresSponsoreBlivSponsor = () => {
       name: "Ageras Team",
       role: "Partnership, Ageras",
       company: "Ageras",
-      avatar: "AG",
+      avatar: agerasLogo,
       quote: "Vores samarbejde med Unge Iværksættere giver os fantastisk eksponering til Danmarks mest lovende unge iværksættere og talenter."
     },
     {
       name: "Jakob H.",
       role: "Støttesponsor",
       company: "Privat",
-      avatar: "JH",
+      avatar: jakobHProfile,
       quote: "Jeg støtter Unge Iværksættere fordi jeg tror på at investere i Danmarks næste generation af iværksættere."
     }
   ];
@@ -206,8 +208,8 @@ const VoresSponsoreBlivSponsor = () => {
           {/* Current Sponsor Showcase */}
           <div className="grid md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
             <Card className="text-center p-8 border-2 border-primary/20">
-              <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                AG
+              <div className="w-16 h-16 rounded-full mx-auto mb-4 overflow-hidden bg-white flex items-center justify-center">
+                <img src={agerasLogo} alt="Ageras logo" className="w-14 h-14 object-contain" />
               </div>
               <h3 className="text-xl font-dm-sans font-bold mb-2">Ageras</h3>
               <Badge className="mb-3">🏢 Partner Sponsor</Badge>
@@ -217,8 +219,8 @@ const VoresSponsoreBlivSponsor = () => {
             </Card>
 
             <Card className="text-center p-8 border-2 border-secondary/20">
-              <div className="w-16 h-16 bg-secondary text-secondary-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                AG
+              <div className="w-16 h-16 rounded-full mx-auto mb-4 overflow-hidden bg-white flex items-center justify-center">
+                <img src={agerasLogo} alt="Ageras logo" className="w-14 h-14 object-contain" />
               </div>
               <h3 className="text-xl font-dm-sans font-bold mb-2">Ageras</h3>
               <Badge variant="secondary" className="mb-3">🎙️ Podcast Sponsor</Badge>
@@ -228,8 +230,8 @@ const VoresSponsoreBlivSponsor = () => {
             </Card>
 
             <Card className="text-center p-8 border-2 border-accent/20">
-              <div className="w-16 h-16 bg-accent text-accent-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                JH
+              <div className="w-16 h-16 rounded-full mx-auto mb-4 overflow-hidden bg-muted flex items-center justify-center">
+                <img src={jakobHProfile} alt="Jakob H. profile" className="w-16 h-16 object-cover" />
               </div>
               <h3 className="text-xl font-dm-sans font-bold mb-2">Jakob H.</h3>
               <Badge variant="outline" className="mb-3">🤝 Støtte Sponsor</Badge>
@@ -252,9 +254,13 @@ const VoresSponsoreBlivSponsor = () => {
                 href={partner.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary text-primary-foreground rounded-lg p-4 text-center font-dm-sans font-bold hover:bg-primary/90 transition-colors cursor-pointer"
+                className="bg-white border-2 border-muted rounded-lg p-6 text-center hover:shadow-lg transition-all cursor-pointer flex items-center justify-center"
               >
-                {partner.logo}
+                <img 
+                  src={partner.logo} 
+                  alt={`${partner.name} logo`} 
+                  className={partner.name === "Ageras" ? "h-8 object-contain" : "w-12 h-12 rounded-full object-cover"}
+                />
               </a>
             ))}
           </div>
@@ -269,8 +275,12 @@ const VoresSponsoreBlivSponsor = () => {
                 <Card key={index} className="p-6">
                   <CardContent className="pt-0">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-dm-sans font-bold">
-                        {testimonial.avatar}
+                      <div className="w-12 h-12 rounded-full overflow-hidden bg-white border-2 border-muted flex items-center justify-center">
+                        <img 
+                          src={testimonial.avatar} 
+                          alt={`${testimonial.name} avatar`}
+                          className={testimonial.name === "Ageras Team" ? "w-10 h-10 object-contain" : "w-12 h-12 object-cover"}
+                        />
                       </div>
                       <div>
                         <h4 className="font-dm-sans font-bold">{testimonial.name}</h4>
