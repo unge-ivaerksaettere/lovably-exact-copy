@@ -53,16 +53,16 @@ const SpeakersSection = () => {
               <span className="text-sm font-medium">Featured Speaker</span>
             </div>
             
-            <h3 className="text-2xl font-bold mb-2">Clara Høgh</h3>
-            <p className="text-muted-foreground mb-1">CEO & Co-founder, Verdn</p>
-            <Badge variant="outline" className="mb-4">Verdn</Badge>
+            <h3 className="text-2xl font-bold mb-2">Saxo Agdestein</h3>
+            <p className="text-muted-foreground mb-1">Founder, Handyhand & HappyHelper</p>
+            <Badge variant="outline" className="mb-4">Handyhand</Badge>
             
             <p className="text-muted-foreground mb-6">
-              Pionér inden for bæredygtige startup løsninger med over 50M DKK rejst i funding.
+              Entrepreneur og podcaster der har bygget Handyhand til 250K+ brugere og 300K+ tasks. Specialist i at forbinde mennesker gennem innovative digitale løsninger.
             </p>
             
             <p className="font-medium mb-4">
-              <strong>Seneste Event:</strong> Green Tech Revolution
+              <strong>Seneste Event:</strong> Scaling Digital Platforms
             </p>
             
             <Button>Se Event Replay</Button>
