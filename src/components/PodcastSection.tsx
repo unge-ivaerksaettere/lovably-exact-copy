@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Play, Clock, Music, ExternalLink, Heart } from "lucide-react";
 import { useState } from "react";
-import podcastStudio from "@/assets/podcast-studio.jpg";
+import podcastStudio from "@/assets/podcast-recording-1.jpg";
 
 const PodcastSection = () => {
   const [showSpotifyAuth, setShowSpotifyAuth] = useState(false);

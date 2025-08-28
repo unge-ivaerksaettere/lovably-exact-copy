@@ -1,40 +1,46 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import podcastRecording1 from "@/assets/podcast-recording-1.jpg";
+import eventPresentation1 from "@/assets/event-presentation-1.jpg";
+import communityNetworking1 from "@/assets/community-networking-1.jpg";
+import eventAudience1 from "@/assets/event-audience-1.jpg";
+import podcastRecording2 from "@/assets/podcast-recording-2.jpg";
+import communityNetworking2 from "@/assets/community-networking-2.jpg";
 
 const CommunityGallery = () => {
   const galleryImages = [
     {
-      src: "/placeholder.svg",
+      src: podcastRecording1,
       alt: "Podcast recording session in studio",
       category: "Podcast",
       title: "Behind the Scenes"
     },
     {
-      src: "/placeholder.svg", 
+      src: eventPresentation1, 
       alt: "Speaker presenting at startup event",
       category: "Events",
       title: "Knowledge Sharing"
     },
     {
-      src: "/placeholder.svg",
+      src: communityNetworking1,
       alt: "Entrepreneurs networking at event", 
       category: "Networking",
       title: "Community Building"
     },
     {
-      src: "/placeholder.svg",
+      src: communityNetworking2,
       alt: "Group discussion at entrepreneur meetup",
       category: "Community", 
       title: "Collaboration"
     },
     {
-      src: "/placeholder.svg",
+      src: eventAudience1,
       alt: "Engaged audience at startup presentation",
       category: "Events",
       title: "Learning Together"
     },
     {
-      src: "/placeholder.svg",
+      src: podcastRecording2,
       alt: "Interview setup for entrepreneur podcast",
       category: "Podcast", 
       title: "Storytelling"

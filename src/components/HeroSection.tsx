@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Mic, Calendar, Instagram, Linkedin } from "lucide-react";
-import heroImage from "@/assets/hero-image.jpg";
+import heroImage from "@/assets/event-audience-1.jpg";
 
 const HeroSection = () => {
   return (
