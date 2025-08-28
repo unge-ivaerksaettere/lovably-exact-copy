@@ -47,8 +47,6 @@ const CommunityGallery = () => {
     }
   ];
 
-  const categories = ["All", "Podcast", "Events", "Networking", "Community"];
-
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -59,18 +57,6 @@ const CommunityGallery = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Se hvordan danske iværksættere samles, lærer og vokser sammen gennem vores events og podcast.
           </p>
-        </div>
-
-        <div className="flex justify-center gap-2 mb-8 flex-wrap">
-          {categories.map((category) => (
-            <Badge 
-              key={category}
-              variant={category === "All" ? "default" : "outline"}
-              className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
-            >
-              {category}
-            </Badge>
-          ))}
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
