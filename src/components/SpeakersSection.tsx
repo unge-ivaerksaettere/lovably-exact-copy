@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import speakerPresentation from "@/assets/featured-speaker.jpg";
+import speakerPresentation from "@/assets/event-presentation-1.jpg";
 import kimRantsImg from "@/assets/kim-rants.jpg";
 import wernerValeurImg from "@/assets/werner-valeur.png";
 import nikolajNyholmImg from "@/assets/nikolaj-nyholm.jpg";
