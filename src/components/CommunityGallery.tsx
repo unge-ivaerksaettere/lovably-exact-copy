@@ -10,40 +10,40 @@ import communityNetworking2 from "@/assets/community-networking-2.jpg";
 const CommunityGallery = () => {
   const galleryImages = [
     {
-      src: podcastRecording1,
-      alt: "Podcast recording session in studio",
-      category: "Podcast",
-      title: "Behind the Scenes"
-    },
-    {
-      src: eventPresentation1, 
-      alt: "Speaker presenting at startup event",
-      category: "Events",
+      src: eventPresentation1,
+      alt: "Speaker presenting at startup event with engaged audience",
+      category: "Community",
       title: "Knowledge Sharing"
     },
     {
-      src: communityNetworking1,
-      alt: "Entrepreneurs networking at event", 
-      category: "Networking",
-      title: "Community Building"
+      src: communityNetworking1, 
+      alt: "Young entrepreneurs networking and discussing ideas",
+      category: "Community",
+      title: "Behind the Scenes"
+    },
+    {
+      src: podcastRecording1,
+      alt: "Podcast recording session in professional studio",
+      category: "Community",
+      title: "Storytelling"
+    },
+    {
+      src: eventAudience1,
+      alt: "Engaged audience at startup presentation",
+      category: "Community",
+      title: "Learning Together"
+    },
+    {
+      src: podcastRecording2,
+      alt: "Interview setup for entrepreneur podcast",
+      category: "Community", 
+      title: "Deep Conversations"
     },
     {
       src: communityNetworking2,
       alt: "Group discussion at entrepreneur meetup",
       category: "Community", 
       title: "Collaboration"
-    },
-    {
-      src: eventAudience1,
-      alt: "Engaged audience at startup presentation",
-      category: "Events",
-      title: "Learning Together"
-    },
-    {
-      src: podcastRecording2,
-      alt: "Interview setup for entrepreneur podcast",
-      category: "Podcast", 
-      title: "Storytelling"
     }
   ];
 
@@ -72,9 +72,6 @@ const CommunityGallery = () => {
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                     <div className="p-4 text-white">
-                      <Badge variant="secondary" className="mb-2">
-                        {image.category}
-                      </Badge>
                       <h3 className="font-semibold">{image.title}</h3>
                     </div>
                   </div>

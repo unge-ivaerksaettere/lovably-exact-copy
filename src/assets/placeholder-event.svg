@@ -1,0 +1,9 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="300" fill="#F8F9FA"/>
+<circle cx="200" cy="120" r="40" fill="#E5E7EB"/>
+<path d="M180 110 C180 110 185 105 195 105 C205 105 210 110 210 110 L210 130 C210 130 205 135 195 135 C185 135 180 130 180 130 Z" fill="#9CA3AF"/>
+<rect x="160" y="180" width="80" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="140" y="200" width="120" height="6" rx="3" fill="#F3F4F6"/>
+<rect x="170" y="215" width="60" height="6" rx="3" fill="#F3F4F6"/>
+<text x="200" y="260" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="14">Event Placeholder</text>
+</svg>
