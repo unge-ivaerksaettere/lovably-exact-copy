@@ -11,6 +11,7 @@ import { EventRegistrationDialog } from "@/components/EventRegistrationDialog";
 import NewsletterEventButton from "@/components/NewsletterEventButton";
 import { format } from "date-fns";
 import { da } from "date-fns/locale";
+import eventPlaceholder from "@/assets/placeholder-event.svg";
 
 const Events = () => {
   const { data: upcomingEvents = [], isLoading: upcomingLoading } = useEvents('upcoming');
@@ -90,7 +91,7 @@ const Events = () => {
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div className="relative rounded-lg overflow-hidden">
                 <img 
-                  src={featuredEvent.image_url || "/lovable-uploads/f4f684e4-898c-4465-9790-a6b52378a1bd.png"} 
+                  src={featuredEvent.image_url || eventPlaceholder} 
                   alt={featuredEvent.title}
                   className="w-full h-80 object-cover"
                 />

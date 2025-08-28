@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCreateEvent } from "@/hooks/useEvents";
 import { useToast } from "@/hooks/use-toast";
 import { ImageUploader } from "@/components/ImageUploader";
+import eventPlaceholder from "@/assets/placeholder-event.svg";
 
 export const AdminEventForm = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ export const AdminEventForm = () => {
         event_time: formData.event_time || null,
         location: formData.location || null,
         max_attendees: formData.max_attendees ? parseInt(formData.max_attendees) : null,
-        image_url: formData.image_url || null,
+        image_url: (formData.image_url || eventPlaceholder),
         featured: formData.featured,
       });
 
