@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import speakerPresentation from "@/assets/event-presentation-1.jpg";
+import kimRantsImg from "@/assets/kim-rants.jpg";
+import wernerValeurImg from "@/assets/werner-valeur.png";
+import nikolajNyholmImg from "@/assets/nikolaj-nyholm.jpg";
 
 const SpeakersSection = () => {
   const speakers = [
@@ -11,6 +15,7 @@ const SpeakersSection = () => {
       title: "Co-founder & CEO, Alice.tech",
       company: "Alice.tech",
       description: "AI-ekspert og tidligere McKinsey Partner. Bygger AI-drevet uddannelsesplatform.",
+      image: kimRantsImg,
     },
     {
       initials: "WV",
@@ -18,6 +23,7 @@ const SpeakersSection = () => {
       title: "Serial Entrepreneur",
       company: "10+ Companies",
       description: "Grundlagt over 10 virksomheder siden han var 18 år. Specialist i hurtig skalering.",
+      image: wernerValeurImg,
     },
     {
       initials: "NN",
@@ -25,6 +31,7 @@ const SpeakersSection = () => {
       title: "Partner, Sunstone Capital",
       company: "Sunstone Capital",
       description: "Grundlagde Polar Rose (solgt til Apple) og Speednames/Ascio. Nu investor hos Sunstone.",
+      image: nikolajNyholmImg,
     },
   ];
 
@@ -74,9 +81,10 @@ const SpeakersSection = () => {
             <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                    {speaker.initials}
-                  </div>
+                  <Avatar className="w-12 h-12">
+                    <AvatarImage src={speaker.image} alt={speaker.name} />
+                    <AvatarFallback>{speaker.initials}</AvatarFallback>
+                  </Avatar>
                   <div className="flex-1">
                     <h4 className="font-semibold">{speaker.name}</h4>
                     <p className="text-sm text-muted-foreground">{speaker.title}</p>
