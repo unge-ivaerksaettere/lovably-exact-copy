@@ -4,37 +4,37 @@ import { Badge } from "@/components/ui/badge";
 const CommunityGallery = () => {
   const galleryImages = [
     {
-      src: "/assets/podcast-recording-1.jpg",
+      src: "/placeholder.svg",
       alt: "Podcast recording session in studio",
       category: "Podcast",
       title: "Behind the Scenes"
     },
     {
-      src: "/assets/event-presentation-1.jpg", 
+      src: "/placeholder.svg", 
       alt: "Speaker presenting at startup event",
       category: "Events",
       title: "Knowledge Sharing"
     },
     {
-      src: "/assets/networking-event-1.jpg",
+      src: "/placeholder.svg",
       alt: "Entrepreneurs networking at event", 
       category: "Networking",
       title: "Community Building"
     },
     {
-      src: "/assets/community-gathering-1.jpg",
+      src: "/placeholder.svg",
       alt: "Group discussion at entrepreneur meetup",
       category: "Community", 
       title: "Collaboration"
     },
     {
-      src: "/assets/event-audience-1.jpg",
+      src: "/placeholder.svg",
       alt: "Engaged audience at startup presentation",
       category: "Events",
       title: "Learning Together"
     },
     {
-      src: "/assets/podcast-recording-2.jpg",
+      src: "/placeholder.svg",
       alt: "Interview setup for entrepreneur podcast",
       category: "Podcast", 
       title: "Storytelling"
