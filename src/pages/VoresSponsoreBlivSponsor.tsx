@@ -10,6 +10,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Check, Mail, Phone, Calendar } from "lucide-react";
+import agerasLogo from "@/assets/ageras-logo-new.png";
+import jakobProfile from "@/assets/jakob-h-profile.jpg";
 
 const VoresSponsoreBlivSponsor = () => {
   const [formData, setFormData] = useState({
@@ -206,8 +208,8 @@ const VoresSponsoreBlivSponsor = () => {
           {/* Current Sponsor Showcase */}
           <div className="grid md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
             <Card className="text-center p-8 border-2 border-primary/20">
-              <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                AG
+              <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <img src={agerasLogo} alt="Ageras logo" className="w-full h-full object-contain" />
               </div>
               <h3 className="text-xl font-dm-sans font-bold mb-2">Ageras</h3>
               <Badge className="mb-3">🏢 Partner Sponsor</Badge>
@@ -217,8 +219,8 @@ const VoresSponsoreBlivSponsor = () => {
             </Card>
 
             <Card className="text-center p-8 border-2 border-secondary/20">
-              <div className="w-16 h-16 bg-secondary text-secondary-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                AG
+              <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <img src={agerasLogo} alt="Ageras logo" className="w-full h-full object-contain" />
               </div>
               <h3 className="text-xl font-dm-sans font-bold mb-2">Ageras</h3>
               <Badge variant="secondary" className="mb-3">🎙️ Podcast Sponsor</Badge>
@@ -228,8 +230,8 @@ const VoresSponsoreBlivSponsor = () => {
             </Card>
 
             <Card className="text-center p-8 border-2 border-accent/20">
-              <div className="w-16 h-16 bg-accent text-accent-foreground rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
-                JH
+              <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <img src={jakobProfile} alt="Jakob H profil" className="w-full h-full object-cover" />
               </div>
               <h3 className="text-xl font-dm-sans font-bold mb-2">Jakob H.</h3>
               <Badge variant="outline" className="mb-3">🤝 Støtte Sponsor</Badge>
@@ -246,20 +248,27 @@ const VoresSponsoreBlivSponsor = () => {
             </h3>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 gap-8 mb-20 max-w-md mx-auto">
-            {partners.map((partner, index) => (
-              <a 
-                key={index} 
-                href={partner.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-primary-foreground rounded-lg p-4 text-center font-dm-sans font-bold hover:bg-primary/90 transition-colors cursor-pointer"
-              >
-                {partner.logo}
-              </a>
-            ))}
+            <a 
+              href="https://www.ageras.com/dk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-lg p-4 text-center hover:shadow-md transition-all cursor-pointer flex items-center justify-center"
+            >
+              <img src={agerasLogo} alt="Ageras logo" className="max-w-full h-12 object-contain" />
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/jakobh/?originalSubdomain=dk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-lg p-4 text-center hover:shadow-md transition-all cursor-pointer flex items-center justify-center"
+            >
+              <div className="w-12 h-12 rounded-full overflow-hidden">
+                <img src={jakobProfile} alt="Jakob H profil" className="w-full h-full object-cover" />
+              </div>
+            </a>
           </div>
 
-          {/* Partner Testimonials */}
+          {/* Partner Testimonials - COMMENTED OUT FOR FUTURE USE 
           <div className="mb-16">
             <h3 className="text-3xl font-anton font-bold text-foreground text-center mb-12">
               Hvad siger vores partnere?
@@ -269,8 +278,12 @@ const VoresSponsoreBlivSponsor = () => {
                 <Card key={index} className="p-6">
                   <CardContent className="pt-0">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-dm-sans font-bold">
-                        {testimonial.avatar}
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center font-dm-sans font-bold overflow-hidden">
+                        {testimonial.avatar === "AG" ? (
+                          <img src={agerasLogo} alt="Ageras logo" className="w-full h-full object-contain" />
+                        ) : (
+                          <img src={jakobProfile} alt="Jakob H profil" className="w-full h-full object-cover" />
+                        )}
                       </div>
                       <div>
                         <h4 className="font-dm-sans font-bold">{testimonial.name}</h4>
@@ -286,6 +299,7 @@ const VoresSponsoreBlivSponsor = () => {
               ))}
             </div>
           </div>
+          */}
         </div>
       </section>
 
