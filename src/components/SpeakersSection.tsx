@@ -6,27 +6,6 @@ import speakerPresentation from "@/assets/event-presentation-1.jpg";
 const SpeakersSection = () => {
   const speakers = [
     {
-      initials: "MD",
-      name: "Martin Dahlin",
-      title: "Former VP Growth, Pleo",
-      company: "Pleo",
-      description: "Byggede Pleos vækstmaskine fra 0 til 100M+ årlig omsætning.",
-    },
-    {
-      initials: "SN",
-      name: "Sarah Nielsen", 
-      title: "Partner, Northzone",
-      company: "Northzone",
-      description: "Investeret i 50+ danske startups inklusiv Trustpilot og Spotify.",
-    },
-    {
-      initials: "JL",
-      name: "Jakob Lundsteen",
-      title: "Co-founder, Firmafon",
-      company: "Firmafon", 
-      description: "Solgte Firmafon til TDC for 800M DKK efter 8 års vækstrejse.",
-    },
-    {
       initials: "KR",
       name: "Kim Rants",
       title: "Co-founder & CEO, Alice.tech",
