@@ -5,6 +5,8 @@ import HeroSection from "@/components/HeroSection";
 import WhyChooseSection from "@/components/WhyChooseSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PodcastSection from "@/components/PodcastSection";
+import SpeakersSection from "@/components/SpeakersSection";
+import CommunityGallery from "@/components/CommunityGallery";
 import NewsletterSection from "@/components/NewsletterSection";
 import FAQSection from "@/components/FAQSection";
 import NewsletterPopup from "@/components/NewsletterPopup";
@@ -24,8 +26,10 @@ const Index = () => {
       <Header />
       <HeroSection />
       <WhyChooseSection />
+      <SpeakersSection />
       <TestimonialsSection />
       <PodcastSection />
+      <CommunityGallery />
       <NewsletterSection />
       <FAQSection />
       <NewsletterPopup 
