@@ -26,6 +26,27 @@ const SpeakersSection = () => {
       company: "Firmafon", 
       description: "Solgte Firmafon til TDC for 800M DKK efter 8 års vækstrejse.",
     },
+    {
+      initials: "KR",
+      name: "Kim Rants",
+      title: "Co-founder & CEO, Alice.tech",
+      company: "Alice.tech",
+      description: "AI-ekspert og tidligere McKinsey Partner. Bygger AI-drevet uddannelsesplatform.",
+    },
+    {
+      initials: "WV",
+      name: "Werner Valeur",
+      title: "Serial Entrepreneur",
+      company: "10+ Companies",
+      description: "Grundlagt over 10 virksomheder siden han var 18 år. Specialist i hurtig skalering.",
+    },
+    {
+      initials: "NN",
+      name: "Nikolaj Nyholm",
+      title: "Partner, Sunstone Capital",
+      company: "Sunstone Capital",
+      description: "Grundlagde Polar Rose (solgt til Apple) og Speednames/Ascio. Nu investor hos Sunstone.",
+    },
   ];
 
   return (
