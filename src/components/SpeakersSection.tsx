@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import speakerPresentation from "@/assets/speaker-presentation.jpg";
+import speakerPresentation from "@/assets/event-presentation-1.jpg";
 
 const SpeakersSection = () => {
   const speakers = [
