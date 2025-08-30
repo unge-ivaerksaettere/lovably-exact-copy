@@ -9,6 +9,7 @@ import { AdminUsersAndInvites } from "@/components/AdminUsersAndInvites";
 import { AdminAnalytics } from "@/components/AdminAnalytics";
 import { AdminEventRegistrations } from "@/components/AdminEventRegistrations";
 import AdminPageSettings from "@/components/AdminPageSettings";
+import AdminSpotifySync from "@/components/AdminSpotifySync";
 import { useUserRole } from "@/hooks/useEvents";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -70,13 +71,14 @@ const Admin = () => {
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-6 max-w-4xl mx-auto mb-8">
+          <TabsList className="grid w-full grid-cols-7 max-w-5xl mx-auto mb-8">
             <TabsTrigger value="overview">Oversigt</TabsTrigger>
             <TabsTrigger value="events">Events</TabsTrigger>
             <TabsTrigger value="registrations">Tilmeldinger</TabsTrigger>
             <TabsTrigger value="create">Opret Event</TabsTrigger>
             <TabsTrigger value="users">Brugere & Invitationer</TabsTrigger>
             <TabsTrigger value="pages">Sider</TabsTrigger>
+            <TabsTrigger value="spotify">Spotify</TabsTrigger>
           </TabsList>
           
           <TabsContent value="overview">
@@ -101,6 +103,10 @@ const Admin = () => {
           
           <TabsContent value="pages">
             <AdminPageSettings />
+          </TabsContent>
+          
+          <TabsContent value="spotify">
+            <AdminSpotifySync />
           </TabsContent>
         </Tabs>
       </main>

@@ -84,7 +84,7 @@ serve(async (req) => {
 
     // TODO: Replace with your actual Spotify show ID
     // You'll need to find your show ID from Spotify for Developers
-    const showId = 'YOUR_SHOW_ID';
+    const showId = '154B6QakpSESlOKiFkiDyk';
     
     // Fetch episodes from Spotify
     const episodesResponse = await fetch(
