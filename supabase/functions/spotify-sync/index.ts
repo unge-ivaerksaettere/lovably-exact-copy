@@ -23,10 +23,8 @@ interface SpotifyEpisode {
   }>;
 }
 
-interface SpotifyShowResponse {
-  episodes: {
-    items: SpotifyEpisode[];
-  };
+interface SpotifyEpisodesResponse {
+  items: SpotifyEpisode[];
 }
 
 serve(async (req) => {
@@ -100,8 +98,8 @@ serve(async (req) => {
       throw new Error(`Failed to fetch episodes: ${episodesResponse.status}`);
     }
 
-    const episodesData: SpotifyShowResponse = await episodesResponse.json();
-    const episodes = episodesData.episodes.items;
+    const episodesData: SpotifyEpisodesResponse = await episodesResponse.json();
+    const episodes = episodesData.items;
 
     console.log(`Found ${episodes.length} episodes from Spotify`);
 
