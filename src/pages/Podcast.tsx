@@ -92,15 +92,11 @@ const Podcast = () => {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="relative rounded-lg overflow-hidden">
               {currentFeaturedEpisode ? (
-                <iframe
-                  src={`https://open.spotify.com/embed/episode/${currentFeaturedEpisode.spotify_id}?utm_source=generator&theme=0`}
-                  width="100%"
-                  height="232"
-                  frameBorder="0"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  className="rounded-lg"
-                  title={`Afspil ${currentFeaturedEpisode.title}`}
+                <img
+                  src={currentFeaturedEpisode.image_url || podcastStudio}
+                  alt={`${currentFeaturedEpisode.title} cover`}
+                  className="w-full h-auto object-cover rounded-lg"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = podcastStudio; }}
                 />
               ) : (
                 <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center p-6">
