@@ -69,9 +69,10 @@ const PodcastSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <img 
-              src={podcastStudio} 
-              alt="Podcast studio" 
+              src={currentFeaturedEpisode.image_url || podcastStudio}
+              alt={`${currentFeaturedEpisode.title} cover`}
               className="rounded-lg w-full h-auto object-cover"
+              onError={(e) => { (e.currentTarget as HTMLImageElement).src = podcastStudio; }}
             />
           </div>
           
@@ -171,24 +172,14 @@ const PodcastSection = () => {
                   <CardContent className="p-6">
                     {episode.image_url && (
                       <img 
-                        src={episode.image_url} 
-                        alt={episode.title}
+                        src={episode.image_url}
+                        alt={`${episode.title} cover`}
                         className="w-full h-32 object-cover rounded-lg mb-4"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                           e.currentTarget.nextElementSibling?.classList.remove('hidden');
                         }}
                       />
-                    )}
-                    {(!episode.image_url || episode.image_url === null) && (
-                      <div className="w-full h-32 bg-muted rounded-lg mb-4 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-2">
-                            <Play className="w-5 h-5 text-primary-foreground" />
-                          </div>
-                          <Badge variant="secondary" className="text-xs">Podcast</Badge>
-                        </div>
-                      </div>
                     )}
                     <div className={`w-full h-32 bg-muted rounded-lg mb-4 items-center justify-center ${episode.image_url ? 'hidden' : 'flex'}`}>
                       <div className="text-center">
@@ -199,11 +190,6 @@ const PodcastSection = () => {
                       </div>
                     </div>
                     <h4 className="font-semibold mb-2 line-clamp-2">{episode.title}</h4>
-                    {episode.description && (
-                      <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                        {episode.description}
-                      </p>
-                    )}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Clock className="w-4 h-4" />
