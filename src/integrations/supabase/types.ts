@@ -202,6 +202,84 @@ export type Database = {
         }
         Relationships: []
       }
+      podcast_episodes: {
+        Row: {
+          created_at: string
+          description: string | null
+          duration_ms: number | null
+          episode_number: number | null
+          featured: boolean | null
+          id: string
+          image_url: string | null
+          release_date: string
+          season_number: number | null
+          spotify_id: string
+          spotify_url: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          duration_ms?: number | null
+          episode_number?: number | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          release_date: string
+          season_number?: number | null
+          spotify_id: string
+          spotify_url: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          duration_ms?: number | null
+          episode_number?: number | null
+          featured?: boolean | null
+          id?: string
+          image_url?: string | null
+          release_date?: string
+          season_number?: number | null
+          spotify_id?: string
+          spotify_url?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      podcast_sync_log: {
+        Row: {
+          created_at: string
+          episodes_synced: number | null
+          error_message: string | null
+          id: string
+          status: string
+          sync_completed_at: string | null
+          sync_started_at: string
+        }
+        Insert: {
+          created_at?: string
+          episodes_synced?: number | null
+          error_message?: string | null
+          id?: string
+          status?: string
+          sync_completed_at?: string | null
+          sync_started_at?: string
+        }
+        Update: {
+          created_at?: string
+          episodes_synced?: number | null
+          error_message?: string | null
+          id?: string
+          status?: string
+          sync_completed_at?: string | null
+          sync_started_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
