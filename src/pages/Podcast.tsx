@@ -90,21 +90,33 @@ const Podcast = () => {
           </div>
           
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="relative rounded-lg overflow-hidden bg-muted">
-              {/* Spotify Player */}
-              <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center p-6">
-                <div className="text-center space-y-4">
-                  <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto">
-                    <Play className="w-8 h-8 text-primary-foreground" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="font-dm-sans font-bold">Lyt til tidligere speakers 🎧</div>
-                    <div className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-inter inline-block">
-                      Podcast afspilleren
+            <div className="relative rounded-lg overflow-hidden">
+              {currentFeaturedEpisode ? (
+                <iframe
+                  src={`https://open.spotify.com/embed/episode/${currentFeaturedEpisode.spotify_id}?utm_source=generator&theme=0`}
+                  width="100%"
+                  height="232"
+                  frameBorder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="rounded-lg"
+                  title={`Afspil ${currentFeaturedEpisode.title}`}
+                />
+              ) : (
+                <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center p-6">
+                  <div className="text-center space-y-4">
+                    <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto">
+                      <Play className="w-8 h-8 text-primary-foreground" />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="font-dm-sans font-bold">Lyt til tidligere speakers 🎧</div>
+                      <div className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-inter inline-block">
+                        Podcast afspilleren
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
             
             <div className="space-y-6">

@@ -31,7 +31,7 @@ const PodcastSection = () => {
     updated_at: ""
   };
 
-  const currentFeaturedEpisode = featuredEpisode || defaultFeaturedEpisode;
+  const currentFeaturedEpisode = featuredEpisode || episodes[0] || defaultFeaturedEpisode;
   const showId = "154B6QakpSESlOKiFkiDyk"; // Your actual podcast show ID
   
   const formatDuration = (durationMs: number | null) => {
