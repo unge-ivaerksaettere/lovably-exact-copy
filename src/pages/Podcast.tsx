@@ -215,9 +215,13 @@ const Podcast = () => {
                           src={episode.image_url} 
                           alt={episode.title}
                           className="w-full h-32 object-cover rounded-lg"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                          }}
                         />
                       ) : (
-                        <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                        <div className="w-full h-32 bg-muted rounded-lg flex items-center justify-center">
                           <div className="text-center space-y-2">
                             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
                               <Play className="w-5 h-5 text-primary-foreground" />
@@ -226,6 +230,14 @@ const Podcast = () => {
                           </div>
                         </div>
                       )}
+                      <div className={`w-full h-32 bg-muted rounded-lg items-center justify-center ${episode.image_url ? 'hidden' : 'flex'}`}>
+                        <div className="text-center space-y-2">
+                          <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                            <Play className="w-5 h-5 text-primary-foreground" />
+                          </div>
+                          <Badge className="bg-primary/10 text-primary text-xs">Podcast</Badge>
+                        </div>
+                      </div>
                       
                       <div className="space-y-2">
                         <h4 className="text-lg font-dm-sans font-bold text-foreground line-clamp-2">
