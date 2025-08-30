@@ -91,9 +91,6 @@ const PodcastSection = () => {
                   {currentFeaturedEpisode.title}
                 </h3>
                 
-                <p className="text-muted-foreground mb-6">
-                  {currentFeaturedEpisode.description}
-                </p>
                 
                 <div className="flex items-center gap-4 mb-6">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
