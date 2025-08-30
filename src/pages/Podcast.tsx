@@ -195,7 +195,7 @@ const Podcast = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <h3 className="text-2xl font-anton text-foreground mb-8">
-            Alle Episodes ({episodes.length})
+            Seneste Episodes (3)
           </h3>
           
           {episodesLoading ? (
@@ -205,7 +205,7 @@ const Podcast = () => {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {episodes.map((episode) => (
+              {episodes.slice(1, 4).map((episode) => (
                 <Card key={episode.id} className="border-border overflow-hidden hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <div className="space-y-4">

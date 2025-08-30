@@ -169,7 +169,7 @@ const PodcastSection = () => {
           <div className="mb-16">
             <h3 className="text-2xl font-bold mb-8 text-center">Alle Episoder</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {episodes.slice(0, 6).map((episode) => (
+              {episodes.slice(0, 3).map((episode) => (
                 <Card key={episode.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     {episode.image_url && (
