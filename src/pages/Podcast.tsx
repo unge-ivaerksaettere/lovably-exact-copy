@@ -5,55 +5,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Play, Calendar, Clock, Download, Headphones } from "lucide-react";
+import { Play, Calendar, Clock, Download, Headphones, Loader2 } from "lucide-react";
 import podcastStudio from "@/assets/podcast-studio.jpg";
 import NewsletterPodcast from "@/components/NewsletterPodcast";
+import { usePodcastEpisodes, useFeaturedPodcastEpisode } from "@/hooks/usePodcastEpisodes";
 
 const Podcast = () => {
-  const featuredEpisode = {
-    id: 1,
-    title: "En ærlig snak om bæredygtigt iværksætteri med Gittemarie",
-    description: "Dybdegående samtale om at bygge bæredygtige forretninger og navigere i grønne trends.",
-    duration: "1:02:57",
-    plays: "18.5k",
-    likes: "342",
-    category: "Bæredygtighed"
+  const { data: episodes = [], isLoading: episodesLoading } = usePodcastEpisodes();
+  const { data: featuredEpisode, isLoading: featuredLoading } = useFeaturedPodcastEpisode();
+  
+  // Use the first episode as featured if none is explicitly featured
+  const currentFeaturedEpisode = featuredEpisode || episodes[0];
+  
+  const formatDuration = (durationMs: number | null) => {
+    if (!durationMs) return "N/A";
+    const minutes = Math.floor(durationMs / 60000);
+    const seconds = Math.floor((durationMs % 60000) / 1000);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
-
-  const episodes = [
-    {
-      id: 2,
-      title: "Du Bliver ALDRIG Til Noget Fazel",
-      description: "Inspirerende historie om at overvinde udfordringer og bygge succes mod alle odds.",
-      duration: "53 min",
-      plays: "24.1k",
-      likes: "456",
-      category: "Motivation",
-      spotifyEpisodeId: "7lp4zAhJLp4Y7G4h8JxQKJ"
-    },
-    {
-      id: 3,
-      title: "Manden bag Doubles",
-      description: "Fra idé til millionforretning - historien om at skabe Danmarks nye modebrand.",
-      duration: "47 min", 
-      plays: "16.7k",
-      likes: "298",
-      category: "Fashion",
-      spotifyEpisodeId: "5Kqj2k5m3n8fL6n9p0qR2S"
-    },
-    {
-      id: 4,
-      title: "Fundraising secrets med Martin fra Pleo",
-      description: "Insider tips til at sikre funding fra en der har været med til at rejse over 1 milliard.",
-      duration: "38 min",
-      plays: "21.2k", 
-      likes: "387",
-      category: "Funding",
-      spotifyEpisodeId: "3Gh7i8j9k0l1m2n3O4p5Q6"
-    }
-  ];
-
-  const categories = ["All", "Bæredygtighed", "Motivation", "Fashion", "Funding", "Tech", "Interviews"];
 
   const faqData = [
     {
@@ -139,43 +108,50 @@ const Podcast = () => {
             </div>
             
             <div className="space-y-6">
-              <Badge className="bg-primary/10 text-primary font-dm-sans">Bæredygtighed</Badge>
-              <h2 className="text-3xl font-anton text-foreground">
-                {featuredEpisode.title}
-              </h2>
-              <p className="text-muted-foreground font-inter">
-                {featuredEpisode.description}
-              </p>
-              
-              <div className="flex items-center gap-6 text-sm font-inter text-muted-foreground">
-                <div className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
-                  {featuredEpisode.duration}
+              {featuredLoading ? (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="w-6 h-6 animate-spin" />
                 </div>
-                <div className="flex items-center gap-1">
-                  <Play className="w-4 h-4" />
-                  {featuredEpisode.plays} plays
-                </div>
-                <div className="flex items-center gap-1">
-                  ❤️ {featuredEpisode.likes}
-                </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold px-8">
-                  ▶ Lyt Nu
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="font-dm-sans font-bold"
-                  onClick={() => window.open('https://open.spotify.com/episode/4P3kjxBiYGGjnS1uqjkt3V', '_blank')}
-                >
-                  🎧 Spotify
-                </Button>
-                <span className="flex items-center text-sm font-inter text-muted-foreground">
-                  Save on Spotify
-                </span>
-              </div>
+              ) : currentFeaturedEpisode ? (
+                <>
+                  <Badge className="bg-primary/10 text-primary font-dm-sans">Featured Episode</Badge>
+                  <h2 className="text-3xl font-anton text-foreground">
+                    {currentFeaturedEpisode.title}
+                  </h2>
+                  <p className="text-muted-foreground font-inter">
+                    {currentFeaturedEpisode.description}
+                  </p>
+                  
+                  <div className="flex items-center gap-6 text-sm font-inter text-muted-foreground">
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4" />
+                      {formatDuration(currentFeaturedEpisode.duration_ms)}
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4" />
+                      {new Date(currentFeaturedEpisode.release_date).toLocaleDateString('da-DK')}
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-4">
+                    <Button 
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold px-8"
+                      onClick={() => window.open(currentFeaturedEpisode.spotify_url, '_blank')}
+                    >
+                      ▶ Lyt Nu
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="font-dm-sans font-bold"
+                      onClick={() => window.open(currentFeaturedEpisode.spotify_url, '_blank')}
+                    >
+                      🎧 Spotify
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <p className="text-muted-foreground">Ingen featured episode tilgængelig</p>
+              )}
             </div>
           </div>
         </div>
@@ -218,52 +194,71 @@ const Podcast = () => {
       {/* All Episodes */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <h3 className="text-2xl font-anton text-foreground mb-8">Alle Episodes (4)</h3>
+          <h3 className="text-2xl font-anton text-foreground mb-8">
+            Alle Episodes ({episodes.length})
+          </h3>
           
-          <div className="grid md:grid-cols-3 gap-6">
-            {episodes.map((episode) => (
-              <Card key={episode.id} className="border-border">
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    {/* Podcast Player Mockup */}
-                    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                      <div className="text-center space-y-2">
-                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                          <Play className="w-5 h-5 text-primary-foreground" />
+          {episodesLoading ? (
+            <div className="flex items-center justify-center py-8">
+              <Loader2 className="w-6 h-6 animate-spin" />
+              <span className="ml-2">Indlæser episoder...</span>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {episodes.map((episode) => (
+                <Card key={episode.id} className="border-border overflow-hidden hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      {/* Episode Image */}
+                      {episode.image_url ? (
+                        <img 
+                          src={episode.image_url} 
+                          alt={episode.title}
+                          className="w-full h-32 object-cover rounded-lg"
+                        />
+                      ) : (
+                        <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                          <div className="text-center space-y-2">
+                            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                              <Play className="w-5 h-5 text-primary-foreground" />
+                            </div>
+                            <Badge className="bg-primary/10 text-primary text-xs">Podcast</Badge>
+                          </div>
                         </div>
-                        <Badge className="bg-primary/10 text-primary text-xs">{episode.category}</Badge>
+                      )}
+                      
+                      <div className="space-y-2">
+                        <h4 className="text-lg font-dm-sans font-bold text-foreground line-clamp-2">
+                          {episode.title}
+                        </h4>
+                        <p className="text-sm text-muted-foreground font-inter line-clamp-3">
+                          {episode.description}
+                        </p>
                       </div>
+                      
+                      <div className="flex items-center justify-between text-xs text-muted-foreground font-inter">
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {formatDuration(episode.duration_ms)}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {new Date(episode.release_date).toLocaleDateString('da-DK')}
+                        </span>
+                      </div>
+                      
+                      <Button 
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold"
+                        onClick={() => window.open(episode.spotify_url, '_blank')}
+                      >
+                        ▶ Lyt på Spotify
+                      </Button>
                     </div>
-                    
-                    <div className="space-y-2">
-                      <h4 className="text-lg font-dm-sans font-bold text-foreground line-clamp-2">
-                        {episode.title}
-                      </h4>
-                      <p className="text-sm text-muted-foreground font-inter line-clamp-2">
-                        {episode.description}
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-center justify-between text-xs text-muted-foreground font-inter">
-                      <span>⏱️ {episode.duration}</span>
-                      <span>▶ {episode.plays}</span>
-                      <span>❤️ {episode.likes}</span>
-                    </div>
-                    
-                    <Button 
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold"
-                      onClick={() => episode.spotifyEpisodeId ? 
-                        window.open(`https://open.spotify.com/episode/${episode.spotifyEpisodeId}`, '_blank') :
-                        alert('Episode kommer snart på Spotify!')
-                      }
-                    >
-                      ▶ Lyt
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

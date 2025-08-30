@@ -121,8 +121,8 @@ const PodcastSection = () => {
                     <ExternalLink className="w-4 h-4" />
                     Åbn i Spotify
                   </Button>
-                  <Button variant="outline" className="gap-2" onClick={() => window.open(`https://open.spotify.com/show/${showId}`, '_blank')}>
-                    <Heart className="w-4 h-4" />
+                <Button variant="outline" className="gap-2" onClick={() => window.open(`https://open.spotify.com/show/${showId}`, '_blank')}>
+                    <Music className="w-4 h-4" />
                     Følg Podcast
                   </Button>
                 </div>
