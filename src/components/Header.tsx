@@ -6,7 +6,7 @@ import { AuthDialog } from "./AuthDialog";
 import { useAuth } from "@/hooks/useAuth";
 import { useVisiblePages } from "@/hooks/usePageSettings";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import uiLogo from "@/assets/ui-logo.png";
+import uiLogo from "@/assets/new-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
