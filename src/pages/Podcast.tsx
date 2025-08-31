@@ -96,6 +96,8 @@ const Podcast = () => {
                   src={currentFeaturedEpisode.image_url || podcastStudio}
                   alt={`${currentFeaturedEpisode.title} cover`}
                   className="w-full h-auto object-cover rounded-lg"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
                   onError={(e) => { (e.currentTarget as HTMLImageElement).src = podcastStudio; }}
                 />
               ) : (
@@ -220,6 +222,8 @@ const Podcast = () => {
                           src={episode.image_url} 
                           alt={`${episode.title} cover`}
                           className="w-full h-32 object-cover rounded-lg"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                             e.currentTarget.nextElementSibling?.classList.remove('hidden');
