@@ -8,7 +8,14 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Play, Calendar, Clock, Download, Headphones, Loader2 } from "lucide-react";
 import podcastStudio from "@/assets/podcast-studio.jpg";
 import NewsletterPodcast from "@/components/NewsletterPodcast";
-import { usePodcastEpisodes, useFeaturedPodcastEpisode } from "@/hooks/usePodcastEpisodes";
+import { usePodcastEpisodes, useFeaturedPodcastEpisode, useSpotifySync } from "@/hooks/usePodcastEpisodes";
+import { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+// Podcast cover images from GitHub assets
+import podcastFazel from "@/assets/podcast-fazel.png";
+import podcastDoubles from "@/assets/podcast-doubles.png";
+import podcastLouliving from "@/assets/podcast-louliving.png";
+import podcastDoner from "@/assets/podcast-doner.png";
 
 const Podcast = () => {
   const { data: episodes = [], isLoading: episodesLoading } = usePodcastEpisodes();
@@ -23,6 +30,41 @@ const Podcast = () => {
     const seconds = Math.floor((durationMs % 60000) / 1000);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
+
+  const getEpisodeImage = (title: string, fallback?: string | null) => {
+    const lc = title.toLowerCase();
+    if (lc.includes('fazel')) return podcastFazel;
+    if (lc.includes('doubles') || lc.includes('peter')) return podcastDoubles;
+    if (lc.includes('louliving')) return podcastLouliving;
+    if (lc.includes('döner') || lc.includes('doner')) return podcastDoner;
+    return fallback || podcastStudio;
+  };
+
+  const queryClient = useQueryClient();
+  const { syncWithSpotify } = useSpotifySync();
+
+  useEffect(() => {
+    const requiredIds = [
+      '4s5VbujsPLpoBBZdXCAbEL',
+      '4P3kjxBiYGGjnS1uqjkt3V',
+      '2yTe4aymOgjFl4rptMIxoZ',
+      '0dM4qMKX9annVdUPBFckZO'
+    ];
+
+    const hasAnyRequired = episodes.some(e => requiredIds.includes(e.spotify_id));
+
+    if (!episodesLoading && (episodes.length === 0 || !hasAnyRequired)) {
+      (async () => {
+        try {
+          await syncWithSpotify();
+          await queryClient.invalidateQueries({ queryKey: ['podcast-episodes'] });
+          await queryClient.invalidateQueries({ queryKey: ['featured-podcast-episode'] });
+        } catch (e) {
+          console.error('Spotify sync failed:', e);
+        }
+      })();
+    }
+  }, [episodesLoading, episodes, syncWithSpotify, queryClient]);
 
   const faqData = [
     {
@@ -93,7 +135,7 @@ const Podcast = () => {
             <div className="relative rounded-lg overflow-hidden">
               {currentFeaturedEpisode ? (
                 <img
-                  src={currentFeaturedEpisode.image_url || podcastStudio}
+                  src={getEpisodeImage(currentFeaturedEpisode.title, currentFeaturedEpisode.image_url)}
                   alt={`${currentFeaturedEpisode.title} cover`}
                   className="w-full h-auto object-cover rounded-lg"
                   loading="lazy"
@@ -217,27 +259,14 @@ const Podcast = () => {
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       {/* Episode Image */}
-                      {episode.image_url && (
-                        <img 
-                          src={episode.image_url} 
-                          alt={`${episode.title} cover`}
-                          className="w-full h-32 object-cover rounded-lg"
-                          loading="lazy"
-                          referrerPolicy="no-referrer"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                          }}
-                        />
-                      )}
-                      <div className={`w-full h-32 bg-muted rounded-lg flex items-center justify-center ${episode.image_url ? 'hidden' : ''}`}>
-                        <div className="text-center space-y-2">
-                          <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                            <Play className="w-5 h-5 text-primary-foreground" />
-                          </div>
-                          <Badge className="bg-primary/10 text-primary text-xs">Podcast</Badge>
-                        </div>
-                      </div>
+                      <img 
+                        src={getEpisodeImage(episode.title, episode.image_url)} 
+                        alt={`${episode.title} cover`}
+                        className="w-full h-32 object-cover rounded-lg"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => { (e.currentTarget as HTMLImageElement).src = podcastStudio; }}
+                      />
                       
                       <div className="space-y-2">
                         <h4 className="text-lg font-dm-sans font-bold text-foreground line-clamp-2">
