@@ -1,9 +1,11 @@
 import { Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 const UnderConstruction = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center p-4">
       <div className="max-w-md w-full text-center space-y-6">
@@ -24,11 +26,13 @@ const UnderConstruction = () => {
         </div>
         
         <div className="pt-4">
-          <Button onClick={() => { console.log('Admin login button clicked'); navigate("/login"); }} className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            🔓 Administrator login
+          <Button onClick={() => { console.log('Admin button clicked', { loggedIn: !!user }); navigate(user ? "/admin" : "/login"); }} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            {user ? "Gå til Admin" : "🔓 Administrator login"}
           </Button>
           <div className="mt-2">
-            <a href="/login" className="underline text-primary">Eller klik her</a>
+            <a href={user ? "/admin" : "/login"} className="underline text-primary">
+              {user ? "Gå til Admin" : "Eller klik her"}
+            </a>
           </div>
         </div>
         
