@@ -10,7 +10,7 @@ const MedTeamet = () => {
   const teamMembers = [
     {
       id: 1,
-      initials: "NG"
+      initials: "NG",
       name: "Nicolaj Gram",
       title: "Online Community Lead",
       description: "Nicolaj er drivkraften bag vores online fællesskab og med til at skabe stærke rammer for events i Aarhus. Han brænder for at engagere medlemmerne og sørger for, at alle føler sig som en del af UI-familien.",
