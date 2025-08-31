@@ -24,9 +24,12 @@ const UnderConstruction = () => {
         </div>
         
         <div className="pt-4">
-          <Button onClick={() => navigate("/login")} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+          <Button onClick={() => { console.log('Admin login button clicked'); navigate("/login"); }} className="bg-primary hover:bg-primary/90 text-primary-foreground">
             🔓 Administrator login
           </Button>
+          <div className="mt-2">
+            <a href="/login" className="underline text-primary">Eller klik her</a>
+          </div>
         </div>
         
         <div className="text-sm text-muted-foreground">
