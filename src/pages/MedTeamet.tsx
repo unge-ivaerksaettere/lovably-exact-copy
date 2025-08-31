@@ -64,7 +64,7 @@ const MedTeamet = () => {
       initials: "LJ", 
       name: "Lauritz Jelsdal",
       title: "Head of finance",
-      description: "BLauritz er manden med styr på tallene. Han sørger for, at økonomien spiller, og at alle vores projekter og events kan løbe rundt uden problemer.",
+      description: "Lauritz er manden med styr på tallene. Han sørger for, at økonomien spiller, og at alle vores projekter og events kan løbe rundt uden problemer.",
       location: "København",
       linkedin: "#"
     },
@@ -78,19 +78,19 @@ const MedTeamet = () => {
     },
     {
       id: 8,
-      initials: "AM",
-      name: "Albert Malling", 
-      title: "Head of Photography",
-      description: "Albert er manden bag kameraet og skyder alt det fede content, du ser fra UI. Han fanger stemningen og gør vores events og platforme levende.",
+      initials: "ST",
+      name: "Selma Thaysen", 
+      title: "Graphic designer",
+      description: "Selma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
       location: "København",
       image: albertImage
     },
     {
       id: 9,
-      initials: "ST",
-      name: "Selma Thaysen",
-      title: "Graphic designer", 
-      description: "elma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
+      initials: "",
+      name: "Team Member 9",
+      title: "Position TBD", 
+      description: "Beskrivelse kommer snart.",
       location: "Danmark"
     }
   ];
