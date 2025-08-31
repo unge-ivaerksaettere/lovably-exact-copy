@@ -143,7 +143,7 @@ const MedTeamet = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-20 bg-background">
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-anton text-foreground mb-6">
