@@ -36,7 +36,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <img src={uiLogo} alt="Unge Iværksættere" className="w-8 h-8" />
+            <img src={uiLogo} alt="Unge Iværksættere" className="h-10 w-auto object-contain" />
             <span className="font-dm-sans font-bold text-lg text-foreground">Unge Iværksættere</span>
           </Link>
 
