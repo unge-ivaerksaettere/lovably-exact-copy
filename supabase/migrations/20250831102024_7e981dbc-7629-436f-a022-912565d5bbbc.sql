@@ -1,0 +1,1 @@
+UPDATE page_settings SET is_visible = false WHERE page_key = 'vores-historie';
