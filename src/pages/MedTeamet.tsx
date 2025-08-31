@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Linkedin, Twitter, Mail, Heart, Rocket, Diamond, Zap } from "lucide-react";
+import { Linkedin, Heart, Rocket, Diamond, Zap } from "lucide-react";
 import nicolajImage from "@/assets/nicolaj-gram-profile.png";
 
 const MedTeamet = () => {
@@ -16,7 +16,7 @@ const MedTeamet = () => {
       description: "Nicolaj er drivkraften bag vores online fællesskab og med til at skabe stærke rammer for events i Aarhus. Han brænder for at engagere medlemmerne og sørger for, at alle føler sig som en del af UI-familien.",
       location: "Aarhus",
       image: nicolajImage,
-      quote: "Community bygges en relation ad gangen 🚀"
+      linkedin: "#"
     },
     {
       id: 2,
@@ -25,10 +25,7 @@ const MedTeamet = () => {
       title: "Tech lead",
       description: "Sejer er vores tech-hjerne. Han arbejder med at styrke Unge Iværksætteres digitale tilstedeværelse og udvikler løsninger, der gør det muligt for UI at vokse hurtigt og bæredygtigt.",
       location: "København",
-      quote: "Code is poetry, startups er jazz 🎷",
-      linkedin: "#",
-      twitter: "#",
-      email: "#"
+      linkedin: "#"
     },
     {
       id: 3,
@@ -37,8 +34,7 @@ const MedTeamet = () => {
       title: "Formand", 
       description: "Mik har stået i spidsen for Unge Iværksættere de sidste to år og driver organisationen med både stærkt lederskab og en ægte passion for iværksætteri. Han sikrer, at UI har det bedste fundament for at vokse, skabe fede events og give unge iværksættere de rette muligheder.",
       location: "København",
-      quote: "Gode historier forandrer verden 🌟",
-      linkedin: "#",
+      linkedin: "#"
     },
     {
       id: 4,
@@ -47,9 +43,7 @@ const MedTeamet = () => {
       title: "Podcast production lead",
       description: "Niklas er stemmen og ansigtet bag meget af vores indhold – især på TikTok, hvor han når mere end 10 millioner visninger hver måned. Han ved, hvordan man skaber indhold, der inspirerer, engagerer og rammer målgruppen præcist.",
       location: "København", 
-      linkedin: "#",
-      twitter: "#",
-      email: "#"
+      linkedin: "#"
     },
     {
       id: 5,
@@ -58,11 +52,7 @@ const MedTeamet = () => {
       title: "Head of content",
       description: "Skaber connections der betyder noget. Tidligere hos Founders House og Techstars København.",
       location: "København",
-      company: "Discord", 
-      quote: "Communities bygges en relation ad gangen 💚",
-      linkedin: "#",
-      twitter: "#",
-      email: "#"
+      linkedin: "#"
     },
     {
       id: 6,
@@ -71,10 +61,31 @@ const MedTeamet = () => {
       title: "Partnership Manager",
       description: "Builder bridges mellem startups og etablerede virksomheder. MBA fra INSEAD og erfaring fra Microsoft.",
       location: "København",
-
-      linkedin: "#",
-      twitter: "#", 
-      email: "#"
+      linkedin: "#"
+    },
+    {
+      id: 7,
+      initials: "TBD",
+      name: "Team Member 7",
+      title: "Position TBD",
+      description: "Beskrivelse kommer snart.",
+      location: "Danmark"
+    },
+    {
+      id: 8,
+      initials: "TBD",
+      name: "Team Member 8", 
+      title: "Position TBD",
+      description: "Beskrivelse kommer snart.",
+      location: "Danmark"
+    },
+    {
+      id: 9,
+      initials: "TBD",
+      name: "Team Member 9",
+      title: "Position TBD", 
+      description: "Beskrivelse kommer snart.",
+      location: "Danmark"
     }
   ];
 
@@ -200,42 +211,16 @@ const MedTeamet = () => {
                         <span>📍</span>
                         <span className="text-muted-foreground">{member.location}</span>
                       </div>
-                      {member.company && (
-                        <div className="flex items-center justify-center gap-1">
-                          <span>💼</span>
-                          <span className="text-muted-foreground">{member.company}</span>
-                        </div>
-                      )}
                     </div>
                     
-                    <p className="text-sm font-inter text-center italic text-muted-foreground">
-                      "{member.quote}"
-                    </p>
-                    
                     {/* Social Links */}
-                    {(member.linkedin || member.twitter || member.email) && (
+                    {member.linkedin && (
                       <div className="flex justify-center gap-3">
-                        {member.linkedin && (
-                          <Button variant="ghost" size="sm" asChild>
-                            <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                              <Linkedin className="w-4 h-4 text-muted-foreground" />
-                            </a>
-                          </Button>
-                        )}
-                        {member.twitter && (
-                          <Button variant="ghost" size="sm" asChild>
-                            <a href={member.twitter} target="_blank" rel="noopener noreferrer">
-                              <Twitter className="w-4 h-4 text-muted-foreground" />
-                            </a>
-                          </Button>
-                        )}
-                        {member.email && (
-                          <Button variant="ghost" size="sm" asChild>
-                            <a href={`mailto:${member.email}`}>
-                              <Mail className="w-4 h-4 text-muted-foreground" />
-                            </a>
-                          </Button>
-                        )}
+                        <Button variant="ghost" size="sm" asChild>
+                          <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                            <Linkedin className="w-4 h-4 text-muted-foreground" />
+                          </a>
+                        </Button>
                       </div>
                     )}
                   </div>
