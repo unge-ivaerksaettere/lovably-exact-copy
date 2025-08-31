@@ -81,9 +81,9 @@ const Header = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <AuthDialog>
-                  <Button variant="outline">Log ind</Button>
-                </AuthDialog>
+                <Button variant="outline" asChild>
+                  <Link to="/login">Log ind</Link>
+                </Button>
               )}
             </div>
           </div>
@@ -143,11 +143,9 @@ const Header = () => {
                   </button>
                 </div>
               ) : (
-                <AuthDialog>
-                  <Button variant="outline" className="w-full" onClick={() => setIsMenuOpen(false)}>
-                    Log ind
-                  </Button>
-                </AuthDialog>
+                <Button variant="outline" asChild className="w-full">
+                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>Log ind</Link>
+                </Button>
               )}
             </div>
           </div>

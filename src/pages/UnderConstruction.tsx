@@ -1,4 +1,6 @@
 import { Wrench } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const UnderConstruction = () => {
   return (
@@ -18,6 +20,14 @@ const UnderConstruction = () => {
             Vi arbejder på at gøre siden endnu bedre. 
             Vend tilbage i morgen!
           </p>
+        </div>
+        
+        <div className="pt-4">
+          <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Link to="/login">
+              🔓 Administrator login
+            </Link>
+          </Button>
         </div>
         
         <div className="text-sm text-muted-foreground">

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import Index from "./pages/Index";
+import Login from "./pages/Login";
 import UnderConstruction from "./pages/UnderConstruction";
 import Events from "./pages/Events";
 import Podcast from "./pages/Podcast";
@@ -64,6 +65,7 @@ const AppContent = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<UnderConstruction />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/events" element={<Events />} />
         <Route path="/podcast" element={<Podcast />} />
         <Route path="/find-co-founder" element={<FindCoFounder />} />
