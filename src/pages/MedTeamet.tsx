@@ -153,28 +153,6 @@ const MedTeamet = () => {
               Vi er passionerede iværksættere og tech entusiaster der brænder for at skabe Danmarks stærkeste startup community.
             </p>
           </div>
-          
-          {/* Team Photo */}
-          <div className="max-w-4xl mx-auto">
-            <div className="relative rounded-lg overflow-hidden bg-gradient-to-r from-muted/50 to-muted/30 aspect-[16/9]">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="text-6xl">👥</div>
-                  <div className="text-muted-foreground font-inter">
-                    [Team Photo Placeholder - Upload team photo here]
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="text-center mt-8">
-              <h3 className="text-2xl font-anton text-foreground mb-4">
-                The dream team behind Unge Iværksættere
-              </h3>
-              <p className="text-muted-foreground font-inter">
-                Fra forskellige baggrunde men med samme vision: at gøre Danmark til verdens bedste land at starte et startup i.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
