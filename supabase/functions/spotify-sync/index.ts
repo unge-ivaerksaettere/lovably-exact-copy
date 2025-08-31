@@ -80,26 +80,38 @@ serve(async (req) => {
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
 
-    // TODO: Replace with your actual Spotify show ID
-    // You'll need to find your show ID from Spotify for Developers
-    const showId = '154B6QakpSESlOKiFkiDyk';
+    // Specific episode IDs to sync
+    const episodeIds = [
+      '4s5VbujsPLpoBBZdXCAbEL', // Fazel Majad
+      '4P3kjxBiYGGjnS1uqjkt3V', // Doubles/Peter
+      '2yTe4aymOgjFl4rptMIxoZ', // Louliving
+      '0dM4qMKX9annVdUPBFckZO'  // The Döner
+    ];
     
-    // Fetch episodes from Spotify
-    const episodesResponse = await fetch(
-      `https://api.spotify.com/v1/shows/${showId}/episodes?limit=50`,
-      {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
+    // Clear existing episodes first
+    await supabase.from('podcast_episodes').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    
+    const episodes = [];
+    
+    // Fetch each episode individually
+    for (const episodeId of episodeIds) {
+      const episodeResponse = await fetch(
+        `https://api.spotify.com/v1/episodes/${episodeId}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
         }
+      );
+
+      if (!episodeResponse.ok) {
+        console.error(`Failed to fetch episode ${episodeId}: ${episodeResponse.status}`);
+        continue;
       }
-    );
 
-    if (!episodesResponse.ok) {
-      throw new Error(`Failed to fetch episodes: ${episodesResponse.status}`);
+      const episodeData = await episodeResponse.json();
+      episodes.push(episodeData);
     }
-
-    const episodesData: SpotifyEpisodesResponse = await episodesResponse.json();
-    const episodes = episodesData.items;
 
     console.log(`Found ${episodes.length} episodes from Spotify`);
 
@@ -107,6 +119,21 @@ serve(async (req) => {
     let syncedCount = 0;
     for (const episode of episodes) {
       try {
+        // Determine which GitHub image to use
+        let imageUrl = null;
+        if (episode.name.toLowerCase().includes('fazel')) {
+          imageUrl = '/src/assets/podcast-fazel.png';
+        } else if (episode.name.toLowerCase().includes('doubles') || episode.name.toLowerCase().includes('peter')) {
+          imageUrl = '/src/assets/podcast-doubles.png';
+        } else if (episode.name.toLowerCase().includes('louliving')) {
+          imageUrl = '/src/assets/podcast-louliving.png';
+        } else if (episode.name.toLowerCase().includes('döner') || episode.name.toLowerCase().includes('doner')) {
+          imageUrl = '/src/assets/podcast-doner.png';
+        }
+        
+        // Set featured status for Fazel episode
+        const isFeatured = episode.name.toLowerCase().includes('fazel');
+        
         // Upsert episode to database
         const { error: upsertError } = await supabase
           .from('podcast_episodes')
@@ -117,7 +144,8 @@ serve(async (req) => {
             release_date: episode.release_date,
             duration_ms: episode.duration_ms,
             spotify_url: episode.external_urls.spotify,
-            image_url: episode.images[0]?.url || null
+            image_url: imageUrl,
+            featured: isFeatured
           }, {
             onConflict: 'spotify_id',
             ignoreDuplicates: false

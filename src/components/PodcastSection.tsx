@@ -6,6 +6,11 @@ import { Play, Clock, Music, ExternalLink, Heart, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { usePodcastEpisodes, useFeaturedPodcastEpisode, PodcastEpisode } from "@/hooks/usePodcastEpisodes";
 import podcastStudio from "@/assets/podcast-recording-1.jpg";
+// Import podcast images
+import podcastFazel from "@/assets/podcast-fazel.png";
+import podcastDoubles from "@/assets/podcast-doubles.png";
+import podcastLouliving from "@/assets/podcast-louliving.png";
+import podcastDoner from "@/assets/podcast-doner.png";
 
 const PodcastSection = () => {
   const [showSpotifyAuth, setShowSpotifyAuth] = useState(false);
@@ -41,6 +46,14 @@ const PodcastSection = () => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
+  const getEpisodeImage = (episode: PodcastEpisode) => {
+    if (episode.title.toLowerCase().includes('fazel')) return podcastFazel;
+    if (episode.title.toLowerCase().includes('doubles') || episode.title.toLowerCase().includes('peter')) return podcastDoubles;
+    if (episode.title.toLowerCase().includes('louliving')) return podcastLouliving;
+    if (episode.title.toLowerCase().includes('döner') || episode.title.toLowerCase().includes('doner')) return podcastDoner;
+    return episode.image_url || podcastStudio; // fallback
+  };
+
   const handlePlayEpisode = (episode: PodcastEpisode) => {
     setSelectedEpisode(episode);
   };
@@ -69,7 +82,7 @@ const PodcastSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <img 
-              src={currentFeaturedEpisode.image_url || podcastStudio}
+              src={getEpisodeImage(currentFeaturedEpisode)}
               alt={`${currentFeaturedEpisode.title} cover`}
               className="rounded-lg w-full h-auto object-cover"
               loading="lazy"
@@ -172,27 +185,13 @@ const PodcastSection = () => {
               {episodes.slice(0, 3).map((episode) => (
                 <Card key={episode.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
-                    {episode.image_url && (
-                      <img 
-                        src={episode.image_url}
-                        alt={`${episode.title} cover`}
-                        className="w-full h-32 object-cover rounded-lg mb-4"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                          e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                        }}
-                      />
-                    )}
-                    <div className={`w-full h-32 bg-muted rounded-lg mb-4 items-center justify-center ${episode.image_url ? 'hidden' : 'flex'}`}>
-                      <div className="text-center">
-                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-2">
-                          <Play className="w-5 h-5 text-primary-foreground" />
-                        </div>
-                        <Badge variant="secondary" className="text-xs">Podcast</Badge>
-                      </div>
-                    </div>
+                    <img 
+                      src={getEpisodeImage(episode)}
+                      alt={`${episode.title} cover`}
+                      className="w-full h-32 object-cover rounded-lg mb-4"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                    />
                     <h4 className="font-semibold mb-2 line-clamp-2">{episode.title}</h4>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
