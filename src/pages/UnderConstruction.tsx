@@ -1,8 +1,9 @@
 import { Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UnderConstruction = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center p-4">
       <div className="max-w-md w-full text-center space-y-6">
@@ -23,10 +24,8 @@ const UnderConstruction = () => {
         </div>
         
         <div className="pt-4">
-          <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            <Link to="/login">
-              🔓 Administrator login
-            </Link>
+          <Button onClick={() => navigate("/login")} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            🔓 Administrator login
           </Button>
         </div>
         
