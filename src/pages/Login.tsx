@@ -58,19 +58,32 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      console.log('Attempting login with:', loginForm.email);
+      
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: loginForm.email,
         password: loginForm.password,
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Login error:', error);
+        throw error;
+      }
+
+      console.log('Login successful:', data.user?.email);
 
       toast({
         title: "Velkommen tilbage!",
         description: "Du er nu logget ind.",
       });
-      navigate("/");
+      
+      // Give time for auth state to update
+      setTimeout(() => {
+        navigate("/");
+      }, 100);
+      
     } catch (error: any) {
+      console.error('Login failed:', error);
       toast({
         title: "Login fejl",
         description: error.message === "Invalid login credentials" 
