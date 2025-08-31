@@ -41,7 +41,7 @@ const MedTeamet = () => {
       initials: "NO",
       name: "Niklas Olesen",
       title: "Podcast production lead",
-      description: "Niklas er stemmen og ansigtet bag meget af vores indhold – især på TikTok, hvor han når mere end 10 millioner visninger hver måned. Han ved, hvordan man skaber indhold, der inspirerer, engagerer og rammer målgruppen præcist.",
+      description: "Niklas er stemmen bag Unge Iværksætteres podcast-univers. Han skaber samtaler, der både inspirerer og udfordrer, og bringer spændende historier fra iværksættermiljøet direkte til vores community. Med Niklas bag mikrofonen bliver der altid leveret indhold, man kan lære af – og lytte til igen og igen.",
       location: "København", 
       linkedin: "#"
     },
@@ -50,7 +50,7 @@ const MedTeamet = () => {
       initials: "FK",
       name: "Freja Kjeldgaard",
       title: "Head of content",
-      description: "Skaber connections der betyder noget. Tidligere hos Founders House og Techstars København.",
+      description: "Freja er vores kreative kraftcenter og hjernen bag alt det content, du ser fra Unge Iværksættere. Hun kombinerer skarp strategi med et øje for trends og sikrer, at vores indhold både inspirerer, engagerer og ser knivskarpt ud. Kort sagt: hun gør idéer til content, der rammer plet – hver gang.",
       location: "København",
       linkedin: "#"
     },
@@ -65,7 +65,7 @@ const MedTeamet = () => {
     },
     {
       id: 7,
-      initials: "TBD",
+      initials: "Thomas Dahl",
       name: "Team Member 7",
       title: "Position TBD",
       description: "Beskrivelse kommer snart.",
@@ -73,7 +73,7 @@ const MedTeamet = () => {
     },
     {
       id: 8,
-      initials: "TBD",
+      initials: "Albert",
       name: "Team Member 8", 
       title: "Position TBD",
       description: "Beskrivelse kommer snart.",
@@ -81,7 +81,7 @@ const MedTeamet = () => {
     },
     {
       id: 9,
-      initials: "TBD",
+      initials: "Selma",
       name: "Team Member 9",
       title: "Position TBD", 
       description: "Beskrivelse kommer snart.",
