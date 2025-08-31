@@ -78,19 +78,19 @@ const MedTeamet = () => {
     },
     {
       id: 8,
-      initials: "ST",
-      name: "Selma Thaysen", 
-      title: "Graphic designer",
-      description: "Selma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
+      initials: "AM",
+      name: "Albert Malling", 
+      title: "Head of Photography",
+      description: "Albert er manden bag kameraet og skyder alt det fede content, du ser fra UI. Han fanger stemningen og gør vores events og platforme levende.",
       location: "København",
       image: albertImage
     },
     {
       id: 9,
-      initials: "",
-      name: "Team Member 9",
-      title: "Position TBD", 
-      description: "Beskrivelse kommer snart.",
+      initials: "ST",
+      name: "Selma Thaysen",
+      title: "Graphic designer", 
+      description: "elma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
       location: "Danmark"
     }
   ];
