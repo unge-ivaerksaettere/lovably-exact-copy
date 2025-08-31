@@ -4,7 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Linkedin, Heart, Rocket, Diamond, Zap } from "lucide-react";
-import nicolajImage from "@/assets/nicolaj-gram-profile.png";
+import nicolajImage from "@/assets/nicolaj-profile.jpg";
+import sejerImage from "@/assets/sejer-profile.jpg";
+import albertImage from "@/assets/albert-profile.jpg";
+import niklasImage from "@/assets/niklas-profile.jpg";
 
 const MedTeamet = () => {
   const teamMembers = [
@@ -25,6 +28,7 @@ const MedTeamet = () => {
       title: "Tech lead",
       description: "Sejer er vores tech-hjerne. Han arbejder med at styrke Unge Iværksætteres digitale tilstedeværelse og udvikler løsninger, der gør det muligt for UI at vokse hurtigt og bæredygtigt.",
       location: "København",
+      image: sejerImage,
       linkedin: "#"
     },
     {
@@ -43,6 +47,7 @@ const MedTeamet = () => {
       title: "Podcast production lead",
       description: "Niklas er stemmen bag Unge Iværksætteres podcast-univers. Han skaber samtaler, der både inspirerer og udfordrer, og bringer spændende historier fra iværksættermiljøet direkte til vores community. Med Niklas bag mikrofonen bliver der altid leveret indhold, man kan lære af – og lytte til igen og igen.",
       location: "København", 
+      image: niklasImage,
       linkedin: "#"
     },
     {
@@ -73,11 +78,12 @@ const MedTeamet = () => {
     },
     {
       id: 8,
-      initials: "Albert",
-      name: "Team Member 8", 
+      initials: "AL",
+      name: "Albert", 
       title: "Position TBD",
       description: "Beskrivelse kommer snart.",
-      location: "Danmark"
+      location: "Danmark",
+      image: albertImage
     },
     {
       id: 9,
