@@ -13,12 +13,14 @@ import AdminSpotifySync from "@/components/AdminSpotifySync";
 import { useUserRole } from "@/hooks/useEvents";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Admin = () => {
   const navigate = useNavigate();
   const { data: userRole, isLoading } = useUserRole();
   const { user, loading: authLoading } = useAuth();
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -66,19 +68,36 @@ const Admin = () => {
       <Header />
       <main className="container mx-auto px-4 py-24">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Admin Panel</h1>
-          <p className="text-lg text-muted-foreground">Administrer events, invitationer og indhold</p>
+          <h1 className={`font-bold text-foreground mb-4 ${isMobile ? 'text-2xl' : 'text-4xl'}`}>Admin Panel</h1>
+          <p className={`text-muted-foreground ${isMobile ? 'text-base' : 'text-lg'}`}>Administrer events, invitationer og indhold</p>
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-7 max-w-5xl mx-auto mb-8">
-            <TabsTrigger value="overview">Oversigt</TabsTrigger>
-            <TabsTrigger value="events">Events</TabsTrigger>
-            <TabsTrigger value="registrations">Tilmeldinger</TabsTrigger>
-            <TabsTrigger value="create">Opret Event</TabsTrigger>
-            <TabsTrigger value="users">Brugere & Invitationer</TabsTrigger>
-            <TabsTrigger value="pages">Sider</TabsTrigger>
-            <TabsTrigger value="spotify">Spotify</TabsTrigger>
+          <TabsList className={isMobile 
+            ? "flex w-full overflow-x-auto scrollbar-hide mb-8 p-1" 
+            : "grid w-full grid-cols-7 max-w-5xl mx-auto mb-8"
+          }>
+            <TabsTrigger value="overview" className={isMobile ? "whitespace-nowrap flex-shrink-0" : ""}>
+              {isMobile ? "Oversigt" : "Oversigt"}
+            </TabsTrigger>
+            <TabsTrigger value="events" className={isMobile ? "whitespace-nowrap flex-shrink-0" : ""}>
+              Events
+            </TabsTrigger>
+            <TabsTrigger value="registrations" className={isMobile ? "whitespace-nowrap flex-shrink-0" : ""}>
+              {isMobile ? "Tilmeld." : "Tilmeldinger"}
+            </TabsTrigger>
+            <TabsTrigger value="create" className={isMobile ? "whitespace-nowrap flex-shrink-0" : ""}>
+              {isMobile ? "Opret" : "Opret Event"}
+            </TabsTrigger>
+            <TabsTrigger value="users" className={isMobile ? "whitespace-nowrap flex-shrink-0" : ""}>
+              {isMobile ? "Brugere" : "Brugere & Invitationer"}
+            </TabsTrigger>
+            <TabsTrigger value="pages" className={isMobile ? "whitespace-nowrap flex-shrink-0" : ""}>
+              Sider
+            </TabsTrigger>
+            <TabsTrigger value="spotify" className={isMobile ? "whitespace-nowrap flex-shrink-0" : ""}>
+              Spotify
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="overview">
