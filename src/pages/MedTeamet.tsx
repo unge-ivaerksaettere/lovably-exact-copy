@@ -91,8 +91,7 @@ const MedTeamet = () => {
       name: "Selma Thaysen", 
       title: "Graphic designer",
       description: "Selma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
-      location: "København",
-      image: selmaImage
+      location: "København"
     },
     {
       id: 9,
