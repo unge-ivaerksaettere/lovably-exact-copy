@@ -91,7 +91,7 @@ const MedTeamet = () => {
       name: "Albert Malling",
       title: "Head of Photography", 
       description: "Albert er manden bag kameraet og skyder alt det fede content, du ser fra UI. Han fanger stemningen og gør vores events og platforme levende.",
-      location: København
+      location: "København"
     }
   ];
 
