@@ -87,11 +87,11 @@ const MedTeamet = () => {
     },
     {
       id: 9,
-      initials: "",
-      name: "Team Member 9",
-      title: "Position TBD", 
-      description: "Beskrivelse kommer snart.",
-      location: "Danmark"
+      initials: "AM",
+      name: "Albert Malling",
+      title: "Head of Photography", 
+      description: "Albert er manden bag kameraet og skyder alt det fede content, du ser fra UI. Han fanger stemningen og gør vores events og platforme levende.",
+      location: København
     }
   ];
 
