@@ -9,7 +9,7 @@ import sejerImage from "@/assets/sejer-profile.jpg";
 import albertImage from "@/assets/albert-profile.jpg";
 import niklasImage from "@/assets/niklas-profile.jpg";
 import selmaImage from "@/assets/selma-profile.png";
-import lauritzImage from "@/assets/lauritz-profile.jpg";
+import lauritzImage from "@/assets/lauritz-profile.png";
 import thomasImage from "@/assets/thomas-profile.jpg";
 import frejaImage from "@/assets/freja-profile.png";
 import mikImage from "@/assets/mik-profile.jpg";
@@ -83,7 +83,8 @@ const MedTeamet = () => {
       title: "Event lead",
       description: "Med solid erhvervserfaring og et stort netværk er Thomas en nøglespiller i at skabe de fedeste events i Jylland – sammen med Nicolaj.",
       location: "Danmark",
-      image: thomasImage
+      image: thomasImage,
+      linkedin: "#"
     },
     {
       id: 8,
@@ -92,7 +93,8 @@ const MedTeamet = () => {
       title: "Graphic designer",
       description: "Selma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
       location: "København",
-      image: selmaImage
+      image: selmaImage,
+      linkedin: "#"
     },
     {
       id: 9,
@@ -101,7 +103,8 @@ const MedTeamet = () => {
       title: "Head of Photography", 
       description: "Albert er manden bag kameraet og skyder alt det fede content, du ser fra UI. Han fanger stemningen og gør vores events og platforme levende.",
       location: "København",
-      image: albertImage
+      image: albertImage,
+      linkedin: "#"
     }
   ];
 
