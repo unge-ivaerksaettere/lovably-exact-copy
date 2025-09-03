@@ -8,10 +8,10 @@ import nicolajImage from "@/assets/nicolaj-profile.jpg";
 import sejerImage from "@/assets/sejer-profile.jpg";
 import albertImage from "@/assets/albert-profile.jpg";
 import niklasImage from "@/assets/niklas-profile.jpg";
-import selmaImage from "@/assets/selma-profile.png";
-import lauritzImage from "@/assets/lauritz-profile.png";
+import selmaImage from "@/assets/selma-profile.jpg";
+import lauritzImage from "@/assets/lauritz-profile.jpg";
 import thomasImage from "@/assets/thomas-profile.jpg";
-import frejaImage from "@/assets/freja-profile.png";
+import frejaImage from "@/assets/freja-profile.jpg";
 import mikImage from "@/assets/mik-profile.jpg";
 
 const MedTeamet = () => {
@@ -91,7 +91,8 @@ const MedTeamet = () => {
       name: "Selma Thaysen", 
       title: "Graphic designer",
       description: "Selma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
-      location: "København"
+      location: "København",
+      image: selmaImage
     },
     {
       id: 9,
