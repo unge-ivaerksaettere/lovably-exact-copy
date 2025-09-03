@@ -1,32 +1,22 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import mathiasProfile from "@/assets/mathias-profile.jpg";
+import lasseProfile from "@/assets/lasse-profile.png";
 
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      initials: "MH",
-      name: "Marie Hansen",
-      title: "Founder & CEO, EcoTech Solutions",
-      company: "EcoTech Solutions",
-      quote: "Unge Iværksættere har været afgørende for min startup rejse. Netværket og mentorskabet jeg har fået gennem communityet er uvurderligt.",
+      name: "Lasse Osmann",
+      company: "Startup Founder",
+      image: lasseProfile,
+      quote: "Unge Iværksættere har givet mig det netværk og de insights, jeg havde brug for til at tage mit startup til næste niveau.",
     },
     {
-      initials: "TA", 
-      name: "Thomas Andersen",
-      company: "FinanceBot",
-      quote: "Gennem deres events og podcast har jeg lært mere om startup fundraising end noget sted andet. Jeg rejste 5M DKK efter at have fulgt deres råd.",
-    },
-    {
-      initials: "LC",
-      name: "Line Christensen", 
-      company: "HealthTech Innovation",
-      quote: "Det bedste startup community i Danmark. Jeg har fundet både co-founder, investorer og kunder gennem deres netværk.",
-    },
-    {
-      initials: "FN",
-      name: "Frederik Nielsen",
-      company: "SportsTech Pro", 
-      quote: "Podcasten er fyldt med actionable insights. Jeg lytter til hver episode og implementerer strategierne i mit eget startup.",
+      name: "Mathias Streander",
+      company: "Tech Entrepreneur",
+      image: mathiasProfile,
+      quote: "Fantastisk community med unge iværksættere der virkelig forstår udfordringerne ved at starte og drive en virksomhed.",
     },
   ];
 
@@ -48,17 +38,14 @@ const TestimonialsSection = () => {
                   "{testimonial.quote}"
                 </blockquote>
                 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                    {testimonial.initials}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    {testimonial.title && (
-                      <p className="text-sm text-muted-foreground">{testimonial.title}</p>
-                    )}
-                    <Badge variant="outline" className="mt-1 text-xs">{testimonial.company}</Badge>
-                  </div>
+                 <div className="flex items-center gap-4">
+                   <Avatar className="w-12 h-12">
+                     <AvatarImage src={testimonial.image} alt={testimonial.name} />
+                   </Avatar>
+                   <div>
+                     <h4 className="font-semibold">{testimonial.name}</h4>
+                     <Badge variant="outline" className="mt-1 text-xs">{testimonial.company}</Badge>
+                   </div>
                 </div>
               </CardContent>
             </Card>
