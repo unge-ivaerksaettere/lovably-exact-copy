@@ -237,34 +237,6 @@ const MedTeamet = () => {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-anton text-foreground text-center mb-16">
-            Vores Værdier
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="border-border text-center">
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <div className="flex justify-center">
-                      <value.icon className={`w-12 h-12 ${value.color}`} />
-                    </div>
-                    <h3 className="text-lg font-dm-sans font-bold text-foreground">
-                      {value.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground font-inter">
-                      {value.description}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Join Team CTA */}
       <section className="py-16">
