@@ -8,6 +8,11 @@ import nicolajImage from "@/assets/nicolaj-profile.jpg";
 import sejerImage from "@/assets/sejer-profile.jpg";
 import albertImage from "@/assets/albert-profile.jpg";
 import niklasImage from "@/assets/niklas-profile.jpg";
+import selmaImage from "@/assets/selma-profile.png";
+import lauritzImage from "@/assets/lauritz-profile.png";
+import thomasImage from "@/assets/thomas-profile.jpg";
+import frejaImage from "@/assets/freja-profile.png";
+import mikImage from "@/assets/mik-profile.jpg";
 
 const MedTeamet = () => {
   const teamMembers = [
@@ -38,6 +43,7 @@ const MedTeamet = () => {
       title: "Formand", 
       description: "Mik har stået i spidsen for Unge Iværksættere de sidste to år og driver organisationen med både stærkt lederskab og en ægte passion for iværksætteri. Han sikrer, at UI har det bedste fundament for at vokse, skabe fede events og give unge iværksættere de rette muligheder.",
       location: "København",
+      image: mikImage,
       linkedin: "#"
     },
     {
@@ -57,6 +63,7 @@ const MedTeamet = () => {
       title: "Head of content",
       description: "Freja er vores kreative kraftcenter og hjernen bag alt det content, du ser fra Unge Iværksættere. Hun kombinerer skarp strategi med et øje for trends og sikrer, at vores indhold både inspirerer, engagerer og ser knivskarpt ud. Kort sagt: hun gør idéer til content, der rammer plet – hver gang.",
       location: "København",
+      image: frejaImage,
       linkedin: "#"
     },
     {
@@ -66,6 +73,7 @@ const MedTeamet = () => {
       title: "Head of finance",
       description: "Lauritz er manden med styr på tallene. Han sørger for, at økonomien spiller, og at alle vores projekter og events kan løbe rundt uden problemer.",
       location: "København",
+      image: lauritzImage,
       linkedin: "#"
     },
     {
@@ -74,7 +82,8 @@ const MedTeamet = () => {
       name: "Thomas Dahl",
       title: "Event lead",
       description: "Med solid erhvervserfaring og et stort netværk er Thomas en nøglespiller i at skabe de fedeste events i Jylland – sammen med Nicolaj.",
-      location: "Danmark"
+      location: "Danmark",
+      image: thomasImage
     },
     {
       id: 8,
@@ -83,7 +92,7 @@ const MedTeamet = () => {
       title: "Graphic designer",
       description: "Selma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
       location: "København",
-      image: albertImage
+      image: selmaImage
     },
     {
       id: 9,
@@ -91,7 +100,8 @@ const MedTeamet = () => {
       name: "Albert Malling",
       title: "Head of Photography", 
       description: "Albert er manden bag kameraet og skyder alt det fede content, du ser fra UI. Han fanger stemningen og gør vores events og platforme levende.",
-      location: København
+      location: "København",
+      image: albertImage
     }
   ];
 
