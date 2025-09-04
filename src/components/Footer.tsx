@@ -121,18 +121,8 @@ const Footer = () => {
 
           {/* Ressourcer */}
           <div className="space-y-4">
-            <h4 className="font-dm-sans font-bold text-background">Ressourcer</h4>
-            <nav className="space-y-3 font-inter text-sm">
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
-                Podcast
-              </a>
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
-                Facebook
-              </a>
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
-                Instagram
-              </a>
-            </nav>
+            
+            
           </div>
         </div>
 
@@ -156,13 +146,10 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-background/60" />
+              
               <div className="font-inter text-sm">
-                <div className="text-background/60">Adresse</div>
-                <div className="text-background">
-                  Unge Iværksættere<br />
-                  Geislersgade 2, København S
-                </div>
+                
+                
               </div>
             </div>
           </div>
@@ -179,11 +166,7 @@ const Footer = () => {
               </div>
             </div>
             
-            <div className="flex gap-6 font-inter text-sm text-background/60">
-              <a href="#" className="hover:text-background transition-colors">Privatlivspolitik</a>
-              <a href="#" className="hover:text-background transition-colors">Vilkår & Betingelser</a>
-              <a href="#" className="hover:text-background transition-colors">Cookies</a>
-            </div>
+            
           </div>
           
           <div className="text-center mt-8 font-inter text-sm text-background/60">
