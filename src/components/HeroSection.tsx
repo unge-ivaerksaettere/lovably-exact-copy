@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Mic, Calendar, Instagram, Linkedin } from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
 import heroImage from "@/assets/event-audience-1.jpg";
 const HeroSection = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -47,11 +48,11 @@ const HeroSection = () => {
             <div className="text-sm text-white/80">deltagere</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">25+</div>
-            <div className="text-sm text-white/80">Podcast Episoder</div>
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">50.000</div>
+            <div className="text-sm text-white/80">podcast afspildninger</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">20+</div>
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">30+</div>
             <div className="text-sm text-white/80">Events Afholdt</div>
           </div>
         </div>
@@ -65,6 +66,9 @@ const HeroSection = () => {
             </a>
             <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
               <Linkedin className="w-5 h-5" />
+            </a>
+            <a href="https://www.tiktok.com/@ungeivaerksaettere" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+              <FaTiktok className="w-5 h-5" />
             </a>
           </div>
         </div>
