@@ -7,18 +7,18 @@ const WhyChooseSection = () => {
   const features = [
     {
       icon: Users,
-      title: "Stærkt Netværk",
-      description: "Få adgang til Danmarks største community af unge iværksættere og mentorer.",
-    },
-    {
-      icon: Mic,
-      title: "Ekspert Podcast",
-      description: "Lyt til vores tidligere speakers eller når Mik tager nye iværksættere med i studiet for at snakke om deres rejse.",
+      title: "UI Club",
+      description: "Bliv en del af vores eksklusive community på Skool med ressourcer, netværk og værktøjer til at accelerere din iværksætterrejse.",
     },
     {
       icon: Calendar,
-      title: "Inspirerende Events",
-      description: "Deltag i workshops, networking events og pitch sessions i hele landet.",
+      title: "Events",
+      description: "Deltag i inspirerende events i Århus og København med erfarne speakers og succesfulde iværksættere.",
+    },
+    {
+      icon: Mic,
+      title: "UI Talks",
+      description: "Hør Niklas i samtale med Danmarks succesfulde iværksættere og lær fra deres rejse til toppen.",
     },
   ];
 
