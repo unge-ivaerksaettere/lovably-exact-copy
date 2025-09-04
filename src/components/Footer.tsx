@@ -99,9 +99,7 @@ const Footer = () => {
               <Link to="/podcast" className="block text-background/80 hover:text-background transition-colors">
                 Podcast
               </Link>
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
-                Find Co-founder
-              </a>
+              
             </nav>
           </div>
 
