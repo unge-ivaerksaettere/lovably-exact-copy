@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import mathiasProfile from "@/assets/mathias-profile.jpg";
 import lasseProfile from "@/assets/lasse-profile.png";
@@ -14,7 +15,7 @@ const TestimonialsSection = () => {
     },
     {
       name: "Mathias Streander",
-      company: "Tech Entrepreneur",
+      company: "Coach",
       image: mathiasProfile,
       quote: "Fantastisk community med unge iværksættere der virkelig forstår udfordringerne ved at starte og drive en virksomhed.",
     },
@@ -24,7 +25,7 @@ const TestimonialsSection = () => {
     <section className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Hvad siger vores medlemmer?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Hvad siger vores deltagere?</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Hør hvordan Unge Iværksættere har hjulpet hundredvis af danske startups med at vokse.
           </p>
@@ -50,6 +51,14 @@ const TestimonialsSection = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        <div className="flex justify-center mt-12">
+          <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+            <a href="https://www.skool.com/unge-ivrksttere-3699/about?ref=be5d1399328b408e8a2cbe59f14ac667" target="_blank" rel="noopener noreferrer">
+              🚀 Bliv en del af vores community
+            </a>
+          </Button>
         </div>
       </div>
     </section>
