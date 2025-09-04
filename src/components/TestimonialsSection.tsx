@@ -25,8 +25,8 @@ const TestimonialsSection = () => {
     <section className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Hvad siger vores deltagere?</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-anton font-bold mb-4">Hvad siger vores deltagere?</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-inter">
             Hør hvordan Unge Iværksættere har hjulpet hundredvis af danske startups med at vokse.
           </p>
         </div>
@@ -35,7 +35,7 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card key={index} className="border-0 shadow-md hover:shadow-lg transition-shadow">
               <CardContent className="p-8">
-                <blockquote className="text-lg mb-6 leading-relaxed">
+                <blockquote className="text-lg mb-6 leading-relaxed font-inter">
                   "{testimonial.quote}"
                 </blockquote>
                 
@@ -44,8 +44,8 @@ const TestimonialsSection = () => {
                      <AvatarImage src={testimonial.image} alt={testimonial.name} />
                    </Avatar>
                    <div>
-                     <h4 className="font-semibold">{testimonial.name}</h4>
-                     <Badge variant="outline" className="mt-1 text-xs">{testimonial.company}</Badge>
+                     <h4 className="font-dm-sans font-bold">{testimonial.name}</h4>
+                     <Badge variant="outline" className="mt-1 text-xs font-inter">{testimonial.company}</Badge>
                    </div>
                 </div>
               </CardContent>

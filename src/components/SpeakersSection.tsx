@@ -32,8 +32,8 @@ const SpeakersSection = () => {
   return <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Speakers</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-anton font-bold mb-4">Featured Speakers</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-inter">
             Lær af Danmarks mest succesrige iværksættere og investorer på vores events.
           </p>
         </div>
@@ -46,14 +46,14 @@ const SpeakersSection = () => {
           <div>
             <div className="inline-flex items-center gap-2 bg-orange/10 text-orange rounded-full px-3 py-1 mb-4">
               <span className="text-lg">🌟</span>
-              <span className="text-sm font-medium">Featured Speaker</span>
+              <span className="text-sm font-dm-sans font-bold">Featured Speaker</span>
             </div>
             
-            <h3 className="text-2xl font-bold mb-2">Saxo Agdestein</h3>
-            <p className="text-muted-foreground mb-1">Founder, Handyhand & HappyHelper</p>
-            <Badge variant="outline" className="mb-4">Handyhand</Badge>
+            <h3 className="text-2xl font-dm-sans font-bold mb-2">Saxo Agdestein</h3>
+            <p className="text-muted-foreground mb-1 font-inter">Founder, Handyhand & HappyHelper</p>
+            <Badge variant="outline" className="mb-4 font-inter">Handyhand</Badge>
             
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground mb-6 font-inter">
               Entrepreneur og podcaster der har bygget Handyhand til 250K+ brugere og 300K+ tasks. Specialist i at forbinde mennesker gennem innovative digitale løsninger.
             </p>
             

@@ -26,8 +26,8 @@ const WhyChooseSection = () => {
     <section className="py-20 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Hvorfor vælge Unge Iværksættere?</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-anton font-bold mb-4">Hvorfor vælge Unge Iværksættere?</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-inter">
             Gratis deltagelse, mulighed for networking og vidensdeling fra erfarne iværksættere. Kom med til vores næste event og bliv en del af fællesskabet.
           </p>
         </div>
@@ -39,8 +39,8 @@ const WhyChooseSection = () => {
                 <div className="w-20 h-20 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-medium group-hover:scale-110 transition-all duration-300 ease-bounce">
                   <feature.icon className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <h3 className="text-xl font-dm-sans font-bold mb-4">{feature.title}</h3>
+                <p className="text-muted-foreground font-inter">{feature.description}</p>
               </CardContent>
             </Card>
           ))}
