@@ -6,7 +6,7 @@ const VoresHistorie = () => {
   const faqs = [
     {
       question: "Hvad er Unge Iværksættere?",
-      answer: "Unge Iværksættere er Danmarks største startup community med over 500 medlemmer med henblik på at gøre iværksætteri mere tilgængeligt og give fremtidens iværksættere de bedste kort på hånden. Vi arrangerer events, laver podcast og skaber netværk for unge iværksættere.",
+      answer: "Danmarks største frivillige fællesskab for unge iværksættere med henblik på at gøre iværksætteri mere tilgængeligt og give fremtidens iværksættere de bedste kort på hånden.",
     },
     {
       question: "Hvem kan deltage i jeres events?",
