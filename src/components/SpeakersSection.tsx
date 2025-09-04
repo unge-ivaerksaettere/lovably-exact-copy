@@ -6,37 +6,30 @@ import speakerPresentation from "@/assets/event-presentation-1.jpg";
 import kimRantsImg from "@/assets/kim-rants.jpg";
 import wernerValeurImg from "@/assets/werner-valeur.png";
 import nikolajNyholmImg from "@/assets/nikolaj-nyholm.jpg";
-
 const SpeakersSection = () => {
-  const speakers = [
-    {
-      initials: "KR",
-      name: "Kim Rants",
-      title: "Co-founder & CEO, Alice.tech",
-      company: "Alice.tech",
-      description: "AI-ekspert og tidligere McKinsey Partner. Bygger AI-drevet uddannelsesplatform.",
-      image: kimRantsImg,
-    },
-    {
-      initials: "WV",
-      name: "Werner Valeur",
-      title: "Serial Entrepreneur",
-      company: "10+ Companies",
-      description: "Grundlagt over 10 virksomheder siden han var 18 år. Specialist i hurtig skalering.",
-      image: wernerValeurImg,
-    },
-    {
-      initials: "NN",
-      name: "Nikolaj Nyholm",
-      title: "Partner, Sunstone Capital",
-      company: "Sunstone Capital",
-      description: "Grundlagde Polar Rose (solgt til Apple) og Speednames/Ascio. Nu investor hos Sunstone.",
-      image: nikolajNyholmImg,
-    },
-  ];
-
-  return (
-    <section className="py-20 bg-background">
+  const speakers = [{
+    initials: "KR",
+    name: "Kim Rants",
+    title: "Co-founder & CEO, Alice.tech",
+    company: "Alice.tech",
+    description: "AI-ekspert og tidligere McKinsey Partner. Bygger AI-drevet uddannelsesplatform.",
+    image: kimRantsImg
+  }, {
+    initials: "WV",
+    name: "Werner Valeur",
+    title: "Serial Entrepreneur",
+    company: "10+ Companies",
+    description: "Grundlagt over 10 virksomheder siden han var 18 år. Specialist i hurtig skalering.",
+    image: wernerValeurImg
+  }, {
+    initials: "NN",
+    name: "Nikolaj Nyholm",
+    title: "Partner, Sunstone Capital",
+    company: "Sunstone Capital",
+    description: "Grundlagde Polar Rose (solgt til Apple) og Speednames/Ascio. Nu investor hos Sunstone.",
+    image: nikolajNyholmImg
+  }];
+  return <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Speakers</h2>
@@ -47,11 +40,7 @@ const SpeakersSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <img 
-              src={speakerPresentation} 
-              alt="Featured speaker presenting" 
-              className="rounded-lg w-full h-auto object-cover"
-            />
+            <img src={speakerPresentation} alt="Featured speaker presenting" className="rounded-lg w-full h-auto object-cover" />
           </div>
           
           <div>
@@ -68,17 +57,14 @@ const SpeakersSection = () => {
               Entrepreneur og podcaster der har bygget Handyhand til 250K+ brugere og 300K+ tasks. Specialist i at forbinde mennesker gennem innovative digitale løsninger.
             </p>
             
-            <p className="font-medium mb-4">
-              <strong>Seneste Event:</strong> Scaling Digital Platforms
-            </p>
             
-            <Button>Se Event Replay</Button>
+            
+            
           </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {speakers.map((speaker, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
+          {speakers.map((speaker, index) => <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
                   <Avatar className="w-14 h-14 ring-1 ring-border">
@@ -93,16 +79,13 @@ const SpeakersSection = () => {
                 </div>
                 <p className="text-sm text-muted-foreground">{speaker.description}</p>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
 
         <div className="text-center">
           <Button variant="outline">Se Alle Speakers</Button>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SpeakersSection;

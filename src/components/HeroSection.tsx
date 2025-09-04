@@ -1,17 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Mic, Calendar, Instagram, Linkedin } from "lucide-react";
 import heroImage from "@/assets/event-audience-1.jpg";
-
 const HeroSection = () => {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-        }}
-      >
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+      backgroundImage: `url(${heroImage})`
+    }}>
         <div className="absolute inset-0 bg-black/40" />
       </div>
       
@@ -19,7 +14,7 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
           <span className="text-2xl">🚀</span>
-          <span className="text-sm font-medium">Danmarks største startup community</span>
+          <span className="text-sm font-medium">Danmarks største frivillige fællesskab for unge iværksættere</span>
         </div>
         
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -74,8 +69,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
