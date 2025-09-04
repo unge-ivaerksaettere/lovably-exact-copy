@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Check, Mail, Phone, Calendar } from "lucide-react";
-import agerasLogo from "@/assets/ageras-logo-new.png";
+import agerasLogo from "@/assets/ageras-logo-real.png";
 import jakobProfile from "@/assets/jakob-h-profile.jpg";
 
 const VoresSponsoreBlivSponsor = () => {
@@ -198,74 +198,46 @@ const VoresSponsoreBlivSponsor = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-anton font-bold text-foreground mb-6">
-              Tak til vores nuværende sponsorer
+              Vores hovedsponsor
             </h2>
-            <p className="text-lg font-inter text-muted-foreground mb-8">
-              Vi er stolte af at samarbejde med disse fantastiske virksomheder
-            </p>
           </div>
 
-          {/* Current Sponsor Showcase */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
-            <Card className="text-center p-8 border-2 border-primary/20">
-              <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+          {/* Main Sponsor - Ageras gets most space */}
+          <div className="max-w-2xl mx-auto mb-16">
+            <Card className="text-center p-12 border-2 border-primary bg-gradient-to-br from-primary/5 to-background">
+              <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center overflow-hidden">
                 <img src={agerasLogo} alt="Ageras logo" className="w-full h-full object-contain" />
               </div>
-              <h3 className="text-xl font-dm-sans font-bold mb-2">Ageras</h3>
-              <Badge className="mb-3">🏢 Partner Sponsor</Badge>
-              <p className="font-inter text-sm text-muted-foreground">
-                1x Partner pakke - Støtter vores community med events og networking
-              </p>
-            </Card>
-
-            <Card className="text-center p-8 border-2 border-secondary/20">
-              <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                <img src={agerasLogo} alt="Ageras logo" className="w-full h-full object-contain" />
+              <h3 className="text-3xl font-anton font-bold mb-4">Ageras</h3>
+              <div className="space-y-2 mb-6">
+                <Badge className="mx-1">🏢 Partner Sponsor</Badge>
+                <Badge variant="secondary" className="mx-1">🎙️ Podcast Sponsor</Badge>
               </div>
-              <h3 className="text-xl font-dm-sans font-bold mb-2">Ageras</h3>
-              <Badge variant="secondary" className="mb-3">🎙️ Podcast Sponsor</Badge>
-              <p className="font-inter text-sm text-muted-foreground">
-                2x Podcast sponsorater - Hørbar partner i vores podcast
+              <p className="font-inter text-lg text-muted-foreground mb-6">
+                Ageras støtter vores community med både partner- og podcast sponsorater og hjælper med at skabe værdi for Danmarks unge iværksættere.
               </p>
-            </Card>
-
-            <Card className="text-center p-8 border-2 border-accent/20">
-              <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                <img src={jakobProfile} alt="Jakob H profil" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-xl font-dm-sans font-bold mb-2">Jakob H.</h3>
-              <Badge variant="outline" className="mb-3">🤝 Støtte Sponsor</Badge>
-              <p className="font-inter text-sm text-muted-foreground">
-                Støtter startup-økosystemet og unge entrepreneurs
-              </p>
+              <Button variant="outline" asChild>
+                <a href="https://www.ageras.com/dk" target="_blank" rel="noopener noreferrer">
+                  Besøg Ageras
+                </a>
+              </Button>
             </Card>
           </div>
           
-          {/* Additional Partner Logos */}
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-anton font-bold text-foreground mb-6">
-              Alle vores partnere
+          {/* Support Sponsors - smaller section */}
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-anton font-bold text-foreground mb-8">
+              Støttesponsorer
             </h3>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 mb-20 max-w-md mx-auto">
-            <a 
-              href="https://www.ageras.com/dk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white rounded-lg p-4 text-center hover:shadow-md transition-all cursor-pointer flex items-center justify-center"
-            >
-              <img src={agerasLogo} alt="Ageras logo" className="max-w-full h-12 object-contain" />
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/jakobh/?originalSubdomain=dk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white rounded-lg p-4 text-center hover:shadow-md transition-all cursor-pointer flex items-center justify-center"
-            >
-              <div className="w-12 h-12 rounded-full overflow-hidden">
-                <img src={jakobProfile} alt="Jakob H profil" className="w-full h-full object-cover" />
-              </div>
-            </a>
+            <div className="max-w-sm mx-auto">
+              <Card className="text-center p-6">
+                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                  <img src={jakobProfile} alt="Jakob H profil" className="w-full h-full object-cover" />
+                </div>
+                <h4 className="text-lg font-dm-sans font-bold mb-2">Jakob H.</h4>
+                <Badge variant="outline" className="mb-3">🤝 Støtte Sponsor</Badge>
+              </Card>
+            </div>
           </div>
 
           {/* Partner Testimonials - COMMENTED OUT FOR FUTURE USE 
@@ -303,146 +275,27 @@ const VoresSponsoreBlivSponsor = () => {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-anton font-bold text-foreground mb-6">
-                Klar til at blive partner?
-              </h2>
-              <p className="font-inter text-muted-foreground mb-6">
-                🎯 For sponsorat eller mere info, kontakt mig på LinkedIn eller via mail på kontakt@mikloenborg.com
-              </p>
-            </div>
-
-            <Card className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="companyName" className="font-inter font-medium">
-                      Virksomhedsnavn *
-                    </Label>
-                    <Input
-                      id="companyName"
-                      placeholder="Jeres virksomhed"
-                      value={formData.companyName}
-                      onChange={(e) => handleInputChange('companyName', e.target.value)}
-                      className="font-inter"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="contactPerson" className="font-inter font-medium">
-                      Kontaktperson *
-                    </Label>
-                    <Input
-                      id="contactPerson"
-                      placeholder="Fulde navn"
-                      value={formData.contactPerson}
-                      onChange={(e) => handleInputChange('contactPerson', e.target.value)}
-                      className="font-inter"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="font-inter font-medium">
-                      Email *
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="kontakt@jeresfirma.dk"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="font-inter"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone" className="font-inter font-medium">
-                      Telefon
-                    </Label>
-                    <Input
-                      id="phone"
-                      placeholder="+45 12 34 56 78"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="font-inter"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="package" className="font-inter font-medium">
-                      Interesseret pakke
-                    </Label>
-                    <Select onValueChange={(value) => handleInputChange('package', value)}>
-                      <SelectTrigger className="font-inter">
-                        <SelectValue placeholder="Vælg pakke" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="partner">Partner</SelectItem>
-                        <SelectItem value="podcast">Podcast-sponsor</SelectItem>
-                        <SelectItem value="support">Støttesponsor</SelectItem>
-                        <SelectItem value="custom">Custom løsning</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="budget" className="font-inter font-medium">
-                      Budget
-                    </Label>
-                    <Select onValueChange={(value) => handleInputChange('budget', value)}>
-                      <SelectTrigger className="font-inter">
-                        <SelectValue placeholder="Vælg budget range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="under-5k">Under 5.000 kr</SelectItem>
-                        <SelectItem value="5k-10k">5.000-10.000 kr</SelectItem>
-                        <SelectItem value="10k-20k">10.000-20.000 kr</SelectItem>
-                        <SelectItem value="over-20k">Over 20.000 kr</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="startDate" className="font-inter font-medium">
-                      Ønsket opstart
-                    </Label>
-                    <Input
-                      id="startDate"
-                      type="date"
-                      value={formData.startDate}
-                      onChange={(e) => handleInputChange('startDate', e.target.value)}
-                      className="font-inter"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="font-inter font-medium">
-                    Besked
-                  </Label>
-                  <Textarea
-                    id="message"
-                    placeholder="Fortæl os om jeres mål og hvordan vi kan hjælpe..."
-                    value={formData.message}
-                    onChange={(e) => handleInputChange('message', e.target.value)}
-                    className="font-inter min-h-[120px]"
-                  />
-                </div>
-
-                <Button type="submit" className="w-full">
-                  <Mail className="w-4 h-4 mr-2" />
-                  Send Forespørgsel
-                </Button>
-
-                <p className="text-sm text-muted-foreground text-center font-inter">
-                  Vi respekterer jeres privatliv og deler aldrig jeres information.
-                </p>
-              </form>
-            </Card>
+      {/* Simple Contact Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-anton font-bold text-foreground mb-6">
+            Samarbejde og presse
+          </h2>
+          <p className="font-inter text-lg text-muted-foreground mb-8">
+            For samarbejder og presse, kontakt Mikkel Ønborg
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="outline" className="gap-2" asChild>
+              <a href="mailto:kontakt@mikloenborg.com">
+                <Mail className="w-4 h-4" />
+                kontakt@mikloenborg.com
+              </a>
+            </Button>
+            <Button variant="outline" className="gap-2" asChild>
+              <a href="https://www.linkedin.com/in/mikkel-onborg/" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+            </Button>
           </div>
         </div>
       </section>
