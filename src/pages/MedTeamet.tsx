@@ -252,11 +252,15 @@ const MedTeamet = () => {
               Vi er altid på udkig efter talentfulde personer der deler vores passion for entrepreneurship og community building.
             </p>
             <div className="flex gap-4 justify-center">
+              {/* Temporarily hidden - uncomment to reintroduce job listings
               <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold">
                 📧 Se Ledige Stillinger
               </Button>
-              <Button variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 font-dm-sans font-bold">
-                Kontakt Os
+              */}
+              <Button variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 font-dm-sans font-bold" asChild>
+                <a href="mailto:kontakt@ungeiværksættere.dk">
+                  Kontakt Os
+                </a>
               </Button>
             </div>
           </div>
