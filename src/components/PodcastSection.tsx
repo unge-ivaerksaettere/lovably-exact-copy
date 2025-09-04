@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Play, Clock, Music, ExternalLink, Heart, Loader2 } from "lucide-react";
+import { Play, Clock, Music, ExternalLink, Heart, Loader2, Youtube } from "lucide-react";
 import { useState } from "react";
 import { usePodcastEpisodes, useFeaturedPodcastEpisode, PodcastEpisode } from "@/hooks/usePodcastEpisodes";
 import podcastStudio from "@/assets/podcast-recording-1.jpg";
@@ -134,9 +134,9 @@ const PodcastSection = () => {
                     <ExternalLink className="w-4 h-4" />
                     Åbn i Spotify
                   </Button>
-                <Button variant="outline" className="gap-2" onClick={() => window.open(`https://open.spotify.com/show/${showId}`, '_blank')}>
-                    <Music className="w-4 h-4" />
-                    Følg Podcast
+                <Button variant="outline" className="gap-2 bg-red-500 hover:bg-red-600 text-white border-red-500" onClick={() => window.open('https://www.youtube.com/@ungeiv%C3%A6rks%C3%A6ttere', '_blank')}>
+                    <Youtube className="w-4 h-4" />
+                    Se på YouTube
                   </Button>
                 </div>
               </>
