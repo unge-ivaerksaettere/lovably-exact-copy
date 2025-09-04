@@ -25,9 +25,6 @@ const Header = () => {
   }, {
     name: 'Podcast',
     href: '/podcast'
-  }, {
-    name: 'Ny Sponsorer',
-    href: '/new-sponsors'
   }];
 
   // Add dynamic pages based on visibility settings

@@ -14,7 +14,6 @@ import FindCoFounder from "./pages/FindCoFounder";
 import MedTeamet from "./pages/MedTeamet";
 import VoresHistorie from "./pages/VoresHistorie";
 import VoresSponsoreBlivSponsor from "./pages/VoresSponsoreBlivSponsor";
-import NewSponsors from "./pages/NewSponsors";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
@@ -73,7 +72,6 @@ const AppContent = () => {
         <Route path="/vores-historie" element={<VoresHistorie />} />
         <Route path="/vores-sponsore" element={<VoresSponsoreBlivSponsor />} />
         <Route path="/bliv-sponsor" element={<VoresSponsoreBlivSponsor />} />
-        <Route path="/new-sponsors" element={<NewSponsors />} />
         <Route path="/admin" element={<Admin />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
