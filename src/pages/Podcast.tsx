@@ -69,28 +69,28 @@ const Podcast = () => {
   const faqData = [
     {
       question: "Hvad er Unge Iværksættere?",
-      answer: "Unge Iværksættere er Danmarks største community for startup-entreprenører under 35 år."
+      answer: "Danmarks største frivillige fællesskab for unge iværksættere med henblik på at gøre iværksætteri mere tilgængeligt og give fremtidens iværksættere de bedste kort på hånden.",
     },
     {
       question: "Hvem kan deltage i jeres events?",
-      answer: "Alle interesserede i startup og entrepreneurship er velkommen - fra idéstadiet til etablerede iværksættere."
+      answer: "Alle interesserede i iværksætteri kan deltage i vores events - både erfarne iværksættere og dem der overvejer at starte deres første startup.",
     },
     {
       question: "Koster det noget at deltage?",
-      answer: "De fleste af vores events er gratis. Enkelte workshops kan have en lille deltagerbetaling."
+      answer: "Alle vores events er gratis for deltagerne. Vi tror på at gøre iværksætteri tilgængeligt for alle.",
     },
     {
       question: "Hvor afholdes jeres events?",
-      answer: "Vi afholder events i hele Danmark - primært i København, Aarhus og online."
+      answer: "Vi holder events i København og Aarhus samt virtuelle webinarer så alle kan deltage.",
     },
     {
       question: "Kan jeg blive speaker på jeres events?",
-      answer: "Ja! Vi er altid på udkig efter inspirerende speakers. Kontakt os for mere information."
+      answer: "Absolut! Vi er altid på udkig efter inspirerende speakers. Kontakt os på kontakt@ungeiværksættere.dk med dit forslag og vi vender tilbage hurtigst muligt.",
     },
     {
       question: "Hvordan kan min virksomhed blive sponsor?",
-      answer: "Vi tilbyder forskellige sponsormuligheder. Send os en mail for at høre mere om mulighederne."
-    }
+      answer: "Vi samarbejder med virksomheder der støtter startup-økosystemet. Kontakt os på kontakt@ungeiværksættere.dk for at høre om sponsormuligheder og partnerskaber.",
+    },
   ];
 
   return (
