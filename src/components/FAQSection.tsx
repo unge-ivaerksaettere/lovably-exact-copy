@@ -4,27 +4,27 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "Hvad er Unge Iværksættere?",
-      answer: "Unge Iværksættere er Danmarks største startup community med over 500 medlemmer. Vi arrangerer events, laver podcast og skaber netværk for unge iværksættere.",
+      answer: "Unge Iværksættere er Danmarks største startup community med over 500 medlemmer med henblik på at gøre iværksætteri mere tilgængeligt og give fremtidens iværksættere de bedste kort på hånden. Vi arrangerer events, laver podcast og skaber netværk for unge iværksættere.",
     },
     {
       question: "Hvem kan deltage i jeres events?",
-      answer: "Alle interesserede i entrepreneurship kan deltage i vores events - både erfarne iværksættere og dem der overvejer at starte deres første startup.",
+      answer: "Alle interesserede i iværksætteri kan deltage i vores events - både erfarne iværksættere og dem der overvejer at starte deres første startup.",
     },
     {
       question: "Koster det noget at deltage?",
-      answer: "De fleste af vores events er gratis for medlemmer. Vi har også enkelte premium events med en mindre deltagerbetaling.",
+      answer: "Alle vores events er gratis for deltagerne. Vi tror på at gøre iværksætteri tilgængeligt for alle.",
     },
     {
       question: "Hvor afholdes jeres events?",
-      answer: "Vi holder events i hele Danmark, primært i København, Aarhus og Odense. Vi har også virtuelle events så alle kan deltage.",
+      answer: "Vi holder events i København og Aarhus samt virtuelle webinarer så alle kan deltage.",
     },
     {
       question: "Kan jeg blive speaker på jeres events?",
-      answer: "Absolut! Vi er altid på udkig efter inspirerende speakers. Kontakt os med dit forslag og vi vender tilbage hurtigst muligt.",
+      answer: "Absolut! Vi er altid på udkig efter inspirerende speakers. Kontakt os på kontakt@ungeiværksættere.dk med dit forslag og vi vender tilbage hurtigst muligt.",
     },
     {
       question: "Hvordan kan min virksomhed blive sponsor?",
-      answer: "Vi samarbejder med virksomheder der støtter startup-økosystemet. Kontakt os for at høre om sponsormuligheder og partnerskaber.",
+      answer: "Vi samarbejder med virksomheder der støtter startup-økosystemet. Kontakt os på kontakt@ungeiværksættere.dk for at høre om sponsormuligheder og partnerskaber.",
     },
   ];
 
