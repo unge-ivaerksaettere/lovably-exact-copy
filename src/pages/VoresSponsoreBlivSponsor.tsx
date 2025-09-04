@@ -282,7 +282,7 @@ const VoresSponsoreBlivSponsor = () => {
             Samarbejde og presse
           </h2>
           <p className="font-inter text-lg text-muted-foreground mb-8">
-            For samarbejder og presse, kontakt Mikkel Ønborg
+            For samarbejder og presse, kontakt Mik Lønborg
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="outline" className="gap-2" asChild>
@@ -292,7 +292,7 @@ const VoresSponsoreBlivSponsor = () => {
               </a>
             </Button>
             <Button variant="outline" className="gap-2" asChild>
-              <a href="https://www.linkedin.com/in/mikkel-onborg/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/miklonborg/" target="_blank" rel="noopener noreferrer">
                 LinkedIn
               </a>
             </Button>
@@ -303,7 +303,7 @@ const VoresSponsoreBlivSponsor = () => {
       {/* Contact Cards */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             <Card className="text-center p-6">
               <Mail className="w-8 h-8 text-primary mx-auto mb-4" />
               <h3 className="font-dm-sans font-bold mb-2">Email</h3>
@@ -315,14 +315,7 @@ const VoresSponsoreBlivSponsor = () => {
               <Phone className="w-8 h-8 text-primary mx-auto mb-4" />
               <h3 className="font-dm-sans font-bold mb-2">Telefon</h3>
               <p className="font-inter text-sm text-muted-foreground">
-                +45 12 34 56 78
-              </p>
-            </Card>
-            <Card className="text-center p-6">
-              <Calendar className="w-8 h-8 text-primary mx-auto mb-4" />
-              <h3 className="font-dm-sans font-bold mb-2">Book Møde</h3>
-              <p className="font-inter text-sm text-muted-foreground">
-                Book et 30 min intro møde
+                +45 31 37 29 16
               </p>
             </Card>
           </div>
