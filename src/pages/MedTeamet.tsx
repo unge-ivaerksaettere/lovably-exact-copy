@@ -75,7 +75,7 @@ const MedTeamet = () => {
       title: "Event lead",
       description: "Med solid erhvervserfaring og et stort netværk er Thomas en nøglespiller i at skabe de fedeste events i Jylland – sammen med Nicolaj.",
       location: "Danmark",
-      linkedin: "https://www.linkedin.com/in/thomas-dahl-placeholder/" // TODO: Add real LinkedIn URL
+      linkedin: "https://www.linkedin.com/in/thomas-dahl-johansen-904851222/" // TODO: Add real LinkedIn URL
     },
     {
       id: 8,
@@ -85,7 +85,7 @@ const MedTeamet = () => {
       description: "Selma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
       location: "København",
       image: albertImage,
-      linkedin: "https://www.linkedin.com/in/selma-thaysen-placeholder/" // TODO: Add real LinkedIn URL
+      linkedin: "https://www.linkedin.com/in/selma-thaysen-b94684323/" // TODO: Add real LinkedIn URL
     },
     {
       id: 9,
@@ -94,7 +94,7 @@ const MedTeamet = () => {
       title: "Head of Photography", 
       description: "Albert er manden bag kameraet og skyder alt det fede content, du ser fra UI. Han fanger stemningen og gør vores events og platforme levende.",
       location: "København",
-      linkedin: "https://www.linkedin.com/in/albert-malling-placeholder/" // TODO: Add real LinkedIn URL
+      linkedin: "https://www.linkedin.com/in/albert-malling-nissen-138290289/" // TODO: Add real LinkedIn URL
     }
   ];
 
