@@ -48,8 +48,8 @@ const HeroSection = () => {
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">1000+</div>
-            <div className="text-sm text-white/80">Forskellige deltagere</div>
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">3000+</div>
+            <div className="text-sm text-white/80">deltagere</div>
           </div>
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold text-primary mb-2">25+</div>
