@@ -8,7 +8,7 @@ import { usePodcastEpisodes, useFeaturedPodcastEpisode, PodcastEpisode } from "@
 import podcastStudio from "@/assets/podcast-recording-1.jpg";
 // Import podcast images
 import podcastFazel from "@/assets/podcast-fazel.png";
-import podcastDoubles from "@/assets/podcast-doubles.png";
+import podcastDoubles from "@/assets/podcast-doubles-new.png";
 import podcastLouliving from "@/assets/podcast-louliving.png";
 import podcastDoner from "@/assets/podcast-doner.png";
 
