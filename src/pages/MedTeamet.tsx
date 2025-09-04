@@ -19,26 +19,6 @@ const MedTeamet = () => {
   const teamMembers = [
     {
       id: 1,
-      initials: "NG",
-      name: "Nicolaj Gram",
-      title: "Online Community Lead",
-      description: "Nicolaj er drivkraften bag vores online fællesskab og med til at skabe stærke rammer for events i Aarhus. Han brænder for at engagere medlemmerne og sørger for, at alle føler sig som en del af UI-familien.",
-      location: "Aarhus",
-      image: nicolajImage,
-      linkedin: "https://www.linkedin.com/in/nicolaj-gram-136178232/"
-    },
-    {
-      id: 2,
-      initials: "SA",
-      name: "Sejer Andersen", 
-      title: "Tech lead",
-      description: "Sejer er vores tech-hjerne. Han arbejder med at styrke Unge Iværksætteres digitale tilstedeværelse og udvikler løsninger, der gør det muligt for UI at vokse hurtigt og bæredygtigt.",
-      location: "København",
-      image: sejerImage,
-      linkedin: "https://www.linkedin.com/in/sejer-hornb%C3%A6k-dahl-andersen-703548222/"
-    },
-    {
-      id: 3,
       initials: "ML",
       name: "Mik Lønborg",
       title: "Formand", 
@@ -48,37 +28,7 @@ const MedTeamet = () => {
       linkedin: "https://www.linkedin.com/in/miklonborg/"
     },
     {
-      id: 4,
-      initials: "NO",
-      name: "Niklas Olesen",
-      title: "Podcast production lead",
-      description: "Niklas er stemmen bag Unge Iværksætteres podcast-univers. Han skaber samtaler, der både inspirerer og udfordrer, og bringer spændende historier fra iværksættermiljøet direkte til vores community. Med Niklas bag mikrofonen bliver der altid leveret indhold, man kan lære af – og lytte til igen og igen.",
-      location: "København", 
-      image: niklasImage,
-      linkedin: "https://www.linkedin.com/in/niklaskockolesen/"
-    },
-    {
-      id: 5,
-      initials: "FK",
-      name: "Freja Kjeldgaard",
-      title: "Head of content",
-      description: "Freja er vores kreative kraftcenter og hjernen bag alt det content, du ser fra Unge Iværksættere. Hun kombinerer skarp strategi med et øje for trends og sikrer, at vores indhold både inspirerer, engagerer og ser knivskarpt ud. Kort sagt: hun gør idéer til content, der rammer plet – hver gang.",
-      location: "København",
-      image: frejaImage,
-      linkedin: "https://www.linkedin.com/in/freja-kjeldgaard-498a10267/"
-    },
-    {
-      id: 6,
-      initials: "LJ", 
-      name: "Lauritz Jelsdal",
-      title: "Head of finance",
-      description: "Lauritz er manden med styr på tallene. Han sørger for, at økonomien spiller, og at alle vores projekter og events kan løbe rundt uden problemer.",
-      location: "København",
-      image: lauritzImage,
-      linkedin: "https://www.linkedin.com/in/lauritz-jelsdal-jensen/"
-    },
-    {
-      id: 7,
+      id: 2,
       initials: "TD",
       name: "Thomas Dahl",
       title: "Næstformand",
@@ -88,17 +38,57 @@ const MedTeamet = () => {
       linkedin: "https://www.linkedin.com/in/thomas-dahl-johansen-904851222/" // TODO: Add real LinkedIn URL
     },
     {
-      id: 8,
-      initials: "ST",
-      name: "Selma Thaysen", 
-      title: "Graphic designer",
-      description: "Selma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
+      id: 3,
+      initials: "FK",
+      name: "Freja Kjeldgaard",
+      title: "Head of content",
+      description: "Freja er vores kreative kraftcenter og hjernen bag alt det content, du ser fra Unge Iværksættere. Hun kombinerer skarp strategi med et øje for trends og sikrer, at vores indhold både inspirerer, engagerer og ser knivskarpt ud. Kort sagt: hun gør idéer til content, der rammer plet – hver gang.",
       location: "København",
-      image: selmaImage,
-      linkedin: "https://www.linkedin.com/in/selma-thaysen-b94684323/" // TODO: Add real LinkedIn URL
+      image: frejaImage,
+      linkedin: "https://www.linkedin.com/in/freja-kjeldgaard-498a10267/"
     },
     {
-      id: 9,
+      id: 4,
+      initials: "LJ", 
+      name: "Lauritz Jelsdal",
+      title: "Head of finance",
+      description: "Lauritz er manden med styr på tallene. Han sørger for, at økonomien spiller, og at alle vores projekter og events kan løbe rundt uden problemer.",
+      location: "København",
+      image: lauritzImage,
+      linkedin: "https://www.linkedin.com/in/lauritz-jelsdal-jensen/"
+    },
+    {
+      id: 5,
+      initials: "SA",
+      name: "Sejer Andersen", 
+      title: "Tech lead",
+      description: "Sejer er vores tech-hjerne. Han arbejder med at styrke Unge Iværksætteres digitale tilstedeværelse og udvikler løsninger, der gør det muligt for UI at vokse hurtigt og bæredygtigt.",
+      location: "København",
+      image: sejerImage,
+      linkedin: "https://www.linkedin.com/in/sejer-hornb%C3%A6k-dahl-andersen-703548222/"
+    },
+    {
+      id: 6,
+      initials: "NG",
+      name: "Nicolaj Gram",
+      title: "Online Community Lead",
+      description: "Nicolaj er drivkraften bag vores online fællesskab og med til at skabe stærke rammer for events i Aarhus. Han brænder for at engagere medlemmerne og sørger for, at alle føler sig som en del af UI-familien.",
+      location: "Aarhus",
+      image: nicolajImage,
+      linkedin: "https://www.linkedin.com/in/nicolaj-gram-136178232/"
+    },
+    {
+      id: 7,
+      initials: "NO",
+      name: "Niklas Olesen",
+      title: "Podcast production lead",
+      description: "Niklas er stemmen bag Unge Iværksætteres podcast-univers. Han skaber samtaler, der både inspirerer og udfordrer, og bringer spændende historier fra iværksættermiljøet direkte til vores community. Med Niklas bag mikrofonen bliver der altid leveret indhold, man kan lære af – og lytte til igen og igen.",
+      location: "København", 
+      image: niklasImage,
+      linkedin: "https://www.linkedin.com/in/niklaskockolesen/"
+    },
+    {
+      id: 8,
       initials: "AM",
       name: "Albert Malling",
       title: "Content Specialist", 
@@ -106,6 +96,16 @@ const MedTeamet = () => {
       location: "København",
       image: albertImage,
       linkedin: "https://www.linkedin.com/in/albert-malling-nissen-138290289/" // TODO: Add real LinkedIn URL
+    },
+    {
+      id: 9,
+      initials: "ST",
+      name: "Selma Thaysen", 
+      title: "Graphic designer",
+      description: "Selma er vores visuelle tryllekunstner. Hun designer alt fra grafik til identitet, og sikrer, at UI altid fremstår kreativt og professionelt.",
+      location: "København",
+      image: selmaImage,
+      linkedin: "https://www.linkedin.com/in/selma-thaysen-b94684323/" // TODO: Add real LinkedIn URL
     }
   ];
 

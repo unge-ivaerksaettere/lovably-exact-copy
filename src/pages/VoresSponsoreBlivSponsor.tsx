@@ -100,19 +100,150 @@ const VoresSponsoreBlivSponsor = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-anton font-bold text-foreground mb-6">
-            Vi søger sponsorer til de næste 12 måneder
+      <section className="py-24 md:py-32 relative overflow-hidden">
+        {/* Enhanced background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-primary/20">
+            <span className="text-2xl">🤝</span>
+            <span className="text-sm font-dm-sans font-bold text-primary">Partnership Muligheder</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-anton font-bold text-foreground mb-8 leading-tight">
+            Bliv en del af 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"> Danmarks</span>
+            <br />
+            største iværksætterfællesskab
           </h1>
-          <p className="text-xl font-inter text-muted-foreground max-w-3xl mx-auto">
-            Alle priser er engangsbetaling for 12 måneders sponsorat.
+          
+          <p className="text-xl md:text-2xl font-inter text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
+            Partner med os og få adgang til <span className="text-primary font-bold">3000+ unge talenter</span> der former fremtidens startup-økosystem
           </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={() => window.open('mailto:kontakt@ungeivaerksaettere.dk?subject=Partnership%20Inquiry', '_blank')}
+            >
+              🚀 Start Partnership
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="font-dm-sans font-bold text-lg px-8 py-4 border-2 hover:bg-primary/5"
+            >
+              📊 Se Vores Impact
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Sponsor Packages */}
-      
+      <section className="py-20 bg-background relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-secondary/3" />
+        <div className="absolute top-1/4 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -left-32 w-64 h-64 bg-secondary/10 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-anton font-bold text-foreground mb-6">
+              Sponsorpakker
+            </h2>
+            <p className="text-xl font-inter text-muted-foreground max-w-3xl mx-auto">
+              Vælg den pakke der passer til jeres virksomhed og mål
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {sponsorPackages.map((pkg, index) => (
+              <Card 
+                key={index} 
+                className={`relative group transition-all duration-500 hover:scale-105 hover:shadow-2xl border-2 ${
+                  pkg.isPopular 
+                    ? 'border-primary bg-gradient-to-br from-primary/5 via-background to-primary/10 shadow-lg' 
+                    : 'border-border hover:border-primary/30 bg-background/80 backdrop-blur-sm'
+                }`}
+              >
+                {pkg.isPopular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-primary text-primary-foreground px-4 py-2 text-sm font-bold shadow-lg">
+                      🔥 Mest Popular
+                    </Badge>
+                  </div>
+                )}
+                
+                <CardHeader className="text-center pb-4">
+                  <div className="space-y-2">
+                    <CardTitle className="text-2xl font-anton text-foreground flex items-center justify-center gap-2">
+                      {pkg.title}
+                      {pkg.quantity && (
+                        <span className="text-sm text-muted-foreground font-inter">
+                          {pkg.quantity}
+                        </span>
+                      )}
+                    </CardTitle>
+                    <div className="text-3xl font-anton font-bold text-primary">
+                      {pkg.price}
+                    </div>
+                    <CardDescription className="text-base font-inter">
+                      {pkg.description}
+                    </CardDescription>
+                  </div>
+                </CardHeader>
+
+                <CardContent className="pt-0">
+                  <ul className="space-y-3 mb-8">
+                    {pkg.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3 font-inter text-sm">
+                        <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+
+                <CardFooter className="pt-0">
+                  <Button 
+                    className={`w-full font-dm-sans font-bold text-base py-6 transition-all duration-300 ${
+                      pkg.isPopular 
+                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl' 
+                        : 'bg-secondary hover:bg-secondary/90 text-secondary-foreground'
+                    }`}
+                    onClick={() => window.open('mailto:kontakt@ungeivaerksaettere.dk?subject=Sponsor%20Inquiry', '_blank')}
+                  >
+                    {pkg.buttonText}
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+          
+          {/* Stats row */}
+          <div className="mt-20 grid md:grid-cols-4 gap-8 text-center">
+            <div className="space-y-2">
+              <div className="text-3xl md:text-4xl font-anton font-bold text-primary">3000+</div>
+              <div className="text-sm font-inter text-muted-foreground">Deltagere</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl md:text-4xl font-anton font-bold text-primary">50.000+</div>
+              <div className="text-sm font-inter text-muted-foreground">Podcast Downloads</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl md:text-4xl font-anton font-bold text-primary">30+</div>
+              <div className="text-sm font-inter text-muted-foreground">Events Yearly</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl md:text-4xl font-anton font-bold text-primary">2</div>
+              <div className="text-sm font-inter text-muted-foreground">Byer</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Custom Solutions */}
       <section className="py-12 bg-muted/30">
