@@ -13,17 +13,9 @@ const NewSponsors = () => {
     {
       name: "Billy",
       logo: billyLogo,
-      type: "🏢 Partner Sponsor",
+      type: "🏢 Hovedsponsor",
       description: "Billy støtter danske iværksættere med deres intelligente økonomisystem og hjælper dem med at fokusere på det, de elsker mest.",
       website: "https://billy.dk",
-      isMain: true
-    },
-    {
-      name: "Ageras", 
-      logo: agerasLogo,
-      type: "🎙️ Podcast Sponsor", 
-      description: "Ageras forbinder virksomheder med de rette rådgivere og støtter startup-økosystemet.",
-      website: "https://ageras.com/dk",
       isMain: true
     }
   ];
@@ -32,8 +24,7 @@ const NewSponsors = () => {
     {
       name: "Jakob H.",
       image: jakobProfile,
-      type: "🤝 Støtte Sponsor",
-      quote: "Jeg støtter Unge Iværksættere fordi jeg tror på at investere i Danmarks næste generation af iværksættere."
+      type: "🤝 Støtte Sponsor"
     }
   ];
 
@@ -61,7 +52,7 @@ const NewSponsors = () => {
           </h1>
           
           <p className="text-xl md:text-2xl font-inter text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
-            Tak til vores fantastiske sponsorer der gør det muligt at skabe værdi for <span className="text-primary font-bold">3000+ unge iværksættere</span>
+            Tak til vores fantastiske hovedsponsor <span className="text-primary font-bold">Billy</span> der hjælper danske iværksættere med at fokusere på det, de elsker mest og støtter vores <span className="text-primary font-bold">3000+ unge iværksættere</span>
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -82,14 +73,14 @@ const NewSponsors = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-anton font-bold text-foreground mb-6">
-              Vores Hovedsponsorer
+              Vores Hovedsponsor
             </h2>
             <p className="text-xl font-inter text-muted-foreground max-w-3xl mx-auto">
-              Virksomheder der investerer i Danmarks fremtidige iværksættere
+              Virksomheden der investerer i Danmarks fremtidige iværksættere
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             {sponsors.map((sponsor, index) => (
               <Card 
                 key={index} 
@@ -158,12 +149,9 @@ const NewSponsors = () => {
                     <h4 className="text-2xl font-anton font-bold mb-2 text-foreground">
                       {sponsor.name}
                     </h4>
-                    <Badge variant="outline" className="mb-4 border-primary/30 text-primary">
+                    <Badge variant="outline" className="border-primary/30 text-primary">
                       {sponsor.type}
                     </Badge>
-                    <p className="font-inter text-muted-foreground italic leading-relaxed">
-                      "{sponsor.quote}"
-                    </p>
                   </div>
                 </CardContent>
               </Card>
