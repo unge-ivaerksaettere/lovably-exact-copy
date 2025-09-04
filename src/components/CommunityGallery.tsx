@@ -6,6 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import podcastRecording1 from "@/assets/podcast-recording-1.jpg";
 import eventPresentation1 from "@/assets/event-presentation-1.jpg";
 import communityNetworking1 from "@/assets/community-networking-1.jpg";
@@ -70,6 +71,7 @@ const CommunityGallery = () => {
             align: "start",
             loop: true,
           }}
+          plugins={[Autoplay({ delay: 3000 })]}
           className="max-w-6xl mx-auto"
         >
           <CarouselContent>
