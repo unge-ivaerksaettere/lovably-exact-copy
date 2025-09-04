@@ -14,6 +14,11 @@ interface NewsletterPopupProps {
 const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [subscriptionTypes, setSubscriptionTypes] = useState({
+    events: true,
+    promotions: false,
+    general: true
+  });
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,7 +37,10 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
 
     try {
       const { data, error } = await supabase.functions.invoke('mailerlite-subscribe', {
-        body: { email }
+        body: { 
+          email,
+          subscriptionTypes
+        }
       });
 
       if (error) {
@@ -92,9 +100,45 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
               disabled={isLoading}
               className="bg-white border-0 text-foreground placeholder:text-muted-foreground font-inter"
             />
+            
+            <div className="space-y-3">
+              <p className="text-white/90 text-sm font-inter">Hvad vil du modtage?</p>
+              <div className="space-y-2">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={subscriptionTypes.events}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events: e.target.checked}))}
+                    className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
+                  />
+                  <span className="text-white/90 text-sm font-inter">📅 Event invitationer</span>
+                </label>
+                
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={subscriptionTypes.promotions}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, promotions: e.target.checked}))}
+                    className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
+                  />
+                  <span className="text-white/90 text-sm font-inter">🎯 Særlige tilbud</span>
+                </label>
+                
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={subscriptionTypes.general}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, general: e.target.checked}))}
+                    className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
+                  />
+                  <span className="text-white/90 text-sm font-inter">📰 Generelle nyheder</span>
+                </label>
+              </div>
+            </div>
+            
             <Button 
               type="submit" 
-              disabled={isLoading}
+              disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.promotions && !subscriptionTypes.general)}
               className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold py-3"
             >
               {isLoading ? "Tilmelder..." : "Tilmeld mig gratis!"}

@@ -56,9 +56,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <img src={uiLogo} alt="Unge Iværksættere" className="w-8 h-8" />
-              <span className="font-dm-sans font-bold text-lg">Unge Iværksættere</span>
+            <div className="flex items-center">
+              <img src={uiLogo} alt="Unge Iværksættere" className="h-12 w-auto object-contain" />
             </div>
             <p className="text-background/80 font-inter text-sm">
               For ofte bliver unges idéer ikke til virkelighed, derfor samler vi unge iværksættere.
