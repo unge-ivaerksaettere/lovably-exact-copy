@@ -1,5 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import podcastRecording1 from "@/assets/podcast-recording-1.jpg";
 import eventPresentation1 from "@/assets/event-presentation-1.jpg";
 import communityNetworking1 from "@/assets/community-networking-1.jpg";
@@ -59,27 +65,32 @@ const CommunityGallery = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryImages.map((image, index) => (
-            <Card key={index} className="group overflow-hidden hover:shadow-lg transition-all duration-300">
-              <CardContent className="p-0">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                    <div className="p-4 text-white">
-                      <h3 className="font-semibold">{image.title}</h3>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="max-w-6xl mx-auto"
+        >
+          <CarouselContent>
+            {galleryImages.map((image, index) => (
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                <Card className="overflow-hidden">
+                  <CardContent className="p-0">
+                    <img 
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-64 object-cover"
+                      loading="lazy"
+                    />
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </section>
   );
