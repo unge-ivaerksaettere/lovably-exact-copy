@@ -68,9 +68,6 @@ const SpeakersSection = () => {
               Entrepreneur og podcaster der har bygget Handyhand til 250K+ brugere og 300K+ tasks. Specialist i at forbinde mennesker gennem innovative digitale løsninger.
             </p>
             
-            <p className="font-medium mb-4">
-              <strong>Seneste Event:</strong> Scaling Digital Platforms
-            </p>
             
             <Button>Se Event Replay</Button>
           </div>
