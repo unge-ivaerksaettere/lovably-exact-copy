@@ -12,7 +12,6 @@ import { Badge } from "@/components/ui/badge";
 import { Check, Mail, Phone, Calendar } from "lucide-react";
 import agerasLogo from "@/assets/ageras-logo-real.png";
 import jakobProfile from "@/assets/jakob-h-profile.jpg";
-
 const VoresSponsoreBlivSponsor = () => {
   const [formData, setFormData] = useState({
     companyName: "",
@@ -24,105 +23,80 @@ const VoresSponsoreBlivSponsor = () => {
     startDate: "",
     message: ""
   });
-
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
   };
-
-  const sponsorPackages = [
-    {
-      title: "Partner",
-      quantity: "(3 stk)",
-      price: "15.000 kr",
-      description: "Få eksponering til 12 events og byg relationer med unge iværksættere",
-      isPopular: true,
-      features: [
-        "Eksponering til 12 events (slides, roll-ups og shoutout fra scenen)",
-        "Mulighed for at dele egne tilbud med deltagerne",
-        "Eksponering på sociale medier",
-        "PR- og kampagnesamarbejde",
-        "Webinarer i vores online forum"
-      ],
-      buttonText: "Vælg 🏢 Partner"
-    },
-    {
-      title: "🎙️ Podcast-sponsor",
-      quantity: "(2 stk)",
-      price: "7.500 kr",
-      description: "Få eksponering gennem vores populære podcast med 60.000+ downloads",
-      features: [
-        '"I samarbejde med [jeres navn]" i starten af 12 episoder',
-        "Et reklamespot midden af 12 episoder"
-      ],
-      buttonText: "Vælg 🎙️ Podcast-sponsor"
-    },
-    {
-      title: "🤝 Støttesponsor",
-      price: "2.500 kr",
-      description: "Vis jeres støtte til startup-økosystemet og få brand exposure",
-      features: [
-        "Navn på takkeliste på vores hjemmeside"
-      ],
-      buttonText: "Vælg 🤝 Støttesponsor"
-    }
-  ];
-
-  const partners = [
-    { name: "Ageras", logo: "AG", website: "https://www.ageras.com/dk" },
-    { name: "Jakob H.", logo: "JH", website: "https://www.linkedin.com/in/jakobh/?originalSubdomain=dk" }
-  ];
-
-  const testimonials = [
-    {
-      name: "Ageras Team",
-      role: "Partnership, Ageras",
-      company: "Ageras",
-      avatar: "AG",
-      quote: "Vores samarbejde med Unge Iværksættere giver os fantastisk eksponering til Danmarks mest lovende unge iværksættere og talenter."
-    },
-    {
-      name: "Jakob H.",
-      role: "Støttesponsor",
-      company: "Privat",
-      avatar: "JH",
-      quote: "Jeg støtter Unge Iværksættere fordi jeg tror på at investere i Danmarks næste generation af iværksættere."
-    }
-  ];
-
-  const faqs = [
-    {
-      question: "Hvad er Unge Iværksættere?",
-      answer: "Danmarks største frivillige fællesskab for unge iværksættere med henblik på at gøre iværksætteri mere tilgængeligt og give fremtidens iværksættere de bedste kort på hånden.",
-    },
-    {
-      question: "Hvem kan deltage i jeres events?",
-      answer: "Alle interesserede i iværksætteri kan deltage i vores events - både erfarne iværksættere og dem der overvejer at starte deres første startup.",
-    },
-    {
-      question: "Koster det noget at deltage?",
-      answer: "Alle vores events er gratis for deltagerne. Vi tror på at gøre iværksætteri tilgængeligt for alle.",
-    },
-    {
-      question: "Hvor afholdes jeres events?",
-      answer: "Vi holder events i København og Aarhus samt virtuelle webinarer så alle kan deltage.",
-    },
-    {
-      question: "Kan jeg blive speaker på jeres events?",
-      answer: "Absolut! Vi er altid på udkig efter inspirerende speakers. Kontakt os på kontakt@ungeiværksættere.dk med dit forslag og vi vender tilbage hurtigst muligt.",
-    },
-    {
-      question: "Hvordan kan min virksomhed blive sponsor?",
-      answer: "Vi samarbejder med virksomheder der støtter startup-økosystemet. Kontakt os på kontakt@ungeiværksættere.dk for at høre om sponsormuligheder og partnerskaber.",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const sponsorPackages = [{
+    title: "Partner",
+    quantity: "(3 stk)",
+    price: "15.000 kr",
+    description: "Få eksponering til 12 events og byg relationer med unge iværksættere",
+    isPopular: true,
+    features: ["Eksponering til 12 events (slides, roll-ups og shoutout fra scenen)", "Mulighed for at dele egne tilbud med deltagerne", "Eksponering på sociale medier", "PR- og kampagnesamarbejde", "Webinarer i vores online forum"],
+    buttonText: "Vælg 🏢 Partner"
+  }, {
+    title: "🎙️ Podcast-sponsor",
+    quantity: "(2 stk)",
+    price: "7.500 kr",
+    description: "Få eksponering gennem vores populære podcast med 60.000+ downloads",
+    features: ['"I samarbejde med [jeres navn]" i starten af 12 episoder', "Et reklamespot midden af 12 episoder"],
+    buttonText: "Vælg 🎙️ Podcast-sponsor"
+  }, {
+    title: "🤝 Støttesponsor",
+    price: "2.500 kr",
+    description: "Vis jeres støtte til startup-økosystemet og få brand exposure",
+    features: ["Navn på takkeliste på vores hjemmeside"],
+    buttonText: "Vælg 🤝 Støttesponsor"
+  }];
+  const partners = [{
+    name: "Ageras",
+    logo: "AG",
+    website: "https://www.ageras.com/dk"
+  }, {
+    name: "Jakob H.",
+    logo: "JH",
+    website: "https://www.linkedin.com/in/jakobh/?originalSubdomain=dk"
+  }];
+  const testimonials = [{
+    name: "Ageras Team",
+    role: "Partnership, Ageras",
+    company: "Ageras",
+    avatar: "AG",
+    quote: "Vores samarbejde med Unge Iværksættere giver os fantastisk eksponering til Danmarks mest lovende unge iværksættere og talenter."
+  }, {
+    name: "Jakob H.",
+    role: "Støttesponsor",
+    company: "Privat",
+    avatar: "JH",
+    quote: "Jeg støtter Unge Iværksættere fordi jeg tror på at investere i Danmarks næste generation af iværksættere."
+  }];
+  const faqs = [{
+    question: "Hvad er Unge Iværksættere?",
+    answer: "Danmarks største frivillige fællesskab for unge iværksættere med henblik på at gøre iværksætteri mere tilgængeligt og give fremtidens iværksættere de bedste kort på hånden."
+  }, {
+    question: "Hvem kan deltage i jeres events?",
+    answer: "Alle interesserede i iværksætteri kan deltage i vores events - både erfarne iværksættere og dem der overvejer at starte deres første startup."
+  }, {
+    question: "Koster det noget at deltage?",
+    answer: "Alle vores events er gratis for deltagerne. Vi tror på at gøre iværksætteri tilgængeligt for alle."
+  }, {
+    question: "Hvor afholdes jeres events?",
+    answer: "Vi holder events i København og Aarhus samt virtuelle webinarer så alle kan deltage."
+  }, {
+    question: "Kan jeg blive speaker på jeres events?",
+    answer: "Absolut! Vi er altid på udkig efter inspirerende speakers. Kontakt os på kontakt@ungeiværksættere.dk med dit forslag og vi vender tilbage hurtigst muligt."
+  }, {
+    question: "Hvordan kan min virksomhed blive sponsor?",
+    answer: "Vi samarbejder med virksomheder der støtter startup-økosystemet. Kontakt os på kontakt@ungeiværksættere.dk for at høre om sponsormuligheder og partnerskaber."
+  }];
+  return <div className="min-h-screen">
       <Header />
       
       {/* Hero Section */}
@@ -138,47 +112,7 @@ const VoresSponsoreBlivSponsor = () => {
       </section>
 
       {/* Sponsor Packages */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {sponsorPackages.map((pkg, index) => (
-              <Card key={index} className={`relative ${pkg.isPopular ? 'border-primary shadow-lg' : ''}`}>
-                {pkg.isPopular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-primary text-primary-foreground px-4 py-1">
-                      Mest Populær
-                    </Badge>
-                  </div>
-                )}
-                <CardHeader className="text-center pb-4">
-                  <CardTitle className="text-2xl font-dm-sans">
-                    {pkg.title} {pkg.quantity}
-                  </CardTitle>
-                  <div className="text-4xl font-anton font-bold text-primary mb-2">
-                    {pkg.price}
-                  </div>
-                  <CardDescription className="font-inter">
-                    {pkg.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {pkg.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="font-inter text-sm">{feature}</span>
-                    </div>
-                  ))}
-                </CardContent>
-                <CardFooter>
-                  <Button className="w-full" variant={pkg.isPopular ? "default" : "outline"}>
-                    {pkg.buttonText}
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Custom Solutions */}
       <section className="py-12 bg-muted/30">
@@ -241,7 +175,7 @@ const VoresSponsoreBlivSponsor = () => {
           </div>
 
           {/* Partner Testimonials - COMMENTED OUT FOR FUTURE USE 
-          <div className="mb-16">
+           <div className="mb-16">
             <h3 className="text-3xl font-anton font-bold text-foreground text-center mb-12">
               Hvad siger vores partnere?
             </h3>
@@ -270,8 +204,8 @@ const VoresSponsoreBlivSponsor = () => {
                 </Card>
               ))}
             </div>
-          </div>
-          */}
+           </div>
+           */}
         </div>
       </section>
 
@@ -314,9 +248,7 @@ const VoresSponsoreBlivSponsor = () => {
             <Card className="text-center p-6">
               <Phone className="w-8 h-8 text-primary mx-auto mb-4" />
               <h3 className="font-dm-sans font-bold mb-2">Telefon</h3>
-              <p className="font-inter text-sm text-muted-foreground">
-                +45 31 37 29 16
-              </p>
+              <p className="font-inter text-sm text-muted-foreground">+45 21 96 62 04</p>
             </Card>
           </div>
         </div>
@@ -336,24 +268,20 @@ const VoresSponsoreBlivSponsor = () => {
           
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="bg-background rounded-lg border px-6">
+              {faqs.map((faq, index) => <AccordionItem key={index} value={`item-${index}`} className="bg-background rounded-lg border px-6">
                   <AccordionTrigger className="font-dm-sans font-bold text-left hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="font-inter text-muted-foreground">
                     {faq.answer}
                   </AccordionContent>
-                </AccordionItem>
-              ))}
+                </AccordionItem>)}
             </Accordion>
           </div>
         </div>
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default VoresSponsoreBlivSponsor;
