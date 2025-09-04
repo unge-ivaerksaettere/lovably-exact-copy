@@ -6,38 +6,38 @@ import uiLogo from "@/assets/ui-logo.png";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!email) {
       toast({
         title: "Fejl",
         description: "Indtast venligst din email adresse",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
     setIsLoading(true);
-
     try {
-      const { data, error } = await supabase.functions.invoke('mailerlite-subscribe', {
-        body: { email }
+      const {
+        data,
+        error
+      } = await supabase.functions.invoke('mailerlite-subscribe', {
+        body: {
+          email
+        }
       });
-
       if (error) {
         throw error;
       }
-
       toast({
         title: "Tak!",
-        description: "Du er nu tilmeldt vores newsletter!",
+        description: "Du er nu tilmeldt vores newsletter!"
       });
       setEmail("");
     } catch (error: any) {
@@ -45,14 +45,13 @@ const Footer = () => {
       toast({
         title: "Fejl",
         description: error.message || "Der skete en fejl. Prøv igen senere.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsLoading(false);
     }
   };
-  return (
-    <footer className="bg-foreground text-background">
+  return <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo and Description */}
@@ -67,17 +66,9 @@ const Footer = () => {
             
             {/* Newsletter Signup */}
             <div className="space-y-3">
-              <h4 className="font-dm-sans font-bold text-background">Tilmeld Newsletter</h4>
+              <h4 className="font-dm-sans font-bold text-background">Tilmeld nyhedsbrev</h4>
               <form onSubmit={handleSubmit} className="flex gap-2">
-                <Input 
-                  type="email"
-                  placeholder="Din email" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={isLoading}
-                  className="bg-background/10 border-background/20 text-background placeholder:text-background/60 font-inter"
-                />
+                <Input type="email" placeholder="Din email" value={email} onChange={e => setEmail(e.target.value)} required disabled={isLoading} className="bg-background/10 border-background/20 text-background placeholder:text-background/60 font-inter" />
                 <Button type="submit" disabled={isLoading} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
                   <Mail className="w-4 h-4" />
                 </Button>
@@ -86,20 +77,10 @@ const Footer = () => {
             
             {/* Social Media */}
             <div className="flex gap-4">
-              <Button 
-                size="icon" 
-                variant="ghost" 
-                className="text-background/80 hover:text-background hover:bg-background/10"
-                onClick={() => window.open('https://www.instagram.com/ungeivaerksaettere/', '_blank')}
-              >
+              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10" onClick={() => window.open('https://www.instagram.com/ungeivaerksaettere/', '_blank')}>
                 <Instagram className="w-5 h-5" />
               </Button>
-              <Button 
-                size="icon" 
-                variant="ghost" 
-                className="text-background/80 hover:text-background hover:bg-background/10"
-                onClick={() => window.open('https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true', '_blank')}
-              >
+              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10" onClick={() => window.open('https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true', '_blank')}>
                 <Linkedin className="w-5 h-5" />
               </Button>
             </div>
@@ -212,8 +193,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
