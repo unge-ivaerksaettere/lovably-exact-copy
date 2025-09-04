@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import uiLogo from "@/assets/ui-logo.png";
+import uiLogo from "@/assets/new-logo.png";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
