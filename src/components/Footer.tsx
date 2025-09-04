@@ -141,7 +141,7 @@ const Footer = () => {
               <Phone className="w-5 h-5 text-background/60" />
               <div className="font-inter text-sm">
                 <div className="text-background/60">Telefon</div>
-                <div className="text-background">+45 31372916</div>
+                <div className="text-background">21 96 62 04</div>
               </div>
             </div>
             
