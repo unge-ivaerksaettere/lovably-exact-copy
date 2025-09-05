@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mail } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import billyLogo from "@/assets/billy-logo.png";
+import billyLogo from "@/assets/billy-logo-new.png";
 import agerasLogo from "@/assets/ageras-logo-real.png";
 import jakobProfile from "@/assets/jakob-profile-new.jpeg";
 
@@ -22,6 +22,13 @@ const VoresSponsoreBlivSponsor = () => {
   ];
 
   const supportSponsors = [
+    {
+      name: "Billy",
+      logo: billyLogo,
+      type: "🤝 Støtte Sponsor",
+      description: "Vores primære partner der støtter hele vores mission",
+      website: "https://billy.dk"
+    },
     {
       name: "Jakob H.",
       image: jakobProfile,
@@ -157,30 +164,64 @@ const VoresSponsoreBlivSponsor = () => {
               Støttesponsorer
             </h3>
             <p className="text-lg font-inter text-muted-foreground mb-8">
-              Fantastiske mennesker der tror på vores mission
+              Vores partnere der støtter vores mission
             </p>
           </div>
           
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
             {supportSponsors.map((sponsor, index) => (
-              <Card key={index} className="p-8 bg-background/80 backdrop-blur-sm border border-border/50">
-                <CardContent className="flex items-center gap-6 p-0">
-                  <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
-                    <img 
-                      src={sponsor.image} 
-                      alt={`${sponsor.name} profil`} 
-                      className="w-full h-full object-cover" 
-                    />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <h4 className="text-2xl font-anton font-bold mb-2 text-foreground">
-                      {sponsor.name}
-                    </h4>
-                    <Badge variant="outline" className="border-primary/30 text-primary">
-                      {sponsor.type}
-                    </Badge>
-                  </div>
+              <Card key={index} className="p-6 bg-background/80 backdrop-blur-sm border border-border/50 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-0">
+                  {sponsor.logo ? (
+                    <div className="text-center">
+                      <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center overflow-hidden rounded-lg bg-white/50 backdrop-blur-sm">
+                        <img 
+                          src={sponsor.logo} 
+                          alt={`${sponsor.name} logo`} 
+                          className="w-full h-full object-contain p-2" 
+                        />
+                      </div>
+                      <h4 className="text-xl font-anton font-bold mb-2 text-foreground">
+                        {sponsor.name}
+                      </h4>
+                      <Badge variant="outline" className="border-primary/30 text-primary mb-3">
+                        {sponsor.type}
+                      </Badge>
+                      {sponsor.description && (
+                        <p className="font-inter text-sm text-muted-foreground mb-4">
+                          {sponsor.description}
+                        </p>
+                      )}
+                      {sponsor.website && (
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          className="border-primary/30 hover:bg-primary/10 font-dm-sans font-bold"
+                          onClick={() => window.open(sponsor.website, '_blank')}
+                        >
+                          Besøg {sponsor.name}
+                        </Button>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                        <img 
+                          src={sponsor.image} 
+                          alt={`${sponsor.name} profil`} 
+                          className="w-full h-full object-cover" 
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-anton font-bold mb-1 text-foreground">
+                          {sponsor.name}
+                        </h4>
+                        <Badge variant="outline" className="border-primary/30 text-primary">
+                          {sponsor.type}
+                        </Badge>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}
