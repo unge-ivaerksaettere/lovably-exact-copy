@@ -20,9 +20,6 @@ const Header = () => {
 
   // Always visible pages
   const baseNavigation = [{
-    name: 'Events',
-    href: '/events'
-  }, {
     name: 'Podcast',
     href: '/podcast'
   }];
