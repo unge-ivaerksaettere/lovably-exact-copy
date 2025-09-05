@@ -40,9 +40,9 @@ const SpeakersSection = () => {
   }, {
     initials: "SV",
     name: "Sophus Vinterberg",
-    title: "Franchise Owner, Sjölin Copenhagen",
-    company: "Sjölin",
-    description: "Entreprenør og franchisetager af Sjölin København. Specialist i skræddersyet mode og forretningsudvikling inden for detailhandel.",
+    title: "Founder & CEO, House of Vinterberg",
+    company: "House of Vinterberg",
+    description: "Grundlægger og CEO af House of Vinterberg. Specialist i skandinavisk stil og skræddersyet mode til ledere og iværksættere.",
     image: sophusProfileImg
   }, {
     initials: "SA",
