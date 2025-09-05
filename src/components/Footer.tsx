@@ -151,13 +151,15 @@ const Footer = () => {
               <Link to="/" className="block text-background/80 hover:text-background transition-colors">
                 Forside
               </Link>
-              <Link to="/events" className="block text-background/80 hover:text-background transition-colors">
-                Events
+              <Link to="/med-teamet" className="block text-background/80 hover:text-background transition-colors">
+                Mød Teamet
+              </Link>
+              <Link to="/vores-sponsorer" className="block text-background/80 hover:text-background transition-colors">
+                Vores Sponsorer
               </Link>
               <Link to="/podcast" className="block text-background/80 hover:text-background transition-colors">
                 Podcast
               </Link>
-              
             </nav>
           </div>
 
@@ -165,14 +167,11 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-dm-sans font-bold text-background">LINKS</h4>
             <nav className="space-y-3 font-inter text-sm">
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
-                Podcast
-              </a>
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
-                Facebook
-              </a>
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
+              <a href="https://www.instagram.com/ungeivaerksaettere/" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
                 Instagram
+              </a>
+              <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
+                LinkedIn
               </a>
             </nav>
           </div>
