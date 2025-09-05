@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Mic, Instagram, Linkedin } from "lucide-react";
+import { Mic, Calendar, Instagram, Linkedin } from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
 import heroImage from "@/assets/event-audience-1.jpg";
 const HeroSection = () => {
@@ -26,11 +26,17 @@ const HeroSection = () => {
           Vores events er stedet, hvor unge iværksættere mødes. Kom og få nye ideer, mød andre iværksættere og få inspiration fra erfarne iværksættere. Gratis deltagelse!
         </p>
         
-        <div className="flex justify-center mb-16 px-2">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 px-2">
           <a href="https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk?si=feba03d657fa48d3" target="_blank" rel="noopener noreferrer">
             <Button variant="default" size="lg" className="gap-2 w-full sm:w-auto">
               <Mic className="w-4 h-4" />
               Lyt til Podcast
+            </Button>
+          </a>
+          <a href="https://lu.ma/h3mxyxhi" target="_blank" rel="noopener noreferrer">
+            <Button variant="hero" size="lg" className="gap-2 w-full sm:w-auto">
+              <Calendar className="w-4 h-4" />
+              Se Tidligere Events
             </Button>
           </a>
         </div>
