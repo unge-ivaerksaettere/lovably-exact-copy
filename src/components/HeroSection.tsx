@@ -13,7 +13,7 @@ const HeroSection = () => {
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 md:px-4 text-center text-white">
-        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
+        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mt-8 sm:mt-0 mb-12 sm:mb-8">
           <span className="text-xl sm:text-2xl">🚀</span>
           <span className="text-xs sm:text-sm font-dm-sans font-bold">Danmarks største frivillige fællesskab for unge iværksættere</span>
         </div>
@@ -58,7 +58,7 @@ const HeroSection = () => {
         </div>
         
         {/* Social Links */}
-        <div className="flex items-center justify-center gap-4 sm:gap-6 px-2">
+        <div className="flex items-center justify-center gap-4 sm:gap-6 px-2 mb-8 sm:mb-0">
           <span className="text-xs sm:text-sm text-white/80 font-inter">Følg os:</span>
           <div className="flex gap-3 sm:gap-4">
             <a href="https://www.instagram.com/ungeivaerksaettere/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
