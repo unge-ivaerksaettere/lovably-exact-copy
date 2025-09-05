@@ -52,30 +52,30 @@ const SpeakersSection = () => {
     description: "Entrepreneur og podcaster der har bygget Handyhand til 250K+ brugere og 300K+ tasks. Specialist i at forbinde mennesker gennem innovative digitale løsninger.",
     image: saxoProfileImg
   }];
-  return <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-anton font-bold mb-4">Featured Speakers</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-inter">
+  return <section className="py-16 sm:py-20 bg-background">
+      <div className="container mx-auto px-6 md:px-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-anton font-bold mb-4 px-2">Featured Speakers</h2>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto font-inter px-2">
             Lær af Danmarks mest succesrige iværksættere og investorer på vores events.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {speakers.map((speaker, index) => <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4 mb-4">
-                  <Avatar className="w-14 h-14 ring-1 ring-border">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <Avatar className="w-12 h-12 sm:w-14 sm:h-14 ring-1 ring-border">
                     <AvatarImage src={speaker.image} alt={speaker.name} />
                     <AvatarFallback>{speaker.initials}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1">
-                    <h4 className="font-semibold">{speaker.name}</h4>
-                    <p className="text-sm text-muted-foreground">{speaker.title}</p>
+                    <h4 className="text-sm sm:text-base font-semibold">{speaker.name}</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{speaker.title}</p>
                     <Badge variant="outline" className="mt-1 text-xs">{speaker.company}</Badge>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground">{speaker.description}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">{speaker.description}</p>
               </CardContent>
             </Card>)}
         </div>
