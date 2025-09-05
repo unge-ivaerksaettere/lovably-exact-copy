@@ -61,7 +61,7 @@ const HeroSection = () => {
         <div className="flex items-center justify-center gap-4 sm:gap-6 px-2 mb-8 sm:mb-0">
           <span className="text-xs sm:text-sm text-white/80 font-inter">Følg os:</span>
           <div className="flex gap-3 sm:gap-4">
-            <a href="https://www.instagram.com/ungeivaerksaettere/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+            <a href="https://www.instagram.com/ivaerksaettere/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
               <Instagram className="w-5 h-5" />
             </a>
             <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
