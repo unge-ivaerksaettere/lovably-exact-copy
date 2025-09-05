@@ -16,7 +16,6 @@ const Header = () => {
 
   // Static navigation items
   const navigation = [
-    { name: 'Forside', href: '/' },
     { name: 'Mød Teamet', href: '/med-teamet' },
     { name: 'Vores Sponsorer', href: '/vores-sponsorer' },
     { name: 'Podcast', href: '/podcast' }

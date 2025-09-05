@@ -48,7 +48,7 @@ const WhyChooseSection = () => {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
           <Button asChild variant="default" size="lg">
-            <Link to="/events">Se Kommende Events</Link>
+            <a href="https://lu.ma/h3mxyxhi" target="_blank" rel="noopener noreferrer">Se Kommende Events</a>
           </Button>
           <Button asChild variant="outline" size="lg">
             <Link to="/podcast">Lyt til Podcast</Link>
