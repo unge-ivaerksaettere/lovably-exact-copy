@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 // Podcast cover images from GitHub assets
 import podcastFazel from "@/assets/podcast-fazel.png";
-import podcastDoubles from "@/assets/podcast-doubles.png";
+import podcastDoubles from "@/assets/podcast-doubles-fixed.png";
 import podcastLouliving from "@/assets/podcast-louliving.png";
 import podcastDoner from "@/assets/podcast-doner.png";
 const Podcast = () => {
@@ -36,11 +36,21 @@ const Podcast = () => {
   };
   const getEpisodeImage = (title: string, fallback?: string | null) => {
     const lc = title.toLowerCase();
+    
+    // Specific episode matches
     if (lc.includes('fazel')) return podcastFazel;
-    if (lc.includes('doubles') || lc.includes('peter')) return podcastDoubles;
+    if (lc.includes('doubles') || lc.includes('doublés') || lc.includes('peter')) return podcastDoubles;
     if (lc.includes('louliving')) return podcastLouliving;
     if (lc.includes('döner') || lc.includes('doner')) return podcastDoner;
-    return fallback || podcastStudio;
+    
+    // For Gittemarie or other episodes without specific images, 
+    // check if Spotify provides a valid image URL
+    if (fallback && fallback !== '' && !fallback.includes('undefined') && !fallback.includes('null')) {
+      return fallback;
+    }
+    
+    // Default fallback
+    return podcastStudio;
   };
   const queryClient = useQueryClient();
   const {
