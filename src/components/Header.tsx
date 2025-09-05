@@ -39,7 +39,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src={uiLogo} alt="Unge Iværksættere" className="h-10 w-auto object-contain" />
+            <img src={`${uiLogo}?v=${Date.now()}`} alt="Unge Iværksættere" className="h-10 w-auto object-contain" />
           </Link>
 
           {/* Desktop Navigation */}
