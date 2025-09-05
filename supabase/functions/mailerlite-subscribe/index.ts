@@ -39,22 +39,39 @@ serve(async (req) => {
       )
     }
 
-    // Prepare subscriber data with preferences stored as custom fields
+    // Prepare subscriber data with group assignments
     const preferences = []
-    if (subscriptionTypes?.events) preferences.push('events')
-    if (subscriptionTypes?.podcast) preferences.push('podcast')
-    if (subscriptionTypes?.general) preferences.push('general')
+    const groupIds = []
+    
+    // Map preferences to MailerLite group IDs
+    if (subscriptionTypes?.events) {
+      preferences.push('events')
+      groupIds.push('164683428306880092')  // events group ID
+    }
+    if (subscriptionTypes?.podcast) {
+      preferences.push('podcast')
+      groupIds.push('164683434654958803')  // podcast group ID
+    }
+    if (subscriptionTypes?.general) {
+      preferences.push('general')
+      groupIds.push('164683440684270768')  // general group ID
+    }
     
     // If no preferences selected, default to general
-    if (preferences.length === 0) preferences.push('general')
+    if (preferences.length === 0) {
+      preferences.push('general')
+      groupIds.push('164683440684270768')  // general group ID
+    }
     
     console.log('Storing subscription preferences:', preferences)
+    console.log('Assigning to group IDs:', groupIds)
     
-    // Subscribe to MailerLite (without groups for now, just storing preferences)
+    // Subscribe to MailerLite with group assignments
     console.log('Calling MailerLite API...')
     const subscriberData = {
       email: email,
       status: 'active',
+      groups: groupIds,
       fields: {
         subscription_preferences: preferences.join(', '),
         signup_source: 'website',
