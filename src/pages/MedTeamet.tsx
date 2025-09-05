@@ -82,7 +82,8 @@ const MedTeamet = () => {
       initials: "NO",
       name: "Niklas Olesen",
       title: "Podcast production lead",
-      description: "Niklas er vært på Unge Iværksætteres podcast UI Talks. Han inviterer succesfulde mennesker i studiet til åbne samtaler om deres erfaringer, udfordringer og vejen til at skabe resultater. Med Niklas bag mikrofonen får du ærlige indblik og konkrete historier, der kan inspirere på din egen rejse.",
+      description: "Niklas står for den tekniske og kreative produktion af vores podcast og sikrer, at hver episode leverer både kvalitet og relevans.
+Han assisterer desuden vores Head of Content med strategi og konceptudvikling, og med erfaring som selvstændig producer brænder han for at skabe engagerende og inspirerende indhold.",
       location: "København", 
       image: niklasImage,
       linkedin: "https://www.linkedin.com/in/niklaskockolesen/"
