@@ -13,8 +13,9 @@ serve(async (req) => {
   }
 
   try {
-    const { email } = await req.json()
+    const { email, subscriptionTypes } = await req.json()
     console.log('Processing email subscription for:', email)
+    console.log('Subscription preferences:', subscriptionTypes)
     
     if (!email) {
       return new Response(
@@ -38,8 +39,33 @@ serve(async (req) => {
       )
     }
 
+    // Prepare subscriber data with groups based on preferences
+    const groups = []
+    if (subscriptionTypes?.events) groups.push('events')
+    if (subscriptionTypes?.podcast) groups.push('podcast')
+    if (subscriptionTypes?.general) groups.push('general')
+    
+    // If no preferences selected, default to general
+    if (groups.length === 0) groups.push('general')
+    
+    console.log('Adding subscriber to groups:', groups)
+    
     // Subscribe to MailerLite
     console.log('Calling MailerLite API...')
+    const subscriberData = {
+      email: email,
+      status: 'active',
+      fields: {
+        subscription_preferences: groups.join(', '),
+        signup_source: 'website'
+      }
+    }
+    
+    // Add groups if they exist (MailerLite groups need to be created first in dashboard)
+    if (groups.length > 0) {
+      subscriberData.groups = groups
+    }
+    
     const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
       headers: {
@@ -47,10 +73,7 @@ serve(async (req) => {
         'Authorization': `Bearer ${apiKey}`,
         'Accept': 'application/json',
       },
-      body: JSON.stringify({
-        email: email,
-        status: 'active'
-      }),
+      body: JSON.stringify(subscriberData),
     })
 
     if (!response.ok) {
@@ -68,8 +91,32 @@ serve(async (req) => {
     const data = await response.json()
     console.log('MailerLite success response:', data)
     
+    // Create a more descriptive success message based on preferences
+    let successMessage = 'Du er nu tilmeldt vores nyhedsbrev!'
+    
+    if (groups.length === 3) {
+      successMessage = 'Du er nu tilmeldt alle vores nyhedsbreve: Events, Podcast og Generelle nyheder!'
+    } else if (groups.length === 2) {
+      const groupNames = []
+      if (groups.includes('events')) groupNames.push('Events')
+      if (groups.includes('podcast')) groupNames.push('Podcast')
+      if (groups.includes('general')) groupNames.push('Generelle nyheder')
+      successMessage = `Du er nu tilmeldt: ${groupNames.join(' og ')}!`
+    } else if (groups.includes('events')) {
+      successMessage = 'Du er nu tilmeldt Events!'
+    } else if (groups.includes('podcast')) {
+      successMessage = 'Du er nu tilmeldt Podcast!'
+    } else if (groups.includes('general')) {
+      successMessage = 'Du er nu tilmeldt Generelle nyheder!'
+    }
+    
     return new Response(
-      JSON.stringify({ success: true, message: 'Successfully subscribed to newsletter!' }),
+      JSON.stringify({ 
+        success: true, 
+        message: successMessage,
+        groups: groups,
+        subscriber_data: data
+      }),
       { 
         status: 200, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }

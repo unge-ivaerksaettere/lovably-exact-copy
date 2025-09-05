@@ -9,6 +9,11 @@ import { supabase } from "@/integrations/supabase/client";
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [subscriptionTypes, setSubscriptionTypes] = useState({
+    events: true,
+    podcast: false,
+    general: true
+  });
   const {
     toast
   } = useToast();
@@ -29,7 +34,8 @@ const Footer = () => {
         error
       } = await supabase.functions.invoke('mailerlite-subscribe', {
         body: {
-          email
+          email,
+          subscriptionTypes
         }
       });
       if (error) {
@@ -66,10 +72,52 @@ const Footer = () => {
             {/* Newsletter Signup */}
             <div className="space-y-3">
               <h4 className="font-dm-sans font-bold text-background">Tilmeld nyhedsbrev</h4>
-              <form onSubmit={handleSubmit} className="flex gap-2">
+              <form onSubmit={handleSubmit} className="space-y-3">
                 <Input type="email" placeholder="Din email" value={email} onChange={e => setEmail(e.target.value)} required disabled={isLoading} className="bg-background/10 border-background/20 text-background placeholder:text-background/60 font-inter" />
-                <Button type="submit" disabled={isLoading} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-                  <Mail className="w-4 h-4" />
+                
+                {/* Subscription Preferences */}
+                <div className="space-y-2">
+                  <p className="text-xs font-dm-sans font-bold text-background/90">Hvad vil du modtage?</p>
+                  <div className="grid grid-cols-1 gap-1">
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={subscriptionTypes.events}
+                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, events: e.target.checked}))}
+                        className="rounded border-background/30 bg-background/10 text-secondary focus:ring-secondary"
+                      />
+                      <span className="text-xs font-inter text-background/90">📅 Events</span>
+                    </label>
+                    
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={subscriptionTypes.podcast}
+                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, podcast: e.target.checked}))}
+                        className="rounded border-background/30 bg-background/10 text-secondary focus:ring-secondary"
+                      />
+                      <span className="text-xs font-inter text-background/90">🎧 Podcast</span>
+                    </label>
+                    
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={subscriptionTypes.general}
+                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, general: e.target.checked}))}
+                        className="rounded border-background/30 bg-background/10 text-secondary focus:ring-secondary"
+                      />
+                      <span className="text-xs font-inter text-background/90">📰 Generelle nyheder</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <Button 
+                  type="submit" 
+                  disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.podcast && !subscriptionTypes.general)} 
+                  className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  {isLoading ? "Tilmelder..." : "Tilmeld"}
                 </Button>
               </form>
             </div>

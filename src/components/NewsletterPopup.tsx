@@ -16,7 +16,7 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [subscriptionTypes, setSubscriptionTypes] = useState({
     events: true,
-    promotions: false,
+    podcast: false,
     general: true
   });
   const { toast } = useToast();
@@ -111,17 +111,17 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
                     onChange={(e) => setSubscriptionTypes(prev => ({...prev, events: e.target.checked}))}
                     className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
                   />
-                  <span className="text-white/90 text-sm font-inter">📅 Event invitationer</span>
+                  <span className="text-white/90 text-sm font-inter">📅 Events</span>
                 </label>
                 
                 <label className="flex items-center space-x-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={subscriptionTypes.promotions}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, promotions: e.target.checked}))}
+                    checked={subscriptionTypes.podcast}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, podcast: e.target.checked}))}
                     className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
                   />
-                  <span className="text-white/90 text-sm font-inter">🎯 Særlige tilbud</span>
+                  <span className="text-white/90 text-sm font-inter">🎧 Podcast</span>
                 </label>
                 
                 <label className="flex items-center space-x-3 cursor-pointer">
@@ -138,7 +138,7 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
             
             <Button 
               type="submit" 
-              disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.promotions && !subscriptionTypes.general)}
+              disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.podcast && !subscriptionTypes.general)}
               className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold py-3"
             >
               {isLoading ? "Tilmelder..." : "Tilmeld mig gratis!"}

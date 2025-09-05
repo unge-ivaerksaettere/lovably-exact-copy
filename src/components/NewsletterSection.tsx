@@ -7,6 +7,11 @@ import { supabase } from "@/integrations/supabase/client";
 const NewsletterSection = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [subscriptionTypes, setSubscriptionTypes] = useState({
+    events: true,
+    podcast: false,
+    general: true
+  });
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -25,7 +30,10 @@ const NewsletterSection = () => {
 
     try {
       const { data, error } = await supabase.functions.invoke('mailerlite-subscribe', {
-        body: { email }
+        body: { 
+          email,
+          subscriptionTypes
+        }
       });
 
       if (error) {
@@ -57,7 +65,7 @@ const NewsletterSection = () => {
             Få de seneste startup nyheder, podcast episodes og event invitationer direkte i din indbakke.
           </p>
           
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-4">
+          <form onSubmit={handleSubmit} className="space-y-6 max-w-lg mx-auto mb-4">
             <Input 
               type="email"
               placeholder="Din email adresse"
@@ -65,9 +73,51 @@ const NewsletterSection = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               disabled={isLoading}
-              className="flex-1 rounded-2xl border-2 border-primary/20 bg-background/50 backdrop-blur-sm h-12 px-6"
+              className="w-full rounded-2xl border-2 border-primary/20 bg-background/50 backdrop-blur-sm h-12 px-6"
             />
-            <Button type="submit" variant="orange" disabled={isLoading}>
+            
+            {/* Subscription Preferences */}
+            <div className="space-y-3">
+              <p className="text-sm font-dm-sans font-bold text-foreground">Hvad vil du modtage?</p>
+              <div className="grid grid-cols-1 gap-3">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={subscriptionTypes.events}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events: e.target.checked}))}
+                    className="rounded border-primary/30 bg-background/50 text-primary focus:ring-primary"
+                  />
+                  <span className="text-sm font-inter text-foreground">📅 Events</span>
+                </label>
+                
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={subscriptionTypes.podcast}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, podcast: e.target.checked}))}
+                    className="rounded border-primary/30 bg-background/50 text-primary focus:ring-primary"
+                  />
+                  <span className="text-sm font-inter text-foreground">🎧 Podcast</span>
+                </label>
+                
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={subscriptionTypes.general}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, general: e.target.checked}))}
+                    className="rounded border-primary/30 bg-background/50 text-primary focus:ring-primary"
+                  />
+                  <span className="text-sm font-inter text-foreground">📰 Generelle nyheder</span>
+                </label>
+              </div>
+            </div>
+            
+            <Button 
+              type="submit" 
+              variant="orange" 
+              disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.podcast && !subscriptionTypes.general)}
+              className="w-full"
+            >
               {isLoading ? "Tilmelder..." : "Tilmeld"}
             </Button>
           </form>
