@@ -82,8 +82,7 @@ const MedTeamet = () => {
       initials: "NO",
       name: "Niklas Olesen",
       title: "Podcast production lead",
-      description: "Niklas står for den tekniske og kreative produktion af vores podcast og sikrer, at hver episode leverer både kvalitet og relevans.
-Han assisterer desuden vores Head of Content med strategi og konceptudvikling, og med erfaring som selvstændig producer brænder han for at skabe engagerende og inspirerende indhold.",
+      description: "Niklas står for den tekniske og kreative produktion af vores podcast og sikrer, at hver episode leverer både kvalitet og relevans. Han assisterer desuden vores Head of Content med strategi og konceptudvikling, og med erfaring som selvstændig producer brænder han for at skabe engagerende og inspirerende indhold.",
       location: "København", 
       image: niklasImage,
       linkedin: "https://www.linkedin.com/in/niklaskockolesen/"
