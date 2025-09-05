@@ -19,7 +19,7 @@ const SpeakersSection = () => {
   }, {
     initials: "WV",
     name: "Werner Valeur",
-    title: "Serial Entrepreneur",
+    title: "Seriel Iværksætter",
     company: "10+ Companies",
     description: "Grundlagt over 10 virksomheder siden han var 18 år. Specialist i hurtig skalering.",
     image: wernerValeurImg
