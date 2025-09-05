@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mail } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import billyLogo from "@/assets/billy-logo-new.png";
+import billyLogo from "@/assets/billy-logo-correct.png";
 import agerasLogo from "@/assets/ageras-logo-real.png";
 import jakobProfile from "@/assets/jakob-profile-new.jpeg";
 
@@ -30,9 +30,12 @@ const VoresSponsoreBlivSponsor = () => {
       website: "https://billy.dk"
     },
     {
-      name: "Jakob H.",
+      name: "Jakob Bjerg-Heise",
       image: jakobProfile,
-      type: "🤝 Støtte Sponsor"
+      type: "🤝 Støtte Sponsor",
+      title: "Senior Solution Architect",
+      description: "Erfaren teknisk rådgiver og solution architect med passion for at skabe værdi gennem komplekse tech-platforme. Jakob støtter danske iværksættere med sin ekspertise inden for cloud teknologi og systemarkitektur.",
+      linkedin: "https://www.linkedin.com/in/jakobh/?originalSubdomain=dk"
     }
   ];
 
@@ -204,21 +207,43 @@ const VoresSponsoreBlivSponsor = () => {
                       )}
                     </div>
                   ) : (
-                    <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                    <div className="text-center">
+                      <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden flex-shrink-0">
                         <img 
                           src={sponsor.image} 
                           alt={`${sponsor.name} profil`} 
                           className="w-full h-full object-cover" 
                         />
                       </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-anton font-bold mb-1 text-foreground">
+                      <div className="space-y-2">
+                        <h4 className="text-xl font-anton font-bold text-foreground">
                           {sponsor.name}
                         </h4>
+                        {sponsor.title && (
+                          <p className="text-sm font-dm-sans font-bold text-primary">
+                            {sponsor.title}
+                          </p>
+                        )}
                         <Badge variant="outline" className="border-primary/30 text-primary">
                           {sponsor.type}
                         </Badge>
+                        {sponsor.description && (
+                          <p className="font-inter text-sm text-muted-foreground mt-3 leading-relaxed">
+                            {sponsor.description}
+                          </p>
+                        )}
+                        {sponsor.linkedin && (
+                          <div className="mt-4">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="border-primary/30 hover:bg-primary/10 font-dm-sans font-bold"
+                              onClick={() => window.open(sponsor.linkedin, '_blank')}
+                            >
+                              LinkedIn Profil
+                            </Button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
