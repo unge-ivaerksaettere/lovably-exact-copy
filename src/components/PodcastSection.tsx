@@ -83,7 +83,7 @@ const PodcastSection = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Seneste Podcast Episodes</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Seneste Podcast Episoder</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Dybdegående samtaler med Danmarks mest succesrige iværksættere og investorer.
           </p>
@@ -190,7 +190,7 @@ const PodcastSection = () => {
           </div>
         ) : episodes.length > 0 ? (
           <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-8 text-center">Seneste Episodes (3)</h3>
+            <h3 className="text-2xl font-bold mb-8 text-center">Seneste Episoder (3)</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {episodes.slice(1, 4).map((episode) => (
                 <Card key={episode.id} className="border-border overflow-hidden hover:shadow-lg transition-shadow">

@@ -63,7 +63,7 @@ const NewsletterSection = () => {
         <div className="max-w-2xl mx-auto text-center bg-background/50 backdrop-blur-sm rounded-4xl p-12 shadow-large">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Hold dig opdateret</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Få de seneste startup nyheder, podcast episodes og event invitationer direkte i din indbakke.
+            Få de seneste startup nyheder, podcast episoder og event invitationer direkte i din indbakke.
           </p>
           
           <form onSubmit={handleSubmit} className="space-y-6 max-w-lg mx-auto mb-4">

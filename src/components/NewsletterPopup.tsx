@@ -86,7 +86,7 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
             </h2>
             <div className="text-2xl mb-4">🚀</div>
             <p className="text-white/90 text-sm leading-relaxed font-inter">
-              Få de seneste startup nyheder, eksklusive podcast episodes<br />
+              Få de seneste startup nyheder, eksklusive podcast episoder<br />
               og event invitationer direkte i din indbakke.
             </p>
           </div>

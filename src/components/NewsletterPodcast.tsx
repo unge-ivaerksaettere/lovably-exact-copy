@@ -62,10 +62,10 @@ const NewsletterPodcast = () => {
       <div className="container mx-auto px-4">
         <div className="bg-primary rounded-lg p-8 text-center text-primary-foreground">
           <h3 className="text-2xl font-anton mb-4">
-            Få besked om nye episodes
+            Få besked om nye episoder
           </h3>
           <p className="font-inter mb-6 opacity-90">
-            Tilmeld dig vores newsletter og vær den første til at høre nye podcast episodes.
+            Tilmeld dig vores newsletter og vær den første til at høre nye podcast episoder.
           </p>
           <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
             <Input 

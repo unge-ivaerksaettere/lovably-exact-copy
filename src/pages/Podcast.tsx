@@ -189,7 +189,7 @@ const Podcast = () => {
           <div className="text-center space-y-4 mb-8">
             <h3 className="text-2xl font-anton text-foreground">Lyt på Spotify</h3>
             <p className="text-muted-foreground font-inter">
-              Følg vores podcast på Spotify for automatiske opdateringer af nye episodes.
+              Følg vores podcast på Spotify for automatiske opdateringer af nye episoder.
             </p>
           </div>
           
@@ -209,7 +209,7 @@ const Podcast = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <h3 className="text-2xl font-anton text-foreground mb-8">
-            Seneste Episodes (3)
+            Seneste Episoder (3)
           </h3>
           
           {episodesLoading ? <div className="flex items-center justify-center py-8">
