@@ -71,7 +71,6 @@ const AppContent = () => {
         <Route path="/med-teamet" element={<MedTeamet />} />
         <Route path="/vores-historie" element={<VoresHistorie />} />
         <Route path="/vores-sponsore" element={<VoresSponsoreBlivSponsor />} />
-        <Route path="/bliv-sponsor" element={<VoresSponsoreBlivSponsor />} />
         <Route path="/admin" element={<Admin />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
