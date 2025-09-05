@@ -8,9 +8,10 @@ const NewsletterSection = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [subscriptionTypes, setSubscriptionTypes] = useState({
-    events: true,
+    events_copenhagen: true,
+    events_aarhus: false,
     podcast: false,
-    general: true
+    webinars: true
   });
   const { toast } = useToast();
 
@@ -83,11 +84,21 @@ const NewsletterSection = () => {
                 <label className="flex items-center space-x-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={subscriptionTypes.events}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events: e.target.checked}))}
+                    checked={subscriptionTypes.events_copenhagen}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_copenhagen: e.target.checked}))}
                     className="rounded border-primary/30 bg-background/50 text-primary focus:ring-primary"
                   />
-                  <span className="text-sm font-inter text-foreground">📅 Events</span>
+                  <span className="text-sm font-inter text-foreground">📅 Events i København</span>
+                </label>
+                
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={subscriptionTypes.events_aarhus}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_aarhus: e.target.checked}))}
+                    className="rounded border-primary/30 bg-background/50 text-primary focus:ring-primary"
+                  />
+                  <span className="text-sm font-inter text-foreground">📅 Events i Århus</span>
                 </label>
                 
                 <label className="flex items-center space-x-3 cursor-pointer">
@@ -103,11 +114,11 @@ const NewsletterSection = () => {
                 <label className="flex items-center space-x-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={subscriptionTypes.general}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, general: e.target.checked}))}
+                    checked={subscriptionTypes.webinars}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, webinars: e.target.checked}))}
                     className="rounded border-primary/30 bg-background/50 text-primary focus:ring-primary"
                   />
-                  <span className="text-sm font-inter text-foreground">📰 Generelle nyheder</span>
+                  <span className="text-sm font-inter text-foreground">💻 Webinars</span>
                 </label>
               </div>
             </div>
@@ -115,7 +126,7 @@ const NewsletterSection = () => {
             <Button 
               type="submit" 
               variant="orange" 
-              disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.podcast && !subscriptionTypes.general)}
+              disabled={isLoading || (!subscriptionTypes.events_copenhagen && !subscriptionTypes.events_aarhus && !subscriptionTypes.podcast && !subscriptionTypes.webinars)}
               className="w-full"
             >
               {isLoading ? "Tilmelder..." : "Tilmeld"}
