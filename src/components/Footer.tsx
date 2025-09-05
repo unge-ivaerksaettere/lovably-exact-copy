@@ -10,9 +10,10 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [subscriptionTypes, setSubscriptionTypes] = useState({
-    events: true,
+    events_copenhagen: true,
+    events_aarhus: false,
     podcast: false,
-    general: true
+    webinars: true
   });
   const {
     toast
@@ -78,15 +79,25 @@ const Footer = () => {
                 {/* Subscription Preferences */}
                 <div className="space-y-2">
                   <p className="text-xs font-dm-sans font-bold text-background/90">Hvad vil du modtage?</p>
-                  <div className="grid grid-cols-1 gap-1">
+                   <div className="grid grid-cols-1 gap-1">
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={subscriptionTypes.events}
-                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, events: e.target.checked}))}
+                        checked={subscriptionTypes.events_copenhagen}
+                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_copenhagen: e.target.checked}))}
                         className="rounded border-background/30 bg-background/10 text-secondary focus:ring-secondary"
                       />
-                      <span className="text-xs font-inter text-background/90">📅 Events</span>
+                      <span className="text-xs font-inter text-background/90">📅 Events i København</span>
+                    </label>
+                    
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={subscriptionTypes.events_aarhus}
+                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_aarhus: e.target.checked}))}
+                        className="rounded border-background/30 bg-background/10 text-secondary focus:ring-secondary"
+                      />
+                      <span className="text-xs font-inter text-background/90">📅 Events i Århus</span>
                     </label>
                     
                     <label className="flex items-center space-x-2 cursor-pointer">
@@ -102,18 +113,18 @@ const Footer = () => {
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={subscriptionTypes.general}
-                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, general: e.target.checked}))}
+                        checked={subscriptionTypes.webinars}
+                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, webinars: e.target.checked}))}
                         className="rounded border-background/30 bg-background/10 text-secondary focus:ring-secondary"
                       />
-                      <span className="text-xs font-inter text-background/90">📰 Generelle nyheder</span>
+                      <span className="text-xs font-inter text-background/90">💻 Webinars</span>
                     </label>
                   </div>
                 </div>
                 
                 <Button 
                   type="submit" 
-                  disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.podcast && !subscriptionTypes.general)} 
+                  disabled={isLoading || (!subscriptionTypes.events_copenhagen && !subscriptionTypes.events_aarhus && !subscriptionTypes.podcast && !subscriptionTypes.webinars)} 
                   className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
                 >
                   <Mail className="w-4 h-4 mr-2" />
