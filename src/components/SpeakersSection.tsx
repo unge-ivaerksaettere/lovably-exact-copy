@@ -61,7 +61,7 @@ const SpeakersSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {speakers.map((speaker, index) => <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
@@ -78,10 +78,6 @@ const SpeakersSection = () => {
                 <p className="text-sm text-muted-foreground">{speaker.description}</p>
               </CardContent>
             </Card>)}
-        </div>
-
-        <div className="text-center">
-          <Button variant="outline">Se Alle Speakers</Button>
         </div>
       </div>
     </section>;
