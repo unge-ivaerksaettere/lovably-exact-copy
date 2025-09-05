@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Menu, X, User, LogOut } from "lucide-react";
 import { AuthDialog } from "./AuthDialog";
 import { useAuth } from "@/hooks/useAuth";
-import { useVisiblePages } from "@/hooks/usePageSettings";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import uiLogo from "@/assets/new-logo.png";
 const Header = () => {
@@ -14,22 +13,19 @@ const Header = () => {
     user,
     signOut
   } = useAuth();
-  const {
-    data: visiblePages
-  } = useVisiblePages();
 
-  // Always visible pages
-  const baseNavigation = [{
-    name: 'Podcast',
-    href: '/podcast'
-  }];
+  // Static navigation items
+  const navigation = [
+    { name: 'Forside', href: '/' },
+    { name: 'Mød Teamet', href: '/med-teamet' },
+    { name: 'Vores Sponsorer', href: '/vores-sponsorer' },
+    { name: 'Podcast', href: '/podcast' }
+  ];
 
-  // Add dynamic pages based on visibility settings
-  const dynamicNavigation = visiblePages?.map(page => ({
-    name: page.page_name,
-    href: `/${page.page_key}`
-  })) || [];
-  const navigation = [...baseNavigation, ...dynamicNavigation];
+  // Scroll to top when navigating
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   const isActive = (path: string) => location.pathname === path;
   return <header className="w-full bg-background/80 backdrop-blur-md border-b border-border/50 sticky top-0 z-50 shadow-soft">
       <div className="container mx-auto px-4">
