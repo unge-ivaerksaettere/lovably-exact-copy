@@ -2,13 +2,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, Mic, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
+import skoolLogo from "@/assets/skool-logo.png";
 
 const WhyChooseSection = () => {
   const features = [
     {
-      icon: Users,
+      icon: null,
       title: "UI Club",
       description: "Bliv en del af vores eksklusive community på Skool med ressourcer, netværk og værktøjer til at accelerere din iværksætterrejse.",
+      customIcon: skoolLogo,
     },
     {
       icon: Calendar,
@@ -37,7 +39,11 @@ const WhyChooseSection = () => {
             <Card key={index} className="text-center group">
               <CardContent className="p-6 sm:p-8">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-medium group-hover:scale-110 transition-all duration-300 ease-bounce">
-                  <feature.icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  {feature.customIcon ? (
+                    <img src={feature.customIcon} alt={feature.title} className="w-8 h-8 sm:w-10 sm:h-10" />
+                  ) : (
+                    feature.icon && <feature.icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  )}
                 </div>
                 <h3 className="text-lg sm:text-xl font-dm-sans font-bold mb-3 sm:mb-4">{feature.title}</h3>
                 <p className="text-sm sm:text-base text-muted-foreground font-inter">{feature.description}</p>
