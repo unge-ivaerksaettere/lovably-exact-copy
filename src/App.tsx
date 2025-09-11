@@ -3,19 +3,20 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import Index from "./pages/Index";
-import Login from "./pages/Login";
 
-import Podcast from "./pages/Podcast";
-import FindCoFounder from "./pages/FindCoFounder";
-import MedTeamet from "./pages/MedTeamet";
-import VoresHistorie from "./pages/VoresHistorie";
-import VoresSponsoreBlivSponsor from "./pages/VoresSponsoreBlivSponsor";
-import Admin from "./pages/Admin";
-import NotFound from "./pages/NotFound";
+// Lazy load pages for better performance
+const Index = lazy(() => import("./pages/Index"));
+const Login = lazy(() => import("./pages/Login"));
+const Podcast = lazy(() => import("./pages/Podcast"));
+const FindCoFounder = lazy(() => import("./pages/FindCoFounder"));
+const MedTeamet = lazy(() => import("./pages/MedTeamet"));
+const VoresHistorie = lazy(() => import("./pages/VoresHistorie"));
+const VoresSponsoreBlivSponsor = lazy(() => import("./pages/VoresSponsoreBlivSponsor"));
+const Admin = lazy(() => import("./pages/Admin"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -62,19 +63,21 @@ const AppContent = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/login" element={<Login />} />
-        
-        <Route path="/podcast" element={<Podcast />} />
-        <Route path="/find-co-founder" element={<FindCoFounder />} />
-        <Route path="/med-teamet" element={<MedTeamet />} />
-        <Route path="/vores-historie" element={<VoresHistorie />} />
-        <Route path="/vores-sponsorer" element={<VoresSponsoreBlivSponsor />} />
-        <Route path="/admin" element={<Admin />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/login" element={<Login />} />
+          
+          <Route path="/podcast" element={<Podcast />} />
+          <Route path="/find-co-founder" element={<FindCoFounder />} />
+          <Route path="/med-teamet" element={<MedTeamet />} />
+          <Route path="/vores-historie" element={<VoresHistorie />} />
+          <Route path="/vores-sponsorer" element={<VoresSponsoreBlivSponsor />} />
+          <Route path="/admin" element={<Admin />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };
