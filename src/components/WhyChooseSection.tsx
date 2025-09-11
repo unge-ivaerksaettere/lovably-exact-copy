@@ -9,13 +9,13 @@ const WhyChooseSection = () => {
   const features = [
     {
       icon: null,
-      title: "UI Club",
+      title: "",
       description: "Bliv en del af vores eksklusive community på Skool med ressourcer, netværk og værktøjer til at accelerere din iværksætterrejse.",
       customIcon: skoolLogo,
     },
     {
       icon: Calendar,
-      title: "Events",
+      title: "",
       description: "Deltag i inspirerende events i Århus og København med erfarne speakers og succesfulde iværksættere.",
     },
     {
