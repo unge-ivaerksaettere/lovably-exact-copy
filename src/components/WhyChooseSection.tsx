@@ -40,7 +40,9 @@ const WhyChooseSection = () => {
               <CardContent className="p-6 sm:p-8">
                 {feature.customIcon ? (
                   <div className="mx-auto mb-4 sm:mb-6">
-                    <img src={feature.customIcon} alt={feature.title} className="w-20 h-20 sm:w-24 sm:h-24 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce" />
+                    <a href="https://www.skool.com/unge-ivrksttere-3699/about?ref=be5d1399328b408e8a2cbe59f14ac667" target="_blank" rel="noopener noreferrer">
+                      <img src={feature.customIcon} alt={feature.title} className="w-32 h-32 sm:w-36 sm:h-36 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" />
+                    </a>
                   </div>
                 ) : (
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-medium group-hover:scale-110 transition-all duration-300 ease-bounce">
