@@ -8,9 +8,10 @@ const NewsletterPodcast = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [subscriptionTypes, setSubscriptionTypes] = useState({
-    events: false,
+    events_copenhagen: false,
+    events_aarhus: false,
     podcast: true,  // Default to podcast for podcast signup
-    general: false
+    webinars: false
   });
   const { toast } = useToast();
 
@@ -61,10 +62,10 @@ const NewsletterPodcast = () => {
       <div className="container mx-auto px-4">
         <div className="bg-primary rounded-lg p-8 text-center text-primary-foreground">
           <h3 className="text-2xl font-anton mb-4">
-            Få besked om nye episodes
+            Få besked om nye episoder
           </h3>
           <p className="font-inter mb-6 opacity-90">
-            Tilmeld dig vores newsletter og vær den første til at høre nye podcast episodes.
+            Tilmeld dig vores newsletter og vær den første til at høre nye podcast episoder.
           </p>
           <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
             <Input 
@@ -84,11 +85,21 @@ const NewsletterPodcast = () => {
                 <label className="flex items-center space-x-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={subscriptionTypes.events}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events: e.target.checked}))}
+                    checked={subscriptionTypes.events_copenhagen}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_copenhagen: e.target.checked}))}
                     className="rounded border-primary-foreground/30 bg-primary-foreground/10 text-secondary focus:ring-secondary"
                   />
-                  <span className="text-sm font-inter text-primary-foreground">📅 Events</span>
+                  <span className="text-sm font-inter text-primary-foreground">📅 Events i København</span>
+                </label>
+                
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={subscriptionTypes.events_aarhus}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_aarhus: e.target.checked}))}
+                    className="rounded border-primary-foreground/30 bg-primary-foreground/10 text-secondary focus:ring-secondary"
+                  />
+                  <span className="text-sm font-inter text-primary-foreground">📅 Events i Århus</span>
                 </label>
                 
                 <label className="flex items-center space-x-3 cursor-pointer">
@@ -104,18 +115,18 @@ const NewsletterPodcast = () => {
                 <label className="flex items-center space-x-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={subscriptionTypes.general}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, general: e.target.checked}))}
+                    checked={subscriptionTypes.webinars}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, webinars: e.target.checked}))}
                     className="rounded border-primary-foreground/30 bg-primary-foreground/10 text-secondary focus:ring-secondary"
                   />
-                  <span className="text-sm font-inter text-primary-foreground">📰 Generelle nyheder</span>
+                  <span className="text-sm font-inter text-primary-foreground">💻 Webinars</span>
                 </label>
               </div>
             </div>
             
             <Button 
               type="submit"
-              disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.podcast && !subscriptionTypes.general)}
+              disabled={isLoading || (!subscriptionTypes.events_copenhagen && !subscriptionTypes.events_aarhus && !subscriptionTypes.podcast && !subscriptionTypes.webinars)}
               className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold"
             >
               {isLoading ? "Tilmelder..." : "Tilmeld"}

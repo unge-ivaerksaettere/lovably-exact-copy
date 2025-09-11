@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -15,9 +15,10 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [subscriptionTypes, setSubscriptionTypes] = useState({
-    events: true,
+    events_copenhagen: true,
+    events_aarhus: false,
     podcast: false,
-    general: true
+    webinars: true
   });
   const { toast } = useToast();
 
@@ -69,13 +70,6 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md p-0 bg-gradient-to-br from-primary to-secondary border-0 text-white overflow-hidden">
         <div className="relative p-8">
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-          
           <div className="text-center mb-6">
             <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <Mail className="w-8 h-8 text-white" />
@@ -85,7 +79,7 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
             </h2>
             <div className="text-2xl mb-4">🚀</div>
             <p className="text-white/90 text-sm leading-relaxed font-inter">
-              Få de seneste startup nyheder, eksklusive podcast episodes<br />
+              Få de seneste startup nyheder, eksklusive podcast episoder<br />
               og event invitationer direkte i din indbakke.
             </p>
           </div>
@@ -107,11 +101,21 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
                 <label className="flex items-center space-x-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={subscriptionTypes.events}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events: e.target.checked}))}
+                    checked={subscriptionTypes.events_copenhagen}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_copenhagen: e.target.checked}))}
                     className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
                   />
-                  <span className="text-white/90 text-sm font-inter">📅 Events</span>
+                  <span className="text-white/90 text-sm font-inter">📅 Events i København</span>
+                </label>
+                
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={subscriptionTypes.events_aarhus}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_aarhus: e.target.checked}))}
+                    className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
+                  />
+                  <span className="text-white/90 text-sm font-inter">📅 Events i Århus</span>
                 </label>
                 
                 <label className="flex items-center space-x-3 cursor-pointer">
@@ -127,18 +131,18 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
                 <label className="flex items-center space-x-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={subscriptionTypes.general}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, general: e.target.checked}))}
+                    checked={subscriptionTypes.webinars}
+                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, webinars: e.target.checked}))}
                     className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
                   />
-                  <span className="text-white/90 text-sm font-inter">📰 Generelle nyheder</span>
+                  <span className="text-white/90 text-sm font-inter">💻 Webinars</span>
                 </label>
               </div>
             </div>
             
             <Button 
               type="submit" 
-              disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.podcast && !subscriptionTypes.general)}
+              disabled={isLoading || (!subscriptionTypes.events_copenhagen && !subscriptionTypes.events_aarhus && !subscriptionTypes.podcast && !subscriptionTypes.webinars)}
               className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold py-3"
             >
               {isLoading ? "Tilmelder..." : "Tilmeld mig gratis!"}

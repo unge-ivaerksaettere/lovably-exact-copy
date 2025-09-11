@@ -47,11 +47,21 @@ const PodcastSection = () => {
   };
 
   const getEpisodeImage = (episode: PodcastEpisode) => {
-    if (episode.title.toLowerCase().includes('fazel')) return podcastFazel;
-    if (episode.title.toLowerCase().includes('doubles') || episode.title.toLowerCase().includes('peter')) return podcastDoubles;
-    if (episode.title.toLowerCase().includes('louliving')) return podcastLouliving;
-    if (episode.title.toLowerCase().includes('döner') || episode.title.toLowerCase().includes('doner')) return podcastDoner;
-    return episode.image_url || podcastStudio; // fallback
+    const lc = episode.title.toLowerCase();
+    
+    // Specific episode matches
+    if (lc.includes('fazel')) return podcastFazel;
+    if (lc.includes('doubles') || lc.includes('doublés') || lc.includes('peter')) return podcastDoubles;
+    if (lc.includes('louliving')) return podcastLouliving;
+    if (lc.includes('döner') || lc.includes('doner')) return podcastDoner;
+    
+    // For other episodes, check if Spotify provides a valid image URL
+    if (episode.image_url && episode.image_url !== '' && !episode.image_url.includes('undefined') && !episode.image_url.includes('null')) {
+      return episode.image_url;
+    }
+    
+    // Default fallback
+    return podcastStudio;
   };
 
   const handlePlayEpisode = (episode: PodcastEpisode) => {
@@ -73,7 +83,7 @@ const PodcastSection = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Seneste Podcast Episodes</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Seneste Podcast Episoder</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Dybdegående samtaler med Danmarks mest succesrige iværksættere og investorer.
           </p>
@@ -180,30 +190,44 @@ const PodcastSection = () => {
           </div>
         ) : episodes.length > 0 ? (
           <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-8 text-center">Alle Episoder</h3>
+            <h3 className="text-2xl font-bold mb-8 text-center">Seneste Episoder (3)</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {episodes.slice(0, 3).map((episode) => (
-                <Card key={episode.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+              {episodes.slice(1, 4).map((episode) => (
+                <Card key={episode.id} className="border-border overflow-hidden hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
-                    <img 
-                      src={getEpisodeImage(episode)}
-                      alt={`${episode.title} cover`}
-                      className="w-full h-32 object-cover rounded-lg mb-4"
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                    />
-                    <h4 className="font-semibold mb-2 line-clamp-2">{episode.title}</h4>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Clock className="w-4 h-4" />
-                        {formatDuration(episode.duration_ms)}
+                    <div className="space-y-4">
+                      {/* Episode Image */}
+                      <img 
+                        src={getEpisodeImage(episode)}
+                        alt={`${episode.title} cover`}
+                        className="w-full h-32 object-cover rounded-lg"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => { (e.currentTarget as HTMLImageElement).src = podcastStudio; }}
+                      />
+                      
+                      <div className="space-y-2">
+                        <h4 className="text-lg font-semibold text-foreground line-clamp-2">
+                          {episode.title}
+                        </h4>
                       </div>
+                      
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {formatDuration(episode.duration_ms)}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Play className="w-3 h-3" />
+                          Podcast
+                        </span>
+                      </div>
+                      
                       <Button 
-                        size="sm" 
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
                         onClick={() => window.open(episode.spotify_url, '_blank')}
                       >
-                        <Play className="w-4 h-4 mr-1" />
-                        Lyt
+                        ▶ Lyt på Spotify
                       </Button>
                     </div>
                   </CardContent>

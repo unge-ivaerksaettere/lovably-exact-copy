@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Instagram, Linkedin, Mail, Phone, MapPin, Youtube, Music } from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import uiLogo from "@/assets/new-logo.png";
 import { useState } from "react";
@@ -10,9 +11,10 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [subscriptionTypes, setSubscriptionTypes] = useState({
-    events: true,
+    events_copenhagen: true,
+    events_aarhus: false,
     podcast: false,
-    general: true
+    webinars: true
   });
   const {
     toast
@@ -78,15 +80,25 @@ const Footer = () => {
                 {/* Subscription Preferences */}
                 <div className="space-y-2">
                   <p className="text-xs font-dm-sans font-bold text-background/90">Hvad vil du modtage?</p>
-                  <div className="grid grid-cols-1 gap-1">
+                   <div className="grid grid-cols-1 gap-1">
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={subscriptionTypes.events}
-                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, events: e.target.checked}))}
+                        checked={subscriptionTypes.events_copenhagen}
+                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_copenhagen: e.target.checked}))}
                         className="rounded border-background/30 bg-background/10 text-secondary focus:ring-secondary"
                       />
-                      <span className="text-xs font-inter text-background/90">📅 Events</span>
+                      <span className="text-xs font-inter text-background/90">📅 Events i København</span>
+                    </label>
+                    
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={subscriptionTypes.events_aarhus}
+                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_aarhus: e.target.checked}))}
+                        className="rounded border-background/30 bg-background/10 text-secondary focus:ring-secondary"
+                      />
+                      <span className="text-xs font-inter text-background/90">📅 Events i Århus</span>
                     </label>
                     
                     <label className="flex items-center space-x-2 cursor-pointer">
@@ -102,18 +114,18 @@ const Footer = () => {
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={subscriptionTypes.general}
-                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, general: e.target.checked}))}
+                        checked={subscriptionTypes.webinars}
+                        onChange={(e) => setSubscriptionTypes(prev => ({...prev, webinars: e.target.checked}))}
                         className="rounded border-background/30 bg-background/10 text-secondary focus:ring-secondary"
                       />
-                      <span className="text-xs font-inter text-background/90">📰 Generelle nyheder</span>
+                      <span className="text-xs font-inter text-background/90">💻 Webinars</span>
                     </label>
                   </div>
                 </div>
                 
                 <Button 
                   type="submit" 
-                  disabled={isLoading || (!subscriptionTypes.events && !subscriptionTypes.podcast && !subscriptionTypes.general)} 
+                  disabled={isLoading || (!subscriptionTypes.events_copenhagen && !subscriptionTypes.events_aarhus && !subscriptionTypes.podcast && !subscriptionTypes.webinars)} 
                   className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
                 >
                   <Mail className="w-4 h-4 mr-2" />
@@ -124,11 +136,20 @@ const Footer = () => {
             
             {/* Social Media */}
             <div className="flex gap-4">
-              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10" onClick={() => window.open('https://www.instagram.com/ungeivaerksaettere/', '_blank')}>
+              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10" onClick={() => window.open('https://www.instagram.com/ivaerksaettere/', '_blank')}>
                 <Instagram className="w-5 h-5" />
               </Button>
               <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10" onClick={() => window.open('https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true', '_blank')}>
                 <Linkedin className="w-5 h-5" />
+              </Button>
+              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10" onClick={() => window.open('https://www.youtube.com/@ungeiv%C3%A6rks%C3%A6ttere', '_blank')}>
+                <Youtube className="w-5 h-5" />
+              </Button>
+              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10" onClick={() => window.open('https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk', '_blank')}>
+                <Music className="w-5 h-5" />
+              </Button>
+              <Button size="icon" variant="ghost" className="text-background/80 hover:text-background hover:bg-background/10" onClick={() => window.open('https://www.tiktok.com/@ungeivaerksaettere', '_blank')}>
+                <FaTiktok className="w-5 h-5" />
               </Button>
             </div>
           </div>
@@ -140,13 +161,15 @@ const Footer = () => {
               <Link to="/" className="block text-background/80 hover:text-background transition-colors">
                 Forside
               </Link>
-              <Link to="/events" className="block text-background/80 hover:text-background transition-colors">
-                Events
+              <Link to="/med-teamet" className="block text-background/80 hover:text-background transition-colors">
+                Mød Teamet
+              </Link>
+              <Link to="/vores-sponsorer" className="block text-background/80 hover:text-background transition-colors">
+                Vores Sponsorer
               </Link>
               <Link to="/podcast" className="block text-background/80 hover:text-background transition-colors">
                 Podcast
               </Link>
-              
             </nav>
           </div>
 
@@ -154,14 +177,20 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-dm-sans font-bold text-background">LINKS</h4>
             <nav className="space-y-3 font-inter text-sm">
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
-                Podcast
-              </a>
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
-                Facebook
-              </a>
-              <a href="#" className="block text-background/80 hover:text-background transition-colors">
+              <a href="https://www.instagram.com/ivaerksaettere/" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
                 Instagram
+              </a>
+              <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A74063868&keywords=unge%20iv%C3%A6rks%C3%A6ttere&origin=RICH_QUERY_TYPEAHEAD_HISTORY&position=0&searchId=30d10868-d576-4274-8faf-04815d982275&sid=!_y&spellCorrectionEnabled=true" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
+                LinkedIn
+              </a>
+              <a href="https://www.youtube.com/@ungeiv%C3%A6rks%C3%A6ttere" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
+                YouTube
+              </a>
+              <a href="https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
+                Spotify
+              </a>
+              <a href="https://www.tiktok.com/@ungeivaerksaettere" target="_blank" rel="noopener noreferrer" className="block text-background/80 hover:text-background transition-colors">
+                TikTok
               </a>
             </nav>
           </div>

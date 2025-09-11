@@ -44,23 +44,27 @@ serve(async (req) => {
     const groupIds = []
     
     // Map preferences to MailerLite group IDs
-    if (subscriptionTypes?.events) {
-      preferences.push('events')
-      groupIds.push('164683428306880092')  // events group ID
+    if (subscriptionTypes?.events_copenhagen) {
+      preferences.push('events_copenhagen')
+      groupIds.push('164683428306880092')  // events copenhagen group ID
+    }
+    if (subscriptionTypes?.events_aarhus) {
+      preferences.push('events_aarhus')
+      groupIds.push('164694201904137857')  // events aarhus group ID
     }
     if (subscriptionTypes?.podcast) {
       preferences.push('podcast')
       groupIds.push('164683434654958803')  // podcast group ID
     }
-    if (subscriptionTypes?.general) {
-      preferences.push('general')
-      groupIds.push('164683440684270768')  // general group ID
+    if (subscriptionTypes?.webinars) {
+      preferences.push('webinars')
+      groupIds.push('164683440684270768')  // webinars group ID
     }
     
-    // If no preferences selected, default to general
+    // If no preferences selected, default to webinars
     if (preferences.length === 0) {
-      preferences.push('general')
-      groupIds.push('164683440684270768')  // general group ID
+      preferences.push('webinars')
+      groupIds.push('164683440684270768')  // webinars group ID
     }
     
     console.log('Storing subscription preferences:', preferences)
@@ -75,9 +79,10 @@ serve(async (req) => {
       fields: {
         subscription_preferences: preferences.join(', '),
         signup_source: 'website',
-        events_interested: subscriptionTypes?.events ? 'yes' : 'no',
+        events_copenhagen_interested: subscriptionTypes?.events_copenhagen ? 'yes' : 'no',
+        events_aarhus_interested: subscriptionTypes?.events_aarhus ? 'yes' : 'no',
         podcast_interested: subscriptionTypes?.podcast ? 'yes' : 'no',
-        general_interested: subscriptionTypes?.general ? 'yes' : 'no'
+        webinars_interested: subscriptionTypes?.webinars ? 'yes' : 'no'
       }
     }
     
@@ -109,20 +114,23 @@ serve(async (req) => {
     // Create a more descriptive success message based on preferences
     let successMessage = 'Du er nu tilmeldt vores nyhedsbrev!'
     
-    if (preferences.length === 3) {
-      successMessage = 'Du er nu tilmeldt alle vores nyhedsbreve: Events, Podcast og Generelle nyheder!'
-    } else if (preferences.length === 2) {
+    if (preferences.length === 4) {
+      successMessage = 'Du er nu tilmeldt alle vores nyhedsbreve: Events i København, Events i Århus, Podcast og Webinars!'
+    } else if (preferences.length > 1) {
       const prefNames = []
-      if (preferences.includes('events')) prefNames.push('Events')
+      if (preferences.includes('events_copenhagen')) prefNames.push('Events i København')
+      if (preferences.includes('events_aarhus')) prefNames.push('Events i Århus')  
       if (preferences.includes('podcast')) prefNames.push('Podcast')
-      if (preferences.includes('general')) prefNames.push('Generelle nyheder')
+      if (preferences.includes('webinars')) prefNames.push('Webinars')
       successMessage = `Du er nu tilmeldt: ${prefNames.join(' og ')}!`
-    } else if (preferences.includes('events')) {
-      successMessage = 'Du er nu tilmeldt Events!'
+    } else if (preferences.includes('events_copenhagen')) {
+      successMessage = 'Du er nu tilmeldt Events i København!'
+    } else if (preferences.includes('events_aarhus')) {
+      successMessage = 'Du er nu tilmeldt Events i Århus!'
     } else if (preferences.includes('podcast')) {
       successMessage = 'Du er nu tilmeldt Podcast!'
-    } else if (preferences.includes('general')) {
-      successMessage = 'Du er nu tilmeldt Generelle nyheder!'
+    } else if (preferences.includes('webinars')) {
+      successMessage = 'Du er nu tilmeldt Webinars!'
     }
     
     return new Response(

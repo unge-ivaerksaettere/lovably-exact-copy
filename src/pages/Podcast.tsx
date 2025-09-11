@@ -114,7 +114,7 @@ const Podcast = () => {
         <div className="container mx-auto px-4">
           <div className="bg-muted/50 rounded-lg p-4 text-center">
             <p className="text-sm font-inter text-muted-foreground">
-              👑 Vi er pt sponsoreret af <span className="font-dm-sans font-bold">Ageras & Jakob H.</span> - tak for jeres støtte!
+              👑 Vi er pt sponsoreret af <span className="font-dm-sans font-bold">Ageras</span> (Partner & Podcast Sponsor) og <span className="font-dm-sans font-bold">Jakob H.</span> (Støttesponsor) - tak for jeres støtte!
             </p>
           </div>
         </div>
@@ -189,7 +189,7 @@ const Podcast = () => {
           <div className="text-center space-y-4 mb-8">
             <h3 className="text-2xl font-anton text-foreground">Lyt på Spotify</h3>
             <p className="text-muted-foreground font-inter">
-              Følg vores podcast på Spotify for automatiske opdateringer af nye episodes.
+              Følg vores podcast på Spotify for automatiske opdateringer af nye episoder.
             </p>
           </div>
           
@@ -209,7 +209,7 @@ const Podcast = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <h3 className="text-2xl font-anton text-foreground mb-8">
-            Seneste Episodes (3)
+            Seneste Episoder (3)
           </h3>
           
           {episodesLoading ? <div className="flex items-center justify-center py-8">

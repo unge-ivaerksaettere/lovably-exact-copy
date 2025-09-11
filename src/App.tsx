@@ -8,7 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
-import Events from "./pages/Events";
+
 import Podcast from "./pages/Podcast";
 import FindCoFounder from "./pages/FindCoFounder";
 import MedTeamet from "./pages/MedTeamet";
@@ -65,13 +65,12 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/events" element={<Events />} />
+        
         <Route path="/podcast" element={<Podcast />} />
         <Route path="/find-co-founder" element={<FindCoFounder />} />
         <Route path="/med-teamet" element={<MedTeamet />} />
         <Route path="/vores-historie" element={<VoresHistorie />} />
-        <Route path="/vores-sponsore" element={<VoresSponsoreBlivSponsor />} />
-        <Route path="/bliv-sponsor" element={<VoresSponsoreBlivSponsor />} />
+        <Route path="/vores-sponsorer" element={<VoresSponsoreBlivSponsor />} />
         <Route path="/admin" element={<Admin />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />

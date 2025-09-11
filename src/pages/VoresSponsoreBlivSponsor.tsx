@@ -30,6 +30,13 @@ const VoresSponsoreBlivSponsor = () => {
       website: "https://billy.dk"
     },
     {
+      name: "Ageras",
+      logo: agerasLogo,
+      type: "🏢 Partner Sponsor • 🎙️ Podcast Sponsor",
+      description: "Ageras støtter danske iværksættere som både partner sponsor og podcast sponsor, og hjælper med at gøre iværksætteri mere tilgængeligt.",
+      website: "https://ageras.com"
+    },
+    {
       name: "Jakob Bjerg-Heise",
       image: jakobProfile,
       type: "🤝 Støtte Sponsor",
