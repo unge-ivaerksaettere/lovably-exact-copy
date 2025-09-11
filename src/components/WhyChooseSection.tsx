@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Users, Mic, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import skoolLogo from "@/assets/skool-logo.png";
-import uiLogo from "@/assets/logo-ui-new.jpg";
+import uiLogo from "@/assets/ui-logo-transparent.png";
 
 const WhyChooseSection = () => {
   const features = [
@@ -41,7 +41,7 @@ const WhyChooseSection = () => {
             <Card key={index} className="text-center group">
               <CardContent className="p-6 sm:p-8">
                 {feature.customIcon ? (
-                  <div className="mx-auto mb-4 sm:mb-6">
+                  <div className="mx-auto mb-2 sm:mb-3">
                     <a href="https://www.skool.com/unge-ivrksttere-3699/about?ref=be5d1399328b408e8a2cbe59f14ac667" target="_blank" rel="noopener noreferrer">
                       <img src={feature.customIcon} alt={feature.title} className="w-40 h-40 sm:w-48 sm:h-48 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" />
                     </a>
