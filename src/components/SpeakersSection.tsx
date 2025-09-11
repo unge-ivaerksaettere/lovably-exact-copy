@@ -82,9 +82,6 @@ const SpeakersSection = () => {
             </Card>)}
         </div>
 
-        <div className="text-center">
-          <Button variant="outline">Se Alle Speakers</Button>
-        </div>
       </div>
     </section>;
 };
