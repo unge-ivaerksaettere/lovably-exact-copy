@@ -23,6 +23,7 @@ const WhyChooseSection = () => {
       title: "",
       description: "Hør Niklas i samtale med Danmarks mest succesfulde iværksættere og lær fra deres rejse til toppen.",
       customIcon: uiLogo,
+      link: "/podcast",
     },
   ];
 
@@ -42,9 +43,15 @@ const WhyChooseSection = () => {
               <CardContent className="p-6 sm:p-8">
                 {feature.customIcon ? (
                   <div className="mx-auto mb-2 sm:mb-3">
-                    <a href="https://www.skool.com/unge-ivrksttere-3699/about?ref=be5d1399328b408e8a2cbe59f14ac667" target="_blank" rel="noopener noreferrer">
-                      <img src={feature.customIcon} alt={feature.title} className="w-40 h-40 sm:w-48 sm:h-48 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" />
-                    </a>
+                    {feature.link ? (
+                      <Link to={feature.link}>
+                        <img src={feature.customIcon} alt={feature.title} className="w-40 h-40 sm:w-48 sm:h-48 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" />
+                      </Link>
+                    ) : (
+                      <a href="https://www.skool.com/unge-ivrksttere-3699/about?ref=be5d1399328b408e8a2cbe59f14ac667" target="_blank" rel="noopener noreferrer">
+                        <img src={feature.customIcon} alt={feature.title} className="w-40 h-40 sm:w-48 sm:h-48 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" />
+                      </a>
+                    )}
                   </div>
                 ) : (
                   <div className="w-24 h-24 sm:w-30 sm:h-30 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-medium group-hover:scale-110 transition-all duration-300 ease-bounce">
