@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, Mic, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
-import skoolLogo from "@/assets/skool-logo.png";
+import thinkLogo from "@/assets/think-logo.png";
 import uiLogo from "@/assets/ui-talks-logo.png";
 
 const WhyChooseSection = () => {
@@ -11,7 +11,7 @@ const WhyChooseSection = () => {
       icon: null,
       title: "",
       description: "Bliv en del af vores eksklusive community på Skool med ressourcer, netværk og værktøjer til at accelerere din iværksætterrejse.",
-      customIcon: skoolLogo,
+      customIcon: thinkLogo,
     },
     {
       icon: Calendar,
