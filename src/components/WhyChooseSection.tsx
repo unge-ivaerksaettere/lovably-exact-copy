@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Users, Mic, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import skoolLogo from "@/assets/skool-logo.png";
-import uiLogo from "@/assets/ui-logo.png";
+import uiLogo from "@/assets/logo-ui-new.jpg";
 
 const WhyChooseSection = () => {
   const features = [
