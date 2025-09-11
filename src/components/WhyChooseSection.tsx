@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Users, Mic, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import skoolLogo from "@/assets/skool-logo.png";
+import uiLogo from "@/assets/ui-logo.png";
 
 const WhyChooseSection = () => {
   const features = [
@@ -18,9 +19,10 @@ const WhyChooseSection = () => {
       description: "Deltag i inspirerende events i Århus og København med erfarne speakers og succesfulde iværksættere.",
     },
     {
-      icon: Mic,
+      icon: null,
       title: "UI Talks",
       description: "Hør Niklas i samtale med Danmarks succesfulde iværksættere og lær fra deres rejse til toppen.",
+      customIcon: uiLogo,
     },
   ];
 
@@ -45,8 +47,8 @@ const WhyChooseSection = () => {
                     </a>
                   </div>
                 ) : (
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-medium group-hover:scale-110 transition-all duration-300 ease-bounce">
-                    {feature.icon && <feature.icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />}
+                  <div className="w-24 h-24 sm:w-30 sm:h-30 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-medium group-hover:scale-110 transition-all duration-300 ease-bounce">
+                    {feature.icon && <feature.icon className="w-12 h-12 sm:w-15 sm:h-15 text-white" />}
                   </div>
                 )}
                 <h3 className="text-lg sm:text-xl font-dm-sans font-bold mb-3 sm:mb-4">{feature.title}</h3>
