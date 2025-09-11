@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, Mic, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
-import thinkLogo from "@/assets/think-logo.png";
+import thinkLogo from "@/assets/think-transparent.png";
 import uiLogo from "@/assets/ui-talks-logo.png";
 
 const WhyChooseSection = () => {
