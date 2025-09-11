@@ -43,7 +43,7 @@ const WhyChooseSection = () => {
                 {feature.customIcon ? (
                   <div className="mx-auto mb-4 sm:mb-6">
                     <a href="https://www.skool.com/unge-ivrksttere-3699/about?ref=be5d1399328b408e8a2cbe59f14ac667" target="_blank" rel="noopener noreferrer">
-                      <img src={feature.customIcon} alt={feature.title} className="w-32 h-32 sm:w-36 sm:h-36 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" />
+                      <img src={feature.customIcon} alt={feature.title} className="w-40 h-40 sm:w-48 sm:h-48 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" />
                     </a>
                   </div>
                 ) : (
