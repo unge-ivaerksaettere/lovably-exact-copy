@@ -21,7 +21,7 @@ const WhyChooseSection = () => {
     {
       icon: null,
       title: "UI Talks",
-      description: "Hør Niklas i samtale med Danmarks succesfulde iværksættere og lær fra deres rejse til toppen.",
+      description: "Hør Niklas i samtale med Danmarks mest succesfulde iværksættere og lær fra deres rejse til toppen.",
       customIcon: uiLogo,
     },
   ];
