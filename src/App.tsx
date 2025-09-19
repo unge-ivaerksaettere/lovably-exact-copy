@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
 const Login = lazy(() => import("./pages/Login"));
+const Events = lazy(() => import("./pages/Events"));
 const Podcast = lazy(() => import("./pages/Podcast"));
 const FindCoFounder = lazy(() => import("./pages/FindCoFounder"));
 const MedTeamet = lazy(() => import("./pages/MedTeamet"));
@@ -68,6 +69,7 @@ const AppContent = () => {
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           
+          <Route path="/events" element={<Events />} />
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/find-co-founder" element={<FindCoFounder />} />
           <Route path="/med-teamet" element={<MedTeamet />} />
