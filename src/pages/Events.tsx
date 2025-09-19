@@ -86,21 +86,18 @@ const Events = () => {
               <div className="flex justify-center">
                 <div className="relative bg-background/50 backdrop-blur-sm rounded-3xl p-6 shadow-medium">
                   <iframe
-                    src="https://luma.com/embed/event/14rajz9u/simple"
-                    width="100%"
-                    height="700"
+                    src="https://luma.com/embed/event/evt-3FHJkLWSIfgIAsJ/simple"
+                    width="600"
+                    height="450"
                     frameBorder="0"
                     style={{ 
-                      border: "none", 
-                      borderRadius: "1.5rem",
-                      minWidth: "320px",
-                      maxWidth: "1000px"
+                      border: "1px solid #bfcbda88", 
+                      borderRadius: "4px"
                     }}
                     allow="fullscreen; payment"
                     aria-hidden="false"
                     tabIndex={0}
                     title="Unge Iværksættere Event"
-                    className="w-full"
                   />
                 </div>
               </div>
