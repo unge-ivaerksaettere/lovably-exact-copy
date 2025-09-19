@@ -6,7 +6,7 @@ import uiLogo from "@/assets/new-logo.png";
 
 const Footer = () => {
   const handleEventSignup = () => {
-    window.open('https://lu.ma/evt-3FHJkLWSIfgIAsJ', '_blank');
+    window.open('https://luma.com/14rajz9u', '_blank');
   };
   return <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 py-16">

@@ -86,7 +86,7 @@ const Events = () => {
               <div className="flex justify-center">
                 <div className="relative bg-background/50 backdrop-blur-sm rounded-3xl p-6 shadow-medium">
                   <iframe
-                    src="https://luma.com/embed/event/evt-3FHJkLWSIfgIAsJ/simple"
+                    src="https://luma.com/embed/14rajz9u/simple"
                     width="100%"
                     height="700"
                     frameBorder="0"
@@ -112,7 +112,7 @@ const Events = () => {
                 </p>
                 <Button variant="default" size="lg" className="font-dm-sans font-bold" asChild>
                   <a 
-                    href="https://lu.ma/evt-3FHJkLWSIfgIAsJ" 
+                    href="https://luma.com/14rajz9u" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2"
@@ -141,7 +141,7 @@ const Events = () => {
               variant="secondary" 
               size="lg" 
               className="font-dm-sans font-bold inline-flex items-center gap-2"
-              onClick={() => window.open('https://lu.ma/evt-3FHJkLWSIfgIAsJ', '_blank')}
+              onClick={() => window.open('https://luma.com/14rajz9u', '_blank')}
             >
               <Calendar className="w-4 h-4" />
               🚀 Tilmeld dig nu

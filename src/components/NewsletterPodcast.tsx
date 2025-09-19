@@ -3,7 +3,7 @@ import { Calendar } from "lucide-react";
 
 const NewsletterPodcast = () => {
   const handleEventSignup = () => {
-    window.open('https://lu.ma/evt-3FHJkLWSIfgIAsJ', '_blank');
+    window.open('https://luma.com/14rajz9u', '_blank');
   };
 
   return (
