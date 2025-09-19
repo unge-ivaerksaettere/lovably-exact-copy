@@ -112,7 +112,12 @@ const handler = async (req: Request): Promise<Response> => {
         await supabase.functions.invoke("mailerlite-subscribe", {
           body: {
             email: registration.email,
-            name: [registration.first_name, registration.last_name].filter(Boolean).join(" ") || "Abonnent"
+            subscriptionTypes: {
+              events_copenhagen: true,
+              events_aarhus: false,
+              podcast: false,
+              webinars: true
+            }
           }
         });
         console.log("Added to newsletter subscription");

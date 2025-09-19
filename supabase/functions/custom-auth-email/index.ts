@@ -126,7 +126,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const emailResponse = await resend.emails.send({
-      from: "Unge Iværksættere <noreply@resend.dev>", // Change this to your domain when you verify it in Resend
+      from: "Unge Iværksættere <no-reply@ungeivaerksaettere.dk>",
       to: [user.email],
       subject: subject,
       html: emailContent,
