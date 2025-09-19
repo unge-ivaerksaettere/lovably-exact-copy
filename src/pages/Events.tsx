@@ -1,34 +1,158 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Calendar, Users, MapPin, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Events = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-20">
-        <div className="container mx-auto px-4 py-12">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Events</h1>
-            <p className="text-lg text-muted-foreground">
-              Meld dig til vores kommende events og netværk med andre unge iværksættere
+      
+      {/* Hero Section */}
+      <section className="relative pt-20 pb-16 bg-gradient-subtle overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
+              <Calendar className="w-5 h-5 text-primary" />
+              <span className="text-sm font-dm-sans font-bold text-primary">Kommende Events</span>
+            </div>
+            
+            {/* Title */}
+            <h1 className="text-4xl md:text-6xl font-anton font-bold mb-6 text-foreground">
+              Vores <span className="text-primary">Events</span>
+            </h1>
+            
+            {/* Subtitle */}
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-inter leading-relaxed">
+              Meld dig til vores kommende events og netværk med andre unge iværksættere. 
+              Få inspiration, læring og værdifulde kontakter i Danmarks største startup-community.
             </p>
           </div>
-          
-          <div className="flex justify-center">
-            <iframe
-              src="https://luma.com/embed/event/evt-3FHJkLWSIfgIAsJ/simple"
-              width="600"
-              height="450"
-              frameBorder="0"
-              style={{ border: "1px solid #bfcbda88", borderRadius: "4px" }}
-              allow="fullscreen; payment"
-              aria-hidden="false"
-              tabIndex={0}
-              title="Unge Iværksættere Event"
-            />
+
+          {/* Event Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="text-center p-6 bg-background/50 backdrop-blur-sm rounded-3xl shadow-soft">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-6 h-6 text-primary" />
+              </div>
+              <div className="text-2xl md:text-3xl font-anton font-bold text-primary mb-2">3000+</div>
+              <div className="text-sm text-muted-foreground font-inter">Deltagere</div>
+            </div>
+            
+            <div className="text-center p-6 bg-background/50 backdrop-blur-sm rounded-3xl shadow-soft">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="w-6 h-6 text-primary" />
+              </div>
+              <div className="text-2xl md:text-3xl font-anton font-bold text-primary mb-2">50+</div>
+              <div className="text-sm text-muted-foreground font-inter">Events Afholdt</div>
+            </div>
+            
+            <div className="text-center p-6 bg-background/50 backdrop-blur-sm rounded-3xl shadow-soft">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-6 h-6 text-primary" />
+              </div>
+              <div className="text-2xl md:text-3xl font-anton font-bold text-primary mb-2">Gratis</div>
+              <div className="text-sm text-muted-foreground font-inter">Deltagelse</div>
+            </div>
           </div>
         </div>
-      </main>
+      </section>
+
+      {/* Event Embed Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-anton font-bold mb-4 text-foreground">
+                Næste Event
+              </h2>
+              <p className="text-lg text-muted-foreground font-inter">
+                Tilmeld dig og vær med til at bygge Danmarks iværksætter-fremtid
+              </p>
+            </div>
+
+            {/* Event Card */}
+            <div className="bg-gradient-subtle rounded-4xl p-8 md:p-12 shadow-large">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
+                  <span className="text-2xl">🎯</span>
+                  <span className="text-sm font-dm-sans font-bold text-primary">Live Event</span>
+                </div>
+              </div>
+
+              {/* Iframe Container */}
+              <div className="flex justify-center">
+                <div className="relative bg-background/50 backdrop-blur-sm rounded-3xl p-6 shadow-medium">
+                  <iframe
+                    src="https://luma.com/embed/event/evt-3FHJkLWSIfgIAsJ/simple"
+                    width="100%"
+                    height="500"
+                    frameBorder="0"
+                    style={{ 
+                      border: "none", 
+                      borderRadius: "1.5rem",
+                      minWidth: "320px",
+                      maxWidth: "700px"
+                    }}
+                    allow="fullscreen; payment"
+                    aria-hidden="false"
+                    tabIndex={0}
+                    title="Unge Iværksættere Event"
+                    className="w-full"
+                  />
+                </div>
+              </div>
+
+              {/* CTA Section */}
+              <div className="text-center mt-8">
+                <p className="text-muted-foreground font-inter mb-6">
+                  Kan du ikke se eventet? Klik på knappen nedenfor for at tilmelde dig direkte
+                </p>
+                <Button variant="default" size="lg" className="font-dm-sans font-bold" asChild>
+                  <a 
+                    href="https://lu.ma/evt-3FHJkLWSIfgIAsJ" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    <Calendar className="w-4 h-4" />
+                    Tilmeld dig på Luma
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter CTA */}
+      <section className="py-16 bg-gradient-primary">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-2xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-anton font-bold mb-4 text-primary-foreground">
+              Få besked om nye events
+            </h3>
+            <p className="text-primary-foreground/90 font-inter mb-8">
+              Tilmeld dig vores newsletter og vær blandt de første til at høre om kommende events
+            </p>
+            <Button 
+              variant="secondary" 
+              size="lg" 
+              className="font-dm-sans font-bold inline-flex items-center gap-2"
+              onClick={() => {
+                const footer = document.querySelector('footer');
+                footer?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <Calendar className="w-4 h-4" />
+              Tilmeld Newsletter
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
