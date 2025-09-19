@@ -26,7 +26,7 @@ const Events = () => {
             {/* Subtitle */}
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-inter leading-relaxed">
               Meld dig til vores kommende events og netværk med andre unge iværksættere. 
-              Få inspiration, læring og værdifulde kontakter i Danmarks største startup-community.
+              Få inspiration, læring og værdifulde kontakter i Danmarks største frivillige fællesskab for unge iværksættere.
             </p>
           </div>
 
@@ -44,7 +44,7 @@ const Events = () => {
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin className="w-6 h-6 text-primary" />
               </div>
-              <div className="text-2xl md:text-3xl font-anton font-bold text-primary mb-2">50+</div>
+              <div className="text-2xl md:text-3xl font-anton font-bold text-primary mb-2">30+</div>
               <div className="text-sm text-muted-foreground font-inter">Events Afholdt</div>
             </div>
             
@@ -62,7 +62,7 @@ const Events = () => {
       {/* Event Embed Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             {/* Section Header */}
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-anton font-bold mb-4 text-foreground">
@@ -88,13 +88,13 @@ const Events = () => {
                   <iframe
                     src="https://luma.com/embed/event/evt-3FHJkLWSIfgIAsJ/simple"
                     width="100%"
-                    height="500"
+                    height="700"
                     frameBorder="0"
                     style={{ 
                       border: "none", 
                       borderRadius: "1.5rem",
                       minWidth: "320px",
-                      maxWidth: "700px"
+                      maxWidth: "1000px"
                     }}
                     allow="fullscreen; payment"
                     aria-hidden="false"
@@ -127,27 +127,24 @@ const Events = () => {
         </div>
       </section>
 
-      {/* Newsletter CTA */}
+      {/* Event CTA */}
       <section className="py-16 bg-gradient-primary">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-2xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-anton font-bold mb-4 text-primary-foreground">
-              Få besked om nye events
+              Sikr din plads nu
             </h3>
             <p className="text-primary-foreground/90 font-inter mb-8">
-              Tilmeld dig vores newsletter og vær blandt de første til at høre om kommende events
+              Begrænsede pladser tilgængelige - Tilmeld dig og vær med til at skabe Danmarks startup-fremtid
             </p>
             <Button 
               variant="secondary" 
               size="lg" 
               className="font-dm-sans font-bold inline-flex items-center gap-2"
-              onClick={() => {
-                const footer = document.querySelector('footer');
-                footer?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => window.open('https://lu.ma/evt-3FHJkLWSIfgIAsJ', '_blank')}
             >
               <Calendar className="w-4 h-4" />
-              Tilmeld Newsletter
+              🚀 Tilmeld dig nu
             </Button>
           </div>
         </div>

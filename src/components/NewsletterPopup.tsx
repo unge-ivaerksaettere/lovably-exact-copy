@@ -1,10 +1,6 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Mail } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { Calendar } from "lucide-react";
 
 interface NewsletterPopupProps {
   isOpen: boolean;
@@ -12,58 +8,9 @@ interface NewsletterPopupProps {
 }
 
 const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [subscriptionTypes, setSubscriptionTypes] = useState({
-    events_copenhagen: true,
-    events_aarhus: false,
-    podcast: false,
-    webinars: true
-  });
-  const { toast } = useToast();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!email) {
-      toast({
-        title: "Fejl",
-        description: "Indtast venligst din email adresse",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const { data, error } = await supabase.functions.invoke('mailerlite-subscribe', {
-        body: { 
-          email,
-          subscriptionTypes
-        }
-      });
-
-      if (error) {
-        throw error;
-      }
-
-      toast({
-        title: "Tak!",
-        description: "Du er nu tilmeldt vores newsletter!",
-      });
-      setEmail("");
-      onClose();
-    } catch (error: any) {
-      console.error('Newsletter signup error:', error);
-      toast({
-        title: "Fejl",
-        description: error.message || "Der skete en fejl. Prøv igen senere.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+  const handleEventSignup = () => {
+    window.open('https://lu.ma/evt-3FHJkLWSIfgIAsJ', '_blank');
+    onClose();
   };
 
   return (
@@ -72,85 +19,42 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
         <div className="relative p-8">
           <div className="text-center mb-6">
             <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Mail className="w-8 h-8 text-white" />
+              <Calendar className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-2xl font-anton mb-2 text-white">
-              Bliv en del af startup-fællesskabet!
+              Tilmeld dig vores næste event!
             </h2>
-            <div className="text-2xl mb-4">🚀</div>
+            <div className="text-2xl mb-4">🎯</div>
             <p className="text-white/90 text-sm leading-relaxed font-inter">
-              Få de seneste startup nyheder, eksklusive podcast episoder<br />
-              og event invitationer direkte i din indbakke.
+              Kom og mød andre unge iværksættere, få inspiration<br />
+              og byg dit netværk. Gratis deltagelse!
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              type="email"
-              placeholder="Din email adresse"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              disabled={isLoading}
-              className="bg-white border-0 text-foreground placeholder:text-muted-foreground font-inter"
-            />
-            
-            <div className="space-y-3">
-              <p className="text-white/90 text-sm font-inter">Hvad vil du modtage?</p>
-              <div className="space-y-2">
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={subscriptionTypes.events_copenhagen}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_copenhagen: e.target.checked}))}
-                    className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
-                  />
-                  <span className="text-white/90 text-sm font-inter">📅 Events i København</span>
-                </label>
-                
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={subscriptionTypes.events_aarhus}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_aarhus: e.target.checked}))}
-                    className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
-                  />
-                  <span className="text-white/90 text-sm font-inter">📅 Events i Århus</span>
-                </label>
-                
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={subscriptionTypes.podcast}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, podcast: e.target.checked}))}
-                    className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
-                  />
-                  <span className="text-white/90 text-sm font-inter">🎧 Podcast</span>
-                </label>
-                
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={subscriptionTypes.webinars}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, webinars: e.target.checked}))}
-                    className="rounded border-white/30 bg-white/20 text-secondary focus:ring-secondary"
-                  />
-                  <span className="text-white/90 text-sm font-inter">💻 Webinars</span>
-                </label>
-              </div>
+          <div className="space-y-4">
+            <div className="bg-white/10 rounded-2xl p-4 text-center">
+              <p className="text-white font-dm-sans font-bold mb-2">Kim Rants & Jeppe Østergaard</p>
+              <p className="text-white/80 text-sm">København Event - Gratis deltagelse</p>
             </div>
             
             <Button 
-              type="submit" 
-              disabled={isLoading || (!subscriptionTypes.events_copenhagen && !subscriptionTypes.events_aarhus && !subscriptionTypes.podcast && !subscriptionTypes.webinars)}
+              onClick={handleEventSignup}
               className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold py-3"
             >
-              {isLoading ? "Tilmelder..." : "Tilmeld mig gratis!"}
+              🚀 Tilmeld dig eventet
             </Button>
-          </form>
+
+            <Button 
+              onClick={onClose}
+              variant="ghost"
+              className="w-full text-white/80 hover:text-white hover:bg-white/10"
+            >
+              Måske senere
+            </Button>
+          </div>
 
           <p className="text-xs text-white/70 text-center mt-4 font-inter">
-            Vi sender kun kvalitetsindhold. Ingen spam. Afmeld når som helst.
+            Begrænsede pladser tilgængelige - Tilmeld dig nu!
           </p>
         </div>
       </DialogContent>

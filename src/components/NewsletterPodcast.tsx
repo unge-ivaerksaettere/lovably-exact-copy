@@ -1,60 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { Calendar } from "lucide-react";
 
 const NewsletterPodcast = () => {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [subscriptionTypes, setSubscriptionTypes] = useState({
-    events_copenhagen: false,
-    events_aarhus: false,
-    podcast: true,  // Default to podcast for podcast signup
-    webinars: false
-  });
-  const { toast } = useToast();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!email) {
-      toast({
-        title: "Fejl",
-        description: "Indtast venligst din email adresse",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const { data, error } = await supabase.functions.invoke('mailerlite-subscribe', {
-        body: { 
-          email,
-          subscriptionTypes
-        }
-      });
-
-      if (error) {
-        throw error;
-      }
-      toast({
-        title: "Tak!",
-        description: "Du er nu tilmeldt vores newsletter og får besked om nye episoder!",
-      });
-      setEmail("");
-    } catch (error: any) {
-      console.error('Newsletter signup error:', error);
-      toast({
-        title: "Fejl",
-        description: error.message || "Der skete en fejl. Prøv igen senere.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+  const handleEventSignup = () => {
+    window.open('https://lu.ma/evt-3FHJkLWSIfgIAsJ', '_blank');
   };
 
   return (
@@ -62,76 +11,30 @@ const NewsletterPodcast = () => {
       <div className="container mx-auto px-4">
         <div className="bg-primary rounded-lg p-8 text-center text-primary-foreground">
           <h3 className="text-2xl font-anton mb-4">
-            Få besked om nye episoder
+            Tilmeld dig vores næste event
           </h3>
           <p className="font-inter mb-6 opacity-90">
-            Tilmeld dig vores newsletter og vær den første til at høre nye podcast episoder.
+            Kom og mød andre unge iværksættere, få inspiration og byg dit netværk.
           </p>
-          <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
-            <Input 
-              type="email"
-              placeholder="Din email adresse" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              disabled={isLoading}
-              className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60 font-inter"
-            />
-            
-            {/* Subscription Preferences */}
-            <div className="space-y-3">
-              <p className="text-sm font-dm-sans font-bold text-primary-foreground">Hvad vil du modtage?</p>
-              <div className="grid grid-cols-1 gap-2">
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={subscriptionTypes.events_copenhagen}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_copenhagen: e.target.checked}))}
-                    className="rounded border-primary-foreground/30 bg-primary-foreground/10 text-secondary focus:ring-secondary"
-                  />
-                  <span className="text-sm font-inter text-primary-foreground">📅 Events i København</span>
-                </label>
-                
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={subscriptionTypes.events_aarhus}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, events_aarhus: e.target.checked}))}
-                    className="rounded border-primary-foreground/30 bg-primary-foreground/10 text-secondary focus:ring-secondary"
-                  />
-                  <span className="text-sm font-inter text-primary-foreground">📅 Events i Århus</span>
-                </label>
-                
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={subscriptionTypes.podcast}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, podcast: e.target.checked}))}
-                    className="rounded border-primary-foreground/30 bg-primary-foreground/10 text-secondary focus:ring-secondary"
-                  />
-                  <span className="text-sm font-inter text-primary-foreground">🎧 Podcast</span>
-                </label>
-                
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={subscriptionTypes.webinars}
-                    onChange={(e) => setSubscriptionTypes(prev => ({...prev, webinars: e.target.checked}))}
-                    className="rounded border-primary-foreground/30 bg-primary-foreground/10 text-secondary focus:ring-secondary"
-                  />
-                  <span className="text-sm font-inter text-primary-foreground">💻 Webinars</span>
-                </label>
+          
+          <div className="space-y-4 max-w-md mx-auto">
+            <div className="bg-primary-foreground/10 rounded-3xl p-4 mb-4">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <Calendar className="w-6 h-6 text-primary-foreground" />
+                <span className="font-dm-sans font-bold text-primary-foreground">Kim Rants & Jeppe Østergaard</span>
               </div>
+              <p className="text-sm text-primary-foreground/80">
+                København Event - Gratis deltagelse
+              </p>
             </div>
             
             <Button 
-              type="submit"
-              disabled={isLoading || (!subscriptionTypes.events_copenhagen && !subscriptionTypes.events_aarhus && !subscriptionTypes.podcast && !subscriptionTypes.webinars)}
+              onClick={handleEventSignup}
               className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-dm-sans font-bold"
             >
-              {isLoading ? "Tilmelder..." : "Tilmeld"}
+              🎯 Tilmeld dig eventet
             </Button>
-          </form>
+          </div>
         </div>
       </div>
     </section>
