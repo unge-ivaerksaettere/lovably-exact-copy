@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Play, Clock, Music, ExternalLink, Heart, Loader2, Youtube } from "lucide-react";
 import { useState } from "react";
 import { usePodcastEpisodes, useFeaturedPodcastEpisode, PodcastEpisode } from "@/hooks/usePodcastEpisodes";
@@ -92,11 +91,13 @@ const PodcastSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <OptimizedImage
+            <img 
               src={getEpisodeImage(currentFeaturedEpisode)}
               alt={`${currentFeaturedEpisode.title} cover`}
-              fallback={podcastStudio}
               className="rounded-lg w-full h-auto object-cover"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+              onError={(e) => { (e.currentTarget as HTMLImageElement).src = podcastStudio; }}
             />
           </div>
           
@@ -196,11 +197,13 @@ const PodcastSection = () => {
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       {/* Episode Image */}
-                      <OptimizedImage
+                      <img 
                         src={getEpisodeImage(episode)}
                         alt={`${episode.title} cover`}
-                        fallback={podcastStudio}
                         className="w-full h-32 object-cover rounded-lg"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => { (e.currentTarget as HTMLImageElement).src = podcastStudio; }}
                       />
                       
                       <div className="space-y-2">
