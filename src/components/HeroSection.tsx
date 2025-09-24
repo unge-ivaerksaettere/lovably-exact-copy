@@ -1,13 +1,18 @@
 import { Button } from "@/components/ui/button";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Mic, Calendar, Instagram, Linkedin } from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
 import heroImage from "@/assets/event-audience-1.jpg";
 const HeroSection = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-      backgroundImage: `url(${heroImage})`
-    }}>
+      <div className="absolute inset-0">
+        <OptimizedImage
+          src={heroImage}
+          alt="Unge iværksættere event audience"
+          priority={true}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-black/40" />
       </div>
       
