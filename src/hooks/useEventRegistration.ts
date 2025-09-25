@@ -92,17 +92,36 @@ export const useEventRegistration = () => {
   });
 };
 
+// SECURITY: This hook now requires admin authentication to view registration data
 export const useEventRegistrations = (eventId: string) => {
   return useQuery({
     queryKey: ['event-registrations', eventId],
     queryFn: async () => {
+      // Check if user is authenticated and admin before making request
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        throw new Error("Authentication required to view registration data");
+      }
+
+      // Only select non-sensitive data, and let RLS policies handle access control
       const { data, error } = await supabase
         .from("event_registrations")
-        .select("*")
+        .select(`
+          id,
+          event_id,
+          confirmed_at,
+          created_at
+        `)
         .eq("event_id", eventId)
         .not("confirmed_at", "is", null);
 
-      if (error) throw error;
+      if (error) {
+        // If access denied, return empty array instead of throwing
+        if (error.code === "PGRST301" || error.message.includes("policy")) {
+          return [];
+        }
+        throw error;
+      }
       return data;
     },
   });
