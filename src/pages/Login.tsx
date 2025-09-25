@@ -58,7 +58,10 @@ const Login = () => {
     setLoading(true);
 
     try {
-      console.log('Attempting login with:', loginForm.email);
+      // Remove sensitive logging in production
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Attempting login');
+      }
       
       const { data, error } = await supabase.auth.signInWithPassword({
         email: loginForm.email,
@@ -66,11 +69,14 @@ const Login = () => {
       });
 
       if (error) {
-        console.error('Login error:', error);
+        // Log error without sensitive details
+        console.error('Authentication failed');
         throw error;
       }
 
-      console.log('Login successful:', data.user?.email);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Login successful');
+      }
 
       toast({
         title: "Velkommen tilbage!",

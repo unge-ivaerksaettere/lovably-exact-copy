@@ -1,16 +1,16 @@
 project_id = "qnjtgjakakilxiglwztm"
 
-[functions.mailerlite-subscribe]
-verify_jwt = false
-
 [functions.send-registration-confirmation]
-verify_jwt = false
+verify_jwt = true
 
 [functions.confirm-registration]
-verify_jwt = false
+verify_jwt = true
 
 [functions.send-invitation-email]
-verify_jwt = false
+verify_jwt = true
 
 [functions.spotify-sync]
+verify_jwt = true
+
+[functions.mailerlite-subscribe]
 verify_jwt = false

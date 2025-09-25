@@ -69,7 +69,8 @@ export const useEventRegistration = () => {
       );
 
       if (emailError) {
-        console.error("Failed to send confirmation email:", emailError);
+        // Log error without sensitive details
+        console.error("Email service error occurred");
         // Don't fail the registration if email fails
       }
 
@@ -116,11 +117,13 @@ export const useEventRegistrations = (eventId: string) => {
         .not("confirmed_at", "is", null);
 
       if (error) {
-        // If access denied, return empty array instead of throwing
-        if (error.code === "PGRST301" || error.message.includes("policy")) {
+        // Handle access control gracefully - new RLS policy restricts access
+        if (error.code === "PGRST301" || error.message.includes("policy") || error.code === "42501") {
           return [];
         }
-        throw error;
+        // Log error without sensitive details
+        console.error("Database access error");
+        throw new Error("Unable to fetch registration data");
       }
       return data;
     },

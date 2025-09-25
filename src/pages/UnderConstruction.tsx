@@ -26,7 +26,7 @@ const UnderConstruction = () => {
         </div>
         
         <div className="pt-4">
-          <Button onClick={() => { console.log('Admin button clicked', { loggedIn: !!user }); navigate(user ? "/admin" : "/login"); }} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+          <Button onClick={() => { navigate(user ? "/admin" : "/login"); }} className="bg-primary hover:bg-primary/90 text-primary-foreground">
             {user ? "Gå til Admin" : "🔓 Administrator login"}
           </Button>
           <div className="mt-2">
