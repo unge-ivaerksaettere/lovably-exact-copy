@@ -10,10 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=DM+Sans:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Custom favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/ui-logo-favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/ui-logo-favicon.png">
-    <link rel="shortcut icon" href="/ui-logo-favicon.png">
+    <!-- Custom favicon with cache busting -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/ui-logo-favicon.png?v=2025092501">
+    <link rel="icon" type="image/png" sizes="16x16" href="/ui-logo-favicon.png?v=2025092501">
+    <link rel="shortcut icon" href="/ui-logo-favicon.png?v=2025092501">
+    <link rel="apple-touch-icon" href="/ui-logo-favicon.png?v=2025092501">
+    <!-- Prevent browsers from looking for the old favicon.ico -->
+    <link rel="icon" href="data:,">
 
     <meta property="og:title" content="Unge Iværksættere - Fra idé til iværksætter" />
     <meta property="og:description" content="Bliv en del af Danmarks største startup community. Lyt til vores podcast, kom til inspirerende events og få netværk til dit næste startup." />
