@@ -13,6 +13,11 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     rollupOptions: {
+      external: (id) => {
+        // Don't bundle platform-specific binaries
+        if (id.includes('@rollup/rollup-')) return true;
+        return false;
+      },
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
@@ -37,6 +42,10 @@ export default defineConfig(({ mode }) => ({
     minify: 'esbuild',
     cssMinify: true,
     reportCompressedSize: false,
+    commonjsOptions: {
+      include: [/node_modules/],
+      transformMixedEsModules: true,
+    },
   },
   optimizeDeps: {
     include: [
