@@ -212,13 +212,6 @@ const PodcastSection = () => {
                         <Clock className="w-3 h-3" />
                         {formatDuration(episode.duration_ms)}
                       </div>
-                      
-                      {/* Play Icon Overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="bg-white/20 backdrop-blur-md rounded-full p-4 border border-white/30">
-                          <Play className="w-8 h-8 text-white fill-white" />
-                        </div>
-                      </div>
                     </div>
                     
                     {/* Content Area */}

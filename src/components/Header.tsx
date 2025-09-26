@@ -28,7 +28,7 @@ const Header = () => {
   }, [location.pathname]);
   const isActive = (path: string) => location.pathname === path;
   return <header className="w-full bg-background/80 backdrop-blur-md border-b border-border/50 sticky top-0 z-50 shadow-soft">
-      <div className="w-full px-0">
+      <div className="w-full pl-2">
         <div className="flex justify-between items-center h-16">
           {/* Logo - Always far left */}
           <Link to="/" className="flex items-center flex-shrink-0 mr-4">
