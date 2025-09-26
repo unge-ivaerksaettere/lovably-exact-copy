@@ -1,8 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-// @ts-ignore
-import viteImagemin from 'vite-plugin-imagemin';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -49,7 +47,7 @@ export default defineConfig(({ mode }) => ({
       'clsx',
       'class-variance-authority'
     ],
-    exclude: ['lovable-tagger'],
+    exclude: ['lovable-tagger', 'minimatch'],
   },
   plugins: [
     react()
