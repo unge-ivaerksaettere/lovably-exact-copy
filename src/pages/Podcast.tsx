@@ -1,13 +1,12 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Play, Calendar, Clock, Download, Headphones, Loader2 } from "lucide-react";
+import { Play, Calendar, Clock, Loader2 } from "lucide-react";
 import podcastStudio from "@/assets/podcast-studio.jpg";
 import NewsletterPodcast from "@/components/NewsletterPodcast";
+import PodcastEpisodeCard from "@/components/PodcastEpisodeCard";
 import { usePodcastEpisodes, useFeaturedPodcastEpisode, useSpotifySync } from "@/hooks/usePodcastEpisodes";
 import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -215,38 +214,10 @@ const Podcast = () => {
           {episodesLoading ? <div className="flex items-center justify-center py-8">
               <Loader2 className="w-6 h-6 animate-spin" />
               <span className="ml-2">Indlæser episoder...</span>
-            </div> : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {episodes.slice(1, 4).map(episode => <Card key={episode.id} className="border-border overflow-hidden hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      {/* Episode Image */}
-                      <img src={getEpisodeImage(episode.title, episode.image_url)} alt={`${episode.title} cover`} className="w-full h-32 object-cover rounded-lg" loading="lazy" referrerPolicy="no-referrer" onError={e => {
-                  (e.currentTarget as HTMLImageElement).src = podcastStudio;
-                }} />
-                      
-                      <div className="space-y-2">
-                        <h4 className="text-lg font-dm-sans font-bold text-foreground line-clamp-2">
-                          {episode.title}
-                        </h4>
-                      </div>
-                      
-                      <div className="flex items-center justify-between text-xs text-muted-foreground font-inter">
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
-                          {formatDuration(episode.duration_ms)}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          {new Date(episode.release_date).toLocaleDateString('da-DK')}
-                        </span>
-                      </div>
-                      
-                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold" onClick={() => window.open(episode.spotify_url, '_blank')}>
-                        ▶ Lyt på Spotify
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>)}
+            </div> : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {episodes.slice(1, 4).map(episode => (
+                <PodcastEpisodeCard key={episode.id} episode={episode} />
+              ))}
             </div>}
         </div>
       </section>

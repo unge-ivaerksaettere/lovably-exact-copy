@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Play, Clock, Music, ExternalLink, Heart, Loader2, Youtube } from "lucide-react";
+import { Clock, Music, ExternalLink, Loader2, Youtube } from "lucide-react";
 import { useState } from "react";
 import { usePodcastEpisodes, useFeaturedPodcastEpisode, PodcastEpisode } from "@/hooks/usePodcastEpisodes";
 import podcastStudio from "@/assets/podcast-recording-1.jpg";
+import PodcastEpisodeCard from "@/components/PodcastEpisodeCard";
 // Import podcast images
 import podcastFazel from "@/assets/podcast-fazel.png";
 import podcastDoubles from "@/assets/podcast-doubles-new.png";
@@ -193,51 +193,7 @@ const PodcastSection = () => {
             <h3 className="text-2xl font-bold mb-8 text-center">Seneste Episoder (3)</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {episodes.slice(1, 4).map((episode) => (
-                <Card key={episode.id} className="group border-border/50 bg-gradient-to-b from-background to-muted/20 overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 h-full">
-                  <CardContent className="p-0 h-full flex flex-col">
-                    {/* Episode Image - Taller aspect ratio */}
-                    <div className="relative overflow-hidden">
-                      <img 
-                        src={getEpisodeImage(episode)}
-                        alt={`${episode.title} cover`}
-                        className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => { (e.currentTarget as HTMLImageElement).src = podcastStudio; }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      
-                      {/* Duration Badge */}
-                      <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {formatDuration(episode.duration_ms)}
-                      </div>
-                    </div>
-                    
-                    {/* Content Area */}
-                    <div className="p-6 flex-1 flex flex-col justify-between">
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2 text-xs text-primary font-medium">
-                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                          <span>PODCAST EPISODE</span>
-                        </div>
-                        
-                        <h4 className="text-lg font-bold text-foreground line-clamp-3 group-hover:text-primary transition-colors">
-                          {episode.title}
-                        </h4>
-                      </div>
-                      
-                      {/* Action Button */}
-                      <Button 
-                        className="w-full mt-4 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all duration-300 h-12 group-hover:scale-105"
-                        onClick={() => window.open(episode.spotify_url, '_blank')}
-                      >
-                        <Play className="w-4 h-4 mr-2 fill-current" />
-                        Lyt på Spotify
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <PodcastEpisodeCard key={episode.id} episode={episode} />
               ))}
             </div>
           </div>
