@@ -54,7 +54,7 @@ const TestimonialsSection = () => {
         </div>
         
         <div className="flex justify-center mt-12">
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+          <Button asChild size="lg" variant="secondary">
             <a href="https://www.skool.com/unge-ivrksttere-3699/about?ref=be5d1399328b408e8a2cbe59f14ac667" target="_blank" rel="noopener noreferrer">
               🚀 Bliv en del af vores community
             </a>

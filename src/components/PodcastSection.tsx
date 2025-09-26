@@ -140,13 +140,13 @@ const PodcastSection = () => {
                 </div>
                 
                 <div className="flex gap-3">
-                  <Button className="gap-2" onClick={() => window.open(`https://open.spotify.com/episode/${currentFeaturedEpisode.spotify_id}`, '_blank')}>
+                  <Button variant="secondary" className="gap-2" onClick={() => window.open(`https://open.spotify.com/episode/${currentFeaturedEpisode.spotify_id}`, '_blank')}>
                     <ExternalLink className="w-4 h-4" />
-                    Åbn i Spotify
+                    📂 Åbn i Spotify
                   </Button>
-                <Button variant="outline" className="gap-2 bg-red-500 hover:bg-red-600 text-white border-red-500" onClick={() => window.open('https://www.youtube.com/@ungeiv%C3%A6rks%C3%A6ttere', '_blank')}>
+                <Button variant="outline" className="gap-2" onClick={() => window.open('https://www.youtube.com/@ungeiv%C3%A6rks%C3%A6ttere', '_blank')}>
                     <Youtube className="w-4 h-4" />
-                    Se på YouTube
+                    📺 Se på YouTube
                   </Button>
                 </div>
               </>
@@ -259,8 +259,8 @@ const PodcastSection = () => {
                     <Button variant="outline" onClick={() => setSelectedEpisode(null)}>
                       Luk
                     </Button>
-                    <Button onClick={() => window.open(selectedEpisode.spotify_url, '_blank')}>
-                      Åbn i Spotify
+                    <Button variant="secondary" onClick={() => window.open(selectedEpisode.spotify_url, '_blank')}>
+                      📂 Åbn i Spotify
                     </Button>
                   </div>
                 </div>
