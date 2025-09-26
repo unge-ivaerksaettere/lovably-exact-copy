@@ -337,6 +337,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
+      get_event_attendee_count: {
+        Args: { event_id_param: string }
+        Returns: number
+      }
       get_events_by_status: {
         Args: { event_status?: string }
         Returns: {
