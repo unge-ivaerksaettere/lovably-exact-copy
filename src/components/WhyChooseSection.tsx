@@ -4,7 +4,7 @@ import { Users, Mic, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import thinkLogo from "@/assets/think-transparent.png";
 import uiLogo from "@/assets/ui-talks-logo.png";
-import uiIconFeature from "@/assets/ui-icon-feature.png";
+import uiIconFeature from "@/assets/ui-logo-main.png";
 
 const WhyChooseSection = () => {
   const features = [

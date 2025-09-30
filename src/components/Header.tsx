@@ -5,7 +5,7 @@ import { Menu, X, User, LogOut } from "lucide-react";
 import { AuthDialog } from "./AuthDialog";
 import { useAuth } from "@/hooks/useAuth";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import uiLogo from "@/assets/new-logo.png";
+import uiLogo from "@/assets/ui-logo-main.png";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
