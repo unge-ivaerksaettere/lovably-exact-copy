@@ -24,7 +24,7 @@ const PodcastSection = () => {
     id: "default",
     spotify_id: "4P3kjxBiYGGjnS1uqjkt3V",
     title: "Manden bag Doublés",
-    description: "I podcasten Unge Iværksættere Talks udforsker vi unge iværksætteres historier med det formål at dele deres råd og erfaringer med andre ambitiøse unge.",
+    description: "Hør Niklas i samtale med Danmarks mest succesfulde iværksættere og lær fra deres rejse til toppen.",
     release_date: "2024-01-01",
     duration_ms: 3769000, // 1:02:49 in milliseconds
     episode_number: null,
