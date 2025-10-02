@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import thinkLogo from "@/assets/think-transparent.png";
 import uiLogo from "@/assets/ui-logo-main.png";
 import uiIconFeature from "@/assets/ui-logo-main.png";
+import uiTalksLogo from "@/assets/ui-talks-logo-new.png";
 
 const WhyChooseSection = () => {
   const features = [
@@ -25,7 +26,7 @@ const WhyChooseSection = () => {
       icon: null,
       title: "",
       description: "Hør Niklas i samtale med Danmarks mest succesfulde iværksættere og lær fra deres rejse til toppen.",
-      customIcon: uiLogo,
+      customIcon: uiTalksLogo,
       link: "/podcast",
     },
   ];
