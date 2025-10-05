@@ -3,7 +3,7 @@ import { Calendar } from "lucide-react";
 
 const NewsletterSection = () => {
   const handleEventSignup = () => {
-    window.open('https://luma.com/14rajz9u', '_blank');
+    window.open('https://luma.com/t0s5h2fq', '_blank');
   };
 
   return (
@@ -22,7 +22,7 @@ const NewsletterSection = () => {
                 <span className="text-xl font-anton font-bold text-primary">Næste Event</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Kim Rants & Jeppe Østergaard - København Event
+                Simon Schiølin & Christoffer Sloth - Aarhus Event
               </p>
             </div>
             
