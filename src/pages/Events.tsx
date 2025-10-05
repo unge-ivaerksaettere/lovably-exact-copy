@@ -86,7 +86,7 @@ const Events = () => {
               <div className="flex justify-center">
                 <div className="relative bg-background/50 backdrop-blur-sm rounded-3xl p-6 shadow-medium">
                   <iframe
-                    src="https://luma.com/embed/event/evt-3FHJkLWSIfgIAsJ/simple"
+                    src="https://luma.com/embed/event/evt-QdsdjQ0txSm9pqR/simple"
                     width="600"
                     height="450"
                     frameBorder="0"
