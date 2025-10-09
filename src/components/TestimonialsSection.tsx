@@ -41,7 +41,7 @@ const TestimonialsSection = () => {
                 
                  <div className="flex items-center gap-4">
                    <Avatar className="w-12 h-12">
-                     <AvatarImage src={testimonial.image} alt={testimonial.name} />
+                     <AvatarImage src={testimonial.image} alt={testimonial.name} loading="lazy" />
                    </Avatar>
                    <div>
                      <h4 className="font-dm-sans font-bold">{testimonial.name}</h4>

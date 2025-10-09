@@ -66,7 +66,7 @@ const SpeakersSection = () => {
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
                   <Avatar className="w-12 h-12 sm:w-14 sm:h-14 ring-1 ring-border">
-                    <AvatarImage src={speaker.image} alt={speaker.name} />
+                    <AvatarImage src={speaker.image} alt={speaker.name} loading="lazy" />
                     <AvatarFallback>{speaker.initials}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1">

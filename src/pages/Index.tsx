@@ -17,7 +17,7 @@ const Index = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowNewsletterPopup(true);
-    }, 3000); // Show popup after 3 seconds
+    }, 10000); // Show popup after 10 seconds instead of 3
 
     return () => clearTimeout(timer);
   }, []);
