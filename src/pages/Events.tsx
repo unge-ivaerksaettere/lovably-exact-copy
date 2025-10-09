@@ -9,7 +9,7 @@ const Events = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 bg-gradient-subtle overflow-hidden">
+      <section className="relative pt-24 md:pt-20 pb-8 md:pb-16 bg-gradient-subtle overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             {/* Badge */}
