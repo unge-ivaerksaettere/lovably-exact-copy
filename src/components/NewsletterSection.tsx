@@ -3,7 +3,7 @@ import { Calendar } from "lucide-react";
 
 const NewsletterSection = () => {
   const handleEventSignup = () => {
-    window.open('https://lu.ma/evt-A5G3A6rtxyl1DBR', '_blank');
+    window.open('https://luma.com/81sdunl8', '_blank');
   };
 
   return (
@@ -22,7 +22,7 @@ const NewsletterSection = () => {
                 <span className="text-xl font-anton font-bold text-primary">Næste Event</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Simon Schiølin & Christoffer Sloth - Aarhus Event
+                Frederik Pahuus - København Event
               </p>
             </div>
             
