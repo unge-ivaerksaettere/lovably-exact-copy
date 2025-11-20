@@ -5,13 +5,14 @@ import heroImage from "@/assets/event-audience-1.jpg";
 const HeroSection = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
-        style={{
-          backgroundImage: `url(${heroImage})`,
-          willChange: 'transform'
-        }}
-      >
+      <div className="absolute inset-0">
+        <img 
+          src={heroImage}
+          alt="Young entrepreneurs at event"
+          className="w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+        />
         <div className="absolute inset-0 bg-black/40" />
       </div>
       
