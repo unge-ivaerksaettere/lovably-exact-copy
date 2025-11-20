@@ -3,7 +3,7 @@ import { Calendar } from "lucide-react";
 
 const NewsletterPodcast = () => {
   const handleEventSignup = () => {
-    window.open('https://luma.com/81sdunl8', '_blank');
+    window.open('https://lu.ma/evt-pXOKzm87fIcOR66', '_blank');
   };
 
   return (
@@ -21,10 +21,10 @@ const NewsletterPodcast = () => {
             <div className="bg-primary-foreground/10 rounded-3xl p-4 mb-4">
               <div className="flex items-center justify-center gap-3 mb-2">
                 <Calendar className="w-6 h-6 text-primary-foreground" />
-                <span className="font-dm-sans font-bold text-primary-foreground">Frederik Pahuus</span>
+                <span className="font-dm-sans font-bold text-primary-foreground">Morten Grabowski & Kristian Tinho</span>
               </div>
               <p className="text-sm text-primary-foreground/80">
-                København Event - Gratis deltagelse
+                Århus Event - Gratis deltagelse
               </p>
             </div>
             
