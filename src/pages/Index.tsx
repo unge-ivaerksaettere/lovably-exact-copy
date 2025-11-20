@@ -2,11 +2,11 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import WhyChooseSection from "@/components/WhyChooseSection";
 import FAQSection from "@/components/FAQSection";
 import NewsletterPopup from "@/components/NewsletterPopup";
 
-// Lazy load komponenter under folden
+// Lazy load ALLE komponenter under folden
+const WhyChooseSection = lazy(() => import("@/components/WhyChooseSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const PodcastSection = lazy(() => import("@/components/PodcastSection"));
 const SpeakersSection = lazy(() => import("@/components/SpeakersSection"));
@@ -27,8 +27,8 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <HeroSection />
-      <WhyChooseSection />
-      <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <WhyChooseSection />
         <SpeakersSection />
         <TestimonialsSection />
         <PodcastSection />

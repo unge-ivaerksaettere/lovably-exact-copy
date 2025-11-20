@@ -49,11 +49,11 @@ const WhyChooseSection = () => {
                   <div className="mx-auto mb-2 sm:mb-3">
                     {feature.link ? (
                       <Link to={feature.link}>
-                        <img src={feature.customIcon} alt={feature.title} className="w-40 h-40 sm:w-48 sm:h-48 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" />
+                        <img src={feature.customIcon} alt={feature.title} className="w-40 h-40 sm:w-48 sm:h-48 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" loading="lazy" />
                       </Link>
                     ) : (
                       <a href="https://www.skool.com/unge-ivrksttere-3699/about?ref=be5d1399328b408e8a2cbe59f14ac667" target="_blank" rel="noopener noreferrer">
-                        <img src={feature.customIcon} alt={feature.title} className="w-40 h-40 sm:w-48 sm:h-48 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" />
+                        <img src={feature.customIcon} alt={feature.title} className="w-40 h-40 sm:w-48 sm:h-48 object-contain mx-auto group-hover:scale-110 transition-all duration-300 ease-bounce cursor-pointer" loading="lazy" />
                       </a>
                     )}
                   </div>
