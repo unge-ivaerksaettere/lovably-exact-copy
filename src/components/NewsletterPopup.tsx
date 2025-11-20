@@ -9,7 +9,7 @@ interface NewsletterPopupProps {
 
 const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
   const handleEventSignup = () => {
-    window.open('https://luma.com/81sdunl8', '_blank');
+    window.open('https://lu.ma/evt-pXOKzm87fIcOR66', '_blank');
     onClose();
   };
 
@@ -33,8 +33,8 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
 
           <div className="space-y-4">
             <div className="bg-white/10 rounded-2xl p-4 text-center">
-              <p className="text-white font-dm-sans font-bold mb-2">Frederik Pahuus</p>
-              <p className="text-white/80 text-sm">København Event - Gratis deltagelse</p>
+              <p className="text-white font-dm-sans font-bold mb-2">Morten Grabowski & Kristian Tinho</p>
+              <p className="text-white/80 text-sm">Århus Event - Gratis deltagelse</p>
             </div>
             
             <Button 
