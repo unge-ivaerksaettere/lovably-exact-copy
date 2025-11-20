@@ -19,7 +19,7 @@ export type Database = {
           action: string
           created_at: string
           id: string
-          ip_address: unknown | null
+          ip_address: unknown
           new_value: string | null
           old_value: string | null
           target_user_email: string | null
@@ -31,7 +31,7 @@ export type Database = {
           action: string
           created_at?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           new_value?: string | null
           old_value?: string | null
           target_user_email?: string | null
@@ -43,7 +43,7 @@ export type Database = {
           action?: string
           created_at?: string
           id?: string
-          ip_address?: unknown | null
+          ip_address?: unknown
           new_value?: string | null
           old_value?: string | null
           target_user_email?: string | null
@@ -333,10 +333,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      generate_invite_code: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
+      generate_invite_code: { Args: never; Returns: string }
       get_event_attendee_count: {
         Args: { event_id_param: string }
         Returns: number
@@ -359,10 +356,7 @@ export type Database = {
           updated_at: string
         }[]
       }
-      is_admin: {
-        Args: { _user_id: string }
-        Returns: boolean
-      }
+      is_admin: { Args: { _user_id: string }; Returns: boolean }
       log_admin_action: {
         Args: {
           action_type: string
