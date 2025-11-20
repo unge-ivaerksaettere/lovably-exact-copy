@@ -4,7 +4,7 @@ import { Clock, Play } from "lucide-react";
 import { PodcastEpisode } from "@/hooks/usePodcastEpisodes";
 import podcastStudio from "@/assets/podcast-studio.jpg";
 import podcastFazel from "@/assets/podcast-fazel.png";
-import podcastDoubles from "@/assets/podcast-doubles-new.png";
+import podcastDoubles from "@/assets/podcast-doubles-fixed.png";
 import podcastLouliving from "@/assets/podcast-louliving.png";
 import podcastDoner from "@/assets/podcast-doner.png";
 
