@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import WhyChooseSection from "@/components/WhyChooseSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import PodcastSection from "@/components/PodcastSection";
-import SpeakersSection from "@/components/SpeakersSection";
-import CommunityGallery from "@/components/CommunityGallery";
-import NewsletterSection from "@/components/NewsletterSection";
 import FAQSection from "@/components/FAQSection";
 import NewsletterPopup from "@/components/NewsletterPopup";
+
+// Lazy load komponenter under folden
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const PodcastSection = lazy(() => import("@/components/PodcastSection"));
+const SpeakersSection = lazy(() => import("@/components/SpeakersSection"));
+const CommunityGallery = lazy(() => import("@/components/CommunityGallery"));
+const NewsletterSection = lazy(() => import("@/components/NewsletterSection"));
 
 const Index = () => {
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
@@ -26,11 +28,13 @@ const Index = () => {
       <Header />
       <HeroSection />
       <WhyChooseSection />
-      <SpeakersSection />
-      <TestimonialsSection />
-      <PodcastSection />
-      <CommunityGallery />
-      <NewsletterSection />
+      <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+        <SpeakersSection />
+        <TestimonialsSection />
+        <PodcastSection />
+        <CommunityGallery />
+        <NewsletterSection />
+      </Suspense>
       <FAQSection />
       <NewsletterPopup 
         isOpen={showNewsletterPopup} 
