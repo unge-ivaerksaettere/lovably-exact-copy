@@ -6,7 +6,7 @@ import uiLogo from "@/assets/new-logo.png";
 
 const Footer = () => {
   const handleEventSignup = () => {
-    window.open('https://lu.ma/evt-pXOKzm87fIcOR66', '_blank');
+    window.open('https://luma.com/8159kkxm', '_blank');
   };
   return <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 py-16">
@@ -26,10 +26,10 @@ const Footer = () => {
               <div className="bg-background/10 rounded-2xl p-3 space-y-2">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-background" />
-                  <span className="text-xs font-dm-sans font-bold text-background">Morten Grabowski & Kristian Tinho</span>
+                  <span className="text-xs font-dm-sans font-bold text-background">Speaker annonceres snart!</span>
                 </div>
                 <p className="text-xs text-background/80">
-                  Århus Event - Gratis deltagelse
+                  København Event - Gratis deltagelse
                 </p>
               </div>
               
