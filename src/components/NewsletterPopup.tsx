@@ -33,7 +33,7 @@ const NewsletterPopup = ({ isOpen, onClose }: NewsletterPopupProps) => {
 
           <div className="space-y-4">
             <div className="bg-white/10 rounded-2xl p-4 text-center">
-              <p className="text-white font-dm-sans font-bold mb-2">Spændende speaker annonceres snart!</p>
+              <p className="text-white font-dm-sans font-bold mb-2">Nikolai Høgskilde & Farah Ragheb</p>
               <p className="text-white/80 text-sm">København Event - Gratis deltagelse</p>
             </div>
             
