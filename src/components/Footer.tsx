@@ -6,7 +6,7 @@ import uiLogo from "@/assets/new-logo.png";
 
 const Footer = () => {
   const handleEventSignup = () => {
-    window.open('https://luma.com/jffq7yqn', '_blank');
+    window.open('https://luma.com/93cjqd5t', '_blank');
   };
   return <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 py-16">
@@ -26,10 +26,10 @@ const Footer = () => {
               <div className="bg-background/10 rounded-2xl p-3 space-y-2">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-background" />
-                  <span className="text-xs font-dm-sans font-bold text-background">Nick Traulsen & Jonas Ghaus</span>
+                  <span className="text-xs font-dm-sans font-bold text-background">Marcus Dahl & Martin Roland</span>
                 </div>
                 <p className="text-xs text-background/80">
-                  Aarhus Event - Gratis deltagelse
+                  København Event - Gratis deltagelse
                 </p>
               </div>
               
