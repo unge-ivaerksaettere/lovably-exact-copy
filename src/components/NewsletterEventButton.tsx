@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 const NewsletterEventButton = () => {
   const handleEventSignup = () => {
-    window.open('https://luma.com/81sdunl8', '_blank');
+    window.open('https://luma.com/iv9l8895', '_blank');
   };
 
   return (
