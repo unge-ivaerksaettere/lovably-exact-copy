@@ -110,7 +110,7 @@ const Events = () => {
                 </p>
                 <Button variant="default" size="lg" className="font-dm-sans font-bold" asChild>
                   <a 
-                    href="https://luma.com/93cjqd5t" 
+                    href="https://luma.com/iv9l8895" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2"
@@ -139,7 +139,7 @@ const Events = () => {
               variant="secondary" 
               size="lg" 
               className="font-dm-sans font-bold inline-flex items-center gap-2"
-              onClick={() => window.open('https://luma.com/93cjqd5t', '_blank')}
+              onClick={() => window.open('https://luma.com/iv9l8895', '_blank')}
             >
               <Calendar className="w-4 h-4" />
               🚀 Tilmeld dig nu
