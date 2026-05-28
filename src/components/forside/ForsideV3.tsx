@@ -1,5 +1,6 @@
-// Forside — V3 base (Swiss / minimal grid) with brand photos + real links, fully responsive.
+// Forside — V3 base (Swiss / minimal grid) with brand photos + Luma-direct links, fully responsive.
 // Blend: V1 mint accent in the hero headline, V2-style larger speaker photos.
+// Links: all CTAs go straight to Luma (no old-site pages); podcast -> Spotify; logo/Forside -> new homepage.
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 
@@ -27,7 +28,7 @@ import podcastRec2 from "@/assets/podcast-recording-2.jpg";
 import podcastStudio from "@/assets/podcast-studio.jpg";
 import albert from "@/assets/albert-profile.jpg";
 
-// External links (match the old site)
+// External destinations
 const LUMA_SIGNUP = "https://luma.com/iv9l8895";
 const CONTACT_EMAIL = "kontakt@ungeivaerksaettere.dk";
 const SOCIALS = {
@@ -37,6 +38,8 @@ const SOCIALS = {
   tiktok: "https://www.tiktok.com/@ungeivaerksaettere",
   spotify: "https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk",
 };
+const PODCAST = SOCIALS.spotify;
+const EXT = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 // TODO(real data): next-event date is a placeholder — 14 May 2026 already passed.
 const EVENT_DATE = "2026-06-25T18:00:00+02:00";
@@ -75,16 +78,18 @@ const orbitCss = `
   .v3cta-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(24,203,150,0.25); }
 `;
 
+// All nav destinations are external (Luma for events/info, Spotify for podcast) — never the old site.
 const navItems = [
-  { l: "Events", to: "/events" },
-  { l: "Teamet", to: "/med-teamet" },
-  { l: "Sponsorer", to: "/vores-sponsorer" },
-  { l: "Podcast", to: "/podcast" },
+  { l: "Events", href: LUMA_SIGNUP },
+  { l: "Teamet", href: LUMA_SIGNUP },
+  { l: "Sponsorer", href: LUMA_SIGNUP },
+  { l: "Podcast", href: PODCAST },
 ];
 
 function Nav({ m }: { m: boolean }) {
   const [open, setOpen] = useState(false);
   const linkStyle: CSSProperties = { fontSize: 12, color: C.charcoal, textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.1em" };
+  const ctaStyle: CSSProperties = { ...linkStyle, color: C.darkGreen, fontWeight: 600 };
   return (
     <nav style={{ borderBottom: `1px solid ${C.charcoal}15`, padding: "16px 0", position: "relative", background: C.white }}>
       <div style={{ ...innerStyle(m), display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -95,9 +100,9 @@ function Nav({ m }: { m: boolean }) {
         {!m && (
           <div style={{ display: "flex", alignItems: "center", gap: 32, fontFamily: "ui-monospace, monospace" }}>
             {navItems.map((i) => (
-              <Link key={i.l} to={i.to} className="v3-link" style={linkStyle}>{i.l}</Link>
+              <a key={i.l} href={i.href} {...EXT} className="v3-link" style={linkStyle}>{i.l}</a>
             ))}
-            <Link to="/login" className="v3-link" style={{ ...linkStyle, color: C.darkGreen, fontWeight: 600 }}>Log ind →</Link>
+            <a href={LUMA_SIGNUP} {...EXT} className="v3-link" style={ctaStyle}>Tilmeld →</a>
           </div>
         )}
 
@@ -117,9 +122,9 @@ function Nav({ m }: { m: boolean }) {
       {m && open && (
         <div style={{ borderTop: `1px solid ${C.charcoal}12`, padding: "14px 22px 18px", display: "flex", flexDirection: "column", gap: 16, fontFamily: "ui-monospace, monospace" }}>
           {navItems.map((i) => (
-            <Link key={i.l} to={i.to} onClick={() => setOpen(false)} style={linkStyle}>{i.l}</Link>
+            <a key={i.l} href={i.href} {...EXT} onClick={() => setOpen(false)} style={linkStyle}>{i.l}</a>
           ))}
-          <Link to="/login" onClick={() => setOpen(false)} style={{ ...linkStyle, color: C.darkGreen, fontWeight: 600 }}>Log ind →</Link>
+          <a href={LUMA_SIGNUP} {...EXT} onClick={() => setOpen(false)} style={ctaStyle}>Tilmeld →</a>
         </div>
       )}
     </nav>
@@ -144,8 +149,8 @@ function Hero({ m }: { m: boolean }) {
                 Vores events er stedet, hvor unge iværksættere mødes. Kom og få nye ideer, mød andre iværksættere og få inspiration fra erfarne iværksættere. Gratis deltagelse!
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <Link to="/events" style={{ ...btnBase, background: C.charcoal, color: "white", border: "none" }}>Næste event →</Link>
-                <Link to="/podcast" style={{ ...btnBase, background: "transparent", color: C.charcoal, border: `1px solid ${C.charcoal}30` }}>Lyt til podcast</Link>
+                <a href={LUMA_SIGNUP} {...EXT} style={{ ...btnBase, background: C.charcoal, color: "white", border: "none" }}>Næste event →</a>
+                <a href={PODCAST} {...EXT} style={{ ...btnBase, background: "transparent", color: C.charcoal, border: `1px solid ${C.charcoal}30` }}>Lyt til podcast</a>
               </div>
             </div>
           </div>
@@ -214,9 +219,9 @@ function Community({ m }: { m: boolean }) {
       <p style={{ fontSize: 15, lineHeight: 1.65, color: "#5a5962", margin: "20px auto 0", maxWidth: 420 }}>
         Se hvordan danske iværksættere samles, lærer og vokser sammen gennem vores events og podcast.
       </p>
-      <Link to="/events" className="v3-link" style={{ display: "inline-block", marginTop: 24, fontFamily: "ui-monospace, monospace", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", color: C.darkGreen, textDecoration: "none", borderBottom: `1px solid ${C.darkGreen}`, paddingBottom: 4 }}>
+      <a href={LUMA_SIGNUP} {...EXT} className="v3-link" style={{ display: "inline-block", marginTop: 24, fontFamily: "ui-monospace, monospace", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", color: C.darkGreen, textDecoration: "none", borderBottom: `1px solid ${C.darkGreen}`, paddingBottom: 4 }}>
         Bliv en del af det →
-      </Link>
+      </a>
     </div>
   );
 
@@ -400,7 +405,7 @@ function CTA({ m }: { m: boolean }) {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <a href={LUMA_SIGNUP} target="_blank" rel="noopener noreferrer" className="v3cta-btn" style={{ padding: "18px 24px", background: C.mint, color: C.charcoal, border: "none", fontSize: 13, fontWeight: 600, cursor: "pointer", textAlign: "left", fontFamily: "ui-monospace, monospace", textTransform: "uppercase", letterSpacing: "0.12em", display: "flex", justifyContent: "space-between", alignItems: "center", textDecoration: "none" }}>
+            <a href={LUMA_SIGNUP} {...EXT} className="v3cta-btn" style={{ padding: "18px 24px", background: C.mint, color: C.charcoal, border: "none", fontSize: 13, fontWeight: 600, cursor: "pointer", textAlign: "left", fontFamily: "ui-monospace, monospace", textTransform: "uppercase", letterSpacing: "0.12em", display: "flex", justifyContent: "space-between", alignItems: "center", textDecoration: "none" }}>
               <span>Reserver min plads</span>
               <span style={{ fontSize: 18 }}>→</span>
             </a>
@@ -415,11 +420,11 @@ function CTA({ m }: { m: boolean }) {
 }
 
 function SiteFooter({ m }: { m: boolean }) {
-  const sider = [
+  const sider: { l: string; to?: string; href?: string }[] = [
     { l: "Forside", to: "/" },
-    { l: "Events", to: "/events" },
-    { l: "Mød Teamet", to: "/med-teamet" },
-    { l: "Podcast", to: "/podcast" },
+    { l: "Events", href: LUMA_SIGNUP },
+    { l: "Mød Teamet", href: LUMA_SIGNUP },
+    { l: "Podcast", href: PODCAST },
   ];
   const links = [
     { l: "Instagram", href: SOCIALS.instagram },
@@ -444,17 +449,19 @@ function SiteFooter({ m }: { m: boolean }) {
           </div>
           <div>
             <div style={colHead}>Sider</div>
-            {sider.map((s) => (<Link key={s.l} to={s.to} className="v3-link" style={colItem}>{s.l}</Link>))}
+            {sider.map((s) => s.to
+              ? (<Link key={s.l} to={s.to} className="v3-link" style={colItem}>{s.l}</Link>)
+              : (<a key={s.l} href={s.href} {...EXT} className="v3-link" style={colItem}>{s.l}</a>))}
           </div>
           <div>
             <div style={colHead}>Links</div>
-            {links.map((s) => (<a key={s.l} href={s.href} target="_blank" rel="noopener noreferrer" className="v3-link" style={colItem}>{s.l}</a>))}
+            {links.map((s) => (<a key={s.l} href={s.href} {...EXT} className="v3-link" style={colItem}>{s.l}</a>))}
           </div>
           <div>
             <div style={colHead}>Kontakt</div>
             <a href={`mailto:${CONTACT_EMAIL}`} className="v3-link" style={colItem}>{CONTACT_EMAIL}</a>
             <span style={{ ...colItem, opacity: 0.55 }}>Aarhus & København</span>
-            <Link to="/vores-sponsorer" className="v3-link" style={colItem}>Bliv sponsor</Link>
+            <a href={LUMA_SIGNUP} {...EXT} className="v3-link" style={colItem}>Bliv sponsor</a>
             <a href={`mailto:${CONTACT_EMAIL}?subject=Bliv frivillig`} className="v3-link" style={colItem}>Bliv frivillig</a>
           </div>
         </div>
