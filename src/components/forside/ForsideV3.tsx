@@ -29,7 +29,7 @@ import podcastStudio from "@/assets/podcast-studio.jpg";
 import albert from "@/assets/albert-profile.jpg";
 
 // External destinations
-const LUMA_SIGNUP = "https://luma.com/iv9l8895";
+const LUMA_SIGNUP = "https://luma.com/kki9jrdw";
 const CONTACT_EMAIL = "kontakt@ungeivaerksaettere.dk";
 const SOCIALS = {
   instagram: "https://www.instagram.com/ivaerksaettere/",
