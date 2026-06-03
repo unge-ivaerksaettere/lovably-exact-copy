@@ -1,6 +1,7 @@
 // Forside — V3 base (Swiss / minimal grid) with brand photos + Luma-direct links, fully responsive.
 // Blend: V1 mint accent in the hero headline, V2-style larger speaker photos.
-// Links: all CTAs go straight to Luma (no old-site pages); podcast -> Spotify; logo/Forside -> new homepage.
+// SINGLE SOURCE OF TRUTH for the event: `EVENT` below. Changing it updates the hero tag,
+// the countdown, the CTA section, the Luma links, and the embedded signup widget.
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 
@@ -28,8 +29,18 @@ import podcastRec2 from "@/assets/podcast-recording-2.jpg";
 import podcastStudio from "@/assets/podcast-studio.jpg";
 import albert from "@/assets/albert-profile.jpg";
 
-// External destinations
-const LUMA_SIGNUP = "https://luma.com/kki9jrdw";
+// =====================================================================
+// EVENT — single source of truth. Change here and the whole page updates.
+// =====================================================================
+const EVENT = {
+  start: "2026-06-03T17:00:00+02:00",
+  end:   "2026-06-03T20:00:00+02:00",
+  city: "Aarhus",
+  attendees: 44,
+  lumaUrl: "https://luma.com/kki9jrdw",
+  lumaEmbedSrc: "https://luma.com/embed/event/evt-RWdxgbFwyb8fPKp/simple",
+};
+
 const CONTACT_EMAIL = "kontakt@ungeivaerksaettere.dk";
 const SOCIALS = {
   instagram: "https://www.instagram.com/ivaerksaettere/",
@@ -39,11 +50,13 @@ const SOCIALS = {
   spotify: "https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk",
 };
 const PODCAST = SOCIALS.spotify;
+const LUMA_SIGNUP = EVENT.lumaUrl;
 const EXT = { target: "_blank", rel: "noopener noreferrer" } as const;
 
-// TODO(real data): next-event date is a placeholder — 14 May 2026 already passed.
-const EVENT_DATE = "2026-06-25T18:00:00+02:00";
-const EVENT_TAG = "AARHUS · 25.06.26";
+// Derived display values from EVENT
+const _pad2 = (n: number) => String(n).padStart(2, "0");
+const _eventStart = new Date(EVENT.start);
+const EVENT_TAG = `${EVENT.city.toUpperCase()} · ${_pad2(_eventStart.getDate())}.${_pad2(_eventStart.getMonth() + 1)}.${String(_eventStart.getFullYear()).slice(-2)}`;
 
 const C = {
   darkGreen: "#118462",
@@ -78,7 +91,6 @@ const orbitCss = `
   .v3cta-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(24,203,150,0.25); }
 `;
 
-// All nav destinations are external (Luma for events/info, Spotify for podcast) — never the old site.
 const navItems = [
   { l: "Events", href: LUMA_SIGNUP },
   { l: "Teamet", href: LUMA_SIGNUP },
@@ -335,23 +347,36 @@ function Testimonials({ m }: { m: boolean }) {
 }
 
 function CTA({ m }: { m: boolean }) {
-  const target = useMemo(() => new Date(EVENT_DATE).getTime(), []);
+  const startTs = useMemo(() => new Date(EVENT.start).getTime(), []);
+  const endTs = useMemo(() => new Date(EVENT.end).getTime(), []);
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  const diff = Math.max(0, target - now);
+
+  const status: "upcoming" | "live" | "past" =
+    now < startTs ? "upcoming" : now < endTs ? "live" : "past";
+
+  // Countdown: if upcoming -> to start; if live -> to end; if past -> zeros (and we hide it)
+  const countdownTarget = status === "live" ? endTs : startTs;
+  const diff = Math.max(0, countdownTarget - now);
   const days = Math.floor(diff / 86400000);
   const hours = Math.floor((diff % 86400000) / 3600000);
   const mins = Math.floor((diff % 3600000) / 60000);
   const secs = Math.floor((diff % 60000) / 1000);
   const pad = (n: number) => String(n).padStart(2, "0");
 
-  const total = 120;
-  const taken = 73;
-  const remaining = total - taken;
-  const pct = (taken / total) * 100;
+  const dateLabel = useMemo(() => {
+    const d = new Date(EVENT.start);
+    return `${pad(d.getDate())} · ${pad(d.getMonth() + 1)} · ${String(d.getFullYear()).slice(-2)} · ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }, []);
+
+  const statusBadge =
+    status === "live" ? `LIVE NU · ${EVENT.city.toUpperCase()}` :
+    status === "past" ? "EVENT AFSLUTTET" :
+    `§ 05 — Næste event · ${EVENT.city}`;
+  const statusColor = status === "past" ? "rgba(255,255,255,0.45)" : C.mint;
 
   const cell: CSSProperties = { fontFamily: '"Space Grotesk", sans-serif', fontSize: m ? 34 : 48, fontWeight: 400, color: "white", letterSpacing: "-0.03em", lineHeight: 0.9, fontVariantNumeric: "tabular-nums" };
   const cellLabel: CSSProperties = { fontFamily: "ui-monospace, monospace", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.18em", color: "rgba(255,255,255,0.45)", marginTop: 10 };
@@ -360,58 +385,71 @@ function CTA({ m }: { m: boolean }) {
     <section style={{ background: C.charcoal, color: "white", position: "relative" }}>
       <div style={{ ...innerStyle(m), position: "relative", padding: m ? "64px 22px" : "96px 56px" }}>
         <div style={{ display: "flex", flexDirection: m ? "column" : "row", justifyContent: "space-between", alignItems: "flex-start", gap: m ? 8 : 0, marginBottom: m ? 28 : 40 }}>
-          <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.2em", color: C.mint, display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ width: 8, height: 8, borderRadius: 999, background: C.mint, display: "inline-block", animation: "v3pulse 1.6s ease-in-out infinite" }} />
-            § 05 — Næste event · Aarhus
+          <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.2em", color: statusColor, display: "flex", alignItems: "center", gap: 10 }}>
+            <span style={{ width: 8, height: 8, borderRadius: 999, background: statusColor, display: "inline-block", animation: "v3pulse 1.6s ease-in-out infinite" }} />
+            {statusBadge}
           </div>
           <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "rgba(255,255,255,0.45)" }}>
-            25 · 06 · 26 · 18:00
+            {dateLabel}
           </div>
         </div>
 
         <h2 style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: m ? 42 : 84, lineHeight: 0.95, fontWeight: 400, letterSpacing: "-0.04em", color: "white", margin: 0, marginBottom: m ? 36 : 56, maxWidth: 900 }}>
-          Klar til at<br /><span style={{ color: C.mint }}>komme med?</span>
+          {status === "live" ? (<>Live nu i<br /><span style={{ color: C.mint }}>{EVENT.city}.</span></>) :
+           status === "past" ? (<>Event<br /><span style={{ color: C.mint }}>afsluttet.</span></>) :
+           (<>Klar til at<br /><span style={{ color: C.mint }}>komme med?</span></>)}
         </h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: m ? "repeat(2, 1fr)" : "repeat(4, 1fr)", rowGap: m ? 24 : 0, borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: 28, marginBottom: 40 }}>
-          {[
-            { n: days, l: "Dage" },
-            { n: hours, l: "Timer" },
-            { n: mins, l: "Minutter" },
-            { n: secs, l: "Sekunder" },
-          ].map((c, i) => {
-            const divider = !m && i !== 0;
-            return (
-              <div key={c.l} style={{ borderLeft: divider ? "1px solid rgba(255,255,255,0.12)" : "none", paddingLeft: divider ? 32 : 0 }}>
-                <div style={cell}>{pad(c.n)}</div>
-                <div style={cellLabel}>{c.l}</div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: m ? "1fr" : "1.2fr 1fr", gap: m ? 28 : 64, alignItems: "end", borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: 32 }}>
-          <div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 12, fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>
-              <span style={{ color: "rgba(255,255,255,0.55)" }}>Pladser fyldt</span>
-              <span style={{ color: "white" }}>{taken}<span style={{ color: "rgba(255,255,255,0.4)" }}> / {total}</span></span>
-            </div>
-            <div style={{ height: 4, background: "rgba(255,255,255,0.08)", borderRadius: 999, overflow: "hidden", marginBottom: 14 }}>
-              <div style={{ width: `${pct}%`, height: "100%", background: C.mint }} />
-            </div>
-            <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, color: C.mint, textTransform: "uppercase", letterSpacing: "0.14em" }}>
-              Kun {remaining} pladser tilbage
-            </div>
+        {status !== "past" && (
+          <div style={{ display: "grid", gridTemplateColumns: m ? "repeat(2, 1fr)" : "repeat(4, 1fr)", rowGap: m ? 24 : 0, borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: 28, marginBottom: 40 }}>
+            {[
+              { n: days, l: "Dage" },
+              { n: hours, l: "Timer" },
+              { n: mins, l: "Minutter" },
+              { n: secs, l: "Sekunder" },
+            ].map((c, i) => {
+              const divider = !m && i !== 0;
+              return (
+                <div key={c.l} style={{ borderLeft: divider ? "1px solid rgba(255,255,255,0.12)" : "none", paddingLeft: divider ? 32 : 0 }}>
+                  <div style={cell}>{pad(c.n)}</div>
+                  <div style={cellLabel}>{c.l}{status === "live" && i === 0 ? "" : ""}</div>
+                </div>
+              );
+            })}
           </div>
+        )}
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <a href={LUMA_SIGNUP} {...EXT} className="v3cta-btn" style={{ padding: "18px 24px", background: C.mint, color: C.charcoal, border: "none", fontSize: 13, fontWeight: 600, cursor: "pointer", textAlign: "left", fontFamily: "ui-monospace, monospace", textTransform: "uppercase", letterSpacing: "0.12em", display: "flex", justifyContent: "space-between", alignItems: "center", textDecoration: "none" }}>
-              <span>Reserver min plads</span>
+        <div style={{ display: "grid", gridTemplateColumns: m ? "1fr" : "1fr 1fr", gap: m ? 28 : 48, alignItems: "stretch", borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: 32 }}>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 18 }}>
+            <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, color: C.mint, textTransform: "uppercase", letterSpacing: "0.18em" }}>
+              Deltagere tilmeldt
+            </div>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
+              <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: m ? 64 : 96, fontWeight: 400, color: "white", letterSpacing: "-0.04em", lineHeight: 0.9, fontVariantNumeric: "tabular-nums" }}>
+                {EVENT.attendees}
+              </span>
+              <span style={{ fontSize: 14, color: "rgba(255,255,255,0.55)" }}>tilmeldt nu</span>
+            </div>
+            <p style={{ fontSize: 14, lineHeight: 1.55, color: "rgba(255,255,255,0.7)", margin: 0, maxWidth: 380 }}>
+              {status === "live"
+                ? `Eventet er i gang i ${EVENT.city} lige nu. Tilmeld dig stadig og kom forbi.`
+                : status === "past"
+                ? "Eventet er afsluttet. Hold øje med næste."
+                : `Tilmeld dig næste event i ${EVENT.city}. Gratis · ingen binding.`}
+            </p>
+            <a href={EVENT.lumaUrl} {...EXT} className="v3cta-btn" style={{ padding: "16px 22px", background: C.mint, color: C.charcoal, border: "none", fontSize: 13, fontWeight: 600, cursor: "pointer", textAlign: "left", fontFamily: "ui-monospace, monospace", textTransform: "uppercase", letterSpacing: "0.12em", display: "inline-flex", justifyContent: "space-between", alignItems: "center", textDecoration: "none", gap: 16, width: m ? "100%" : "fit-content" }}>
+              <span>{status === "past" ? "Se kommende events" : "Reserver min plads"}</span>
               <span style={{ fontSize: 18 }}>→</span>
             </a>
-            <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 10, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.14em" }}>
-              Gratis · Ingen binding
-            </div>
+          </div>
+          <div style={{ background: C.white, borderRadius: 6, overflow: "hidden", border: "1px solid rgba(255,255,255,0.12)", minHeight: 480 }}>
+            <iframe
+              src={EVENT.lumaEmbedSrc}
+              title={`Tilmeld ${EVENT.city}`}
+              style={{ width: "100%", height: m ? 460 : 480, border: "none", display: "block" }}
+              allow="fullscreen; payment"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
