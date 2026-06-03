@@ -35,7 +35,7 @@ import albert from "@/assets/albert-profile.jpg";
 const EVENT = {
   start: "2026-06-03T17:00:00+02:00",
   end:   "2026-06-03T20:00:00+02:00",
-  city: "Aarhus",
+  city: "København",
   attendees: 44,
   lumaUrl: "https://luma.com/kki9jrdw",
   lumaEmbedSrc: "https://luma.com/embed/event/evt-RWdxgbFwyb8fPKp/simple",
