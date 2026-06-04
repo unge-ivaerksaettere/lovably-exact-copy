@@ -16,6 +16,7 @@ const FindCoFounder = lazy(() => import("./pages/FindCoFounder"));
 const MedTeamet = lazy(() => import("./pages/MedTeamet"));
 const VoresHistorie = lazy(() => import("./pages/VoresHistorie"));
 const VoresSponsoreBlivSponsor = lazy(() => import("./pages/VoresSponsoreBlivSponsor"));
+const Tilmeld = lazy(() => import("./pages/Tilmeld"));
 const Admin = lazy(() => import("./pages/Admin"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -75,6 +76,7 @@ const AppContent = () => {
           <Route path="/med-teamet" element={<MedTeamet />} />
           <Route path="/vores-historie" element={<VoresHistorie />} />
           <Route path="/vores-sponsorer" element={<VoresSponsoreBlivSponsor />} />
+          <Route path="/tilmeld" element={<Tilmeld />} />
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

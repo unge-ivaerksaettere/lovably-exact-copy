@@ -26,6 +26,8 @@ export const SOCIALS = {
 };
 export const PODCAST = SOCIALS.spotify;
 export const LUMA_SIGNUP = EVENT.lumaUrl;
+// TODO(real data): confirm the real Skool community URL with the team.
+export const SKOOL_URL = "https://www.skool.com/unge-ivaerksaettere";
 export const EXT = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 const _pad2 = (n: number) => String(n).padStart(2, "0");
@@ -94,7 +96,7 @@ export function SiteNav({ m }: { m: boolean }) {
         {!m && (
           <div style={{ display: "flex", alignItems: "center", gap: 32, fontFamily: "ui-monospace, monospace" }}>
             {navItems.map((i) => renderItem(i, false))}
-            <a href={LUMA_SIGNUP} {...EXT} className="v3-link" style={ctaStyle}>Tilmeld →</a>
+            <Link to="/tilmeld" className="v3-link" style={ctaStyle}>Tilmeld →</Link>
           </div>
         )}
 
@@ -110,7 +112,7 @@ export function SiteNav({ m }: { m: boolean }) {
       {m && open && (
         <div style={{ borderTop: `1px solid ${C.charcoal}12`, padding: "14px 22px 18px", display: "flex", flexDirection: "column", gap: 16, fontFamily: "ui-monospace, monospace" }}>
           {navItems.map((i) => renderItem(i, true))}
-          <a href={LUMA_SIGNUP} {...EXT} onClick={() => setOpen(false)} style={ctaStyle}>Tilmeld →</a>
+          <Link to="/tilmeld" onClick={() => setOpen(false)} style={ctaStyle}>Tilmeld →</Link>
         </div>
       )}
     </nav>
