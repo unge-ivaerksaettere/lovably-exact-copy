@@ -1,25 +1,20 @@
-// Forside — V3 base (Swiss / minimal grid) with brand photos + Luma-direct links, fully responsive.
-// Blend: V1 mint accent in the hero headline, V2-style larger speaker photos.
-// SINGLE SOURCE OF TRUTH for the event: `EVENT` below. Changing it updates the hero tag,
-// the countdown, the CTA section, the Luma links, and the embedded signup widget.
+// Forside — V3 base (Swiss / minimal grid). Uses shared chrome from v3-shared.
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
-import { Link } from "react-router-dom";
+import {
+  C, EVENT, EVENT_TAG, EXT, LUMA_SIGNUP, PODCAST,
+  innerStyle, headingStyle as h, labelStyle as label,
+  useIsMobile, sharedCss, SiteNav, SiteFooter,
+} from "./v3-shared";
 
-import uiLogo from "@/assets/new-logo.png";
-
-// Speakers
+// Page-specific imports
 import kimRants from "@/assets/kim-rants.jpg";
 import wernerValeur from "@/assets/werner-valeur.png";
 import nikolajNyholm from "@/assets/nikolaj-nyholm.jpg";
 import fazelMajed from "@/assets/fazel-profile.jpg";
 import sophusVinterberg from "@/assets/sophus-profile.jpg";
 import saxoAgdestein from "@/assets/saxo-profile.jpg";
-
-// Testimonials
 import lasseOsmann from "@/assets/lasse-profile.png";
 import mathiasStreander from "@/assets/mathias-profile.jpg";
-
-// Hero + community photos
 import eventAudience from "@/assets/event-audience-1.jpg";
 import community1 from "@/assets/community-networking-1.jpg";
 import community2 from "@/assets/community-networking-2.jpg";
@@ -28,120 +23,6 @@ import podcastRec1 from "@/assets/podcast-recording-1.jpg";
 import podcastRec2 from "@/assets/podcast-recording-2.jpg";
 import podcastStudio from "@/assets/podcast-studio.jpg";
 import albert from "@/assets/albert-profile.jpg";
-
-// =====================================================================
-// EVENT — single source of truth. Change here and the whole page updates.
-// =====================================================================
-const EVENT = {
-  start: "2026-06-03T17:00:00+02:00",
-  end:   "2026-06-03T20:00:00+02:00",
-  city: "København",
-  attendees: 44,
-  lumaUrl: "https://luma.com/kki9jrdw",
-  lumaEmbedSrc: "https://luma.com/embed/event/evt-RWdxgbFwyb8fPKp/simple",
-};
-
-const CONTACT_EMAIL = "kontakt@ungeivaerksaettere.dk";
-const SOCIALS = {
-  instagram: "https://www.instagram.com/ivaerksaettere/",
-  linkedin: "https://www.linkedin.com/company/74063868/",
-  youtube: "https://www.youtube.com/@ungeiv%C3%A6rks%C3%A6ttere",
-  tiktok: "https://www.tiktok.com/@ungeivaerksaettere",
-  spotify: "https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk",
-};
-const PODCAST = SOCIALS.spotify;
-const LUMA_SIGNUP = EVENT.lumaUrl;
-const EXT = { target: "_blank", rel: "noopener noreferrer" } as const;
-
-// Derived display values from EVENT
-const _pad2 = (n: number) => String(n).padStart(2, "0");
-const _eventStart = new Date(EVENT.start);
-const EVENT_TAG = `${EVENT.city.toUpperCase()} · ${_pad2(_eventStart.getDate())}.${_pad2(_eventStart.getMonth() + 1)}.${String(_eventStart.getFullYear()).slice(-2)}`;
-
-const C = {
-  darkGreen: "#118462",
-  mint: "#18cb96",
-  lightMint: "#bfe1d7",
-  charcoal: "#373643",
-  cream: "#f1ede8",
-  white: "#ffffff",
-};
-
-function useIsMobile() {
-  const [w, setW] = useState(() => (typeof window !== "undefined" ? window.innerWidth : 1440));
-  useEffect(() => {
-    const onResize = () => setW(window.innerWidth);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-  return w < 820;
-}
-
-const innerStyle = (m: boolean): CSSProperties => ({ maxWidth: 1320, margin: "0 auto", padding: m ? "0 22px" : "0 56px" });
-const h: CSSProperties = { fontFamily: '"Space Grotesk", sans-serif', fontWeight: 500, letterSpacing: "-0.03em", color: C.charcoal, margin: 0 };
-const label: CSSProperties = { fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.14em", color: C.darkGreen };
-
-const orbitCss = `
-  .v3-orbit { transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease; will-change: transform; }
-  .v3-orbit:hover { transform: scale(1.12); z-index: 5; box-shadow: 0 20px 50px rgba(17,132,98,.22); }
-  .v3-link { transition: opacity .2s ease; }
-  .v3-link:hover { opacity: .6; }
-  @keyframes v3pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(1.4); } }
-  .v3cta-btn { transition: transform .25s ease, box-shadow .25s ease; }
-  .v3cta-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(24,203,150,0.25); }
-`;
-
-const navItems = [
-  { l: "Events", href: LUMA_SIGNUP },
-  { l: "Teamet", href: LUMA_SIGNUP },
-  { l: "Sponsorer", href: LUMA_SIGNUP },
-  { l: "Podcast", href: PODCAST },
-];
-
-function Nav({ m }: { m: boolean }) {
-  const [open, setOpen] = useState(false);
-  const linkStyle: CSSProperties = { fontSize: 12, color: C.charcoal, textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.1em" };
-  const ctaStyle: CSSProperties = { ...linkStyle, color: C.darkGreen, fontWeight: 600 };
-  return (
-    <nav style={{ borderBottom: `1px solid ${C.charcoal}15`, padding: "16px 0", position: "relative", background: C.white }}>
-      <div style={{ ...innerStyle(m), display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Link to="/" style={{ display: "flex", alignItems: "center" }}>
-          <img src={uiLogo} alt="Unge Iværksættere" style={{ height: 28, width: "auto", display: "block" }} />
-        </Link>
-
-        {!m && (
-          <div style={{ display: "flex", alignItems: "center", gap: 32, fontFamily: "ui-monospace, monospace" }}>
-            {navItems.map((i) => (
-              <a key={i.l} href={i.href} {...EXT} className="v3-link" style={linkStyle}>{i.l}</a>
-            ))}
-            <a href={LUMA_SIGNUP} {...EXT} className="v3-link" style={ctaStyle}>Tilmeld →</a>
-          </div>
-        )}
-
-        {m && (
-          <button
-            aria-label="Menu"
-            onClick={() => setOpen((v) => !v)}
-            style={{ background: "transparent", border: "none", cursor: "pointer", display: "flex", flexDirection: "column", gap: 5, padding: 6 }}
-          >
-            <span style={{ width: 22, height: 2, background: C.charcoal, display: "block" }} />
-            <span style={{ width: 22, height: 2, background: C.charcoal, display: "block" }} />
-            <span style={{ width: 22, height: 2, background: C.charcoal, display: "block" }} />
-          </button>
-        )}
-      </div>
-
-      {m && open && (
-        <div style={{ borderTop: `1px solid ${C.charcoal}12`, padding: "14px 22px 18px", display: "flex", flexDirection: "column", gap: 16, fontFamily: "ui-monospace, monospace" }}>
-          {navItems.map((i) => (
-            <a key={i.l} href={i.href} {...EXT} onClick={() => setOpen(false)} style={linkStyle}>{i.l}</a>
-          ))}
-          <a href={LUMA_SIGNUP} {...EXT} onClick={() => setOpen(false)} style={ctaStyle}>Tilmeld →</a>
-        </div>
-      )}
-    </nav>
-  );
-}
 
 function Hero({ m }: { m: boolean }) {
   const btnBase: CSSProperties = { padding: "14px 20px", fontSize: 13, fontWeight: 500, cursor: "pointer", textAlign: "left", fontFamily: "ui-monospace, monospace", textTransform: "uppercase", letterSpacing: "0.1em", textDecoration: "none", display: "block" };
@@ -358,7 +239,6 @@ function CTA({ m }: { m: boolean }) {
   const status: "upcoming" | "live" | "past" =
     now < startTs ? "upcoming" : now < endTs ? "live" : "past";
 
-  // Countdown: if upcoming -> to start; if live -> to end; if past -> zeros (and we hide it)
   const countdownTarget = status === "live" ? endTs : startTs;
   const diff = Math.max(0, countdownTarget - now);
   const days = Math.floor(diff / 86400000);
@@ -412,7 +292,7 @@ function CTA({ m }: { m: boolean }) {
               return (
                 <div key={c.l} style={{ borderLeft: divider ? "1px solid rgba(255,255,255,0.12)" : "none", paddingLeft: divider ? 32 : 0 }}>
                   <div style={cell}>{pad(c.n)}</div>
-                  <div style={cellLabel}>{c.l}{status === "live" && i === 0 ? "" : ""}</div>
+                  <div style={cellLabel}>{c.l}</div>
                 </div>
               );
             })}
@@ -457,67 +337,12 @@ function CTA({ m }: { m: boolean }) {
   );
 }
 
-function SiteFooter({ m }: { m: boolean }) {
-  const sider: { l: string; to?: string; href?: string }[] = [
-    { l: "Forside", to: "/" },
-    { l: "Events", href: LUMA_SIGNUP },
-    { l: "Mød Teamet", href: LUMA_SIGNUP },
-    { l: "Podcast", href: PODCAST },
-  ];
-  const links = [
-    { l: "Instagram", href: SOCIALS.instagram },
-    { l: "LinkedIn", href: SOCIALS.linkedin },
-    { l: "YouTube", href: SOCIALS.youtube },
-    { l: "TikTok", href: SOCIALS.tiktok },
-    { l: "Spotify", href: SOCIALS.spotify },
-  ];
-  const colHead: CSSProperties = { fontFamily: "ui-monospace, monospace", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.14em", fontWeight: 600, color: C.mint, marginBottom: 16 };
-  const colItem: CSSProperties = { display: "block", fontSize: 13, opacity: 0.75, marginBottom: 10, color: "white", textDecoration: "none" };
-  return (
-    <footer style={{ background: C.charcoal, color: "white", padding: m ? "56px 0 32px" : "72px 0 36px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-      <div style={innerStyle(m)}>
-        <div style={{ display: "grid", gridTemplateColumns: m ? "1fr 1fr" : "1.4fr 1fr 1fr 1fr", gap: m ? 28 : 40, marginBottom: m ? 40 : 56 }}>
-          <div style={{ gridColumn: m ? "1 / -1" : "auto" }}>
-            <Link to="/" style={{ display: "inline-block", marginBottom: 18 }}>
-              <img src={uiLogo} alt="Unge Iværksættere" style={{ height: 30, width: "auto", display: "block", filter: "brightness(0) invert(1)" }} />
-            </Link>
-            <p style={{ fontSize: 13, lineHeight: 1.6, opacity: 0.55, maxWidth: 300 }}>
-              Danmarks største frivillige fællesskab for unge iværksættere.
-            </p>
-          </div>
-          <div>
-            <div style={colHead}>Sider</div>
-            {sider.map((s) => s.to
-              ? (<Link key={s.l} to={s.to} className="v3-link" style={colItem}>{s.l}</Link>)
-              : (<a key={s.l} href={s.href} {...EXT} className="v3-link" style={colItem}>{s.l}</a>))}
-          </div>
-          <div>
-            <div style={colHead}>Links</div>
-            {links.map((s) => (<a key={s.l} href={s.href} {...EXT} className="v3-link" style={colItem}>{s.l}</a>))}
-          </div>
-          <div>
-            <div style={colHead}>Kontakt</div>
-            <a href={`mailto:${CONTACT_EMAIL}`} className="v3-link" style={colItem}>{CONTACT_EMAIL}</a>
-            <span style={{ ...colItem, opacity: 0.55 }}>Aarhus & København</span>
-            <a href={LUMA_SIGNUP} {...EXT} className="v3-link" style={colItem}>Bliv sponsor</a>
-            <a href={`mailto:${CONTACT_EMAIL}?subject=Bliv frivillig`} className="v3-link" style={colItem}>Bliv frivillig</a>
-          </div>
-        </div>
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 24, display: "flex", flexDirection: m ? "column" : "row", justifyContent: "space-between", gap: m ? 8 : 0, fontFamily: "ui-monospace, monospace", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.14em", opacity: 0.5 }}>
-          <span>© 2026 Unge Iværksættere · CVR 42644606</span>
-          <span>Made in DK</span>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export default function ForsideV3() {
   const m = useIsMobile();
   return (
     <div style={{ fontFamily: "Inter, system-ui, sans-serif", background: C.white, color: C.charcoal, width: "100%", overflowX: "hidden" }}>
-      <style>{orbitCss}</style>
-      <Nav m={m} />
+      <style>{sharedCss}</style>
+      <SiteNav m={m} />
       <Hero m={m} />
       <Stats m={m} />
       <Community m={m} />

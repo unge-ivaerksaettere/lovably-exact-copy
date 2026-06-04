@@ -1,258 +1,166 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Play, Calendar, Clock, Loader2 } from "lucide-react";
+// Podcast — V3 styled. Pulls episodes from Supabase via usePodcastEpisodes.
+import { useEffect, type CSSProperties } from "react";
+import {
+  C, EXT, SOCIALS, innerStyle, headingStyle as h, labelStyle as label,
+  useIsMobile, sharedCss, SiteNav, SiteFooter, V3Hero, V3FAQ,
+} from "@/components/forside/v3-shared";
 import podcastStudio from "@/assets/podcast-studio.jpg";
-import NewsletterPodcast from "@/components/NewsletterPodcast";
-import PodcastEpisodeCard from "@/components/PodcastEpisodeCard";
-import { usePodcastEpisodes, useFeaturedPodcastEpisode, useSpotifySync } from "@/hooks/usePodcastEpisodes";
-import { useEffect } from "react";
-import { useQueryClient } from "@tanstack/react-query";
-// Podcast cover images from GitHub assets
 import podcastFazel from "@/assets/podcast-fazel.png";
 import podcastDoubles from "@/assets/podcast-doubles-fixed.png";
 import podcastLouliving from "@/assets/podcast-louliving.png";
 import podcastDoner from "@/assets/podcast-doner.png";
-const Podcast = () => {
-  const {
-    data: episodes = [],
-    isLoading: episodesLoading
-  } = usePodcastEpisodes();
-  const {
-    data: featuredEpisode,
-    isLoading: featuredLoading
-  } = useFeaturedPodcastEpisode();
+import { usePodcastEpisodes, useFeaturedPodcastEpisode, useSpotifySync } from "@/hooks/usePodcastEpisodes";
+import { useQueryClient } from "@tanstack/react-query";
 
-  // Use the first episode as featured if none is explicitly featured
-  const currentFeaturedEpisode = featuredEpisode || episodes[0];
-  const formatDuration = (durationMs: number | null) => {
-    if (!durationMs) return "N/A";
-    const minutes = Math.floor(durationMs / 60000);
-    const seconds = Math.floor(durationMs % 60000 / 1000);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  };
-  const getEpisodeImage = (title: string, fallback?: string | null) => {
-    const lc = title.toLowerCase();
-    
-    // Specific episode matches
-    if (lc.includes('fazel')) return podcastFazel;
-    if (lc.includes('doubles') || lc.includes('doublés') || lc.includes('peter')) return podcastDoubles;
-    if (lc.includes('louliving')) return podcastLouliving;
-    if (lc.includes('döner') || lc.includes('doner')) return podcastDoner;
-    
-    // For Gittemarie or other episodes without specific images, 
-    // check if Spotify provides a valid image URL
-    if (fallback && fallback !== '' && !fallback.includes('undefined') && !fallback.includes('null')) {
-      return fallback;
-    }
-    
-    // Default fallback
-    return podcastStudio;
-  };
+function episodeImage(title: string, fallback?: string | null) {
+  const lc = (title || "").toLowerCase();
+  if (lc.includes("fazel")) return podcastFazel;
+  if (lc.includes("doubles") || lc.includes("doublés") || lc.includes("peter")) return podcastDoubles;
+  if (lc.includes("louliving")) return podcastLouliving;
+  if (lc.includes("döner") || lc.includes("doner")) return podcastDoner;
+  if (fallback && !fallback.includes("undefined") && !fallback.includes("null")) return fallback;
+  return podcastStudio;
+}
+
+function formatDuration(durationMs: number | null) {
+  if (!durationMs) return "—";
+  const mins = Math.floor(durationMs / 60000);
+  return `${mins} min`;
+}
+
+export default function Podcast() {
+  const m = useIsMobile();
+  const { data: episodes = [], isLoading: epLoading } = usePodcastEpisodes();
+  const { data: featured } = useFeaturedPodcastEpisode();
+  const { syncWithSpotify } = useSpotifySync();
   const queryClient = useQueryClient();
-  const {
-    syncWithSpotify
-  } = useSpotifySync();
+
+  // Auto-sync if no episodes (preserves old behavior)
   useEffect(() => {
-    const requiredIds = ['4s5VbujsPLpoBBZdXCAbEL', '4P3kjxBiYGGjnS1uqjkt3V', '2yTe4aymOgjFl4rptMIxoZ', '0dM4qMKX9annVdUPBFckZO'];
-    const hasAnyRequired = episodes.some(e => requiredIds.includes(e.spotify_id));
-    if (!episodesLoading && (episodes.length === 0 || !hasAnyRequired)) {
+    if (!epLoading && episodes.length === 0) {
       (async () => {
         try {
           await syncWithSpotify();
-          await queryClient.invalidateQueries({
-            queryKey: ['podcast-episodes']
-          });
-          await queryClient.invalidateQueries({
-            queryKey: ['featured-podcast-episode']
-          });
+          await queryClient.invalidateQueries({ queryKey: ["podcast-episodes"] });
+          await queryClient.invalidateQueries({ queryKey: ["featured-podcast-episode"] });
         } catch (e) {
-          console.error('Spotify sync failed:', e);
+          console.error("Spotify sync failed:", e);
         }
       })();
     }
-  }, [episodesLoading, episodes, syncWithSpotify, queryClient]);
-  const faqData = [{
-    question: "Hvad er Unge Iværksættere?",
-    answer: "Danmarks største frivillige fællesskab for unge iværksættere med henblik på at gøre iværksætteri mere tilgængeligt og give fremtidens iværksættere de bedste kort på hånden."
-  }, {
-    question: "Hvem kan deltage i jeres events?",
-    answer: "Alle interesserede i iværksætteri kan deltage i vores events - både erfarne iværksættere og dem der overvejer at starte deres første startup."
-  }, {
-    question: "Koster det noget at deltage?",
-    answer: "Alle vores events er gratis for deltagerne. Vi tror på at gøre iværksætteri tilgængeligt for alle."
-  }, {
-    question: "Hvor afholdes jeres events?",
-    answer: "Vi holder events i København og Aarhus samt virtuelle webinarer så alle kan deltage."
-  }, {
-    question: "Kan jeg blive speaker på jeres events?",
-    answer: "Absolut! Vi er altid på udkig efter inspirerende speakers. Kontakt os på kontakt@ungeiværksættere.dk med dit forslag og vi vender tilbage hurtigst muligt."
-  }, {
-    question: "Hvordan kan min virksomhed blive sponsor?",
-    answer: "Vi samarbejder med virksomheder der støtter startup-økosystemet. Kontakt os på kontakt@ungeiværksættere.dk for at høre om sponsormuligheder og partnerskaber."
-  }];
-  return <div className="min-h-screen bg-background">
-      <Header />
-      
-      {/* Hero Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-anton text-foreground mb-6">
-              Unge Iværksættere Podcast
-            </h1>
-            <p className="text-lg font-inter text-muted-foreground max-w-3xl mx-auto mb-12">Dybdegående samtaler med mange af Danmarks succesrige iværksættere. Få insights der kan accelerere din startup rejse.</p>
+  }, [epLoading, episodes.length, syncWithSpotify, queryClient]);
+
+  const currentFeatured = featured || episodes[0];
+  const rest = episodes.filter((e) => e.id !== currentFeatured?.id).slice(0, 8);
+
+  return (
+    <div style={{ fontFamily: "Inter, system-ui, sans-serif", background: C.white, color: C.charcoal, width: "100%", overflowX: "hidden" }}>
+      <style>{sharedCss}</style>
+      <SiteNav m={m} />
+
+      <V3Hero
+        m={m}
+        label="§ 02 — Podcast"
+        title="Vores Podcast."
+        accentWord="."
+        intro="Hør danske iværksætteres ægte historier. Nye episoder hver uge — gratis på Spotify, Apple Podcasts og andre platforme."
+      />
+
+      {/* Stats band */}
+      <section style={{ padding: m ? "56px 0" : "80px 0", background: C.darkGreen, color: "white" }}>
+        <div style={innerStyle(m)}>
+          <div style={{ display: "grid", gridTemplateColumns: m ? "1fr 1fr" : "repeat(3, 1fr)", rowGap: m ? 36 : 0, columnGap: m ? 24 : 0 }}>
+            {[
+              { n: "50K+", l: "Afspilninger" },
+              { n: String(episodes.length || "—"), l: "Episoder" },
+              { n: "🇩🇰", l: "Lavet i DK" },
+            ].map((s, i) => {
+              const divider = !m && i !== 0;
+              return (
+                <div key={s.l} style={{ borderLeft: divider ? "1px solid rgba(255,255,255,0.18)" : "none", paddingLeft: divider ? 32 : 0, paddingRight: m ? 0 : 32 }}>
+                  <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.14em", color: C.mint, marginBottom: m ? 12 : 20 }}>0{i + 1}</div>
+                  <div style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: m ? 46 : 72, fontWeight: 400, color: "white", letterSpacing: "-0.04em", lineHeight: 0.9 }}>{s.n}</div>
+                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginTop: m ? 10 : 16 }}>{s.l}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Sponsor Banner */}
-      <section className="py-4">
-        <div className="container mx-auto px-4">
-          <div className="bg-muted/50 rounded-lg p-4 text-center">
-            <p className="text-sm font-inter text-muted-foreground">
-              👑 Vi er pt sponsoreret af <span className="font-dm-sans font-bold">Ageras</span> (Partner & Podcast Sponsor) og <span className="font-dm-sans font-bold">Jakob H.</span> (Støttesponsor) - tak for jeres støtte!
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Featured episode */}
+      <section style={{ padding: m ? "64px 0" : "100px 0" }}>
+        <div style={innerStyle(m)}>
+          <div style={{ ...label, marginBottom: m ? 24 : 32 }}>§ 03 — Featured</div>
+          <h2 style={{ ...h, fontSize: m ? 32 : 48, marginBottom: m ? 32 : 48, lineHeight: 1 }}>Seneste episode.</h2>
 
-      {/* Featured Episode */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="mb-8">
-            <Badge className="bg-secondary text-secondary-foreground font-dm-sans font-bold">
-              🔥 Featured Episode
-            </Badge>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="relative rounded-lg overflow-hidden">
-              {currentFeaturedEpisode ? <img src={getEpisodeImage(currentFeaturedEpisode.title, currentFeaturedEpisode.image_url)} alt={`${currentFeaturedEpisode.title} cover`} className="w-full h-auto object-cover rounded-lg" loading="lazy" referrerPolicy="no-referrer" onError={e => {
-              (e.currentTarget as HTMLImageElement).src = podcastStudio;
-            }} /> : <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center p-6">
-                  <div className="text-center space-y-4">
-                    <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto">
-                      <Play className="w-8 h-8 text-primary-foreground" />
-                    </div>
-                    <div className="space-y-2">
-                      <div className="font-dm-sans font-bold">Lyt til tidligere speakers 🎧</div>
-                      <div className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-inter inline-block">
-                        Podcast afspilleren
-                      </div>
-                    </div>
-                  </div>
-                </div>}
+          {currentFeatured ? (
+            <div style={{ display: "grid", gridTemplateColumns: m ? "1fr" : "1fr 1.2fr", gap: m ? 28 : 48, alignItems: "stretch", borderTop: `1px solid ${C.charcoal}15`, paddingTop: m ? 32 : 48 }}>
+              <div style={{ position: "relative", aspectRatio: "1 / 1", background: C.cream, overflow: "hidden" }}>
+                <img src={episodeImage(currentFeatured.title, currentFeatured.image_url)} alt={currentFeatured.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 18 }}>
+                <div style={{ ...label, color: C.mint }}>Ep. {currentFeatured.episode_number ?? ""} · {formatDuration(currentFeatured.duration_ms)}</div>
+                <h3 style={{ ...h, fontSize: m ? 28 : 40, lineHeight: 1.1 }}>{currentFeatured.title}</h3>
+                {currentFeatured.description && (
+                  <p style={{ fontSize: 15, lineHeight: 1.65, color: "#5a5962", margin: 0, maxWidth: 540, display: "-webkit-box", WebkitLineClamp: 4, WebkitBoxOrient: "vertical" as any, overflow: "hidden" }}>
+                    {currentFeatured.description.replace(/<[^>]+>/g, "")}
+                  </p>
+                )}
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                  {currentFeatured.spotify_url && (
+                    <a href={currentFeatured.spotify_url} {...EXT} className="v3cta-btn" style={btnFilled(C.charcoal, "white")}>
+                      Lyt på Spotify <span style={{ marginLeft: 14 }}>→</span>
+                    </a>
+                  )}
+                  <a href={SOCIALS.spotify} {...EXT} style={btnOutline(C.charcoal)}>
+                    Alle episoder
+                  </a>
+                </div>
+              </div>
             </div>
-            
-            <div className="space-y-6">
-              {featuredLoading ? <div className="flex items-center justify-center py-8">
-                  <Loader2 className="w-6 h-6 animate-spin" />
-                </div> : currentFeaturedEpisode ? <>
-                  <Badge className="bg-primary/10 text-primary font-dm-sans">Featured Episode</Badge>
-                  <h2 className="text-3xl font-anton text-foreground">
-                    {currentFeaturedEpisode.title}
-                  </h2>
-                  
-                  <div className="flex items-center gap-6 text-sm font-inter text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      {formatDuration(currentFeaturedEpisode.duration_ms)}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {new Date(currentFeaturedEpisode.release_date).toLocaleDateString('da-DK')}
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4">
-                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold px-8" onClick={() => window.open(currentFeaturedEpisode.spotify_url, '_blank')}>
-                      ▶ Lyt Nu
-                    </Button>
-                    <Button variant="outline" className="font-dm-sans font-bold" onClick={() => window.open(currentFeaturedEpisode.spotify_url, '_blank')}>
-                      🎧 Spotify
-                    </Button>
-                  </div>
-                </> : <p className="text-muted-foreground">Ingen featured episode tilgængelig</p>}
-            </div>
-          </div>
+          ) : (
+            <p style={{ fontSize: 15, color: "#5a5962" }}>{epLoading ? "Henter episoder..." : "Ingen episoder fundet endnu."}</p>
+          )}
         </div>
       </section>
 
+      {/* Episode grid */}
+      {rest.length > 0 && (
+        <section style={{ padding: m ? "64px 0" : "100px 0", background: C.cream, borderTop: `1px solid ${C.charcoal}15` }}>
+          <div style={innerStyle(m)}>
+            <div style={{ ...label, marginBottom: m ? 24 : 32 }}>§ 04 — Episoder</div>
+            <h2 style={{ ...h, fontSize: m ? 32 : 48, marginBottom: m ? 36 : 56, lineHeight: 1 }}>Tidligere episoder.</h2>
 
-      {/* Spotify Section */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-8">
-            <h3 className="text-2xl font-anton text-foreground">Lyt på Spotify</h3>
-            <p className="text-muted-foreground font-inter">
-              Følg vores podcast på Spotify for automatiske opdateringer af nye episoder.
-            </p>
-          </div>
-          
-          <div className="max-w-2xl mx-auto">
-            {/* Real Spotify Embed */}
-            <iframe src="https://open.spotify.com/embed/show/154B6QakpSESlOKiFkiDyk?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" className="rounded-lg" />
-            <div className="mt-6 flex gap-4 justify-center">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-dm-sans font-bold" onClick={() => window.open('https://open.spotify.com/show/154B6QakpSESlOKiFkiDyk', '_blank')}>
-                🎧 Åbn Show på Spotify
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* All Episodes */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <h3 className="text-2xl font-anton text-foreground mb-8">
-            Seneste Episoder (3)
-          </h3>
-          
-          {episodesLoading ? <div className="flex items-center justify-center py-8">
-              <Loader2 className="w-6 h-6 animate-spin" />
-              <span className="ml-2">Indlæser episoder...</span>
-            </div> : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {episodes.slice(1, 4).map(episode => (
-                <PodcastEpisodeCard key={episode.id} episode={episode} />
+            <div style={{ display: "grid", gridTemplateColumns: m ? "1fr 1fr" : "repeat(4, 1fr)", gap: m ? 16 : 24 }}>
+              {rest.map((ep) => (
+                <a key={ep.id} href={ep.spotify_url || SOCIALS.spotify} {...EXT} style={{ textDecoration: "none", color: "inherit", display: "block" }} className="v3cta-btn">
+                  <div style={{ aspectRatio: "1 / 1", background: C.white, overflow: "hidden", marginBottom: 12 }}>
+                    <img src={episodeImage(ep.title, ep.image_url)} alt={ep.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  </div>
+                  <div style={{ ...label, fontSize: 10, color: `${C.charcoal}80`, marginBottom: 6 }}>{formatDuration(ep.duration_ms)}</div>
+                  <div style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: m ? 15 : 17, fontWeight: 500, letterSpacing: "-0.01em", lineHeight: 1.25 }}>{ep.title}</div>
+                </a>
               ))}
-            </div>}
-        </div>
-      </section>
-
-      {/* Newsletter CTA */}
-      <NewsletterPodcast />
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-anton text-foreground mb-4">
-              Ofte Stillede Spørgsmål
-            </h2>
-            <p className="text-muted-foreground font-inter">
-              Find svar på de mest almindelige spørgsmål om Unge Iværksættere
-            </p>
+            </div>
           </div>
-          
-          <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqData.map((faq, index) => <AccordionItem key={index} value={`item-${index}`} className="bg-background border border-border rounded-lg px-6">
-                  <AccordionTrigger className="font-dm-sans font-bold text-foreground hover:no-underline">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="font-inter text-muted-foreground pb-6">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>)}
-            </Accordion>
-          </div>
-        </div>
-      </section>
-      
-      <Footer />
-    </div>;
-};
-export default Podcast;
+        </section>
+      )}
+
+      <V3FAQ m={m} sectionLabel="§ 05 — FAQ" />
+
+      <SiteFooter m={m} />
+    </div>
+  );
+}
+
+const btnFilled = (bg: string, fg: string): CSSProperties => ({
+  padding: "18px 24px", background: bg, color: fg, border: "none", fontSize: 13,
+  fontWeight: 600, cursor: "pointer", textAlign: "left", fontFamily: "ui-monospace, monospace",
+  textTransform: "uppercase", letterSpacing: "0.12em", display: "inline-flex", alignItems: "center", textDecoration: "none",
+});
+const btnOutline = (color: string): CSSProperties => ({
+  padding: "18px 24px", background: "transparent", color, border: `1px solid ${color}30`, fontSize: 13,
+  fontWeight: 500, cursor: "pointer", textAlign: "left", fontFamily: "ui-monospace, monospace",
+  textTransform: "uppercase", letterSpacing: "0.12em", display: "inline-flex", alignItems: "center", textDecoration: "none",
+});

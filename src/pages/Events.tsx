@@ -1,156 +1,123 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Calendar, Users, MapPin, Clock } from "lucide-react";
-import { Button } from "@/components/ui/button";
+// Events — V3 styled. Pulls event data from the shared EVENT config and embeds Luma.
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import {
+  C, EVENT, EVENT_TAG, EXT, LUMA_SIGNUP, innerStyle, headingStyle as h, labelStyle as label,
+  useIsMobile, sharedCss, SiteNav, SiteFooter, V3Hero, V3FAQ,
+} from "@/components/forside/v3-shared";
+import eventAudience from "@/assets/event-audience-1.jpg";
 
-const Events = () => {
+export default function Events() {
+  const m = useIsMobile();
+
+  const startTs = useMemo(() => new Date(EVENT.start).getTime(), []);
+  const endTs = useMemo(() => new Date(EVENT.end).getTime(), []);
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const status: "upcoming" | "live" | "past" = now < startTs ? "upcoming" : now < endTs ? "live" : "past";
+  const statusText = status === "live" ? "LIVE NU" : status === "past" ? "AFSLUTTET" : "TILMELDING ÅBEN";
+  const statusColor = status === "past" ? "#aaa" : C.mint;
+
   return (
-    <div className="min-h-screen">
-      <Header />
-      
-      {/* Hero Section */}
-      <section className="relative pt-24 md:pt-20 pb-8 md:pb-16 bg-gradient-subtle overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <Calendar className="w-5 h-5 text-primary" />
-              <span className="text-sm font-dm-sans font-bold text-primary">Kommende Events</span>
+    <div style={{ fontFamily: "Inter, system-ui, sans-serif", background: C.white, color: C.charcoal, width: "100%", overflowX: "hidden" }}>
+      <style>{sharedCss}</style>
+      <SiteNav m={m} />
+
+      <V3Hero
+        m={m}
+        label="§ 02 — Events"
+        title="Vores Events."
+        accentWord="."
+        intro="Mød andre unge iværksættere, lær af erfarne speakers og bliv inspireret. Gratis deltagelse · ingen binding."
+      />
+
+      {/* Stats band */}
+      <section style={{ padding: m ? "56px 0" : "80px 0", background: C.darkGreen, color: "white" }}>
+        <div style={innerStyle(m)}>
+          <div style={{ display: "grid", gridTemplateColumns: m ? "1fr 1fr" : "repeat(4, 1fr)", rowGap: m ? 36 : 0, columnGap: m ? 24 : 0 }}>
+            {[
+              { n: "30+", l: "Events afholdt" },
+              { n: "3000+", l: "Deltagere" },
+              { n: "2", l: "Byer" },
+              { n: "Gratis", l: "Altid" },
+            ].map((s, i) => {
+              const divider = !m && i !== 0;
+              return (
+                <div key={s.l} style={{ borderLeft: divider ? "1px solid rgba(255,255,255,0.18)" : "none", paddingLeft: divider ? 32 : 0, paddingRight: m ? 0 : 32 }}>
+                  <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.14em", color: C.mint, marginBottom: m ? 12 : 20 }}>0{i + 1}</div>
+                  <div style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: m ? 46 : 72, fontWeight: 400, color: "white", letterSpacing: "-0.04em", lineHeight: 0.9 }}>{s.n}</div>
+                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginTop: m ? 10 : 16 }}>{s.l}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Next event */}
+      <section style={{ padding: m ? "64px 0" : "100px 0" }}>
+        <div style={innerStyle(m)}>
+          <div style={{ display: "grid", gridTemplateColumns: m ? "1fr" : "1fr 2fr", gap: m ? 16 : 48, marginBottom: m ? 32 : 56 }}>
+            <div>
+              <div style={{ ...label, marginBottom: 16 }}>§ 03 — Næste event</div>
+              <h2 style={{ ...h, fontSize: m ? 32 : 48, lineHeight: 1 }}>{EVENT.city}.</h2>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginTop: 16, padding: "8px 14px", background: status === "live" ? C.mint : `${C.darkGreen}15`, color: status === "live" ? C.charcoal : C.darkGreen, fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.12em" }}>
+                <span style={{ width: 8, height: 8, borderRadius: 999, background: statusColor, animation: "v3pulse 1.6s ease-in-out infinite" }} />
+                {statusText}
+              </div>
             </div>
-            
-            {/* Title */}
-            <h1 className="text-4xl md:text-6xl font-anton font-bold mb-6 text-foreground">
-              Vores <span className="text-primary">Events</span>
-            </h1>
-            
-            {/* Subtitle */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-inter leading-relaxed">
-              Meld dig til vores kommende events og netværk med andre unge iværksættere. 
-              Få inspiration, læring og værdifulde kontakter i Danmarks største frivillige fællesskab for unge iværksættere.
+            <p style={{ fontSize: 15, lineHeight: 1.65, color: "#5a5962", maxWidth: 540, margin: 0, alignSelf: "end" }}>
+              {EVENT_TAG} · kl. {String(new Date(EVENT.start).getHours()).padStart(2, "0")}:{String(new Date(EVENT.start).getMinutes()).padStart(2, "0")}.
+              Tilmeld dig direkte via Luma nedenfor.
             </p>
           </div>
 
-          {/* Event Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="text-center p-6 bg-background/50 backdrop-blur-sm rounded-3xl shadow-soft">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-6 h-6 text-primary" />
+          <div style={{ display: "grid", gridTemplateColumns: m ? "1fr" : "1fr 1fr", gap: m ? 28 : 48, alignItems: "stretch", borderTop: `1px solid ${C.charcoal}15`, paddingTop: m ? 32 : 48 }}>
+            <div style={{ position: "relative", background: C.cream, minHeight: m ? 320 : 480, overflow: "hidden" }}>
+              <img src={eventAudience} alt="Event" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <div style={{ position: "absolute", bottom: 16, right: 16, background: C.darkGreen, color: "white", padding: "12px 16px", display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ width: 6, height: 6, borderRadius: 999, background: C.mint, boxShadow: `0 0 0 3px ${C.mint}40` }} />
+                <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em" }}>{EVENT_TAG}</span>
               </div>
-              <div className="text-2xl md:text-3xl font-anton font-bold text-primary mb-2">3000+</div>
-              <div className="text-sm text-muted-foreground font-inter">Deltagere</div>
             </div>
-            
-            <div className="text-center p-6 bg-background/50 backdrop-blur-sm rounded-3xl shadow-soft">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-6 h-6 text-primary" />
-              </div>
-              <div className="text-2xl md:text-3xl font-anton font-bold text-primary mb-2">30+</div>
-              <div className="text-sm text-muted-foreground font-inter">Events Afholdt</div>
+            <div style={{ background: C.white, border: `1px solid ${C.charcoal}15`, overflow: "hidden", minHeight: m ? 460 : 480 }}>
+              <iframe
+                src={EVENT.lumaEmbedSrc}
+                title={`Tilmeld ${EVENT.city}`}
+                style={{ width: "100%", height: m ? 460 : 480, border: "none", display: "block" }}
+                allow="fullscreen; payment"
+                loading="lazy"
+              />
             </div>
-            
-            <div className="text-center p-6 bg-background/50 backdrop-blur-sm rounded-3xl shadow-soft">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-6 h-6 text-primary" />
-              </div>
-              <div className="text-2xl md:text-3xl font-anton font-bold text-primary mb-2">Gratis</div>
-              <div className="text-sm text-muted-foreground font-inter">Deltagelse</div>
-            </div>
+          </div>
+
+          <div style={{ marginTop: 32, display: "flex", flexDirection: m ? "column" : "row", gap: 12 }}>
+            <a href={LUMA_SIGNUP} {...EXT} className="v3cta-btn" style={btnFilled(C.charcoal, "white")}>
+              Reserver min plads <span style={{ marginLeft: 14 }}>→</span>
+            </a>
+            <a href={LUMA_SIGNUP} {...EXT} style={btnOutline(C.charcoal)}>
+              Se alle events på Luma
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Event Embed Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            {/* Section Header */}
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-anton font-bold mb-4 text-foreground">
-                Næste Event
-              </h2>
-              <p className="text-lg text-muted-foreground font-inter">
-                Tilmeld dig og vær med til at bygge Danmarks iværksætter-fremtid
-              </p>
-            </div>
+      <V3FAQ m={m} sectionLabel="§ 04 — FAQ" />
 
-            {/* Event Card */}
-            <div className="bg-gradient-subtle rounded-4xl p-8 md:p-12 shadow-large">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
-                  <span className="text-2xl">🎯</span>
-                  <span className="text-sm font-dm-sans font-bold text-primary">Live Event</span>
-                </div>
-              </div>
-
-              {/* Iframe Container */}
-              <div className="flex justify-center">
-                <div className="relative bg-background/50 backdrop-blur-sm rounded-3xl p-4 md:p-6 shadow-medium w-full max-w-full md:max-w-[600px]">
-                  <iframe
-                    src="https://luma.com/embed/event/evt-jWCCranVGxjfaOO/simple"
-                    className="w-full"
-                    width="600"
-                    height="450"
-                    frameBorder="0"
-                    style={{ 
-                      border: "1px solid #bfcbda88", 
-                      borderRadius: "4px"
-                    }}
-                    allow="fullscreen; payment"
-                    aria-hidden="false"
-                    tabIndex={0}
-                    title="Unge Iværksættere Event"
-                  />
-                </div>
-              </div>
-
-              {/* CTA Section */}
-              <div className="text-center mt-8">
-                <p className="text-muted-foreground font-inter mb-6">
-                  Kan du ikke se eventet? Klik på knappen nedenfor for at tilmelde dig direkte
-                </p>
-                <Button variant="default" size="lg" className="font-dm-sans font-bold" asChild>
-                  <a 
-                    href="https://luma.com/iv9l8895" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2"
-                  >
-                    <Calendar className="w-4 h-4" />
-                    Tilmeld dig på Luma
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Event CTA */}
-      <section className="py-16 bg-gradient-primary">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-anton font-bold mb-4 text-primary-foreground">
-              Sikr din plads nu
-            </h3>
-            <p className="text-primary-foreground/90 font-inter mb-8">
-              Begrænsede pladser tilgængelige - Tilmeld dig og vær med til at skabe Danmarks startup-fremtid
-            </p>
-            <Button 
-              variant="secondary" 
-              size="lg" 
-              className="font-dm-sans font-bold inline-flex items-center gap-2"
-              onClick={() => window.open('https://luma.com/iv9l8895', '_blank')}
-            >
-              <Calendar className="w-4 h-4" />
-              🚀 Tilmeld dig nu
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+      <SiteFooter m={m} />
     </div>
   );
-};
+}
 
-export default Events;
+const btnFilled = (bg: string, fg: string): CSSProperties => ({
+  padding: "18px 24px", background: bg, color: fg, border: "none", fontSize: 13,
+  fontWeight: 600, cursor: "pointer", textAlign: "left", fontFamily: "ui-monospace, monospace",
+  textTransform: "uppercase", letterSpacing: "0.12em", display: "inline-flex", alignItems: "center", textDecoration: "none",
+});
+const btnOutline = (color: string): CSSProperties => ({
+  padding: "18px 24px", background: "transparent", color, border: `1px solid ${color}30`, fontSize: 13,
+  fontWeight: 500, cursor: "pointer", textAlign: "left", fontFamily: "ui-monospace, monospace",
+  textTransform: "uppercase", letterSpacing: "0.12em", display: "inline-flex", alignItems: "center", textDecoration: "none",
+});
