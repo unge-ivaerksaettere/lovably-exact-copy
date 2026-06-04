@@ -197,6 +197,45 @@ export const SHARED_FAQS = [
   { q: "Hvordan kan min virksomhed blive sponsor?", a: "Vi samarbejder med virksomheder der støtter startup-økosystemet. Kontakt os på kontakt@ungeivaerksaettere.dk for at høre om sponsormuligheder og partnerskaber." },
 ];
 
+export function V3Loading() {
+  return (
+    <div style={{ position: "fixed", inset: 0, background: C.white, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999, fontFamily: "Inter, system-ui, sans-serif" }}>
+      <style>{`
+        @keyframes v3LoadBar {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(250%); }
+        }
+        @keyframes v3LoadPulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.55; transform: scale(0.96); }
+        }
+        @keyframes v3DotPulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.3; transform: scale(1.5); }
+        }
+      `}</style>
+
+      {/* Indeterminate progress bar — top edge */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `${C.charcoal}10`, overflow: "hidden" }}>
+        <div style={{ height: "100%", width: "40%", background: C.mint, animation: "v3LoadBar 1.5s ease-in-out infinite" }} />
+      </div>
+
+      {/* Centered logo + label */}
+      <div style={{ textAlign: "center" }}>
+        <img
+          src={uiLogo}
+          alt="Unge Iværksættere"
+          style={{ height: 44, width: "auto", margin: "0 auto", display: "block", animation: "v3LoadPulse 1.4s ease-in-out infinite" }}
+        />
+        <div style={{ marginTop: 28, fontFamily: "ui-monospace, monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.2em", color: C.darkGreen, display: "inline-flex", alignItems: "center", gap: 10 }}>
+          <span style={{ width: 6, height: 6, borderRadius: 999, background: C.mint, animation: "v3DotPulse 1s ease-in-out infinite" }} />
+          Indlæser
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function V3FAQ({ m, faqs, sectionLabel }: { m: boolean; faqs?: { q: string; a: string }[]; sectionLabel?: string }) {
   const [open, setOpen] = useState<number | null>(0);
   const items = faqs ?? SHARED_FAQS;

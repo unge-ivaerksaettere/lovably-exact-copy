@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, lazy, Suspense } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { V3Loading } from "@/components/forside/v3-shared";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -65,7 +66,7 @@ const AppContent = () => {
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <Suspense fallback={<V3Loading />}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
